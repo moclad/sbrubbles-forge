@@ -8,6 +8,7 @@ import { AuthProvider } from '@repo/auth/provider';
 import { TooltipProvider } from './components/ui/tooltip';
 import { ThemeProvider } from './providers/theme';
 
+import type { ThemeProviderProps } from 'next-themes';
 type DesignSystemProviderProperties = ThemeProviderProps;
 
 export const DesignSystemProvider = ({
