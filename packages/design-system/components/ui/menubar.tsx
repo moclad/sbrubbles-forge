@@ -1,9 +1,10 @@
 "use client"
 
-import * as React from "react"
-import * as MenubarPrimitive from "@radix-ui/react-menubar"
-import { cn } from "@repo/design-system/lib/utils"
-import { CheckIcon, ChevronRightIcon, DotFilledIcon } from "@radix-ui/react-icons"
+import * as React from 'react';
+
+import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons';
+import * as MenubarPrimitive from '@radix-ui/react-menubar';
+import { cn } from '@repo/design-system/lib/utils';
 
 const MenubarMenu = MenubarPrimitive.Menu
 

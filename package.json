@@ -4,9 +4,7 @@
   "bin": {
     "next-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -16,15 +14,18 @@
     "analyze": "turbo analyze",
     "bump-deps": "npx npm-check-updates --deep -u -x react-day-picker,tailwindcss && pnpm install",
     "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
-    "migrate": "cd packages/database && npx prisma format && npx prisma generate && npx prisma db push",
+    "db:migrate": "cd packages/database && npx drizzle-kit migrate",
+    "db:generate": "cd packages/database && npx drizzle-kit generate",
+    "db:pull": "cd packages/database && npx drizzle-kit pull",
+    "studio": "cd packages/database && pnpm dev",
     "clean": "git clean -xdf node_modules"
   },
   "devDependencies": {
     "@auto-it/first-time-contributor": "^11.3.0",
     "@biomejs/biome": "1.9.4",
     "@repo/typescript-config": "workspace:*",
-    "@turbo/gen": "^2.4.2",
     "@types/node": "^22.13.4",
+    "@turbo/gen": "^2.4.2",
     "tsup": "^8.3.6",
     "turbo": "^2.4.2",
     "typescript": "^5.7.3",

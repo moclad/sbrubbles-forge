@@ -1,7 +1,7 @@
 import withBundleAnalyzer from '@next/bundle-analyzer';
-
 // @ts-expect-error No declaration file
 import { PrismaPlugin } from '@prisma/nextjs-monorepo-workaround-plugin';
+
 import type { NextConfig } from 'next';
 
 const otelRegex = /@opentelemetry\/instrumentation/;
@@ -9,12 +9,7 @@ const otelRegex = /@opentelemetry\/instrumentation/;
 export const config: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'img.clerk.com',
-      },
-    ],
+    remotePatterns: [],
   },
 
   // biome-ignore lint/suspicious/useAwait: rewrites is async
@@ -44,6 +39,9 @@ export const config: NextConfig = {
     config.ignoreWarnings = [{ module: otelRegex }];
 
     return config;
+  },
+  experimental: {
+    turbo: {},
   },
 
   // This is required to support PostHog trailing slash API requests

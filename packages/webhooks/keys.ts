@@ -1,15 +1,11 @@
-import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
+
+import { createEnv } from '@t3-oss/env-nextjs';
 
 export const keys = () =>
   createEnv({
     server: {
-      SVIX_TOKEN: z
-        .union([
-          z.string().min(1).startsWith('sk_'),
-          z.string().min(1).startsWith('testsk_'),
-        ])
-        .optional(),
+      SVIX_TOKEN: z.union([z.string(), z.string()]).optional(),
     },
     runtimeEnv: {
       SVIX_TOKEN: process.env.SVIX_TOKEN,

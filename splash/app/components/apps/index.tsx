@@ -5,10 +5,11 @@ import {
   GlobeIcon,
   LaptopIcon,
   MailIcon,
-  ServerIcon,
+  ServerIcon
 } from 'lucide-react';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
+
 import ApiImage from './api.png';
 import AppImage from './app.png';
 import DocsImage from './docs.png';
@@ -23,7 +24,7 @@ const apps = [
     name: 'app',
     title: 'Lightning-fast app template',
     description:
-      "Start building your app with a shadcn/ui template that's already set up with everything you need — Tailwind, Clerk and more.",
+      "Start building your app with a shadcn/ui template that's already set up with everything you need — Tailwind, Better-Auth and more.",
     image: AppImage,
   },
   {

@@ -4,10 +4,11 @@ import { SidebarProvider } from '@repo/design-system/components/ui/sidebar';
 import { showBetaFeature } from '@repo/feature-flags';
 import { NotificationsProvider } from '@repo/notifications/components/provider';
 import { secure } from '@repo/security';
-import type { ReactNode } from 'react';
+
 import { PostHogIdentifier } from './components/posthog-identifier';
 import { GlobalSidebar } from './components/sidebar';
 
+import type { ReactNode } from 'react';
 type AppLayoutProperties = {
   readonly children: ReactNode;
 };

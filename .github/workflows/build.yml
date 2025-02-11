@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  
+
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
@@ -60,7 +60,6 @@ jobs:
           echo "FLAGS_SECRET=FcnUGt7tT-4cOw-D_1GoXAH1bU7ljDBr01F5w4dxrdQ" >> apps/app/.env.local
           echo "ARCJET_KEY=ajkey_test" >> apps/app/.env.local
           echo "SVIX_TOKEN=testsk_test" >> apps/app/.env.local
-          echo "LIVEBLOCKS_SECRET=sk_test" >> apps/app/.env.local
           echo "BASEHUB_TOKEN=${{ secrets.BASEHUB_TOKEN }}" >> apps/app/.env.local
           echo "VERCEL_PROJECT_PRODUCTION_URL=http://localhost:3002" >> apps/app/.env.local
           echo "KNOCK_API_KEY=test" >> apps/app/.env.local

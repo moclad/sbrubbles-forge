@@ -1,11 +1,8 @@
 'use server';
 
-import {
-  type OrganizationMembership,
-  auth,
-  clerkClient,
-} from '@repo/auth/server';
 import Fuse from 'fuse.js';
+
+import { auth, OrganizationMembership } from '@repo/auth/server';
 
 const getName = (user: OrganizationMembership): string | undefined => {
   let name = user.publicUserData?.firstName;

@@ -1,32 +1,28 @@
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
+import Arcjet from './arcjet.svg';
 import BaseHub from './basehub.svg';
 import BetterStack from './better-stack.svg';
 import Clerk from './clerk.svg';
+import Cmdk from './cmdk.svg';
 import GoogleAnalytics from './google-analytics.svg';
+import Lucide from './lucide.svg';
+import Neon from './neon.svg';
+import Posthog from './posthog.svg';
 import Prisma from './prisma.svg';
 import Radix from './radix.svg';
-
 import ReactEmail from './react-email.svg';
+import React from './react.svg';
+import Recharts from './recharts.svg';
+import Resend from './resend.svg';
 import Sentry from './sentry.svg';
 import Stripe from './stripe.svg';
 import Svix from './svix.svg';
 import Tailwind from './tailwind.svg';
 import TypeScript from './typescript.svg';
-
-import Arcjet from './arcjet.svg';
-import Lucide from './lucide.svg';
-import Neon from './neon.svg';
-import React from './react.svg';
 import Ultracite from './ultracite.svg';
 import Vercel from './vercel.svg';
-
-import Cmdk from './cmdk.svg';
-import Liveblocks from './liveblocks.svg';
-import Posthog from './posthog.svg';
-import Recharts from './recharts.svg';
-import Resend from './resend.svg';
 import Zod from './zod.svg';
 
 const rows = [
@@ -94,11 +90,6 @@ const rows = [
         label: 'Arcjet',
         src: Arcjet,
         className: '[animation-delay:-22s] [animation-duration:40s]',
-      },
-      {
-        label: 'Liveblocks',
-        src: Liveblocks,
-        className: '[animation-delay:-28s] [animation-duration:40s]',
       },
     ],
   },
