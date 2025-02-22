@@ -1,4 +1,5 @@
 import { dirname, join } from 'node:path';
+
 import type { StorybookConfig } from '@storybook/nextjs';
 
 /**
@@ -19,12 +20,17 @@ const config: StorybookConfig = {
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-themes'),
+    getAbsolutePath('@storybook/theming'),
+    getAbsolutePath('storybook-dark-mode'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),
     options: {},
   },
   staticDirs: ['../public'],
+  core: {
+    disableTelemetry: true,
+  },
 };
 
 export default config;

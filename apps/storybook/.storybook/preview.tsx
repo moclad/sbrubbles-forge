@@ -1,13 +1,32 @@
+import '@repo/design-system/styles/globals.css';
+
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
 import { ThemeProvider } from '@repo/design-system/providers/theme';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { themes } from '@storybook/theming';
+
+import {
+  commonTheme,
+  darkUIStorybook,
+  lightUIStorybook,
+} from './themes-storybook-ui';
+
 import type { Preview } from '@storybook/react';
-
-import '@repo/design-system/styles/globals.css';
-
 const preview: Preview = {
   parameters: {
+    darkMode: {
+      classTarget: 'html',
+      stylePreview: true,
+      darkClass: 'dark',
+      lightClass: 'light',
+      // Override the default dark theme
+      dark: { ...themes.dark, ...darkUIStorybook, ...commonTheme },
+      // Override the default light theme
+      light: { ...themes.normal, ...lightUIStorybook, ...commonTheme },
+      // Set the initial theme
+      current: 'dark',
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
