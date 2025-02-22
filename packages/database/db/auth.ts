@@ -1,10 +1,4 @@
-import { boolean, integer, pgEnum, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
-
-export const pageTable = pgTable('Page', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
-  street: varchar({ length: 255 }).notNull(),
-});
+import { boolean, pgEnum, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const userRoleEnums = pgEnum('Role', ['user', 'admin', 'superAdmin']);
 

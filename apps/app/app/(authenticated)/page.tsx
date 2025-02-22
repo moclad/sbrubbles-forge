@@ -1,4 +1,5 @@
-import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 import { auth } from '@repo/auth/server';
 import { database } from '@repo/database';
@@ -17,12 +18,13 @@ export const metadata: Metadata = {
 
 const App = async () => {
   const pages = await database.select().from(pageTable);
-  const { orgId } = await auth.;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  if (!orgId) {
-    notFound();
+  if (!session?.user) {
+    return redirect('/sign-in'); // from next/navigation
   }
-
   return (
     <>
       <Header pages={['Building Your Application']} page="Data Fetching" />

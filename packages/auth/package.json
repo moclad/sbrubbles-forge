@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "better-auth": "^1.1.15",
+    "@better-fetch/fetch": "^1.1.13",
     "@repo/tailwind-config": "workspace:*",
     "@repo/database": "workspace:*",
     "@t3-oss/env-nextjs": "^0.12.0",

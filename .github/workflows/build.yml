@@ -74,7 +74,6 @@ jobs:
           echo "NEXT_PUBLIC_POSTHOG_KEY=phc_test" >> apps/app/.env.local
           echo "NEXT_PUBLIC_POSTHOG_HOST=https://test.com" >> apps/app/.env.local
           echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> apps/app/.env.local
-          echo "NEXT_PUBLIC_WEB_URL=http://localhost:3001" >> apps/app/.env.local
           echo "NEXT_PUBLIC_DOCS_URL=http://localhost:3004" >> apps/app/.env.local
 
       - name: Copy .env.local file
