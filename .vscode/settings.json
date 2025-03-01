@@ -23,6 +23,12 @@
   "editor.formatOnSave": true,
   "emmet.showExpandedAbbreviation": "never",
   "prettier.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "tailwindCSS.experimental.configFile": "./packages/tailwind-config/config.ts",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
 }

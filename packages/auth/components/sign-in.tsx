@@ -1,87 +1,125 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
+import { Separator } from '@repo/design-system/components/ui/separator';
+import { toast } from '@repo/design-system/hooks/use-toast';
 
 import { signIn } from '../client';
+import { signInFormSchema } from '../lib/auth-schema';
+
+import type { z } from 'zod';
 
 export const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const form = useForm<z.infer<typeof signInFormSchema>>({
+    resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
+    const { email, password } = values;
+    const { data, error } = await signIn.email(
+      {
+        email,
+        password,
+        callbackURL: '/dashboard',
+      },
+      {
+        onRequest: () => {
+          toast({
+            title: 'Please wait...',
+          });
+        },
+        onSuccess: () => {
+          form.reset();
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      }
+    );
+  }
 
   return (
-    <form
-      className="space-y-6"
-      onSubmit={async (e) => {
-        e.preventDefault();
-        await signIn.email({
-          email,
-          password,
-        });
-      }}
-    >
-      <div className="space-y-2">
-        <label className="text-gray-500 text-sm" htmlFor="email">
-          Users name or Email
-        </label>
-        <Input
-          id="email"
-          defaultValue="David Brooks"
-          className="w-full rounded border p-2"
-        />
+    <div className='mx-auto w-full max-w-md'>
+      <div className='space-y-2'>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='email'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-muted-foreground'>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder='john@mail.com' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-muted-foreground'>
+                    Password
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type='password'
+                      placeholder='Enter your password'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className='mb-2'>
+              <div className='text-right text-muted-foreground text-sm'>
+                <Link
+                  href='/forgot-password'
+                  className='font-medium text-sm hover:underline'
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            </div>
+
+            <Button className='w-full' type='submit'>
+              Submit
+            </Button>
+          </form>
+        </Form>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-gray-500 text-sm" htmlFor="password">
-          Password
-        </label>
-        <Input
-          id="password"
-          type="password"
-          defaultValue="password"
-          className="w-full rounded border p-2"
-        />
-        <div className="text-right">
-          <Link href="#" className="text-gray-500 text-sm hover:text-gray-700">
-            Forget password?
+      <Separator />
+
+      <div className='flex justify-center'>
+        <p className='text-muted-foreground text-sm'>
+          Don&apos;t have an account yet?{' '}
+          <Link href='/sign-up' className='hover:underline'>
+            Sign up
           </Link>
-        </div>
+        </p>
       </div>
-
-      <Button className="w-full bg-gray-600 text-white hover:bg-gray-700">
-        Sign in
-      </Button>
-
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-gray-200 border-t" />
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="bg-white px-2 text-gray-500">or</span>
-        </div>
-      </div>
-
-      <Button variant="outline" className="w-full border-gray-300">
-        <Image
-          src="/placeholder.svg"
-          alt="Google"
-          width={20}
-          height={20}
-          className="mr-2"
-        />
-        Sign in with Google
-      </Button>
-
-      <p className="text-center text-gray-500 text-sm">
-        New Lovebirds?{' '}
-        <Link href="#" className="text-gray-600 hover:text-gray-800">
-          Create Account
-        </Link>
-      </p>
-    </form>
+    </div>
   );
 };

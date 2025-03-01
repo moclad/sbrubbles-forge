@@ -7,10 +7,13 @@ import { admin, openAPI, organization } from 'better-auth/plugins';
 
 import { database } from '@repo/database';
 
+import { keys } from './keys';
+
 export const auth = betterAuth({
   database: drizzleAdapter(database, {
     provider: 'pg',
   }),
+  baseURL: keys().BETTER_AUTH_URL,
   plugins: [
     openAPI(),
     admin(),

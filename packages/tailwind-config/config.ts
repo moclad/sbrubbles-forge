@@ -1,11 +1,17 @@
-import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+
+import typographyConfig from './typography.config';
+
+import type { Config } from 'tailwindcss';
 export const config: Config = {
   darkMode: ['class'],
   content: [
+    './node_modules/@repo/auth/components/**/*.{ts,tsx}',
+    './node_modules/@repo/design-system/components/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/components/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/lib/**/*.{ts,tsx}',
     './node_modules/@repo/design-system/index.tsx',
@@ -80,6 +86,11 @@ export const config: Config = {
           ring: 'hsl(var(--sidebar-ring))',
         },
       },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono],
@@ -101,13 +112,32 @@ export const config: Config = {
             height: '0',
           },
         },
+        marquee: {
+          from: {
+            transform: 'translateX(0)',
+          },
+          to: {
+            transform: 'translateX(calc(-100% - 1rem))',
+          },
+        },
+        orbit: {
+          '0%': {
+            transform:
+              'rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)',
+          },
+          '100%': {
+            transform:
+              'rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        shine: 'shine 8s ease-in-out infinite',
       },
-      typography: 'typographyConfig',
+      typography: typographyConfig,
     },
   },
-  plugins: [animate, typography],
+  plugins: [animate, forms, typography],
 };

@@ -12,6 +12,6 @@
       "@repo/design-system/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "../auth/lib/auth-schema.ts"],
   "exclude": ["node_modules"]
 }
