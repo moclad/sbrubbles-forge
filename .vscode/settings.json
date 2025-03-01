@@ -30,5 +30,6 @@
   "tailwindCSS.experimental.configFile": "./packages/tailwind-config/config.ts",
   "editor.quickSuggestions": {
     "strings": "on"
-  }
+  },
+  "cSpell.words": ["POSTHOG"]
 }

@@ -5,8 +5,8 @@ import { createEnv } from '@t3-oss/env-nextjs';
 export const keys = () =>
   createEnv({
     client: {
-      NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
-      NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
+      NEXT_PUBLIC_POSTHOG_KEY: z.string(),
+      NEXT_PUBLIC_POSTHOG_HOST: z.string(),
       NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().optional(),
     },
     runtimeEnv: {

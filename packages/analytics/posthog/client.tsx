@@ -1,6 +1,6 @@
 'use client';
 
-import posthog, { type PostHog } from 'posthog-js';
+import posthog from 'posthog-js';
 import { PostHogProvider as PostHogProviderRaw } from 'posthog-js/react';
 import { useEffect } from 'react';
 
@@ -22,7 +22,7 @@ export const PostHogProvider = (
         person_profiles: 'identified_only',
         capture_pageview: false, // Disable automatic pageview capture, as we capture manually
         capture_pageleave: true, // Overrides the `capture_pageview` setting
-      }) as PostHog;
+      });
     }
   }, []);
 
