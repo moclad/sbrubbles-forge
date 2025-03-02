@@ -33,6 +33,15 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+  bugsink:
+    image: bugsink/bugsink
+    environment:
+      SECRET_KEY: eJzWHF29zyphQIavmmtYyOyoqjSMtPk2MFJi1Eydhrs9aPjhjV
+      CREATE_SUPERUSER: admin:admin
+      PORT: 8000
+    ports:
+      - "8000:8000"
+
 
 networks:
   postgres:
