@@ -4,7 +4,7 @@ services:
     ports:
       - "6005:3000"
     environment:
-      DATABASE_URL: postgresql://postgres:changeme@postgres:5432/umami
+      DATABASE_URL: postgresql://postgres:mypassword@postgres:5432/umami
       DATABASE_TYPE: postgresql
       APP_SECRET: replace-me-with-a-random-string
     depends_on:
@@ -23,7 +23,7 @@ services:
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mypassword}
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
       PGDATA: /data/postgres
     volumes:

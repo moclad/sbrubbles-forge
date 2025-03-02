@@ -4,9 +4,7 @@
   "bin": {
     "next-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -19,6 +17,7 @@
     "db:migrate": "cd packages/database && npx drizzle-kit migrate",
     "db:generate": "cd packages/database && npx drizzle-kit generate",
     "db:pull": "cd packages/database && npx drizzle-kit pull",
+    "db:push": "cd packages/database && npx drizzle-kit push",
     "studio": "cd packages/database && pnpm dev",
     "clean": "git clean -xdf node_modules"
   },
@@ -44,9 +43,6 @@
   },
   "type": "module",
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@sentry/cli",
-      "esbuild"
-    ]
+    "onlyBuiltDependencies": ["@sentry/cli", "esbuild"]
   }
 }

@@ -13,6 +13,9 @@ export const auth = betterAuth({
   database: drizzleAdapter(database, {
     provider: 'pg',
   }),
+  emailAndPassword: {
+    enabled: true,
+  },
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [
     openAPI(),
@@ -38,5 +41,6 @@ export const auth = betterAuth({
       },
     },
   },
+  trustedOrigins: ['http://localhost:3000'],
   usePlural: true,
 });

@@ -22,6 +22,4 @@ export const authMiddleware = async (request: NextRequest) => {
   if (isProtectedRoute(request) && !session) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
-
-  return NextResponse.next();
 };

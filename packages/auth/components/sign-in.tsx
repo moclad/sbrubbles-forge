@@ -15,14 +15,14 @@ import {
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Separator } from '@repo/design-system/components/ui/separator';
-import { toast } from '@repo/design-system/hooks/use-toast';
+import { useToast } from '@repo/design-system/hooks/use-toast';
 
 import { signIn } from '../client';
 import { signInFormSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
-
 export const SignIn = () => {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -33,6 +33,7 @@ export const SignIn = () => {
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
+    console.log(values);
     const { data, error } = await signIn.email(
       {
         email,
@@ -49,10 +50,12 @@ export const SignIn = () => {
           form.reset();
         },
         onError: (ctx) => {
-          alert(ctx.error.message);
+          console.log(ctx);
+          toast({ title: `Error: ${ctx.error.message}` });
         },
       }
     );
+    console.log(data, error);
   }
 
   return (
