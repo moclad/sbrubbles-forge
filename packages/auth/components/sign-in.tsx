@@ -18,20 +18,20 @@ import { Separator } from '@repo/design-system/components/ui/separator';
 import { useToast } from '@repo/design-system/hooks/use-toast';
 
 import { signIn } from '../client';
-import { signInFormSchema } from '../lib/auth-schema';
+import { formSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
 export const SignIn = () => {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const { email, password } = values;
     console.log(values);
     const { data, error } = await signIn.email(
@@ -113,12 +113,12 @@ export const SignIn = () => {
         </Form>
       </div>
 
-      <Separator />
+      <Separator className='my-8' />
 
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           Don&apos;t have an account yet?{' '}
-          <Link href='/sign-up' className='hover:underline'>
+          <Link href='/sign-up' className='font-medium hover:underline'>
             Sign up
           </Link>
         </p>
