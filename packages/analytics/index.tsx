@@ -1,21 +1,32 @@
-import type { ReactNode } from 'react';
+import Script from 'next/script';
+
 import { GoogleAnalytics } from './google';
 import { keys } from './keys';
-import { PostHogProvider } from './posthog/client';
-import { VercelAnalytics } from './vercel';
+
+import type { ReactNode } from 'react';
 
 type AnalyticsProviderProps = {
   readonly children: ReactNode;
 };
 
-const { NEXT_PUBLIC_GA_MEASUREMENT_ID } = keys();
+const {
+  NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+  NEXT_PUBLIC_UMAMI_SCRIPT_URL,
+  NEXT_PUBLIC_GA_MEASUREMENT_ID,
+} = keys();
 
 export const AnalyticsProvider = ({ children }: AnalyticsProviderProps) => (
-  <PostHogProvider>
+  <div>
+    {NEXT_PUBLIC_UMAMI_SCRIPT_URL && NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+      <Script
+        src={NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+        data-website-id={NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        strategy='lazyOnload'
+      />
+    )}
     {children}
-    <VercelAnalytics />
     {NEXT_PUBLIC_GA_MEASUREMENT_ID && (
       <GoogleAnalytics gaId={NEXT_PUBLIC_GA_MEASUREMENT_ID} />
     )}
-  </PostHogProvider>
+  </div>
 );

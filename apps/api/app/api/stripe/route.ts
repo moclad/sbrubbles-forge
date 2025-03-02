@@ -1,13 +1,13 @@
+import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+
 import { env } from '@/env';
-import { analytics } from '@repo/analytics/posthog/server';
 import { clerkClient } from '@repo/auth/server';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
 import { stripe } from '@repo/payments';
-import type { Stripe } from '@repo/payments';
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
 
+import type { Stripe } from '@repo/payments';
 const getUserFromCustomerId = async (customerId: string) => {
   const clerk = await clerkClient();
   const users = await clerk.users.getUserList();
@@ -33,11 +33,6 @@ const handleCheckoutSessionCompleted = async (
   if (!user) {
     return;
   }
-
-  analytics.capture({
-    event: 'User Subscribed',
-    distinctId: user.id,
-  });
 };
 
 const handleSubscriptionScheduleCanceled = async (
@@ -54,11 +49,6 @@ const handleSubscriptionScheduleCanceled = async (
   if (!user) {
     return;
   }
-
-  analytics.capture({
-    event: 'User Unsubscribed',
-    distinctId: user.id,
-  });
 };
 
 export const POST = async (request: Request): Promise<Response> => {
@@ -94,8 +84,6 @@ export const POST = async (request: Request): Promise<Response> => {
         log.warn(`Unhandled event type ${event.type}`);
       }
     }
-
-    await analytics.shutdown();
 
     return NextResponse.json({ result: event, ok: true });
   } catch (error) {

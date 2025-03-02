@@ -8,7 +8,6 @@ import { showBetaFeature } from '@repo/feature-flags';
 import { NotificationsProvider } from '@repo/notifications/components/provider';
 import { secure } from '@repo/security';
 
-import { PostHogIdentifier } from './components/posthog-identifier';
 import { GlobalSidebar } from './components/sidebar';
 
 import type { ReactNode } from 'react';
@@ -36,13 +35,12 @@ const AppLayout = async ({ children }: AppLayoutProperties) => {
       <SidebarProvider>
         <GlobalSidebar>
           {betaFeature && (
-            <div className="m-4 rounded-full bg-success p-1.5 text-center text-sm text-success-foreground">
+            <div className='m-4 rounded-full bg-success p-1.5 text-center text-sm text-success-foreground'>
               Beta feature now available
             </div>
           )}
           {children}
         </GlobalSidebar>
-        <PostHogIdentifier />
       </SidebarProvider>
     </NotificationsProvider>
   );

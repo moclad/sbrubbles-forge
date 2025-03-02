@@ -71,8 +71,8 @@ jobs:
           echo "NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/" >> apps/app/.env.local
           echo "NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/" >> apps/app/.env.local
           echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-test" >> apps/app/.env.local
-          echo "NEXT_PUBLIC_POSTHOG_KEY=phc_test" >> apps/app/.env.local
-          echo "NEXT_PUBLIC_POSTHOG_HOST=https://test.com" >> apps/app/.env.local
+          echo "NEXT_PUBLIC_UMAMI_WEBSITE_ID=phc_test" >> apps/app/.env.local
+          echo "NEXT_PUBLIC_UMAMI_SCRIPT_URL=https://test.com" >> apps/app/.env.local
           echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> apps/app/.env.local
           echo "NEXT_PUBLIC_DOCS_URL=http://localhost:3004" >> apps/app/.env.local
 

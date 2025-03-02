@@ -1,10 +1,12 @@
-// const SignIn = dynamic(() =>
-//   import('@repo/auth/components/sign-in').then((mod) => mod.SignIn)
-// );
-import { SignIn } from '@repo/auth/components/sign-in';
+import dynamic from 'next/dynamic';
+
 import { createMetadata } from '@repo/seo/metadata';
 
 import type { Metadata } from 'next';
+const SignIn = dynamic(() =>
+  import('@repo/auth/components/sign-in').then((mod) => mod.SignIn)
+);
+
 const title = 'Welcome back';
 const description = 'Enter your details to sign in.';
 export const metadata: Metadata = createMetadata({ title, description });

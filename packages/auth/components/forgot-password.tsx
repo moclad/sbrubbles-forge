@@ -17,27 +17,25 @@ import { Input } from '@repo/design-system/components/ui/input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { useToast } from '@repo/design-system/hooks/use-toast';
 
-import { signIn } from '../client';
+import { forgetPassword } from '../client';
 import { formSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
-export const SignIn = () => {
+export const ForgotPassword = () => {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { email, password } = values;
-    const { data, error } = await signIn.email(
+    const { email } = values;
+    const { data, error } = await forgetPassword(
       {
         email,
-        password,
-        callbackURL: '/dashboard',
+        redirectTo: '/reset-password',
       },
       {
         onRequest: () => {
@@ -73,36 +71,6 @@ export const SignIn = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    Password
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type='password'
-                      placeholder='Enter your password'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className='mb-2'>
-              <div className='text-right text-muted-foreground text-sm'>
-                <Link
-                  href='/forgot-password'
-                  className='font-medium text-sm hover:underline'
-                >
-                  Forgot password?
-                </Link>
-              </div>
-            </div>
-
             <Button className='w-full' type='submit'>
               Submit
             </Button>
@@ -114,9 +82,9 @@ export const SignIn = () => {
 
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
-          Don&apos;t have an account yet?{' '}
-          <Link href='/sign-up' className='font-medium hover:underline'>
-            Sign up
+          Already have an account?{' '}
+          <Link href='/sign-in' className='font-medium hover:underline'>
+            Sign in
           </Link>
         </p>
       </div>

@@ -121,7 +121,7 @@ export const SignUp = () => {
 
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
-          Already have an account yet?{' '}
+          Already have an account?{' '}
           <Link href='/sign-in' className='font-medium hover:underline'>
             Sign in
           </Link>

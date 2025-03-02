@@ -28,3 +28,7 @@ export const signUpFormSchema = formSchema.pick({
   email: true,
   password: true,
 });
+
+export const ForgetPwFormSchema = formSchema.pick({
+  email: true,
+});

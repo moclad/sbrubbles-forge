@@ -44,3 +44,5 @@ export const auth = betterAuth({
   trustedOrigins: ['http://localhost:3000'],
   usePlural: true,
 });
+
+export type Session = typeof auth.$Infer.Session;
