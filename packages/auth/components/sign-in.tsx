@@ -11,27 +11,27 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { useToast } from '@repo/design-system/hooks/use-toast';
 
 import { signIn } from '../client';
-import { formSchema } from '../lib/auth-schema';
+import { signInFormSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
 export const SignIn = () => {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signInFormSchema>>({
+    resolver: zodResolver(signInFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
 
     const { data, error } = await signIn.email(
@@ -54,8 +54,6 @@ export const SignIn = () => {
         },
       }
     );
-
-    console.log('--------->', data, error);
   }
 
   return (

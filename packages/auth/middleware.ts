@@ -6,16 +6,13 @@ import { keys } from './keys';
 
 import type { NextRequest } from 'next/server';
 
-import type { auth } from './server';
-
 const authRoutes = ['/sign-in', '/sign-up'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];
 const appRoutes = ['/dashboard'];
 
-type Session = typeof auth.$Infer.Session;
+import type { Session } from './server';
 
 export const authMiddleware = async (request: NextRequest) => {
-  console.log('authMiddleware');
   const pathName = request.nextUrl.pathname;
   const isAuthRoute = authRoutes.includes(pathName);
   const isPasswordRoute = passwordRoutes.includes(pathName);
@@ -31,8 +28,6 @@ export const authMiddleware = async (request: NextRequest) => {
       cookie: request.headers.get('cookie') ?? '', // Forward the cookies from the request
     },
   });
-
-  console.log('session', data, error);
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {
