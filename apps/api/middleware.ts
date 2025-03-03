@@ -4,6 +4,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 const allowedOrigins = ['http://localhost:3000', 'https://example-1.com'];
 
 export function middleware(request: NextRequest) {
+  console.log(request.nextUrl);
   // retrieve the current response
   const res = NextResponse.next();
 

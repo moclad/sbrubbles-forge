@@ -51,18 +51,3 @@ export const authMiddleware = async (request: NextRequest) => {
 
   return NextResponse.next();
 };
-
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - /api (API routes)
-     * Feel free to modify this pattern to include more paths.
-     */
-    //'/((?!api|_next/static|_next/image|favicon.ico).*)',
-    '/((?!_next/static|api|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
-  ],
-};

@@ -33,6 +33,7 @@ export const SignIn = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { email, password } = values;
+
     const { data, error } = await signIn.email(
       {
         email,
@@ -53,6 +54,8 @@ export const SignIn = () => {
         },
       }
     );
+
+    console.log('--------->', data, error);
   }
 
   return (
