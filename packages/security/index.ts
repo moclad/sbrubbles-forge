@@ -5,6 +5,7 @@ import arcjet, {
   request,
   shield,
 } from '@arcjet/next';
+
 import { keys } from './keys';
 
 const arcjetKey = keys().ARCJET_KEY;

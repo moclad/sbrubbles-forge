@@ -1,6 +1,9 @@
 import 'server-only';
-import { auth } from '@repo/auth/server';
+
 import { Svix } from 'svix';
+
+import { auth } from '@repo/auth/server';
+
 import { keys } from '../keys';
 
 const svixToken = keys().SVIX_TOKEN;
