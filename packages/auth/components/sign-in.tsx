@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,18 +12,18 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
+import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
-import { useToast } from '@repo/design-system/hooks/use-toast';
+import { toast } from '@repo/design-system/components/ui/sonner';
 
 import { signIn } from '../client';
 import { signInFormSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
 export const SignIn = () => {
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -30,11 +31,13 @@ export const SignIn = () => {
       password: '',
     },
   });
+  const toastIdRef = useRef<string | number | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
 
-    const { data, error } = await signIn.email(
+    await signIn.email(
       {
         email,
         password,
@@ -42,15 +45,20 @@ export const SignIn = () => {
       },
       {
         onRequest: () => {
-          toast({
-            title: 'Please wait...',
-          });
+          toastIdRef.current = toast.loading('Signing in...');
+          setLoading(true);
         },
         onSuccess: () => {
+          toast.success('Signed in successfully', {
+            id: toastIdRef.current ?? undefined,
+          });
           form.reset();
         },
         onError: (ctx) => {
-          toast({ title: `Error: ${ctx.error.message}` });
+          toast.error(ctx.error.message, {
+            id: toastIdRef.current ?? undefined,
+          });
+          setLoading(false);
         },
       }
     );
@@ -68,7 +76,7 @@ export const SignIn = () => {
                 <FormItem>
                   <FormLabel className='text-muted-foreground'>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder='john@mail.com' {...field} />
+                    <Input placeholder='Enter your email' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -79,11 +87,17 @@ export const SignIn = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    Password
-                  </FormLabel>
+                  <div className='flex items-center text-muted-foreground'>
+                    <FormLabel>Password</FormLabel>
+                    <Link
+                      href='/forget-password'
+                      className='ml-auto inline-block text-sm hover:underline'
+                    >
+                      Forgot your password?
+                    </Link>
+                  </div>
                   <FormControl>
-                    <Input
+                    <PasswordInput
                       type='password'
                       placeholder='Enter your password'
                       {...field}
@@ -93,19 +107,8 @@ export const SignIn = () => {
                 </FormItem>
               )}
             />
-            <div className='mb-2'>
-              <div className='text-right text-muted-foreground text-sm'>
-                <Link
-                  href='/forgot-password'
-                  className='font-medium text-sm hover:underline'
-                >
-                  Forgot password?
-                </Link>
-              </div>
-            </div>
-
-            <Button className='w-full' type='submit'>
-              Submit
+            <Button className='w-full' type='submit' loading={loading}>
+              Sign in
             </Button>
           </form>
         </Form>

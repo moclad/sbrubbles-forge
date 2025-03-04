@@ -15,6 +15,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    autoSignIn: false,
   },
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [

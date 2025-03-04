@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority';
+import { Loader2 } from 'lucide-react';
 import * as React from 'react';
 
 import { Slot, Slottable } from '@radix-ui/react-slot';
@@ -53,14 +54,16 @@ interface IconRefProps {
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+    loading?: boolean;
 }
 
 export type ButtonIconProps = IconProps | IconRefProps;
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps>(({ className, variant, size, asChild = false, Icon, iconPlacement, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps>(({ className, variant, size, disabled, asChild = false, Icon, iconPlacement, loading = false, ...props }, ref) => {
   const Comp = asChild ? Slot : 'button';
   return (
-    <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+    <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} disabled={loading || disabled} {...props}>
+      {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
       {Icon && iconPlacement === 'left' && (
         <div className='w-0 translate-x-[0%] pr-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-100 group-hover:pr-2 group-hover:opacity-100'>
           <Icon />

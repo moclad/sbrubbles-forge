@@ -16,6 +16,11 @@ export const formSchema = z.object({
     .string()
     .min(8, { message: 'Password must be at least 8 characters long' })
     .max(50, { message: 'Password cannot exceed 50 characters' }),
+
+  passwordConfirmation: z
+    .string()
+    .min(8, { message: 'Password must be at least 8 characters long' })
+    .max(50, { message: 'Password cannot exceed 50 characters' }),
 });
 
 export const signInFormSchema = formSchema.pick({
@@ -23,11 +28,17 @@ export const signInFormSchema = formSchema.pick({
   password: true,
 });
 
-export const signUpFormSchema = formSchema.pick({
-  name: true,
-  email: true,
-  password: true,
-});
+export const signUpFormSchema = formSchema
+  .pick({
+    name: true,
+    email: true,
+    password: true,
+    passwordConfirmation: true,
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: 'Passwords do not match',
+    path: ['passwordConfirmation'], // This ensures the error is attached to `passwordConfirmation`
+  });
 
 export const forgetPwFormSchema = formSchema.pick({
   email: true,
