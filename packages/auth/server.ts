@@ -8,6 +8,7 @@ import { admin, openAPI, organization } from 'better-auth/plugins';
 import { database } from '@repo/database';
 
 import { keys } from './keys';
+import sendResetEmail from './lib/email';
 
 export const auth = betterAuth({
   database: drizzleAdapter(database, {
@@ -16,6 +17,9 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
+    sendResetPassword: async ({ user, url }) => {
+      await sendResetEmail(user.name, user.email, url);
+    },
   },
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [

@@ -43,3 +43,13 @@ export const signUpFormSchema = formSchema
 export const forgetPwFormSchema = formSchema.pick({
   email: true,
 });
+
+export const resetPwFormSchema = formSchema
+  .pick({
+    password: true,
+    passwordConfirmation: true,
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: 'Passwords do not match',
+    path: ['passwordConfirmation'], // This ensures the error is attached to `passwordConfirmation`
+  });

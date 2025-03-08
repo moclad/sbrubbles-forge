@@ -15,32 +15,37 @@ import {
   FormLabel,
   FormMessage,
 } from '@repo/design-system/components/ui/form';
-import { Input } from '@repo/design-system/components/ui/input';
+import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 
-import { forgetPassword } from '../client';
-import { forgetPwFormSchema } from '../lib/auth-schema';
+import { resetPassword } from '../client';
+import { resetPwFormSchema } from '../lib/auth-schema';
 
 import type { z } from 'zod';
-export const ForgotPassword = () => {
+type Props = {
+  token: string;
+};
+
+export const ResetPassword = ({ token }: Props) => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof forgetPwFormSchema>>({
-    resolver: zodResolver(forgetPwFormSchema),
+  const form = useForm<z.infer<typeof resetPwFormSchema>>({
+    resolver: zodResolver(resetPwFormSchema),
     defaultValues: {
-      email: '',
+      password: '',
+      passwordConfirmation: '',
     },
   });
 
-  async function onSubmit(values: z.infer<typeof forgetPwFormSchema>) {
-    const { email } = values;
-    await forgetPassword(
+  async function onSubmit(values: z.infer<typeof resetPwFormSchema>) {
+    const { password } = values;
+    await resetPassword(
       {
-        email,
-        redirectTo: '/sign-in',
+        newPassword: password,
+        token,
       },
       {
         onRequest: () => {
@@ -48,7 +53,7 @@ export const ForgotPassword = () => {
           setLoading(true);
         },
         onSuccess: () => {
-          toast.success('Check your email for the reset link', {
+          toast.success('Password success updated', {
             id: toastIdRef.current ?? undefined,
           });
           form.reset();
@@ -72,19 +77,42 @@ export const ForgotPassword = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
             <FormField
               control={form.control}
-              name='email'
+              name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>Email</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    Password
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder='john@mail.com' {...field} />
+                    <PasswordInput
+                      placeholder='Enter your password'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='passwordConfirmation'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-muted-foreground'>
+                    Password confirmation
+                  </FormLabel>
+                  <FormControl>
+                    <PasswordInput
+                      placeholder='Confirm your password'
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button className='w-full' type='submit' loading={loading}>
-              Send reset link
+              Reset password
             </Button>
           </form>
         </Form>

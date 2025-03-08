@@ -90,7 +90,7 @@ export const SignIn = () => {
                   <div className='flex items-center text-muted-foreground'>
                     <FormLabel>Password</FormLabel>
                     <Link
-                      href='/forget-password'
+                      href='/forgot-password'
                       className='ml-auto inline-block text-sm hover:underline'
                     >
                       Forgot your password?
@@ -98,7 +98,6 @@ export const SignIn = () => {
                   </div>
                   <FormControl>
                     <PasswordInput
-                      type='password'
                       placeholder='Enter your password'
                       {...field}
                     />

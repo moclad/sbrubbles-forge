@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
+import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 
@@ -34,11 +35,18 @@ export const SignUp = () => {
       email: '',
       name: '',
       password: '',
+      passwordConfirmation: '',
     },
   });
 
   async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
-    const { name, email, password } = values;
+    const { name, email, password, passwordConfirmation } = values;
+
+    if (password !== passwordConfirmation) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
     await signUp.email(
       {
         email,
@@ -92,7 +100,11 @@ export const SignUp = () => {
                 <FormItem>
                   <FormLabel className='text-muted-foreground'>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your email' {...field} />
+                    <Input
+                      type='email'
+                      placeholder='Enter your email'
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,8 +119,7 @@ export const SignUp = () => {
                     Password
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      type='password'
+                    <PasswordInput
                       placeholder='Enter your password'
                       {...field}
                     />
@@ -126,9 +137,8 @@ export const SignUp = () => {
                     Password confirmation
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      type='password'
-                      placeholder='Enter your password confirmation'
+                    <PasswordInput
+                      placeholder='Confirm your password'
                       {...field}
                     />
                   </FormControl>
