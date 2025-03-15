@@ -118,7 +118,10 @@ export const SignIn = () => {
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           Don&apos;t have an account yet?{' '}
-          <Link href='/sign-up' className='font-medium hover:underline'>
+          <Link
+            href='/sign-up'
+            className='underline underline-offset-4 hover:text-primary'
+          >
             Sign up
           </Link>
         </p>

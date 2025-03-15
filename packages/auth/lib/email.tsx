@@ -1,7 +1,8 @@
 import { resend } from '@repo/email';
 import { ResetPasswordTemplate } from '@repo/email/templates/reset-password';
+import { WelcomeTemplate } from '@repo/email/templates/welcome';
 
-async function sendResetEmail(name: string, email: string, url: string) {
+export async function sendResetEmail(name: string, email: string, url: string) {
   await resend.emails.send({
     from: 'noreply@sbrubbles.work',
     to: email,
@@ -10,4 +11,15 @@ async function sendResetEmail(name: string, email: string, url: string) {
   });
 }
 
-export default sendResetEmail;
+export async function sendWelcomeEmail(
+  name: string,
+  email: string,
+  url: string
+) {
+  await resend.emails.send({
+    from: 'noreply@sbrubbles.work',
+    to: email,
+    subject: 'Welcome to Beauty Vault V2',
+    react: <WelcomeTemplate name={name} email={email} confirmationUrl={url} />,
+  });
+}

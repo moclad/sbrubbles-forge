@@ -13,6 +13,7 @@ import {
 } from './themes-storybook-ui';
 
 import type { Preview } from '@storybook/react';
+
 const preview: Preview = {
   parameters: {
     darkMode: {
@@ -56,7 +57,7 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <div className="bg-background">
+        <div className='bg-background'>
           <ThemeProvider>
             <TooltipProvider>
               <Story />

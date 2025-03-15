@@ -4,11 +4,12 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { nextCookies } from 'better-auth/next-js';
 import { admin, openAPI, organization } from 'better-auth/plugins';
+import { passkey } from 'better-auth/plugins/passkey';
 
 import { database } from '@repo/database';
 
 import { keys } from './keys';
-import sendResetEmail from './lib/email';
+import { sendResetEmail, sendWelcomeEmail } from './lib/email';
 
 export const auth = betterAuth({
   database: drizzleAdapter(database, {
@@ -16,6 +17,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
     autoSignIn: false,
     sendResetPassword: async ({ user, url }) => {
       await sendResetEmail(user.name, user.email, url);
@@ -23,11 +25,24 @@ export const auth = betterAuth({
   },
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [
+    passkey({
+      rpName: 'Beauty Vault V2',
+      authenticatorSelection: {
+        residentKey: 'required',
+        userVerification: 'required',
+      },
+    }),
     openAPI(),
     admin(),
     nextCookies(),
     organization(), // if you want to use organization plugin
   ],
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendWelcomeEmail(user.name, user.email, url);
+    },
+    sendOnSignUp: true,
+  },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day (every 1 day the session expiration is updated)

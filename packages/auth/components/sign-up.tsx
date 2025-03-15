@@ -59,9 +59,12 @@ export const SignUp = () => {
           setLoading(true);
         },
         onSuccess: () => {
-          toast.success('Signed up successfully', {
-            id: toastIdRef.current ?? undefined,
-          });
+          toast.success(
+            'Registration successful, please check your email for verification instructions.',
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
           form.reset();
           router.push('/sign-in');
         },
@@ -87,7 +90,7 @@ export const SignUp = () => {
                 <FormItem>
                   <FormLabel className='text-muted-foreground'>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your email' {...field} />
+                    <Input placeholder='Enter your name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -158,7 +161,10 @@ export const SignUp = () => {
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           Already have an account?{' '}
-          <Link href='/sign-in' className='font-medium hover:underline'>
+          <Link
+            href='/sign-in'
+            className='underline underline-offset-4 hover:text-primary'
+          >
             Sign in
           </Link>
         </p>

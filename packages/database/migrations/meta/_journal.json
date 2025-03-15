@@ -22,6 +22,13 @@
       "when": 1738415834542,
       "tag": "0002_closed_epoch",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1741901748118,
+      "tag": "0003_omniscient_captain_marvel",
+      "breakpoints": true
     }
   ]
 }

@@ -95,7 +95,10 @@ export const ForgotPassword = () => {
       <div className='flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           Already have an account?{' '}
-          <Link href='/sign-in' className='font-medium hover:underline'>
+          <Link
+            href='/sign-in'
+            className='underline underline-offset-4 hover:text-primary'
+          >
             Sign in
           </Link>
         </p>

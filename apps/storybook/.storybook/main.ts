@@ -21,7 +21,6 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/theming'),
-    getAbsolutePath('storybook-dark-mode'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),

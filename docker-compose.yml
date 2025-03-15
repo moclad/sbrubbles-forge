@@ -35,10 +35,10 @@ services:
     restart: unless-stopped
   bugsink:
     image: bugsink/bugsink
+    restart: unless-stopped
     environment:
       SECRET_KEY: eJzWHF29zyphQIavmmtYyOyoqjSMtPk2MFJi1Eydhrs9aPjhjV
       CREATE_SUPERUSER: admin:admin
-      PORT: 8000
     ports:
       - "8000:8000"
 
