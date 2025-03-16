@@ -1,5 +1,5 @@
 'use client';
-import { type ThemeProviderProps, useTheme } from 'next-themes';
+import { useTheme } from 'next-themes';
 import { Toaster as SonnerToaster } from 'sonner';
 
 import { AnalyticsProvider } from '@repo/analytics';

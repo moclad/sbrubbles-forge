@@ -7,7 +7,7 @@ import {
   Preview,
   Section,
   Tailwind,
-  Text,
+  Text
 } from '@react-email/components';
 
 type Props = {
@@ -22,7 +22,7 @@ export function WelcomeTemplate({ name, email, confirmationUrl }: Props) {
       <Html>
         <Head />
         <Body style={main}>
-          <Preview>Welcome to Beauty Vault V2</Preview>
+          <Preview>Welcome to Sbrubbles Forge</Preview>
           <Container style={container}>
             <Section>
               <Text style={text}>Hello {name},</Text>

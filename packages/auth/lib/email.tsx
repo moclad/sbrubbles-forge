@@ -19,7 +19,7 @@ export async function sendWelcomeEmail(
   await resend.emails.send({
     from: 'noreply@sbrubbles.work',
     to: email,
-    subject: 'Welcome to Beauty Vault V2',
+    subject: 'Welcome to Sbrubbles Forge',
     react: <WelcomeTemplate name={name} email={email} confirmationUrl={url} />,
   });
 }

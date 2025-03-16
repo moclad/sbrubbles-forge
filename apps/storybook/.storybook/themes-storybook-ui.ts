@@ -4,8 +4,8 @@ export const lightUIStorybook = {};
 
 export const commonTheme = {
   base: 'dark',
-  brandTitle: 'Beauty Vault',
-  brandUrl: 'https://beauty-vault.duckdns.org/',
+  brandTitle: 'Sbrubbles Forge',
+  brandUrl: 'https://sbrubbles-forge.duckdns.org/',
   brandTarget: '_blank',
-  brandImage: 'https://beauty-vault.duckdns.org/favicon.ico',
+  brandImage: 'https://sbrubbles-forge.duckdns.org/favicon.ico',
 };
