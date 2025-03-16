@@ -12,6 +12,7 @@ import {
   SquareTerminal
 } from 'lucide-react';
 
+import { useSession } from '@repo/auth/client';
 import {
   Sidebar,
   SidebarContent,
@@ -158,6 +159,16 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+  const session = useSession();
+
+  if (!session.data) {
+    return null;
+  }
+
+  const name = session.data.user.name;
+  const email = session.data.user.email;
+  const image = session.data.user.image;
+
   return (
     <Sidebar collapsible='icon' {...props}>
       <SidebarHeader>
@@ -168,7 +179,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={{ name, email, image }} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
