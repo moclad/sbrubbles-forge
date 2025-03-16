@@ -41,8 +41,6 @@ services:
       CREATE_SUPERUSER: admin:admin
     ports:
       - "8000:8000"
-
-
 networks:
   postgres:
     driver: bridge
