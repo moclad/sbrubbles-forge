@@ -116,8 +116,7 @@
           "pages": [
             "packages/observability/error-capture",
             "packages/observability/debugging",
-            "packages/observability/logging",
-            "packages/observability/uptime"
+            "packages/observability/logging"
           ]
         },
         {

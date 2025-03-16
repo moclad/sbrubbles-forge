@@ -12,6 +12,7 @@ import { keys } from './keys';
 import { sendResetEmail, sendWelcomeEmail } from './lib/email';
 
 export const auth = betterAuth({
+  appName: 'Sbrubbles Forge',
   database: drizzleAdapter(database, {
     provider: 'pg',
   }),
@@ -26,7 +27,7 @@ export const auth = betterAuth({
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [
     passkey({
-      rpName: 'Beauty Vault V2',
+      rpName: 'Sbrubbles Forge',
       authenticatorSelection: {
         residentKey: 'required',
         userVerification: 'required',
