@@ -3,11 +3,10 @@ import { redirect } from 'next/navigation';
 
 import { env } from '@/env';
 import { auth } from '@repo/auth/server';
-import { SidebarProvider } from '@repo/design-system/components/ui/sidebar';
 import { NotificationsProvider } from '@repo/notifications/components/provider';
 import { secure } from '@repo/security';
 
-import { GlobalSidebar } from './components/sidebar';
+import { GlobalSidebar } from './components/global-sidebar';
 
 import type { ReactNode } from 'react';
 type AppLayoutProperties = {
@@ -29,9 +28,7 @@ const AppLayout = async ({ children }: AppLayoutProperties) => {
 
   return (
     <NotificationsProvider userId={session.user.id}>
-      <SidebarProvider>
-        <GlobalSidebar>{children}</GlobalSidebar>
-      </SidebarProvider>
+      <GlobalSidebar>{children}</GlobalSidebar>
     </NotificationsProvider>
   );
 };
