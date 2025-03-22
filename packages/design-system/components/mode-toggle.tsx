@@ -1,15 +1,13 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
-
+import { useTheme } from 'next-themes';
 import { Button } from '../components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu';
 
 const themes = [
@@ -25,13 +23,13 @@ export const ModeToggle = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='ghost'
-          size='icon'
-          className='shrink-0 text-foreground focus:ring-0'
+          variant="ghost"
+          size="icon"
+          className="shrink-0 text-foreground"
         >
-          <SunIcon className='dark:-rotate-90 rotate-0 scale-100 transition-all hover:text-black dark:scale-0' />
-          <MoonIcon className='absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 dark:hover:text-white' />
-          <span className='sr-only'>Toggle theme</span>
+          <SunIcon className="dark:-rotate-90 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:scale-0" />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
