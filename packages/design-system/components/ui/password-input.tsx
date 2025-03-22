@@ -1,19 +1,19 @@
 'use client';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '@repo/design-system/lib/utils';
+
 import { Button } from './button';
-import { Input, InputProps } from './input';
+import { Input } from './input';
 
-const PasswordInput = forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {
+function PasswordInput({ className, type, ...props }: React.ComponentProps<"input">) {
   const [showPassword, setShowPassword] = useState(false);
   const disabled = props.value === '' || props.value === undefined || props.disabled;
-
   return (
     <div className='relative'>
-      <Input type={showPassword ? 'text' : 'password'} className={cn('hide-password-toggle pr-10', className)} ref={ref} {...props} />
+      <Input type={showPassword ? 'text' : 'password'} className={cn('hide-password-toggle pr-10', className)} {...props} />
       <Button
         type='button'
         variant='ghost'
@@ -37,7 +37,6 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(({ className, ...
 				`}</style>
     </div>
   );
-});
-PasswordInput.displayName = 'PasswordInput';
+}
 
 export { PasswordInput };
