@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { betterFetch } from '@better-fetch/fetch';
+import i18nMiddleware from '@repo/localization/middleware';
 
 import { keys } from './keys';
 
@@ -30,7 +31,7 @@ export const authMiddleware = async (request: NextRequest) => {
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {
-      return NextResponse.next();
+      return i18nMiddleware(request);
     }
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
@@ -43,5 +44,5 @@ export const authMiddleware = async (request: NextRequest) => {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  return NextResponse.next();
+  return i18nMiddleware(request);
 };
