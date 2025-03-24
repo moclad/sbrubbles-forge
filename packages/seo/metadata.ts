@@ -1,4 +1,5 @@
 import merge from 'lodash.merge';
+
 import type { Metadata } from 'next';
 
 type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
@@ -7,13 +8,13 @@ type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
   image?: string;
 };
 
-const applicationName = 'next-forge';
+const applicationName = 'sbrubbles-forge';
 const author: Metadata['authors'] = {
-  name: 'Hayden Bleasel',
-  url: 'https://haydenbleasel.com/',
+  name: 'Beno Dresch',
+  url: 'https://sbrubbles.work/',
 };
-const publisher = 'Hayden Bleasel';
-const twitterHandle = '@haydenbleasel';
+const publisher = 'Beno Dresch';
+const twitterHandle = '@BenoDresch';
 
 export const createMetadata = ({
   title,

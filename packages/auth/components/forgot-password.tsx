@@ -40,7 +40,7 @@ export const ForgotPassword = () => {
     await forgetPassword(
       {
         email,
-        redirectTo: '/sign-in',
+        redirectTo: '/reset-password',
       },
       {
         onRequest: () => {

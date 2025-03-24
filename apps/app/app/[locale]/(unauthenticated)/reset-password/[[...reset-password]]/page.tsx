@@ -16,6 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/design-system/components/ui/card';
+import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
 
 import type { Metadata } from 'next';
@@ -37,32 +38,34 @@ export const metadata: Metadata = createMetadata({ title, description });
 
 const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
   const token = (await searchParams).token;
+  const t = await getI18n();
 
   if (!token) {
     return (
       <Card className='mx-auto max-w-md shadow-lg'>
         <CardHeader>
-          <CardTitle className='text-2xl'>Authentication Required</CardTitle>
+          <CardTitle className='text-2xl'>
+            {t('authentication.tokenRequired')}
+          </CardTitle>
           <CardDescription>
-            No valid token is available for this request
+            {t('authentication.tokenRequiredDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent className='space-y-4'>
           <Alert variant='destructive'>
             <AlertCircle className='h-4 w-4' />
-            <AlertTitle>Access Denied</AlertTitle>
+            <AlertTitle>{t('authentication.resetPwAccessDenied')}</AlertTitle>
             <AlertDescription>
-              Your session may have expired or you haven't logged in yet.
+              {t('authentication.resetPwAccessDeniedDescription')}
             </AlertDescription>
           </Alert>
           <p className='text-muted-foreground text-sm'>
-            To access this resource, you need to authenticate with a valid
-            token. Please log in or request a new token to continue.
+            {t('authentication.resetPwAccessDeniedDescription2')}
           </p>
         </CardContent>
         <CardFooter className='flex justify-between'>
           <Button asChild>
-            <Link href='/login'>Log In</Link>
+            <Link href='/sign-in'>{t('authentication.actions.signIn')}</Link>
           </Button>
         </CardFooter>
       </Card>
@@ -72,8 +75,12 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight '>{title}</h1>
-        <p className='text-muted-foreground text-sm'>{description}</p>
+        <h1 className='font-semibold text-2xl tracking-tight '>
+          {t('authentication.resetPassword')}
+        </h1>
+        <p className='text-muted-foreground text-sm'>
+          {t('authentication.resetSubTitle')}
+        </p>
       </div>
       <ResetPassword token={token} />
     </>

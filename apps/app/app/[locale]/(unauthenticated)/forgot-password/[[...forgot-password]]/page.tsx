@@ -4,30 +4,31 @@ import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
 
 import type { Metadata } from 'next';
-const SignIn = dynamic(() =>
-  import('@repo/auth/components/sign-in').then((mod) => mod.SignIn)
-);
 
-const title = 'Welcome back';
-const description = 'Enter your details to sign in.';
+const ForgotPassword = dynamic(() =>
+  import('@repo/auth/components/forgot-password').then(
+    (mod) => mod.ForgotPassword
+  )
+);
+const title = 'Forgot password';
+const description = 'Enter your email to reset your password.';
 export const metadata: Metadata = createMetadata({ title, description });
 
-const SignInPage = async () => {
+const ForgotPasswordPage = async () => {
   const t = await getI18n();
-
   return (
     <>
-      <div className='flex flex-col space-y-2 text-center '>
+      <div className='flex flex-col space-y-2 text-center'>
         <h1 className='font-semibold text-2xl tracking-tight '>
-          {t('authentication.welcome')}
+          {t('authentication.forgotPassword')}
         </h1>
         <p className='text-muted-foreground text-sm'>
-          {t('authentication.welcomeSubTitle')}
+          {t('authentication.forgotSubTitle')}
         </p>
       </div>
-      <SignIn />
+      <ForgotPassword />
     </>
   );
 };
 
-export default SignInPage;
+export default ForgotPasswordPage;
