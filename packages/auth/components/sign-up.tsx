@@ -19,6 +19,7 @@ import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { signUp } from '../client';
 import { signUpFormSchema } from '../lib/auth-schema';
@@ -28,6 +29,7 @@ export const SignUp = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const t = useI18n();
 
   const form = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
@@ -43,7 +45,7 @@ export const SignUp = () => {
     const { name, email, password, passwordConfirmation } = values;
 
     if (password !== passwordConfirmation) {
-      toast.error('Passwords do not match');
+      toast.error(t('authentication.error.passwordsDoNotMatch'));
       return;
     }
 
@@ -55,23 +57,27 @@ export const SignUp = () => {
       },
       {
         onRequest: () => {
-          toastIdRef.current = toast.loading('Signing up...');
+          toastIdRef.current = toast.loading(
+            t('authentication.actions.signingUp')
+          );
           setLoading(true);
         },
         onSuccess: () => {
-          toast.success(
-            'Registration successful, please check your email for verification instructions.',
-            {
-              id: toastIdRef.current ?? undefined,
-            }
-          );
+          toast.success(t('authentication.actions.signedUp'), {
+            id: toastIdRef.current ?? undefined,
+          });
           form.reset();
           router.push('/sign-in');
         },
         onError: (ctx) => {
-          toast.error(ctx.error.message, {
-            id: toastIdRef.current ?? undefined,
-          });
+          toast.error(
+            t('authentication.error.signUpFailed', {
+              error: ctx.error.message,
+            }),
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
           setLoading(false);
         },
       }
@@ -88,9 +94,14 @@ export const SignUp = () => {
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>Name</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    {t('authentication.fields.name')}
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your name' {...field} />
+                    <Input
+                      placeholder={t('authentication.fields.namePlaceholder')}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -101,11 +112,13 @@ export const SignUp = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>Email</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    {t('authentication.fields.email')}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type='email'
-                      placeholder='Enter your email'
+                      placeholder={t('authentication.fields.emailPlaceholder')}
                       {...field}
                     />
                   </FormControl>
@@ -119,11 +132,13 @@ export const SignUp = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='text-muted-foreground'>
-                    Password
+                    {t('authentication.fields.password')}
                   </FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Enter your password'
+                      placeholder={t(
+                        'authentication.fields.passwordPlaceholder'
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -137,11 +152,13 @@ export const SignUp = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='text-muted-foreground'>
-                    Password confirmation
+                    {t('authentication.fields.passwordConfirmation')}
                   </FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Confirm your password'
+                      placeholder={t(
+                        'authentication.fields.passwordConfirmationPlaceholder'
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -150,22 +167,20 @@ export const SignUp = () => {
               )}
             />
             <Button className='w-full' type='submit' loading={loading}>
-              Sign up
+              {t('authentication.actions.signUp')}
             </Button>
           </form>
         </Form>
       </div>
-
-      <Separator className='my-8' />
-
-      <div className='flex justify-center'>
+      <Separator className='mt-4 mb-4' />
+      <div className='mt-4 flex justify-center'>
         <p className='text-muted-foreground text-sm'>
-          Already have an account?{' '}
+          {t('authentication.withAccountQuestion')}{' '}
           <Link
             href='/sign-in'
             className='underline underline-offset-4 hover:text-primary'
           >
-            Sign in
+            {t('authentication.actions.signIn')}
           </Link>
         </p>
       </div>

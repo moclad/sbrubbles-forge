@@ -58,6 +58,7 @@ function Button({
   size,
   asChild = false,
   loading = false,
+  disabled = false,
   Icon, iconPlacement,
   ...props
 }: React.ComponentProps<"button"> &
@@ -71,6 +72,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      disabled={disabled || loading}
       {...props}
     >
       {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}

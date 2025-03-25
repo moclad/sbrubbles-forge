@@ -18,6 +18,7 @@ import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { signIn } from '../client';
 import { signInFormSchema } from '../lib/auth-schema';
@@ -33,6 +34,7 @@ export const SignIn = () => {
   });
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
+  const t = useI18n();
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
@@ -45,19 +47,26 @@ export const SignIn = () => {
       },
       {
         onRequest: () => {
-          toastIdRef.current = toast.loading('Signing in...');
+          toastIdRef.current = toast.loading(
+            t('authentication.actions.signingIn')
+          );
           setLoading(true);
         },
         onSuccess: () => {
-          toast.success('Signed in successfully', {
+          toast.success(t('authentication.actions.signedIn'), {
             id: toastIdRef.current ?? undefined,
           });
           form.reset();
         },
         onError: (ctx) => {
-          toast.error(ctx.error.message, {
-            id: toastIdRef.current ?? undefined,
-          });
+          toast.error(
+            t('authentication.error.signInFailed', {
+              error: ctx.error.message,
+            }),
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
           setLoading(false);
         },
       }
@@ -74,9 +83,14 @@ export const SignIn = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>Email</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    {t('authentication.fields.email')}
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your email' {...field} />
+                    <Input
+                      placeholder={t('authentication.fields.emailPlaceholder')}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -88,17 +102,19 @@ export const SignIn = () => {
               render={({ field }) => (
                 <FormItem>
                   <div className='flex items-center text-muted-foreground'>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('authentication.fields.password')}</FormLabel>
                     <Link
                       href='/forgot-password'
                       className='ml-auto inline-block text-sm hover:underline'
                     >
-                      Forgot your password?
+                      {t('authentication.fields.forgotPassword')}
                     </Link>
                   </div>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Enter your password'
+                      placeholder={t(
+                        'authentication.fields.passwordPlaceholder'
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -107,19 +123,19 @@ export const SignIn = () => {
               )}
             />
             <Button className='w-full' type='submit' loading={loading}>
-              Sign in
+              {t('authentication.actions.signIn')}
             </Button>
           </form>
         </Form>
-        <Separator className='my-4' />
-        <div className='flex justify-center'>
+        <Separator className='mt-4 mb-4' />
+        <div className='mt-4 flex justify-center'>
           <p className='text-muted-foreground text-sm'>
-            Don&apos;t have an account yet?{' '}
+            {t('authentication.noAccountQuestion')}{' '}
             <Link
               href='/sign-up'
               className='underline underline-offset-4 hover:text-primary'
             >
-              Sign up
+              {t('authentication.actions.signUp')}
             </Link>
           </p>
         </div>

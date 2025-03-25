@@ -1,5 +1,6 @@
-import { webhooks } from '@repo/webhooks';
 import { notFound } from 'next/navigation';
+
+import { webhooks } from '@repo/webhooks';
 
 export const metadata = {
   title: 'Webhooks',
@@ -7,20 +8,20 @@ export const metadata = {
 };
 
 const WebhooksPage = async () => {
-  const response = await webhooks.getAppPortal();
+  const response = await webhooks.getAppPortal('');
 
   if (!response?.url) {
     notFound();
   }
 
   return (
-    <div className="h-full w-full overflow-hidden">
+    <div className='h-full w-full overflow-hidden'>
       <iframe
-        title="Webhooks"
+        title='Webhooks'
         src={response.url}
-        className="h-full w-full border-none"
-        allow="clipboard-write"
-        loading="lazy"
+        className='h-full w-full border-none'
+        allow='clipboard-write'
+        loading='lazy'
       />
     </div>
   );

@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { betterAuth } from 'better-auth';
+import { emailHarmony } from 'better-auth-harmony';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { nextCookies } from 'better-auth/next-js';
 import { admin, openAPI, organization } from 'better-auth/plugins';
@@ -11,7 +12,7 @@ import { database } from '@repo/database';
 import { keys } from './keys';
 import { sendResetEmail, sendWelcomeEmail } from './lib/email';
 
-export const auth = betterAuth({
+export const auth: ReturnType<typeof betterAuth> = betterAuth({
   appName: 'Sbrubbles Forge',
   database: drizzleAdapter(database, {
     provider: 'pg',
@@ -36,7 +37,8 @@ export const auth = betterAuth({
     openAPI(),
     admin(),
     nextCookies(),
-    organization(), // if you want to use organization plugin
+    organization(),
+    emailHarmony(),
   ],
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {

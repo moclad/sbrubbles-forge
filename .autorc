@@ -1,11 +1,7 @@
 {
-  "plugins": [
-    "npm",
-    "first-time-contributor",
-    "released"
-  ],
-  "owner": "haydenbleasel",
-  "repo": "next-forge",
-  "name": "Hayden Bleasel",
-  "email": "hello@haydenbleasel.com"
+  "plugins": ["npm", "first-time-contributor", "released"],
+  "owner": "moclad",
+  "repo": "sbrubbles-forge",
+  "name": "Beno Dresch",
+  "email": "sbrubbles@sbrubbles.work"
 }

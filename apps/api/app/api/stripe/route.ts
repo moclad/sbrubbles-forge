@@ -2,21 +2,23 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { env } from '@/env';
-import { clerkClient } from '@repo/auth/server';
+import { database } from '@repo/database';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
 import { stripe } from '@repo/payments';
 
 import type { Stripe } from '@repo/payments';
+
 const getUserFromCustomerId = async (customerId: string) => {
-  const clerk = await clerkClient();
-  const users = await clerk.users.getUserList();
+  const subscription = await database.query.subscription.findFirst({
+    where: (subscription, { eq }) => eq(subscription.customerId, customerId),
+  });
 
-  const user = users.data.find(
-    (user) => user.privateMetadata.stripeCustomerId === customerId
-  );
+  if (subscription) {
+    return subscription;
+  }
 
-  return user;
+  return null;
 };
 
 const handleCheckoutSessionCompleted = async (

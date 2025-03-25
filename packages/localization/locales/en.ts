@@ -1,5 +1,9 @@
 export default {
   authentication: {
+    agreement: 'By clicking continue, you agree to our',
+    terms: 'Terms of service',
+    and: 'and',
+    privacy: 'Privacy Policy',
     welcome: 'Welcome back',
     welcomeSubTitle: 'Enter your details to sign in.',
     createAccount: 'Create an account',
@@ -15,8 +19,57 @@ export default {
       "Your session may have expired or you haven't logged in yet.",
     resetPwAccessDeniedDescription2:
       'To access this resource, you need to authenticate with a valid token. Please log in.',
+    noAccountQuestion: "Don't have an account yet?",
+    withAccountQuestion: 'Already have an account?',
+    error: {
+      passwordsDoNotMatch: "Passwords don't match",
+      signInFailed: 'Sign in failed: {error}',
+      signUpFailed: 'Sign up failed: {error}',
+      resetFailed: 'Reset password failed: {error}',
+      passwordUpdateFailed: 'Password update failed: {error}',
+    },
     actions: {
       signIn: 'Sign in',
+      signingIn: 'Signing in...',
+      signedIn: 'Signed in successfully',
+      signUp: 'Sign up',
+      signingUp: 'Signing up...',
+      signedUp:
+        'Registration successful, please check your email for verification instructions.',
+      checkEmail: 'Check your email for the reset link',
+      sendResetLink: 'Send reset link',
+      passwordUpdated: 'Password successfully updated',
+      resetPassword: 'Reset password',
+      signOut: 'Sign out',
+      signingOut: 'Signing out...',
+      signingOutWait: 'Please wait while we sign you out...',
+      redirectToLogin: 'Redirecting to login...',
     },
+    fields: {
+      name: 'Name',
+      namePlaceholder: 'Enter your name',
+      email: 'Email',
+      password: 'Password',
+      emailPlaceholder: 'Enter your email',
+      passwordPlaceholder: 'Enter your password',
+      passwordConfirmation: 'Password confirmation',
+      passwordConfirmationPlaceholder: 'Confirm your password',
+      forgotPassword: 'Forgot your password?',
+    },
+  },
+  common: {
+    pleaseWait: 'Please wait...',
+  },
+  notFound: {
+    back: 'Go back',
+    header: "Something's missing",
+    home: 'Back to dashboard',
+    message:
+      "Sorry, the page you are looking for doesn't exist or has been moved.",
+  },
+  account: {
+    title: 'Account',
+    billing: 'Billing',
+    notifications: 'Notifications',
   },
 } as const;

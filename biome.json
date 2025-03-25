@@ -7,6 +7,13 @@
       "jsxQuoteStyle": "single"
     }
   },
+  "linter": {
+    "rules": {
+      "style": {
+        "useImportType": "off"
+      }
+    }
+  },
   "files": {
     "ignore": [
       "packages/design-system/components/ui/**",

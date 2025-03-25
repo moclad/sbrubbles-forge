@@ -40,7 +40,7 @@ export const authMiddleware = async (request: NextRequest) => {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  if (isAppRoute && session.user.role !== 'admin') {
+  if (isAppRoute) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 

@@ -64,7 +64,7 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
           </p>
         </CardContent>
         <CardFooter className='flex justify-between'>
-          <Button asChild>
+          <Button asChild className='w-full'>
             <Link href='/sign-in'>{t('authentication.actions.signIn')}</Link>
           </Button>
         </CardFooter>

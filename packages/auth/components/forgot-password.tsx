@@ -18,6 +18,7 @@ import {
 import { Input } from '@repo/design-system/components/ui/input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { forgetPassword } from '../client';
 import { forgetPwFormSchema } from '../lib/auth-schema';
@@ -27,6 +28,7 @@ export const ForgotPassword = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const t = useI18n();
 
   const form = useForm<z.infer<typeof forgetPwFormSchema>>({
     resolver: zodResolver(forgetPwFormSchema),
@@ -44,11 +46,11 @@ export const ForgotPassword = () => {
       },
       {
         onRequest: () => {
-          toastIdRef.current = toast.loading('Please wait...');
+          toastIdRef.current = toast.loading(t('common.pleaseWait'));
           setLoading(true);
         },
         onSuccess: () => {
-          toast.success('Check your email for the reset link', {
+          toast.success(t('authentication.actions.checkEmail'), {
             id: toastIdRef.current ?? undefined,
           });
           form.reset();
@@ -56,9 +58,12 @@ export const ForgotPassword = () => {
           router.push('/sign-in');
         },
         onError: (ctx) => {
-          toast.error(ctx.error.message, {
-            id: toastIdRef.current ?? undefined,
-          });
+          toast.error(
+            t('authentication.error.resetFailed', { error: ctx.error.message }),
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
           setLoading(false);
         },
       }
@@ -75,31 +80,35 @@ export const ForgotPassword = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>Email</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    {t('authentication.fields.email')}
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder='john@mail.com' {...field} />
+                    <Input
+                      placeholder={t('authentication.fields.emailPlaceholder')}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button className='w-full' type='submit' loading={loading}>
-              Send reset link
+              {t('authentication.actions.sendResetLink')}
             </Button>
           </form>
         </Form>
       </div>
 
-      <Separator className='my-8' />
-
-      <div className='flex justify-center'>
+      <Separator className='mt-4 mb-4' />
+      <div className='mt-4 flex justify-center'>
         <p className='text-muted-foreground text-sm'>
-          Already have an account?{' '}
+          {t('authentication.withAccountQuestion')}{' '}
           <Link
             href='/sign-in'
             className='underline underline-offset-4 hover:text-primary'
           >
-            Sign in
+            {t('authentication.actions.signIn')}
           </Link>
         </p>
       </div>
