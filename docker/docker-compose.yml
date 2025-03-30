@@ -4,13 +4,11 @@ services:
     ports:
       - "6005:3000"
     environment:
-      DATABASE_URL: postgresql://postgres:mypassword@postgres:5432/umami
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-mypassword}@postgres-umami:5432/umami
       DATABASE_TYPE: postgresql
       APP_SECRET: replace-me-with-a-random-string
     depends_on:
-      - postgres
-    networks:
-      - postgres
+      - postgres-umami
     init: true
     restart: always
     healthcheck:
@@ -18,8 +16,21 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  postgres-umami:
+    container_name: postgres-umami
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_UMAMI_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_UMAMI_PASSWORD:-mypassword}
+      POSTGRES_DB: ${POSTGRES_DB:-umami}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres-umami:/data/postgres
+    restart: unless-stopped
+
   postgres:
-    container_name: postgres_container
+    container_name: postgres_forge
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -30,20 +41,17 @@ services:
        - postgres:/data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - postgres
     restart: unless-stopped
+
   bugsink:
     image: bugsink/bugsink
     restart: unless-stopped
     environment:
-      SECRET_KEY: eJzWHF29zyphQIavmmtYyOyoqjSMtPk2MFJi1Eydhrs9aPjhjV
-      CREATE_SUPERUSER: admin:admin
+      SECRET_KEY: ${BUG_SINK_SECRET_KEY:-secret_key}
+      CREATE_SUPERUSER: ${BUG_SINK_ADMIN:-admin}:${BUG_SINK_ADMIN_PW:-admin}
     ports:
-      - "8000:8000"
-networks:
-  postgres:
-    driver: bridge
+      - "8005:8000"
 
 volumes:
     postgres:
+    postgres-umami:
