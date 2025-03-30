@@ -72,4 +72,10 @@ export default {
     billing: 'Billing',
     notifications: 'Notifications',
   },
+  theme: {
+    dark: 'Dark',
+    light: 'Light',
+    system: 'System',
+    toggle: 'Toggle theme',
+  },
 } as const;
