@@ -31,8 +31,8 @@ export function LanguageToggle() {
           >
             <Button
               variant='ghost'
-              size='sm'
-              className='text-muted-foreground focus:ring-0'
+              size='icon'
+              className='shrink-0 text-foreground'
             >
               <Languages className='absolute transition-all dark:rotate-0 dark:scale-100 dark:hover:text-white' />
               <span className='sr-only'>{t('language.label')}</span>

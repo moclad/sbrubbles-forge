@@ -18,7 +18,7 @@ import { useI18n } from '@repo/localization/i18n/client';
 import { Button } from '../ui/button';
 import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from '../ui/touch-provider';
 
-export function UserMenu({
+export function NotificationsMenu({
   user,
 }: Readonly<{
   user: {

@@ -10,13 +10,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '../components/ui/dropdown-menu';
-import {
-  HybridTooltip,
-  HybridTooltipContent,
-  HybridTooltipTrigger,
-} from './ui/touch-provider';
+import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from './ui/touch-provider';
 
 const themes = [
   { label: 'Light', value: 'light', icon: <SunIcon /> },
@@ -32,11 +28,14 @@ export const ModeToggle = () => {
     <DropdownMenu>
       <HybridTooltip delayDuration={100}>
         <HybridTooltipTrigger asChild>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger
+            asChild
+            className='hover:bg-transparent focus:ring-0 focus:ring-none'
+          >
             <Button
               variant='ghost'
               size='icon'
-              className='shrink-0 text-foreground'
+              className='shrink-0 text-foreground '
             >
               <SunIcon className='dark:-rotate-90 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:scale-0' />
               <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
