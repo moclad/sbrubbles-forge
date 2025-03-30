@@ -3,7 +3,11 @@
 import { BadgeCheck, Bell, CreditCard, LogOut, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@repo/design-system/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,12 +15,16 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
 
 import { Button } from '../ui/button';
-import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from '../ui/touch-provider';
+import {
+  HybridTooltip,
+  HybridTooltipContent,
+  HybridTooltipTrigger,
+} from '../ui/touch-provider';
 
 export function UserMenu({
   user,
@@ -55,14 +63,10 @@ export function UserMenu({
                 {user.image && <AvatarImage src={user.image} alt={user.name} />}
                 <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
               </Avatar>
-              <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-semibold'>{user.name}</span>
-                <span className='truncate text-xs'>{user.email}</span>
-              </div>
             </Button>
           </DropdownMenuTrigger>
         </HybridTooltipTrigger>
-        <HybridTooltipContent>{t('theme.toggle')}</HybridTooltipContent>
+        <HybridTooltipContent>{user.name}</HybridTooltipContent>
       </HybridTooltip>
       <DropdownMenuContent>
         <DropdownMenuLabel className='p-0 font-normal'>

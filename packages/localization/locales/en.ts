@@ -69,6 +69,7 @@ export default {
   },
   account: {
     title: 'Account',
+    user: 'User account',
     billing: 'Billing',
     notifications: 'Notifications',
   },
@@ -83,5 +84,8 @@ export default {
     german: 'German',
     portuguese: 'Portuguese',
     label: 'Language',
+  },
+  notifications: {
+    label: 'Notifications',
   },
 } as const;

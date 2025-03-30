@@ -2,9 +2,9 @@ import { useSession } from '@repo//auth/client';
 
 import { LanguageToggle } from '../language-toggle/language-toggle';
 import { ModeToggle } from '../mode-toggle';
+import { NotificationsMenu } from '../notifications-menu';
 import { Separator } from '../ui/separator';
 import { SidebarTrigger } from '../ui/sidebar';
-import { NotificationsMenu } from './notifications-menu';
 import { UserMenu } from './user-menu';
 
 export default function Header() {
@@ -26,6 +26,7 @@ export default function Header() {
       </div>
 
       <div className='flex items-center gap-2 px-4'>
+        <Separator orientation='vertical' className='mr-2 h-4' />
         <NotificationsMenu />
         <LanguageToggle />
         <ModeToggle />
