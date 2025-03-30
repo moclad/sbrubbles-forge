@@ -78,4 +78,10 @@ export default {
     system: 'System',
     toggle: 'Toggle theme',
   },
+  language: {
+    english: 'English',
+    german: 'German',
+    portuguese: 'Portuguese',
+    label: 'Language',
+  },
 } as const;

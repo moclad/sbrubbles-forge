@@ -7,6 +7,7 @@ import { AuthProvider } from '@repo/auth/provider';
 import { I18nProviderClient } from '@repo/localization/i18n/client';
 
 import { TooltipProvider } from './components/ui/tooltip';
+import { TouchProvider } from './components/ui/touch-provider';
 import { ThemeProvider } from './providers/theme';
 
 import type { ThemeProviderProps } from 'next-themes';
@@ -24,7 +25,9 @@ export const DesignSystemProvider = ({
       <I18nProviderClient locale={locale}>
         <AuthProvider>
           <AnalyticsProvider>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TouchProvider>
+              <TooltipProvider>{children}</TooltipProvider>
+            </TouchProvider>
             <SonnerToaster richColors theme={currentTheme} />
           </AnalyticsProvider>
         </AuthProvider>
