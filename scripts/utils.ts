@@ -32,7 +32,7 @@ export const allInternalContent = [
 
 export const semver = /^\d+\.\d+\.\d+$/;
 
-export const tempDirName = 'next-forge-update';
+export const tempDirName = 'sbrubbles-forge-update';
 
 export const exec = promisify(execRaw);
 

@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
+
 import { initialize } from './initialize.js';
 import { update } from './update.js';
 
 program
   .command('init')
-  .description('Initialize a new next-forge project')
+  .description('Initialize a new sbrubbles-forge project')
   .option('--name <name>', 'Name of the project')
   .option(
     '--package-manager <manager>',
