@@ -30,7 +30,7 @@
     "require-in-the-middle": "^7.5.2",
     "import-in-the-middle": "^1.13.1",
     "svix": "^1.62.0",
-    "vitest": "^3.0.9",
+    "vitest": "^3.1.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
