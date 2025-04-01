@@ -1,7 +1,0 @@
-{
-  "plugins": ["npm", "first-time-contributor", "released"],
-  "owner": "moclad",
-  "repo": "sbrubbles-forge",
-  "name": "Beno Dresch",
-  "email": "sbrubbles@sbrubbles.work"
-}
