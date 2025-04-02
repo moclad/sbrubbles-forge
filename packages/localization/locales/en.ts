@@ -69,7 +69,6 @@ export default {
   },
   account: {
     title: 'Account',
-    user: 'User account',
     billing: 'Billing',
     notifications: 'Notifications',
   },
