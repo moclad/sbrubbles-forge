@@ -1,29 +1,29 @@
 "use client"
 
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeftIcon } from "lucide-react"
+import { cva, VariantProps } from 'class-variance-authority';
+import { PanelLeftIcon } from 'lucide-react';
+import * as React from 'react';
 
-import { useIsMobile } from "@repo/design-system/hooks/use-mobile"
-import { cn } from "@repo/design-system/lib/utils"
-import { Button } from "@repo/design-system/components/ui/button"
-import { Input } from "@repo/design-system/components/ui/input"
-import { Separator } from "@repo/design-system/components/ui/separator"
+import { Slot } from '@radix-ui/react-slot';
+import { Button } from '@repo/design-system/components/ui/button';
+import { Input } from '@repo/design-system/components/ui/input';
+import { Separator } from '@repo/design-system/components/ui/separator';
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
-} from "@repo/design-system/components/ui/sheet"
-import { Skeleton } from "@repo/design-system/components/ui/skeleton"
+  SheetTitle
+} from '@repo/design-system/components/ui/sheet';
+import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "@repo/design-system/components/ui/tooltip"
+  TooltipTrigger
+} from '@repo/design-system/components/ui/tooltip';
+import { useIsMobile } from '@repo/design-system/hooks/use-mobile';
+import { cn } from '@repo/design-system/lib/utils';
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
