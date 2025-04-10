@@ -1,15 +1,24 @@
-import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
+import {
+  cancel,
+  intro,
+  isCancel,
+  log,
+  outro,
+  select,
+  spinner,
+  text,
+} from '@clack/prompts';
 
 import {
+  url,
   exec,
   execSyncOpts,
   internalContentDirs,
   internalContentFiles,
   supportedPackageManagers,
-  url
 } from './utils.js';
 
 const cloneNextForge = async (name: string, packageManager: string) => {
@@ -52,6 +61,7 @@ const setupEnvironmentVariables = async () => {
   const files = [
     { source: join('apps', 'api'), target: '.env.local' },
     { source: join('apps', 'app'), target: '.env.local' },
+    { source: 'e2e', target: '.env.local' },
     { source: join('packages', 'database'), target: '.env' },
   ];
 

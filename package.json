@@ -45,12 +45,7 @@
   },
   "type": "module",
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/client",
-      "@sentry/cli",
-      "esbuild",
-      "prisma"
-    ]
+    "onlyBuiltDependencies": ["@sentry/cli", "esbuild"]
   },
   "repository": "sbrubbles-work/sbrubbles-forge",
   "author": "Beno Dresch <sbrubbles@sbrubbles.work>",

@@ -1,0 +1,19 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "sbrubbles-forge e2e tests",
+  "main": "index.js",
+  "scripts": {
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui"
+  },
+  "author": "Beno Dresch",
+  "license": "MIT License",
+  "packageManager": "pnpm@10.8.0",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.0",
+    "dotnenv": "^16.0.3",
+    "path": "^0.12.7"
+  }
+}
