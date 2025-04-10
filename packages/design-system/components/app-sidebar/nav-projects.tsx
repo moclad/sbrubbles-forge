@@ -1,13 +1,19 @@
 'use client';
 
-import { Folder, Forward, LucideIcon, MoreHorizontal, Trash2 } from 'lucide-react';
+import {
+  Folder,
+  Forward,
+  LucideIcon,
+  MoreHorizontal,
+  Trash2,
+} from 'lucide-react';
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import {
   SidebarGroup,
@@ -16,7 +22,7 @@ import {
   SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
 
 export function NavProjects({

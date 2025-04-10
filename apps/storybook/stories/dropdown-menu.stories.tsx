@@ -31,7 +31,7 @@ const meta = {
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent className='w-44'>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -62,7 +62,7 @@ export const WithShortcuts: Story = {
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent className='w-44'>
         <DropdownMenuLabel>Controls</DropdownMenuLabel>
         <DropdownMenuItem>
           Back
@@ -84,32 +84,32 @@ export const WithSubmenus: Story = {
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent className='w-44'>
         <DropdownMenuItem>
-          <Search className="mr-2 size-4" />
+          <Search className='mr-2 size-4' />
           <span>Search</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Plus className="mr-2 size-4" />
+            <Plus className='mr-2 size-4' />
             <span>New Team</span>
             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <UserPlus className="mr-2 size-4" />
+              <UserPlus className='mr-2 size-4' />
               <span>Invite users</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuItem>
-                  <Mail className="mr-2 size-4" />
+                  <Mail className='mr-2 size-4' />
                   <span>Email</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <PlusCircle className="mr-2 size-4" />
+                  <PlusCircle className='mr-2 size-4' />
                   <span>More...</span>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
@@ -128,12 +128,12 @@ export const WithRadioItems: Story = {
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent className='w-44'>
         <DropdownMenuLabel inset>Status</DropdownMenuLabel>
-        <DropdownMenuRadioGroup value="warning">
-          <DropdownMenuRadioItem value="info">Info</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="warning">Warning</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="error">Error</DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup value='warning'>
+          <DropdownMenuRadioItem value='info'>Info</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value='warning'>Warning</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value='error'>Error</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -147,7 +147,7 @@ export const WithCheckboxes: Story = {
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-44">
+      <DropdownMenuContent className='w-44'>
         <DropdownMenuCheckboxItem checked>
           Autosave
           <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>

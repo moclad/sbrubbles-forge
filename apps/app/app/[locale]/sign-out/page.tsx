@@ -10,7 +10,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from '@repo/design-system/components/ui/card';
 import { useI18n } from '@repo/localization/i18n/client';
 

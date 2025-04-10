@@ -12,7 +12,8 @@
         ".basehub/**",
         "**/generated/**",
         "storybook-static/**",
-        ".react-email/**"
+        ".react-email/**",
+        "migrations/**"
       ]
     },
     "test": {
@@ -21,18 +22,24 @@
     "analyze": {
       "dependsOn": ["^analyze"]
     },
+    "start": {
+      "persistent": true,
+      "cache": true,
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        ".basehub/**",
+        "**/generated/**",
+        "storybook-static/**",
+        ".react-email/**",
+        "migrations/**"
+      ]
+    },
     "dev": {
       "cache": false,
       "persistent": true
     },
-    "translate": {
-      "dependsOn": ["^translate"],
-      "cache": false
-    },
     "clean": {
-      "cache": false
-    },
-    "//#clean": {
       "cache": false
     }
   }

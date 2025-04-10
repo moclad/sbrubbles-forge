@@ -10,12 +10,16 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
 
 import { Button } from './ui/button';
-import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from './ui/touch-provider';
+import {
+  HybridTooltip,
+  HybridTooltipContent,
+  HybridTooltipTrigger,
+} from './ui/touch-provider';
 
 export function NotificationsMenu() {
   const router = useRouter();

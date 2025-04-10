@@ -122,7 +122,12 @@ export const SignIn = () => {
                 </FormItem>
               )}
             />
-            <Button className='w-full' type='submit' loading={loading}>
+            <Button
+              className='w-full'
+              type='submit'
+              loading={loading}
+              data-testid='sign-in-btn'
+            >
               {t('authentication.actions.signIn')}
             </Button>
           </form>

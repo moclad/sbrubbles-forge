@@ -5,7 +5,7 @@ type RootLayoutProperties = {
 };
 
 const RootLayout = ({ children }: RootLayoutProperties) => (
-  <html lang="en">
+  <html lang='en'>
     <body>{children}</body>
   </html>
 );

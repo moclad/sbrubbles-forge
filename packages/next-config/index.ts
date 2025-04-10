@@ -10,14 +10,7 @@ export const config: NextConfig = {
     remotePatterns: [],
   },
 
-  webpack(config, { isServer }) {
-    config.ignoreWarnings = [{ module: otelRegex }];
-
-    return config;
-  },
-  experimental: {
-    turbo: {},
-  },
+  turbopack: {},
 
   // This is required to support PostHog trailing slash API requests
   output: 'standalone',

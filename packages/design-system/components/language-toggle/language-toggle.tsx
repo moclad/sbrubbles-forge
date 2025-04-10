@@ -9,12 +9,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '../../components/ui/dropdown-menu';
 import {
   HybridTooltip,
   HybridTooltipContent,
-  HybridTooltipTrigger
+  HybridTooltipTrigger,
 } from '../../components/ui/touch-provider';
 
 export function LanguageToggle() {

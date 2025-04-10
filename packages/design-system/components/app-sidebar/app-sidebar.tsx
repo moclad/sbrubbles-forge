@@ -9,7 +9,7 @@ import {
   MapIcon,
   PieChart,
   Settings2,
-  SquareTerminal
+  SquareTerminal,
 } from 'lucide-react';
 
 import { useSession } from '@repo/auth/client';
@@ -18,7 +18,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail
+  SidebarRail,
 } from '@repo/design-system/components/ui/sidebar';
 
 import { NavMain } from './nav-main';

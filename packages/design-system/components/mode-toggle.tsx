@@ -10,9 +10,13 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu';
-import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from './ui/touch-provider';
+import {
+  HybridTooltip,
+  HybridTooltipContent,
+  HybridTooltipTrigger,
+} from './ui/touch-provider';
 
 const themes = [
   { label: 'Light', value: 'light', icon: <SunIcon /> },

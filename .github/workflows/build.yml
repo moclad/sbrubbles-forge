@@ -3,10 +3,9 @@ name: Build
 
 on:
   push:
-    branches: [main]
+
 
 jobs:
-
   build:
     runs-on: docker
     container:
@@ -77,3 +76,6 @@ jobs:
 
       - name: Build with bundle analysis
         run: pnpm analyze
+
+      - name: Build
+        run: pnpm build

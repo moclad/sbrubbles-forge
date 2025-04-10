@@ -1,5 +1,12 @@
 import type { InferSelectModel } from 'drizzle-orm';
-import { boolean, integer, pgEnum, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  integer,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+} from 'drizzle-orm/pg-core';
 
 export const userRoleEnums = pgEnum('Role', ['user', 'admin', 'superAdmin']);
 

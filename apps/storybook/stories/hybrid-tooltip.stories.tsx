@@ -4,7 +4,7 @@ import {
   HybridTooltip,
   HybridTooltipContent,
   HybridTooltipTrigger,
-  TouchProvider
+  TouchProvider,
 } from '@repo/design-system/components/ui/touch-provider';
 
 import type { Meta, StoryObj } from '@storybook/react';

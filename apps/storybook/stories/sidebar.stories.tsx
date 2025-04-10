@@ -220,47 +220,47 @@ export const Base: Story = {
 
     return (
       <SidebarProvider>
-        <Sidebar collapsible="icon">
+        <Sidebar collapsible='icon'>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton
-                      size="lg"
-                      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                      size='lg'
+                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                     >
-                      <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                        <activeTeam.logo className="size-4" />
+                      <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
+                        <activeTeam.logo className='size-4' />
                       </div>
-                      <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
+                      <div className='grid flex-1 text-left text-sm leading-tight'>
+                        <span className='truncate font-semibold'>
                           {activeTeam.name}
                         </span>
-                        <span className="truncate text-xs">
+                        <span className='truncate text-xs'>
                           {activeTeam.plan}
                         </span>
                       </div>
-                      <ChevronsUpDown className="ml-auto" />
+                      <ChevronsUpDown className='ml-auto' />
                     </SidebarMenuButton>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
-                    className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                    align="start"
-                    side="bottom"
+                    className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+                    align='start'
+                    side='bottom'
                     sideOffset={4}
                   >
-                    <DropdownMenuLabel className="text-muted-foreground text-xs">
+                    <DropdownMenuLabel className='text-muted-foreground text-xs'>
                       Teams
                     </DropdownMenuLabel>
                     {data.teams.map((team, index) => (
                       <DropdownMenuItem
                         key={team.name}
                         onClick={() => setActiveTeam(team)}
-                        className="gap-2 p-2"
+                        className='gap-2 p-2'
                       >
-                        <div className="flex size-6 items-center justify-center rounded-sm border">
-                          <team.logo className="size-4 shrink-0" />
+                        <div className='flex size-6 items-center justify-center rounded-sm border'>
+                          <team.logo className='size-4 shrink-0' />
                         </div>
                         {team.name}
                         <DropdownMenuShortcut>
@@ -269,11 +269,11 @@ export const Base: Story = {
                       </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="gap-2 p-2">
-                      <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                        <Plus className="size-4" />
+                    <DropdownMenuItem className='gap-2 p-2'>
+                      <div className='flex size-6 items-center justify-center rounded-md border bg-background'>
+                        <Plus className='size-4' />
                       </div>
-                      <div className="font-medium text-muted-foreground">
+                      <div className='font-medium text-muted-foreground'>
                         Add team
                       </div>
                     </DropdownMenuItem>
@@ -291,14 +291,14 @@ export const Base: Story = {
                     key={item.title}
                     asChild
                     defaultOpen={item.isActive}
-                    className="group/collapsible"
+                    className='group/collapsible'
                   >
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton tooltip={item.title}>
                           {item.icon && <item.icon />}
                           <span>{item.title}</span>
-                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                          <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
                       <CollapsibleContent>
@@ -319,7 +319,7 @@ export const Base: Story = {
                 ))}
               </SidebarMenu>
             </SidebarGroup>
-            <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+            <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
               <SidebarGroupLabel>Projects</SidebarGroupLabel>
               <SidebarMenu>
                 {data.projects.map((item) => (
@@ -334,25 +334,25 @@ export const Base: Story = {
                       <DropdownMenuTrigger asChild>
                         <SidebarMenuAction showOnHover>
                           <MoreHorizontal />
-                          <span className="sr-only">More</span>
+                          <span className='sr-only'>More</span>
                         </SidebarMenuAction>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent
-                        className="w-48 rounded-lg"
-                        side="bottom"
-                        align="end"
+                        className='w-48 rounded-lg'
+                        side='bottom'
+                        align='end'
                       >
                         <DropdownMenuItem>
-                          <Folder className="text-muted-foreground" />
+                          <Folder className='text-muted-foreground' />
                           <span>View Project</span>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          <Forward className="text-muted-foreground" />
+                          <Forward className='text-muted-foreground' />
                           <span>Share Project</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
-                          <Trash2 className="text-muted-foreground" />
+                          <Trash2 className='text-muted-foreground' />
                           <span>Delete Project</span>
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -360,8 +360,8 @@ export const Base: Story = {
                   </SidebarMenuItem>
                 ))}
                 <SidebarMenuItem>
-                  <SidebarMenuButton className="text-sidebar-foreground/70">
-                    <MoreHorizontal className="text-sidebar-foreground/70" />
+                  <SidebarMenuButton className='text-sidebar-foreground/70'>
+                    <MoreHorizontal className='text-sidebar-foreground/70' />
                     <span>More</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -374,51 +374,51 @@ export const Base: Story = {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <SidebarMenuButton
-                      size="lg"
-                      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                      size='lg'
+                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                     >
-                      <Avatar className="h-8 w-8 rounded-lg">
+                      <Avatar className='h-8 w-8 rounded-lg'>
                         <AvatarImage
                           src={data.user.avatar}
                           alt={data.user.name}
                         />
-                        <AvatarFallback className="rounded-lg">
+                        <AvatarFallback className='rounded-lg'>
                           CN
                         </AvatarFallback>
                       </Avatar>
-                      <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-semibold">
+                      <div className='grid flex-1 text-left text-sm leading-tight'>
+                        <span className='truncate font-semibold'>
                           {data.user.name}
                         </span>
-                        <span className="truncate text-xs">
+                        <span className='truncate text-xs'>
                           {data.user.email}
                         </span>
                       </div>
-                      <ChevronsUpDown className="ml-auto size-4" />
+                      <ChevronsUpDown className='ml-auto size-4' />
                     </SidebarMenuButton>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
-                    className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                    side="bottom"
-                    align="end"
+                    className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+                    side='bottom'
+                    align='end'
                     sideOffset={4}
                   >
-                    <DropdownMenuLabel className="p-0 font-normal">
-                      <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                        <Avatar className="h-8 w-8 rounded-lg">
+                    <DropdownMenuLabel className='p-0 font-normal'>
+                      <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
+                        <Avatar className='h-8 w-8 rounded-lg'>
                           <AvatarImage
                             src={data.user.avatar}
                             alt={data.user.name}
                           />
-                          <AvatarFallback className="rounded-lg">
+                          <AvatarFallback className='rounded-lg'>
                             CN
                           </AvatarFallback>
                         </Avatar>
-                        <div className="grid flex-1 text-left text-sm leading-tight">
-                          <span className="truncate font-semibold">
+                        <div className='grid flex-1 text-left text-sm leading-tight'>
+                          <span className='truncate font-semibold'>
                             {data.user.name}
                           </span>
-                          <span className="truncate text-xs">
+                          <span className='truncate text-xs'>
                             {data.user.email}
                           </span>
                         </div>
@@ -459,18 +459,18 @@ export const Base: Story = {
           <SidebarRail />
         </Sidebar>
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-            <div className="flex items-center gap-2 px-4">
-              <SidebarTrigger className="-ml-1" />
-              <Separator orientation="vertical" className="mr-2 h-4" />
+          <header className='flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12'>
+            <div className='flex items-center gap-2 px-4'>
+              <SidebarTrigger className='-ml-1' />
+              <Separator orientation='vertical' className='mr-2 h-4' />
               <Breadcrumb>
                 <BreadcrumbList>
-                  <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
+                  <BreadcrumbItem className='hidden md:block'>
+                    <BreadcrumbLink href='#'>
                       Building Your Application
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
+                  <BreadcrumbSeparator className='hidden md:block' />
                   <BreadcrumbItem>
                     <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                   </BreadcrumbItem>
@@ -478,13 +478,13 @@ export const Base: Story = {
               </Breadcrumb>
             </div>
           </header>
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-              <div className="aspect-video rounded-xl bg-muted/50" />
-              <div className="aspect-video rounded-xl bg-muted/50" />
-              <div className="aspect-video rounded-xl bg-muted/50" />
+          <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
+            <div className='grid auto-rows-min gap-4 md:grid-cols-3'>
+              <div className='aspect-video rounded-xl bg-muted/50' />
+              <div className='aspect-video rounded-xl bg-muted/50' />
+              <div className='aspect-video rounded-xl bg-muted/50' />
             </div>
-            <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+            <div className='min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min' />
           </div>
         </SidebarInset>
       </SidebarProvider>

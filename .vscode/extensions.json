@@ -5,6 +5,8 @@
     "unifiedjs.vscode-mdx",
     "mikestead.dotenv",
     "christian-kohler.npm-intellisense",
-    "lokalise.i18n-ally"
+    "lokalise.i18n-ally",
+    "vitest.explorer",
+    "ms-playwright.playwright"
   ]
 }

@@ -8,6 +8,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "start": "turbo start",
     "lint": "ultracite lint",
     "format": "ultracite format",
     "test": "turbo test",
@@ -46,10 +47,10 @@
   "type": "module",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@prisma/client",
+      "@biomejs/biome",
       "@sentry/cli",
       "esbuild",
-      "prisma"
+      "sharp"
     ]
   },
   "repository": "sbrubbles-work/sbrubbles-forge",
