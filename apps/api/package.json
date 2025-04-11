@@ -2,8 +2,8 @@
   "name": "api",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"pnpm:next\" ",
-    "next": "next dev -p 3002 --turbopack",
+    "dev": "next dev -p 3002 --turbopack",
+    "e2e": "next dev -p 3002 --turbopack",
     "build": "next build --turbopack",
     "start": "next start -p 3002 --turbopack",
     "analyze": "cross-env ANALYZE=true pnpm build",

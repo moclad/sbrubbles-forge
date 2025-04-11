@@ -19,6 +19,10 @@
     "test": {
       "dependsOn": ["^test"]
     },
+    "e2e": {
+      "cache": false,
+      "persistent": true
+    },
     "analyze": {
       "dependsOn": ["^analyze"]
     },
