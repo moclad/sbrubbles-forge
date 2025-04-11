@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev -p 3000 --turbopack",
     "build": "next build --turbopack",
-    "start": "next start -p 3000 --turbopack",
+    "start": "node .next/standalone/server.js --port 3000",
     "analyze": "cross-env ANALYZE=true pnpm build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
