@@ -19,6 +19,7 @@ test('has sign-in form', async ({ page }) => {
   await expect(emailField).toBeVisible();
   await expect(passwordField).toBeVisible();
   await expect(signInBtn).toBeVisible();
+  await page.screenshot({ path: 'screenshots/sign-in-form.png' });
 });
 
 // test that error messages are shwown when the form is submitted with empty fields

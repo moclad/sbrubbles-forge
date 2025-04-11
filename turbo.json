@@ -20,6 +20,8 @@
       "dependsOn": ["^test"]
     },
     "e2e": {
+      "dependsOn": ["^build", "^e2e"],
+      "with": ["start"],
       "cache": false,
       "persistent": true
     },
@@ -27,7 +29,7 @@
       "dependsOn": ["^analyze"]
     },
     "start": {
-      "persistent": true,
+      "persistent": false,
       "cache": true,
       "outputs": [
         ".next/**",
