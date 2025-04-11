@@ -243,12 +243,6 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0(bufferutil@4.0.9))(lightningcss@1.29.2)(terser@5.38.1)(tsx@4.19.3)(yaml@2.6.0)
 
-  apps/docs:
-    devDependencies:
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
   apps/email:
     dependencies:
       '@react-email/components':
