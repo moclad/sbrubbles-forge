@@ -103,12 +103,6 @@ export const SignIn = () => {
                 <FormItem>
                   <div className='flex items-center text-muted-foreground'>
                     <FormLabel>{t('authentication.fields.password')}</FormLabel>
-                    <Link
-                      href='/forgot-password'
-                      className='ml-auto inline-block text-sm hover:underline'
-                    >
-                      {t('authentication.fields.forgotPassword')}
-                    </Link>
                   </div>
                   <FormControl>
                     <PasswordInput
@@ -118,6 +112,12 @@ export const SignIn = () => {
                       {...field}
                     />
                   </FormControl>
+                  <Link
+                    href='/forgot-password'
+                    className='ml-auto inline-block text-muted-foreground text-sm hover:underline'
+                  >
+                    {t('authentication.fields.forgotPassword')}
+                  </Link>
                   <FormMessage />
                 </FormItem>
               )}
