@@ -52,6 +52,20 @@ services:
     ports:
       - "8005:8000"
 
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    command:
+      - serve
+    volumes:
+      - ntfy:/var/cache/ntfy
+      - ntfy-etc:/etc/ntfy
+    ports:
+      - 8010:80
+    restart: unless-stopped
+
 volumes:
+    ntfy:
+    ntfy-etc:
     postgres:
     postgres-umami:

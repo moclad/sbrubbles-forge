@@ -4,7 +4,9 @@
   "bin": {
     "next-forge": "dist/index.js"
   },
-  "files": ["dist/index.js"],
+  "files": [
+    "dist/index.js"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -29,7 +31,7 @@
     "@biomejs/biome": "1.9.4",
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^2.5.0",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.14.1",
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
     "turbo": "^2.5.0",
@@ -49,15 +51,23 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome",
+      "@prisma/client",
+      "@prisma/engines",
       "@sentry/cli",
+      "@swc/core",
+      "bufferutil",
+      "core-js-pure",
       "esbuild",
+      "prisma",
       "sharp"
     ]
   },
   "repository": "sbrubbles-work/sbrubbles-forge",
   "author": "Beno Dresch <sbrubbles@sbrubbles.work>",
   "auto": {
-    "plugins": ["npm"],
+    "plugins": [
+      "npm"
+    ],
     "onlyPublishWithReleaseLabel": true,
     "githubApi": "https://forgejo.speebles.duckdns.org/api/v1"
   }
