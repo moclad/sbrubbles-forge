@@ -79,3 +79,9 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.version.outputs.nextVersion }}
+          tag_name: ${{ steps.version.outputs.nextVersion }}
