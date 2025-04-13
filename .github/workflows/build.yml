@@ -81,7 +81,7 @@ jobs:
         run: pnpm build
 
       - name: Release
-        uses: https://github.com/flatherskevin/semver-actions@v1
+        uses: https://github.com/flatherskevin/semver-actions@1.0.58
         with:
           name: ${{ steps.version.outputs.nextVersion }}
           tag_name: ${{ steps.version.outputs.nextVersion }}
