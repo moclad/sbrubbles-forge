@@ -7,13 +7,13 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "better-auth": "^1.2.6",
+    "better-auth": "^1.2.7",
     "@better-fetch/fetch": "^1.1.18",
     "@repo/database": "workspace:*",
     "@repo/email": "workspace:*",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@repo/localization": "workspace:*",
-    "lucide-react": "^0.487.0",
+    "lucide-react": "^0.488.0",
     "next-themes": "^0.4.6",
     "react-hook-form": "^7.55.0",
     "@hookform/resolvers": "^5.0.1",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "22.14.1",
-    "@types/react": "19.1.1",
+    "@types/react": "19.1.2",
     "@types/react-dom": "^19.1.2",
     "typescript": "^5.8.3"
   }

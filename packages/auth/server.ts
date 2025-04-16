@@ -65,7 +65,6 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
     },
   },
   trustedOrigins: ['http://localhost:3000'],
-
   usePlural: true,
 });
 
