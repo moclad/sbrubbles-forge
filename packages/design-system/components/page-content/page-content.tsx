@@ -13,7 +13,7 @@ export function PageContent({
   ...props
 }: Readonly<PageContentProps>) {
   return (
-    <div className='m-4 flex flex-1 flex-col gap-4 rounded-md pt-0'>
+    <div className='m-4 mt-0 flex flex-1 flex-col gap-4 rounded-md'>
       <PageContentHeading header={header} {...props} />
       <PageContentContainer>{children}</PageContentContainer>
     </div>
