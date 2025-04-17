@@ -9,8 +9,8 @@ export function PageContentContainer({
   children,
 }: Readonly<PageContentContainerProps>) {
   return (
-    <div className='w-full md:flex'>
-      <div className='h-full flex-1 flex-col space-y-4'>{children}</div>
+    <div className='min-h-[100vh] flex-1 bg-muted/50 md:min-h-min'>
+      {children}
     </div>
   );
 }
