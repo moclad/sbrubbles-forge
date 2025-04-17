@@ -67,11 +67,6 @@ export default {
     message:
       "Sorry, the page you are looking for doesn't exist or has been moved.",
   },
-  account: {
-    title: 'Account',
-    billing: 'Billing',
-    notifications: 'Notifications',
-  },
   theme: {
     dark: 'Dark',
     light: 'Light',
@@ -86,5 +81,68 @@ export default {
   },
   notifications: {
     label: 'Notifications',
+  },
+  userMenu: {
+    title: 'Account',
+    billing: 'Billing',
+    notifications: 'Notifications',
+  },
+  account: {
+    title: 'Account settings',
+    subTitle: 'Manage your account settings here.',
+    avatar: 'Avatar',
+    name: 'Name',
+    namePlaceholder: 'Full name',
+    profile: 'Profile',
+    security: {
+      changePassword: 'Change Password',
+      changePasswordDescription: 'Please enter your new password.',
+      confirmation: {
+        errorPasswordMatch: "Passwords don't match.",
+        label: 'Password confirmation',
+      },
+      email: {
+        changeEmail: 'Change Email',
+        changeEmailDescription: 'Please enter your new email.',
+        error: 'Failed to update the email',
+        label: 'Email',
+        labelCurrent: 'Current email',
+        update: 'Update email',
+        updated: 'Email updated!',
+        updating: 'Updating email...',
+      },
+      label: 'Security Settings',
+      new: {
+        errorComplexity: 'Password does not meet complexity requirements.',
+        label: 'New password',
+      },
+      password: {
+        current: 'Current password',
+        error: 'Failed to update the password: {error}',
+        errorSamePassword:
+          'New password should be different from the old password.',
+        errorInvalidPassword: 'Current password is not correct.',
+        update: 'Update password',
+        updated: 'Password updated!',
+        updating: 'Updating password...',
+      },
+      passwordRule:
+        'Password must contain: at least 8 characters long. At least 1 number (0-9). At least 1 lowercase letter (a-z). At least 1 uppercase letter (A-Z). At least 1 symbol (e.g., !@#$%^&*).',
+      subTitle: 'Manage your login credentials here.',
+    },
+    settings: {
+      avatar: {
+        error: 'Failed to upload the avatar',
+        success: 'Avatar uploaded!',
+        uploading: 'Uploading avatar...',
+      },
+      error: 'Failed to update the profile',
+      header: 'User settings',
+      label: 'Account settings',
+      subTitle: 'Manage your account and security settings here.',
+      success: 'Profile updated!',
+      updating: 'Updating profile...',
+    },
+    user: 'User',
   },
 } as const;

@@ -1,24 +1,20 @@
 import { PageContent } from '@repo/design-system/components/page-content';
+import { getI18n } from '@repo/localization/i18n/server';
 
-type SearchPageProperties = {
-  searchParams: Promise<{
-    q: string;
-  }>;
+import type { Metadata } from 'next';
+const title = 'Acme Inc';
+const description = 'My application.';
+
+export const metadata: Metadata = {
+  title,
+  description,
 };
 
-export const generateMetadata = async ({
-  searchParams,
-}: SearchPageProperties) => {
-  const { q } = await searchParams;
-
-  return {
-    title: `${q} - Search results`,
-    description: `Search results for ${q}`,
-  };
+const Page = async () => {
+  const t = await getI18n();
+  return (
+    <PageContent header={t('account.title')} subTitle={t('account.subTitle')} />
+  );
 };
 
-const SearchPage = () => {
-  return <PageContent header='Account' subTitle='Manage your account' />;
-};
-
-export default SearchPage;
+export default Page;

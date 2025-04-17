@@ -91,15 +91,15 @@ export function UserMenu({
             className='cursor-pointer'
           >
             <BadgeCheck />
-            {t('account.title')}
+            {t('userMenu.title')}
           </DropdownMenuItem>
           <DropdownMenuItem>
             <CreditCard />
-            {t('account.billing')}
+            {t('userMenu.billing')}
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Bell />
-            {t('account.notifications')}
+            {t('userMenu.notifications')}
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
