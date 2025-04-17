@@ -50,7 +50,7 @@ export function PageContentHeading({
   return (
     <div
       className={cn(
-        'flex p-2 md:items-start md:justify-between',
+        'flex border-b p-2 md:items-start md:justify-between',
         isPending ? 'pointer-events-none animate-pulse' : ''
       )}
     >

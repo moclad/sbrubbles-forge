@@ -6,16 +6,17 @@ import { ThemeProvider } from '@repo/design-system/providers/theme';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { themes } from '@storybook/theming';
 
-import {
-  commonTheme,
-  darkUIStorybook,
-  lightUIStorybook,
-} from './themes-storybook-ui';
+import { commonTheme, darkUIStorybook, lightUIStorybook } from './themes-storybook-ui';
 
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['App-Layout', 'ui'],
+      },
+    },
     darkMode: {
       classTarget: 'html',
       stylePreview: true,
@@ -57,7 +58,7 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <div className='bg-background'>
+        <div className=' bg-background'>
           <ThemeProvider>
             <TooltipProvider>
               <Story />
