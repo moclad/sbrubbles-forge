@@ -76,19 +76,3 @@ jobs:
 
       - name: Build with bundle analysis
         run: pnpm analyze
-
-      - name: Build
-        run: pnpm build
-
-      - name: version
-        id: version
-        uses: ./
-        with:
-          incrementLevel: patch
-          source: tags
-
-      - name: Release
-        uses: https://github.com/flatherskevin/semver-action@1.0.58
-        with:
-          name: ${{ steps.version.outputs.nextVersion }}
-          tag_name: ${{ steps.version.outputs.nextVersion }}
