@@ -77,6 +77,13 @@ jobs:
       - name: Build with bundle analysis
         run: pnpm analyze
 
+  tag-version:
+    runs-on: docker
+    container:
+      image: node:23.7
+
+    if: success() && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip ci')
+    steps:
       - name: Determine next version
         id: determine_version
         run: |
