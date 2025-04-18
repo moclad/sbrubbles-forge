@@ -47,11 +47,7 @@
     "tagName": "v${version}",
     "push": true,
     "commit": true,
-    "requireCleanWorkingDir": false
-  },
-  "github": {
-    "release": false,
-    "releaseName": "v${version}",
-    "draft": false
+    "requireCleanWorkingDir": false,
+    "pushRepo": ""
   }
 }

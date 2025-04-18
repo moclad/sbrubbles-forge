@@ -10,10 +10,22 @@ jobs:
     runs-on: docker
     container:
       image: node:23.7
+    outputs:
+      new_version: ${{ steps.determine_version.outputs.new_version }}
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@sbrubbles.com"
 
       - name: Prepare repository
         run: git fetch --unshallow --tags -f
@@ -86,7 +98,7 @@ jobs:
 
       - name: Tag Version
         run: |
-          pnpm release:patch
+          pnpm release
 
 #  tag-version:
 #
