@@ -1,6 +1,6 @@
 {
   "name": "next-forge",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "bin": {
     "next-forge": "dist/index.js"
   },
@@ -22,7 +22,7 @@
     "db:pull": "cd packages/database && npx drizzle-kit pull",
     "db:push": "cd packages/database && npx drizzle-kit push",
     "studio": "cd packages/database && pnpm dev",
-    "release:ci": "release-it --ci --release-version",
+    "release:ci": "release-it",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",
