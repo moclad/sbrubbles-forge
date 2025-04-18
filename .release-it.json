@@ -1,0 +1,45 @@
+{
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            "section": "Features"
+          },
+          {
+            "type": "fix",
+            "section": "Fixes"
+          },
+          {
+            "type": "ci",
+            "section": "CI/CD"
+          },
+          {
+            "type": "cd",
+            "section": "CI/CD"
+          },
+          {
+            "type": "chore",
+            "section": "Chores"
+          }
+        ]
+      }
+    }
+  },
+  "npm": false,
+  "git": {
+    "tagName": "v${version}",
+    "push": false,
+    "commit": false,
+    "requireCleanWorkingDir": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "draft": false
+  }
+}
