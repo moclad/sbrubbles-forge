@@ -1,6 +1,6 @@
 {
   "name": "@repo/observability",
-  "version": "0.0.0",
+  "version": "4.0.1",
   "private": true,
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",

@@ -1,3 +1,7 @@
+# Changelog
+
+## [3.2.29](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v3.2.28...v3.2.29) (2025-04-18)
+
 # v3.2.28 (Mon Mar 03 2025)
 
 #### 🐛 Bug Fix
