@@ -64,8 +64,11 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
       },
     },
   },
-  trustedOrigins: ['http://localhost:3000'],
+  trustedOrigins: [keys().PUBLIC_APP_URL],
   usePlural: true,
+  advanced: {
+    cookiePrefix: 'sbrubbles-forge',
+  },
 });
 
 export type Session = typeof auth.$Infer.Session;
