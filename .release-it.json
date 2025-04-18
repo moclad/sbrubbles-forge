@@ -3,12 +3,8 @@
   "plugins": {
     "release-it-pnpm": {
       "pnpm": {
-        "ci": true,
-        "ignoreScripts": false,
-        "preferOffline": true,
-        "preferFrozenLockfile": true,
-        "preferOfflineMirror": true,
-        "useLockfile": true
+        "disableRelease": false,
+        "inFile": "CHANGELOG.md"
       }
     }
   },
@@ -19,6 +15,7 @@
     "tagName": "v${version}",
     "push": true,
     "commit": true,
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": false,
+    "commitMessage": "chore: release v${version}"
   }
 }
