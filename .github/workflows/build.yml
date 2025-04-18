@@ -83,3 +83,7 @@ jobs:
           NEW_VERSION=$(pnpm release:next-version)
           echo "Next version: $NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Tag Version
+        run: |
+          pnpm release:patch
