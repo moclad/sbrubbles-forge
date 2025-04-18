@@ -34,7 +34,7 @@
   "npm": false,
   "git": {
     "tagName": "v${version}",
-    "push": false,
+    "push": true,
     "commit": false,
     "requireCleanWorkingDir": false
   },
