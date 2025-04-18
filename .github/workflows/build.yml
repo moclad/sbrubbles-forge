@@ -138,6 +138,6 @@ jobs:
 
       - name: Tag Version
         run: |
-          pnpm release
+          pnpm release:ci
 
 
