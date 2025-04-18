@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.0.3](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.2...v4.0.3) (2025-04-18)
+
+### Bug Fix
+
+* revert release-it configuration ([5c6457f](https://github.com/sbrubbles-work/sbrubbles-forge/commit/5c6457f69479ae7abcd9c47ae40a306ac5be081b))
+
+### CI/CD
+
+* tag new version ([49f81d4](https://github.com/sbrubbles-work/sbrubbles-forge/commit/49f81d4771d15043fc4107966fd06aba73b281c8))
+
 ## [4.0.1](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.0...v4.0.1) (2025-04-18)
 
 ## [4.0.1](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v3.2.28...v4.0.1) (2025-04-18)
