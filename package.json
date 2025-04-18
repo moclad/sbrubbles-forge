@@ -35,7 +35,6 @@
     "@turbo/gen": "^2.5.0",
     "@types/node": "^22.14.1",
     "@release-it/conventional-changelog": "^10.0.1",
-    "auto-changelog": "^2.5.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
     "turbo": "^2.5.0",
@@ -66,10 +65,5 @@
     ]
   },
   "repository": "sbrubbles-work/sbrubbles-forge",
-  "author": "Beno Dresch <sbrubbles@sbrubbles.work>",
-  "auto": {
-    "plugins": ["npm"],
-    "onlyPublishWithReleaseLabel": true,
-    "githubApi": "https://forgejo.speebles.duckdns.org/api/v1"
-  }
+  "author": "Beno Dresch <sbrubbles@sbrubbles.work>"
 }
