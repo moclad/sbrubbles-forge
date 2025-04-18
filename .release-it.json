@@ -35,11 +35,11 @@
   "git": {
     "tagName": "v${version}",
     "push": true,
-    "commit": false,
+    "commit": true,
     "requireCleanWorkingDir": false
   },
   "github": {
-    "release": true,
+    "release": false,
     "releaseName": "v${version}",
     "draft": false
   }
