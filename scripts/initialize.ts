@@ -1,24 +1,15 @@
-import { copyFile, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import {
-  cancel,
-  intro,
-  isCancel,
-  log,
-  outro,
-  select,
-  spinner,
-  text,
-} from '@clack/prompts';
+import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
 
 import {
-  url,
   exec,
   execSyncOpts,
   internalContentDirs,
   internalContentFiles,
   supportedPackageManagers,
+  url
 } from './utils.js';
 
 const cloneNextForge = async (name: string, packageManager: string) => {
@@ -211,7 +202,7 @@ export const initialize = async (options: {
   disableGit?: boolean;
 }) => {
   try {
-    intro("Let's start a next-forge project!");
+    intro("Let's start a sbrubbles-forge project!");
 
     const cwd = process.cwd();
     const name = options.name || (await getName());
@@ -225,7 +216,7 @@ export const initialize = async (options: {
     const s = spinner();
     const projectDir = join(cwd, name);
 
-    s.start('Cloning next-forge...');
+    s.start('Cloning sbrubbles-forge...');
     await cloneNextForge(name, packageManager);
 
     s.message('Moving into repository...');

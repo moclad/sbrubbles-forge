@@ -1,21 +1,15 @@
 import { copyFile, mkdir, readFile, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+
+import { cancel, intro, isCancel, log, outro, select, spinner } from '@clack/prompts';
+
 import {
-  cancel,
-  intro,
-  isCancel,
-  log,
-  outro,
-  select,
-  spinner,
-} from '@clack/prompts';
-import {
-  url,
   allInternalContent,
   cleanFileName,
   exec,
   getAvailableVersions,
   tempDirName,
+  url
 } from './utils.js';
 
 const compareVersions = (a: string, b: string) => {
@@ -129,7 +123,7 @@ const getDiff = async (
 
 export const update = async (options: { from?: string; to?: string }) => {
   try {
-    intro("Let's update your next-forge project!");
+    intro("Let's update your sbrubbles-forge project!");
 
     const cwd = process.cwd();
     const availableVersions = await getAvailableVersions();
@@ -169,7 +163,7 @@ export const update = async (options: { from?: string; to?: string }) => {
     s.message('Creating temporary directory...');
     await createTemporaryDirectory(tempDirName);
 
-    s.message('Cloning next-forge...');
+    s.message('Cloning sbrubbles-forge...');
     await cloneRepository(tempDirName);
 
     s.message('Moving into repository...');

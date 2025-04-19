@@ -1,9 +1,9 @@
-import { ExecSyncOptions, exec as execRaw } from 'node:child_process';
+import { exec as execRaw, ExecSyncOptions } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
 
-export const url = 'https://github.com/moclad/next-forge';
+export const url = 'https://github.com/moclad/sbrubbles-forge';
 
 export const cleanFileName = (file: string) =>
   file.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\\/g, '/');
