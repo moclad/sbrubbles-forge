@@ -82,21 +82,21 @@ jobs:
       - name: Build with bundle analysis
         run: pnpm analyze
 
-  tag-version:
-    runs-on: docker
-    needs: build
-    container:
-      image: node:23.7
-    outputs:
-      new_version: ${{ steps.determine_version.outputs.new_version }}
-    permissions:
-      contents: write
-      packages: write
-      pull-requests: write
-      id-token: write
+#  tag-version:
+#    runs-on: docker
+#    needs: build
+#    container:
+#      image: node:23.7
+#    outputs:
+#      new_version: ${{ steps.determine_version.outputs.new_version }}
+#    permissions:
+#      contents: write
+#      packages: write
+#      pull-requests: write
+#      id-token: write
 
-    if: success() && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip ci')
-    steps:
+#    if: success() && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip ci')
+#    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
