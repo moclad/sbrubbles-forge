@@ -10,11 +10,6 @@ jobs:
     runs-on: docker
     container:
       image: node:23.7
-    permissions:
-      contents: write
-      packages: write
-      pull-requests: write
-      id-token: write
 
     steps:
       - name: Checkout
@@ -139,5 +134,7 @@ jobs:
       - name: Tag Version
         run: |
           pnpm release:ci
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 
