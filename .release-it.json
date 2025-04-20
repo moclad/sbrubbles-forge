@@ -3,8 +3,9 @@
   "plugins": {
     "release-it-pnpm": {
       "pnpm": {
-        "disableRelease": false,
-        "inFile": "CHANGELOG.md"
+        "disableRelease": true,
+        "inFile": "CHANGELOG.md",
+        "publish": false
       }
     },
     "@release-it/conventional-changelog": {
