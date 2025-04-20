@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.0.4](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.3...v4.0.4) (2025-04-20)
+
+### Bug Fix
+
+* revert release-it configuration ([5c6457f](https://github.com/sbrubbles-work/sbrubbles-forge/commit/5c6457f69479ae7abcd9c47ae40a306ac5be081b))
+
+### CI/CD
+
+* bump-deps ([a8976b8](https://github.com/sbrubbles-work/sbrubbles-forge/commit/a8976b87a1f84138ff0cbbc3e0ba5e76f704e99b))
+* update release-it configuration ([f35c127](https://github.com/sbrubbles-work/sbrubbles-forge/commit/f35c127d5e9ab8ba0537c99935f68b36a3a53f79))
+
+### Chores
+
+* release 4.0.4 ([c535563](https://github.com/sbrubbles-work/sbrubbles-forge/commit/c5355633d8d4fc697f1df226da46528a75d3797c))
+
 ## [4.0.3](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.2...v4.0.3) (2025-04-18)
 
 ### Bug Fix
