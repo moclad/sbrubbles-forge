@@ -51,7 +51,7 @@ export default {
   },
   github: {
     host: 'forgejo.speebles.duckdns.org',
-    release: true,
+    release: false,
     releaseName: 'v${version}',
     assets: [
       {
