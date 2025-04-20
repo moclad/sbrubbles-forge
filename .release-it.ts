@@ -49,4 +49,15 @@ export default {
     requireCleanWorkingDir: false,
     commitMessage: 'chore: release v${version}',
   },
+  github: {
+    host: 'forgejo.speebles.duckdns.org',
+    release: false,
+    releaseName: 'v${version}',
+    assets: [
+      {
+        path: 'CHANGELOG.md',
+        label: 'CHANGELOG',
+      },
+    ],
+  },
 } satisfies Config;
