@@ -1,13 +1,12 @@
 import type { Config } from 'release-it';
 
 export default {
-  $schema: 'https://unpkg.com/release-it/schema/release-it.json',
   plugins: {
     'release-it-pnpm': {
       pnpm: {
-        disableRelease: true,
+        disableRelease: false,
         inFile: 'CHANGELOG.md',
-        publish: false,
+        publish: true,
       },
     },
     '@release-it/conventional-changelog': {
