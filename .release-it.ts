@@ -10,6 +10,10 @@ export default {
       },
     },
   },
+  npm: {
+    publish: false,
+    skipChecks: true,
+  },
   git: {
     tagName: 'v${version}',
     push: true,
