@@ -38,9 +38,6 @@ export default {
       },
     },
   },
-  npm: {
-    publish: false,
-  },
   git: {
     tagName: 'v${version}',
     push: true,
