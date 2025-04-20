@@ -9,6 +9,34 @@ export default {
         publish: true,
       },
     },
+    '@release-it/conventional-changelog': {
+      infile: 'CHANGELOG.md',
+      preset: {
+        name: 'conventionalcommits',
+        types: [
+          {
+            type: 'feat',
+            section: 'Features',
+          },
+          {
+            type: 'fix',
+            section: 'Bug Fix',
+          },
+          {
+            type: 'ci',
+            section: 'CI/CD',
+          },
+          {
+            type: 'cd',
+            section: 'CI/CD',
+          },
+          {
+            type: 'chore',
+            section: 'Chores',
+          },
+        ],
+      },
+    },
   },
   npm: {
     publish: false,
@@ -20,16 +48,5 @@ export default {
     commit: true,
     requireCleanWorkingDir: false,
     commitMessage: 'chore: release v${version}',
-  },
-  github: {
-    host: 'forgejo.speebles.duckdns.org',
-    release: false,
-    releaseName: 'v${version}',
-    assets: [
-      {
-        path: 'CHANGELOG.md',
-        label: 'CHANGELOG',
-      },
-    ],
   },
 } satisfies Config;
