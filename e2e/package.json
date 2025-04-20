@@ -12,8 +12,8 @@
   "license": "MIT License",
   "packageManager": "pnpm@10.8.1",
   "devDependencies": {
-    "playwright": "^1.51.1",
-    "@playwright/test": "^1.51.1",
+    "playwright": "^1.52.0",
+    "@playwright/test": "^1.52.0",
     "@types/node": "^22.14.1",
     "dotenv": "^16.5.0",
     "path": "^0.12.7"
