@@ -21,17 +21,17 @@ export const DesignSystemProvider = ({
   const theme = useTheme();
   const currentTheme = theme.theme === 'light' ? 'light' : 'dark';
   return (
-    <ThemeProvider {...properties}>
-      <I18nProviderClient locale={locale}>
-        <AuthProvider>
+    <AuthProvider>
+      <ThemeProvider {...properties}>
+        <I18nProviderClient locale={locale}>
           <AnalyticsProvider>
             <TouchProvider>
               <TooltipProvider>{children}</TooltipProvider>
             </TouchProvider>
             <SonnerToaster richColors theme={currentTheme} />
           </AnalyticsProvider>
-        </AuthProvider>
-      </I18nProviderClient>
-    </ThemeProvider>
+        </I18nProviderClient>
+      </ThemeProvider>
+    </AuthProvider>
   );
 };

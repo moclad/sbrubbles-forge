@@ -15,4 +15,5 @@ export const {
   signOut,
   forgetPassword,
   resetPassword,
+  updateUser,
 } = authClient;
