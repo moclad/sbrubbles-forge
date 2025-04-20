@@ -19,7 +19,7 @@ export default function UserSettingsClientLayout({
       },
       {
         label: t('account.security.label'),
-        href: '/account//security',
+        href: '/account/security',
         icon: <LockIcon />,
       },
     ];
