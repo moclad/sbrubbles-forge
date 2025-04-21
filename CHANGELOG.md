@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.0.23](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.22...v4.0.23) (2025-04-21)
+
+### Bug Fix
+
+* readme ([063791d](https://github.com/sbrubbles-work/sbrubbles-forge/commit/063791d77cea2bda385016d4040423d7b96e6c43))
+
 ## [4.0.22](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.21...v4.0.22) (2025-04-21)
 
 ## [4.0.21](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.20...v4.0.21) (2025-04-21)
