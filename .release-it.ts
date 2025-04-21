@@ -18,18 +18,7 @@ export default {
     tagName: 'v${version}',
     push: true,
     commit: true,
-    requireCleanWorkingDir: false,
+    requireCleanWorkingDir: true,
     commitMessage: 'chore: release v${version}',
-  },
-  github: {
-    host: 'forgejo.speebles.duckdns.org',
-    release: true,
-    releaseName: 'v${version}',
-    assets: [
-      {
-        path: 'CHANGELOG.md',
-        label: 'CHANGELOG',
-      },
-    ],
   },
 } satisfies Config;
