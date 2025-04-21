@@ -6,6 +6,16 @@
 
 * change build configuration ([5e9fa4b](https://github.com/sbrubbles-work/sbrubbles-forge/commit/5e9fa4bbb43d071651efbe8d92e2ff330bd0ccbc))
 
+### Chores
+
+* release 4.0.14 ([d5e5bb1](https://github.com/sbrubbles-work/sbrubbles-forge/commit/d5e5bb189003d8a2efa4c3d361a98db9dbfe23fe))
+
+## [4.0.14](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.13...v4.0.14) (2025-04-21)
+
+### CI/CD
+
+* change build configuration ([5e9fa4b](https://github.com/sbrubbles-work/sbrubbles-forge/commit/5e9fa4bbb43d071651efbe8d92e2ff330bd0ccbc))
+
 ## [4.0.13](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.12...v4.0.13) (2025-04-21)
 
 ### CI/CD
