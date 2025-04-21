@@ -6,7 +6,7 @@ export default {
       pnpm: {
         disableRelease: true,
         inFile: 'CHANGELOG.md',
-        publish: true,
+        publish: false,
       },
     },
     '@release-it/conventional-changelog': {
@@ -50,6 +50,6 @@ export default {
   },
   github: {
     skipChecks: true,
-    release: true,
+    release: false,
   },
 } satisfies Config;
