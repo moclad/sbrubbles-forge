@@ -6,7 +6,7 @@ export default {
       pnpm: {
         disableRelease: false,
         inFile: 'CHANGELOG.md',
-        publish: true,
+        publish: false,
       },
     },
   },
