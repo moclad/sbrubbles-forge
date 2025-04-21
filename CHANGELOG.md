@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.0.24](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.23...v4.0.24) (2025-04-21)
+
+### CI/CD
+
+* add condition for release build ([0d1c0a8](https://github.com/sbrubbles-work/sbrubbles-forge/commit/0d1c0a8b5fb13688b144680808b0c95c8d4b5afd))
+* build job will not bump version ([d72d50d](https://github.com/sbrubbles-work/sbrubbles-forge/commit/d72d50d336fd6c7cf1728a8cc608bb6f016a5f5f))
+* fix build script ([722f591](https://github.com/sbrubbles-work/sbrubbles-forge/commit/722f591dadd9bfcaf9302f69c60cf54ec47b698c))
+* fix ci ([c671813](https://github.com/sbrubbles-work/sbrubbles-forge/commit/c67181305a26baf7e606ee4c53398a76ccc9789f))
+
 ## [4.0.23](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.22...v4.0.23) (2025-04-21)
 
 ### Bug Fix
