@@ -15,5 +15,3 @@ Clone the repo using:
 ```sh
 npx sbrubbles-forge@latest init
 ```
-
-
