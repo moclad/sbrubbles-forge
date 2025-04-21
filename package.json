@@ -1,6 +1,7 @@
 {
   "name": "sbrubbles-forge",
-  "version": "4.0.14",
+  "version": "4.0.29",
+  "private": true,
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },
@@ -22,7 +23,7 @@
     "db:pull": "cd packages/database && npx drizzle-kit pull",
     "db:push": "cd packages/database && npx drizzle-kit push",
     "studio": "cd packages/database && pnpm dev",
-    "release:ci": "release-it --ci",
+    "release:ci": "release-it --ci --verbose",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",

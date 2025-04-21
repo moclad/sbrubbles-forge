@@ -1,5 +1,36 @@
 # Changelog
 
+## [4.0.29](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.28...v4.0.29) (2025-04-21)
+
+## [4.0.28](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.27...v4.0.28) (2025-04-21)
+
+## [4.0.27](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.26...v4.0.27) (2025-04-21)
+
+## [4.0.26](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.25...v4.0.26) (2025-04-21)
+
+## [4.0.25](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.24...v4.0.25) (2025-04-21)
+
+## [4.0.24](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.23...v4.0.24) (2025-04-21)
+
+## [4.0.23](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.22...v4.0.23) (2025-04-21)
+
+## [4.0.22](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.21...v4.0.22) (2025-04-21)
+
+## [4.0.21](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.20...v4.0.21) (2025-04-21)
+
+## [4.0.18](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.17...v4.0.18) (2025-04-21)
+
+## [4.0.17](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.16...v4.0.17) (2025-04-21)
+
+## [4.0.16](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.15...v4.0.16) (2025-04-21)
+
+## [4.0.15](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.14...v4.0.15) (2025-04-21)
+
+### CI/CD
+
+* change configuration ([27f20e1](https://github.com/sbrubbles-work/sbrubbles-forge/commit/27f20e1d3460795fa5e6d9703e881db90d1e6de2))
+* remove publish process ([e7e2c7c](https://github.com/sbrubbles-work/sbrubbles-forge/commit/e7e2c7cefc8228f80cff01932722d7dc9d861a52))
+
 ## [4.0.14](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.13...v4.0.14) (2025-04-21)
 
 ### CI/CD

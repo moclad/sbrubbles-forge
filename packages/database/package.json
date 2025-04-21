@@ -1,6 +1,7 @@
 {
   "name": "@repo/database",
-  "version": "4.0.14",
+  "version": "4.0.29",
+  "private": true,
   "main": "./index.ts",
   "types": "./index.ts",
   "scripts": {
