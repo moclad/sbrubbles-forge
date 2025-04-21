@@ -9,6 +9,18 @@
 
 ### Chores
 
+* release v4.0.15 ([0af1938](https://github.com/sbrubbles-work/sbrubbles-forge/commit/0af19383876a8312260493616776ff692c3c44e1))
+* release v4.0.15 ([093c7fd](https://github.com/sbrubbles-work/sbrubbles-forge/commit/093c7fd3c2c8ca67ed2ce580281a2db46796685e))
+
+## [4.0.15](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.14...v4.0.15) (2025-04-21)
+
+### CI/CD
+
+* change configuration ([27f20e1](https://github.com/sbrubbles-work/sbrubbles-forge/commit/27f20e1d3460795fa5e6d9703e881db90d1e6de2))
+* remove publish process ([e7e2c7c](https://github.com/sbrubbles-work/sbrubbles-forge/commit/e7e2c7cefc8228f80cff01932722d7dc9d861a52))
+
+### Chores
+
 * release v4.0.15 ([093c7fd](https://github.com/sbrubbles-work/sbrubbles-forge/commit/093c7fd3c2c8ca67ed2ce580281a2db46796685e))
 
 ## [4.0.29](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.28...v4.0.29) (2025-04-21)
