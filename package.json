@@ -1,12 +1,10 @@
 {
   "name": "sbrubbles-forge",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -24,7 +22,7 @@
     "db:pull": "cd packages/database && npx drizzle-kit pull",
     "db:push": "cd packages/database && npx drizzle-kit push",
     "studio": "cd packages/database && pnpm dev",
-    "release:ci": "release-it --ci --verbose",
+    "release:ci": "release-it --ci patch verbose",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",
