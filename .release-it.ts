@@ -4,7 +4,7 @@ export default {
   plugins: {
     'release-it-pnpm': {
       pnpm: {
-        disableRelease: false,
+        disableRelease: true,
         inFile: '',
         publishCommand: '',
       },
