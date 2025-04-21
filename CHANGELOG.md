@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.13](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.12...v4.0.13) (2025-04-21)
+
+### CI/CD
+
+* remove publish option ([f0f029d](https://github.com/sbrubbles-work/sbrubbles-forge/commit/f0f029d49e64b7d91646966ee708bd383165e223))
+* revert changes ([1aaea1b](https://github.com/sbrubbles-work/sbrubbles-forge/commit/1aaea1b754edc1ab88daeb4e44acf7ce28635113))
+
 ## [4.0.12](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.11...v4.0.12) (2025-04-21)
 
 ## [4.0.11](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.10...v4.0.11) (2025-04-21)
