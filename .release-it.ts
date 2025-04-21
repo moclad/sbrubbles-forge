@@ -6,7 +6,6 @@ export default {
       pnpm: {
         disableRelease: false,
         inFile: 'CHANGELOG.md',
-        verbose: true,
       },
     },
     '@release-it/conventional-changelog': {
