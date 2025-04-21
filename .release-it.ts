@@ -4,7 +4,7 @@ export default {
   plugins: {
     'release-it-pnpm': {
       pnpm: {
-        disableRelease: true,
+        disableRelease: false,
         inFile: 'CHANGELOG.md',
         verbose: true,
       },

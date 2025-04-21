@@ -1,5 +1,7 @@
 # Changelog
 
+## [4.0.17](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.16...v4.0.17) (2025-04-21)
+
 ## [4.0.16](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.15...v4.0.16) (2025-04-21)
 
 ### CI/CD
