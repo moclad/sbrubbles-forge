@@ -5,7 +5,7 @@ export default {
     'release-it-pnpm': {
       pnpm: {
         disableRelease: false,
-        inFile: 'CHANGELOG.md',
+        inFile: '',
         publishCommand: '',
       },
     },
