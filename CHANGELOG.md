@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.7](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.6...v4.0.7) (2025-04-21)
+
+### CI/CD
+
+* disable pnpm publish ([7ab29a5](https://github.com/sbrubbles-work/sbrubbles-forge/commit/7ab29a53c168b68949e0a5a8ffe7a9a1da9a3cbe))
+* revert changes ([3d4951b](https://github.com/sbrubbles-work/sbrubbles-forge/commit/3d4951b59e7c0c29102962a1f7582420fd5b714c))
+* try release-it configuration ([68dea1a](https://github.com/sbrubbles-work/sbrubbles-forge/commit/68dea1a1e970f5221286527522fdc969cab4ad31))
+
+### Chores
+
+* release v4.0.7 ([68e1881](https://github.com/sbrubbles-work/sbrubbles-forge/commit/68e1881257ef88914930bac0c83dfbe5e8654981))
+
 ## [4.0.4](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.3...v4.0.4) (2025-04-20)
 
 ### Bug Fix
