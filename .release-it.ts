@@ -40,17 +40,16 @@ export default {
   },
   npm: {
     publish: false,
-    skipChecks: true,
   },
   git: {
     tagName: 'v${version}',
     push: true,
     commit: true,
-    requireCleanWorkingDir: true,
+    requireCleanWorkingDir: false,
     commitMessage: 'chore: release v${version}',
   },
   github: {
     skipChecks: true,
-    release: false,
+    release: true,
   },
 } satisfies Config;
