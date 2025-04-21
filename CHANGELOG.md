@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.0.27](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.26...v4.0.27) (2025-04-21)
+
+### CI/CD
+
+* adapt config ([0fe6082](https://github.com/sbrubbles-work/sbrubbles-forge/commit/0fe6082ceb6a040a4e868ad480585b44460351b0))
+
 ## [4.0.24](https://github.com/sbrubbles-work/sbrubbles-forge/compare/v4.0.23...v4.0.24) (2025-04-21)
 
 ### CI/CD

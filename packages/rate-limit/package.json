@@ -1,6 +1,6 @@
 {
   "name": "@repo/rate-limit",
-  "version": "4.0.26",
+  "version": "4.0.27",
   "private": true,
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
