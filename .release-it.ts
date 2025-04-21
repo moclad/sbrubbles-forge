@@ -6,7 +6,7 @@ export default {
       pnpm: {
         disableRelease: false,
         inFile: 'CHANGELOG.md',
-        publish: true,
+        publish: false,
       },
     },
     '@release-it/conventional-changelog': {
@@ -46,7 +46,7 @@ export default {
     tagName: 'v${version}',
     push: true,
     commit: true,
-    requireCleanWorkingDir: false,
+    requireCleanWorkingDir: true,
     commitMessage: 'chore: release v${version}',
   },
   github: {
