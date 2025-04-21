@@ -22,7 +22,7 @@
     "db:pull": "cd packages/database && npx drizzle-kit pull",
     "db:push": "cd packages/database && npx drizzle-kit push",
     "studio": "cd packages/database && pnpm dev",
-    "release:ci": "release-it --ci patch verbose",
+    "release:ci": "release-it --ci --config ./release-it.ts",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",
