@@ -50,6 +50,7 @@ export default {
     commitMessage: 'chore: release v${version}',
   },
   github: {
+    skipChecks: true,
     release: false,
   },
 } satisfies Config;
