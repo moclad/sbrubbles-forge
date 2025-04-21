@@ -49,4 +49,7 @@ export default {
     requireCleanWorkingDir: false,
     commitMessage: 'chore: release v${version}',
   },
+  github: {
+    release: false,
+  },
 } satisfies Config;

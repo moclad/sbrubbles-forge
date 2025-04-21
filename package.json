@@ -1,6 +1,6 @@
 {
   "name": "sbrubbles-forge",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },

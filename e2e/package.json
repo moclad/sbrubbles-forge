@@ -1,5 +1,5 @@
 {
-  "version": "4.0.10",
+  "version": "4.0.11",
   "private": true,
   "name": "@repo/e2e",
   "description": "sbrubbles-forge e2e tests",
