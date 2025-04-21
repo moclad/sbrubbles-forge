@@ -13,9 +13,7 @@ jobs:
     container:
       image: node:23.7
 
-    # This check needs to be in place to prevent a publish loop with auto and github actions
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    # The list of steps that the action will go through
+    if: !contains(github.event.head_commit.message, "skip ci")
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,3 +47,66 @@ jobs:
 
       - name: Build CLI
         run: npx tsup
+
+
+  tag-version:
+    runs-on: docker
+    needs: release
+    container:
+      image: node:23.7
+    outputs:
+      new_version: ${{ steps.determine_version.outputs.new_version }}
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
+
+    if: success() && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'skip ci')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags -f
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@sbrubbles.com"
+
+      - name: Determine next version
+        id: determine_version
+        run: |
+          NEW_VERSION=$(pnpm release:next-version)
+          echo "Next version: $NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Tag Version
+        run: |
+          pnpm release:ci
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
