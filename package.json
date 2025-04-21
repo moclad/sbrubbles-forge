@@ -1,6 +1,6 @@
 {
   "name": "sbrubbles-forge",
-  "version": "4.0.20",
+  "version": "4.0.21",
   "private": true,
   "bin": {
     "sbrubbles-forge": "dist/index.js"
@@ -28,8 +28,7 @@
     "release:minor": "release-it minor",
     "release:major": "release-it major",
     "release:next-version": "release-it --ci --release-version | tail -n1",
-    "clean": "git clean -xdf node_modules",
-    "release": "release-it"
+    "clean": "git clean -xdf node_modules"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
