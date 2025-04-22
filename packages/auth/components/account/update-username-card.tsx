@@ -1,46 +1,40 @@
-"use client"
+'use client';
 
-import { useContext } from "react"
+import { useI18n } from '@repo/localization/i18n/client';
 
-import type { AuthLocalization } from "../../lib/auth-localization"
-import { AuthUIContext } from "../../lib/auth-ui-provider"
-import type { SettingsCardClassNames } from "./shared/settings-card"
-import { UpdateFieldCard } from "./shared/update-field-card"
+import { useSession } from '../../client';
+import { UpdateFieldCard } from './shared/update-field-card';
 
+import type { SettingsCardClassNames } from './shared/settings-card';
 export interface UpdateUsernameCardProps {
-    className?: string
-    classNames?: SettingsCardClassNames
-    isPending?: boolean
-    localization?: AuthLocalization
+  className?: string;
+  classNames?: SettingsCardClassNames;
+  isPending?: boolean;
 }
 
 export function UpdateUsernameCard({
-    className,
-    classNames,
-    isPending,
-    localization
-}: UpdateUsernameCardProps) {
-    const { hooks, localization: authLocalization } = useContext(AuthUIContext)
-    const { useSession } = hooks
-    localization = { ...authLocalization, ...localization }
+  className,
+  classNames,
+  isPending,
+}: Readonly<UpdateUsernameCardProps>) {
+  const { data: sessionData } = useSession();
+  const t = useI18n();
+  const defaultValue =
+    sessionData?.user.displayUsername ?? sessionData?.user.username;
 
-    const { data: sessionData } = useSession()
-    const defaultValue = sessionData?.user.displayUsername || sessionData?.user.username
-
-    return (
-        <UpdateFieldCard
-            key={defaultValue}
-            className={className}
-            classNames={classNames}
-            defaultValue={defaultValue}
-            description={localization.usernameDescription}
-            field="username"
-            instructions={localization.usernameInstructions}
-            isPending={isPending}
-            label={localization.username}
-            localization={localization}
-            placeholder={localization.usernamePlaceholder}
-            required
-        />
-    )
+  return (
+    <UpdateFieldCard
+      key={defaultValue}
+      className={className}
+      classNames={classNames}
+      defaultValue={defaultValue}
+      description={t('account.usernameDescription')}
+      field='username'
+      instructions={t('account.usernameInstructions')}
+      isPending={isPending}
+      label={t('account.username')}
+      placeholder={t('account.usernamePlaceholder')}
+      required
+    />
+  );
 }

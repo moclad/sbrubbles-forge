@@ -1,18 +1,19 @@
 'use client';
 
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { Card } from '@repo/design-system/components/uicard';
-import { Skeleton } from '@repo/design-system/components/uiskeleton';
+import { Card } from '@repo/design-system/components/ui/card';
+import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
 
-import { AuthUIContext } from '../../lib/auth-ui-provider';
+import { toast } from '../../../design-system/components/ui/sonner';
+import { useI18n } from '../../../localization/i18n/client';
+import { useSession } from '../../client';
 import { getErrorMessage } from '../../lib/get-error-message';
-import { UserAvatar } from '../user-avatar';
 import { SettingsCardFooter } from './shared/settings-card-footer';
 import { SettingsCardHeader } from './shared/settings-card-header';
+import { UserAvatar } from './user-avatar';
 
-import type { AuthLocalization } from '../../lib/auth-localization';
 import type { SettingsCardClassNames } from './shared/settings-card';
 async function resizeAndCropImage(
   file: File,
@@ -69,41 +70,29 @@ export interface UpdateAvatarCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
-  localization?: AuthLocalization;
 }
 
 export function UpdateAvatarCard({
   className,
   classNames,
   isPending: externalIsPending,
-  localization,
-}: UpdateAvatarCardProps) {
-  const {
-    hooks: { useSession },
-    mutators: { updateUser },
-    localization: authLocalization,
-    optimistic,
-    uploadAvatar,
-    avatarSize,
-    avatarExtension,
-    toast,
-  } = useContext(AuthUIContext);
-
-  localization = { ...authLocalization, ...localization };
-
+}: Readonly<UpdateAvatarCardProps>) {
+  const t = useI18n();
   const { data: sessionData, isPending: sessionPending } = useSession();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleAvatarChange = async (file: File) => {
-    if (!sessionData) return;
+    if (!sessionData) {
+      return;
+    }
 
     setLoading(true);
     const resizedFile = await resizeAndCropImage(
       file,
       sessionData.user.id,
-      avatarSize,
-      avatarExtension
+      128,
+      'png'
     );
 
     let image: string | undefined | null;
@@ -119,15 +108,14 @@ export function UpdateAvatarCard({
       return;
     }
 
-    if (optimistic && !uploadAvatar) setLoading(false);
+    if (optimistic && !uploadAvatar) {
+      setLoading(false);
+    }
 
     try {
       await updateUser({ image });
     } catch (error) {
-      toast({
-        variant: 'error',
-        message: getErrorMessage(error) || localization.requestFailed,
-      });
+      toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }
 
     setLoading(false);
@@ -147,15 +135,17 @@ export function UpdateAvatarCard({
         type='file'
         onChange={(e) => {
           const file = e.target.files?.item(0);
-          if (file) handleAvatarChange(file);
+          if (file) {
+            handleAvatarChange(file);
+          }
         }}
       />
 
       <div className='flex justify-between'>
         <SettingsCardHeader
           className='grow self-start'
-          title={localization.avatar}
-          description={localization.avatarDescription}
+          title={t('account.avatar')}
+          description={t('account.avatarDescription')}
           isPending={isPending}
           classNames={classNames}
         />
@@ -178,7 +168,7 @@ export function UpdateAvatarCard({
 
       <SettingsCardFooter
         className='!py-5'
-        instructions={localization.avatarInstructions}
+        instructions={t('account.avatarInstructions')}
         classNames={classNames}
         isPending={isPending}
         isSubmitting={loading}
