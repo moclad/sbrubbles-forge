@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "migrate:auth": "npx @better-auth/cli generate  --config server"
   },
   "dependencies": {
     "better-auth": "^1.2.7",

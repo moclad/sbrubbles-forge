@@ -2,6 +2,7 @@ import {
   adminClient,
   organizationClient,
   passkeyClient,
+  twoFactorClient,
 } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/react';
 
@@ -16,5 +17,10 @@ export const {
   resetPassword,
 } = createAuthClient({
   baseURL: keys().NEXT_PUBLIC_BETTER_AUTH_URL,
-  plugins: [passkeyClient(), adminClient(), organizationClient()],
+  plugins: [
+    passkeyClient(),
+    adminClient(),
+    organizationClient(),
+    twoFactorClient(),
+  ],
 });

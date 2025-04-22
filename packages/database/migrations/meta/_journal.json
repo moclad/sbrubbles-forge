@@ -57,6 +57,13 @@
       "when": 1743162033461,
       "tag": "0007_brainy_rocket_raccoon",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1745351261400,
+      "tag": "0008_unusual_loa",
+      "breakpoints": true
     }
   ]
 }

@@ -18,7 +18,8 @@ export const user = pgTable('user', {
   image: text('image'),
   createdAt: timestamp('created_at').notNull(),
   updatedAt: timestamp('updated_at').notNull(),
-  role: text('role'),
+  twoFactorEnabled: boolean('two_factor_enabled'),
+  role: userRoleEnums('role').default('user').notNull(),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
@@ -80,6 +81,15 @@ export const passkey = pgTable('passkey', {
   backedUp: boolean('backed_up').notNull(),
   transports: text('transports'),
   createdAt: timestamp('created_at'),
+});
+
+export const twoFactor = pgTable('two_factor', {
+  id: text('id').primaryKey(),
+  secret: text('secret').notNull(),
+  backupCodes: text('backup_codes').notNull(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
 });
 
 export const organization = pgTable('organization', {

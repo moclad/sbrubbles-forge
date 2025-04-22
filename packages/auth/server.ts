@@ -4,7 +4,7 @@ import { betterAuth } from 'better-auth';
 import { emailHarmony } from 'better-auth-harmony';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { nextCookies } from 'better-auth/next-js';
-import { admin, openAPI, organization } from 'better-auth/plugins';
+import { admin, openAPI, organization, twoFactor } from 'better-auth/plugins';
 import { passkey } from 'better-auth/plugins/passkey';
 
 import { database } from '@repo/database';
@@ -34,6 +34,7 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
         userVerification: 'required',
       },
     }),
+    twoFactor(),
     openAPI(),
     admin(),
     nextCookies(),
