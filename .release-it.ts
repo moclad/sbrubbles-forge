@@ -4,7 +4,6 @@ export default {
   plugins: {
     'release-it-pnpm': {
       pnpm: {
-        disableRelease: false,
         inFile: '',
         publishCommand: '',
       },
@@ -21,6 +20,6 @@ export default {
     commitMessage: 'chore: release v${version}',
   },
   github: {
-    release: false,
+    release: true,
   },
 } satisfies Config;
