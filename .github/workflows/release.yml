@@ -103,5 +103,7 @@ jobs:
       - name: Tag Version
         run: |
           pnpm release:ci
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 
