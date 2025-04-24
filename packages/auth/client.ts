@@ -1,3 +1,5 @@
+'use client';
+
 import {
   adminClient,
   organizationClient,
@@ -8,14 +10,7 @@ import { createAuthClient } from 'better-auth/react';
 
 import { keys } from './keys';
 
-export const {
-  signIn,
-  signUp,
-  useSession,
-  signOut,
-  forgetPassword,
-  resetPassword,
-} = createAuthClient({
+export const authClient = createAuthClient({
   baseURL: keys().NEXT_PUBLIC_BETTER_AUTH_URL,
   plugins: [
     passkeyClient(),
@@ -24,3 +19,12 @@ export const {
     twoFactorClient(),
   ],
 });
+
+export const {
+  signIn,
+  signUp,
+  useSession,
+  signOut,
+  forgetPassword,
+  resetPassword,
+} = authClient;

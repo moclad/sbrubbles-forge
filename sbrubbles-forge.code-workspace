@@ -28,6 +28,7 @@
     "i18n-ally.extract.keyMaxLength": 30,
     "i18n-ally.parsers.typescript.compilerOptions": {
       "moduleResolution": "node"
-    }
+    },
+    "cSpell.words": ["totp"]
   }
 }
