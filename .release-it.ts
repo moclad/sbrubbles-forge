@@ -1,6 +1,7 @@
 import type { Config } from 'release-it';
 
 export default {
+  disableRelease: true,
   plugins: {
     'release-it-pnpm': {
       pnpm: {
