@@ -20,8 +20,8 @@ import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
-import { resetPassword } from '../client';
-import { resetPwFormSchema } from '../lib/auth-schema';
+import { resetPassword } from '../../client';
+import { resetPwFormSchema } from '../../lib/auth-schema';
 
 import type { z } from 'zod';
 type Props = {
