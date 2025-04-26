@@ -21,8 +21,8 @@ import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
-import { signUp } from '../client';
-import { signUpFormSchema } from '../lib/auth-schema';
+import { signUp } from '../../client';
+import { signUpFormSchema } from '../../lib/auth-schema';
 
 import type { z } from 'zod';
 export const SignUp = () => {

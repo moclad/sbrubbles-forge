@@ -20,8 +20,8 @@ import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
-import { forgetPassword } from '../client';
-import { forgetPwFormSchema } from '../lib/auth-schema';
+import { forgetPassword } from '../../client';
+import { forgetPwFormSchema } from '../../lib/auth-schema';
 
 import type { z } from 'zod';
 export const ForgotPassword = () => {

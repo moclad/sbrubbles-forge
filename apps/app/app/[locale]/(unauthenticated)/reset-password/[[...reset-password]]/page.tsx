@@ -22,7 +22,7 @@ import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 
 const ResetPassword = dynamic(() =>
-  import('@repo/auth/components/reset-password').then(
+  import('@repo/auth/components/auth/reset-password').then(
     (mod) => mod.ResetPassword
   )
 );

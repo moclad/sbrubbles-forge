@@ -1,7 +1,5 @@
 'use client';
 
-import { Loader2 } from 'lucide-react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   CardDescription,
@@ -83,6 +81,7 @@ export function SettingsCardFooter({
             <Button
               className={cn('md:ms-auto', classNames?.button)}
               disabled={disabled || isSubmitting}
+              loading={isSubmitting}
               size='sm'
               type='submit'
               variant={variant === 'destructive' ? 'destructive' : 'default'}
@@ -90,12 +89,6 @@ export function SettingsCardFooter({
               <span className={cn(!optimistic && isSubmitting && 'opacity-0')}>
                 {actionLabel}
               </span>
-
-              {!optimistic && isSubmitting && (
-                <span className='absolute'>
-                  <Loader2 className='animate-spin' />
-                </span>
-              )}
             </Button>
           )}
         </>

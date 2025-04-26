@@ -6,7 +6,7 @@ import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 
 const ForgotPassword = dynamic(() =>
-  import('@repo/auth/components/forgot-password').then(
+  import('@repo/auth/components/auth/forgot-password').then(
     (mod) => mod.ForgotPassword
   )
 );

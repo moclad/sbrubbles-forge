@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 const title = 'Create an account';
 const description = 'Enter your details to get started.';
 const SignUp = dynamic(() =>
-  import('@repo/auth/components/sign-up').then((mod) => mod.SignUp)
+  import('@repo/auth/components/auth/sign-up').then((mod) => mod.SignUp)
 );
 
 export const metadata: Metadata = createMetadata({ title, description });

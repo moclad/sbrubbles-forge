@@ -14,9 +14,9 @@ export const authClient = createAuthClient({
   baseURL: keys().NEXT_PUBLIC_BETTER_AUTH_URL,
   plugins: [
     passkeyClient(),
-    adminClient(),
     organizationClient(),
     twoFactorClient(),
+    adminClient(),
   ],
 });
 

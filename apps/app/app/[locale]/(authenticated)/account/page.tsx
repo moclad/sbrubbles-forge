@@ -1,3 +1,4 @@
+import { UserAccount } from '@repo/auth/components/user-account';
 import { PageContent } from '@repo/design-system/components/page-content';
 import { getI18n } from '@repo/localization/i18n/server';
 
@@ -12,8 +13,11 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const t = await getI18n();
+
   return (
-    <PageContent header={t('account.title')} subTitle={t('account.subTitle')} />
+    <PageContent header={t('account.title')} subTitle={t('account.subTitle')}>
+      <UserAccount />
+    </PageContent>
   );
 };
 

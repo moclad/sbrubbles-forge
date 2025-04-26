@@ -4,7 +4,12 @@ import type { Session, User } from 'better-auth';
 import { KeyIcon, UserIcon } from 'lucide-react';
 import { useContext } from 'react';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@repo/design-system/components/ui/tabs';
 import { cn } from '@repo/design-system/lib/utils';
 
 import { useI18n } from '../../../localization/i18n/client';

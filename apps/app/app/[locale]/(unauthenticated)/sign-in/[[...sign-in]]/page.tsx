@@ -5,7 +5,7 @@ import { createMetadata } from '@repo/seo/metadata';
 
 import type { Metadata } from 'next';
 const SignIn = dynamic(() =>
-  import('@repo/auth/components/sign-in').then((mod) => mod.SignIn)
+  import('@repo/auth/components/auth/sign-in').then((mod) => mod.SignIn)
 );
 
 const title = 'Welcome back';
