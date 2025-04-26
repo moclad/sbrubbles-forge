@@ -4,14 +4,10 @@ import type { Session, User } from 'better-auth';
 import { KeyIcon, UserIcon } from 'lucide-react';
 import { useContext } from 'react';
 
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@repo/design-system/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import { cn } from '@repo/design-system/lib/utils';
 
+import { useI18n } from '../../../localization/i18n/client';
 import { useAuthenticate } from '../../hooks/use-authenticate';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { AccountsCard } from './accounts-card';
@@ -27,7 +23,6 @@ import { UpdateAvatarCard } from './update-avatar-card';
 import { UpdateNameCard } from './update-name-card';
 import { UpdateUsernameCard } from './update-username-card';
 
-import type { AuthLocalization } from '../../lib/auth-localization';
 import type { SettingsCardClassNames } from './shared/settings-card';
 export type SettingsCardsClassNames = {
   base?: string;
@@ -43,14 +38,12 @@ export type SettingsCardsClassNames = {
 export interface SettingsCardsProps {
   className?: string;
   classNames?: SettingsCardsClassNames;
-  localization?: AuthLocalization;
 }
 
 export function SettingsCards({
   className,
   classNames,
-  localization,
-}: SettingsCardsProps) {
+}: Readonly<SettingsCardsProps>) {
   useAuthenticate();
 
   const {
@@ -60,7 +53,6 @@ export function SettingsCards({
     changeEmail,
     deleteUser,
     hooks,
-    localization: authLocalization,
     multiSession,
     nameRequired,
     otherProviders,
@@ -71,8 +63,7 @@ export function SettingsCards({
     twoFactor,
   } = useContext(AuthUIContext);
 
-  localization = { ...authLocalization, ...localization };
-
+  const t = useI18n();
   const {
     useListAccounts,
     useListDeviceSessions,
@@ -138,13 +129,13 @@ export function SettingsCards({
           <TabsTrigger value='account' className={classNames?.tabs?.trigger}>
             <UserIcon />
 
-            {localization.account}
+            {t('account.account')}
           </TabsTrigger>
 
           <TabsTrigger value='security' className={classNames?.tabs?.trigger}>
             <KeyIcon />
 
-            {localization.security}
+            {t('account.security')}
           </TabsTrigger>
         </TabsList>
 
@@ -156,7 +147,6 @@ export function SettingsCards({
             <UpdateAvatarCard
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
             />
           )}
 
@@ -164,7 +154,6 @@ export function SettingsCards({
             <UpdateUsernameCard
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
             />
           )}
 
@@ -172,7 +161,6 @@ export function SettingsCards({
             <UpdateNameCard
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
             />
           )}
 
@@ -180,13 +168,14 @@ export function SettingsCards({
             <ChangeEmailCard
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
             />
           )}
 
           {settingsFields?.map((field) => {
             const additionalField = additionalFields?.[field];
-            if (!additionalField) return null;
+            if (!additionalField) {
+              return null;
+            }
 
             const {
               label,
@@ -211,7 +200,6 @@ export function SettingsCards({
                 instructions={instructions}
                 isPending={sessionPending}
                 label={label}
-                localization={localization}
                 placeholder={placeholder}
                 required={required}
                 type={type}
@@ -225,7 +213,6 @@ export function SettingsCards({
               classNames={classNames?.card}
               deviceSessions={deviceSessions}
               isPending={deviceSessionsPending}
-              localization={localization}
               refetch={refetchDeviceSessions}
               skipHook
             />
@@ -241,7 +228,6 @@ export function SettingsCards({
               accounts={accounts}
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
               skipHook
             />
           )}
@@ -251,7 +237,6 @@ export function SettingsCards({
               accounts={accounts}
               classNames={classNames?.card}
               isPending={accountsPending}
-              localization={localization}
               refetch={refetchAccounts}
               skipHook
             />
@@ -261,7 +246,6 @@ export function SettingsCards({
             <PasskeysCard
               classNames={classNames?.card}
               isPending={passkeysPending}
-              localization={localization}
               passkeys={passkeys}
               refetch={refetchPasskeys}
               skipHook
@@ -269,16 +253,12 @@ export function SettingsCards({
           )}
 
           {twoFactor && credentialsLinked && (
-            <TwoFactorCard
-              classNames={classNames?.card}
-              localization={localization}
-            />
+            <TwoFactorCard classNames={classNames?.card} />
           )}
 
           <SessionsCard
             classNames={classNames?.card}
             isPending={sessionsPending}
-            localization={localization}
             sessions={sessions}
             refetch={refetchSessions}
             skipHook
@@ -289,7 +269,6 @@ export function SettingsCards({
               accounts={accounts}
               classNames={classNames?.card}
               isPending={sessionPending}
-              localization={localization}
               skipHook
             />
           )}

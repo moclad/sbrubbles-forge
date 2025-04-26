@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef } from 'react';
 
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { socialProviders } from '../../lib/social-providers';
@@ -10,13 +11,11 @@ import { ProviderCell } from './provider-cell';
 import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
 
-import type { AuthLocalization } from '../../lib/auth-localization';
 export interface ProvidersCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   accounts?: { accountId: string; provider: string }[] | null;
   isPending?: boolean;
-  localization?: Partial<AuthLocalization>;
   skipHook?: boolean;
   refetch?: () => void;
 }
@@ -26,18 +25,15 @@ export function ProvidersCard({
   classNames,
   accounts,
   isPending,
-  localization,
   skipHook,
   refetch,
-}: ProvidersCardProps) {
+}: Readonly<ProvidersCardProps>) {
+  const t = useI18n();
   const {
     hooks: { useListAccounts },
-    localization: authLocalization,
     providers,
     otherProviders,
   } = useContext(AuthUIContext);
-
-  localization = { ...authLocalization, ...localization };
 
   if (!skipHook) {
     const result = useListAccounts();
@@ -66,8 +62,8 @@ export function ProvidersCard({
     <SettingsCard
       className={className}
       classNames={classNames}
-      title={localization.providers}
-      description={localization.providersDescription}
+      title={t('account.providers')}
+      description={t('account.providersDescription')}
       isPending={isPending}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
@@ -80,7 +76,9 @@ export function ProvidersCard({
                 (socialProvider) => socialProvider.provider === provider
               );
 
-              if (!socialProvider) return null;
+              if (!socialProvider) {
+                return null;
+              }
 
               return (
                 <ProviderCell

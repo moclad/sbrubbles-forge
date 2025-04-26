@@ -1,23 +1,23 @@
 'use client';
 
-import { FingerprintIcon, Loader2 } from 'lucide-react';
+import { FingerprintIcon } from 'lucide-react';
 import { useContext, useState } from 'react';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
+import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 
-import type { AuthLocalization } from '../../lib/auth-localization';
 import type { SettingsCardClassNames } from './shared/settings-card';
 
 export interface PasskeyCellProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   passkey: { id: string; createdAt: Date };
-  localization?: Partial<AuthLocalization>;
   refetch?: () => Promise<void>;
 }
 
@@ -25,17 +25,12 @@ export function PasskeyCell({
   className,
   classNames,
   passkey,
-  localization,
   refetch,
-}: PasskeyCellProps) {
+}: Readonly<PasskeyCellProps>) {
   const {
-    localization: authLocalization,
     mutators: { deletePasskey },
-    toast,
   } = useContext(AuthUIContext);
-
-  localization = { ...authLocalization, ...localization };
-
+  const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDeletePasskey = async () => {
@@ -47,10 +42,7 @@ export function PasskeyCell({
     } catch (error) {
       setIsLoading(false);
 
-      toast({
-        variant: 'error',
-        message: getErrorMessage(error) || localization.requestFailed,
-      });
+      toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }
   };
 
@@ -65,20 +57,14 @@ export function PasskeyCell({
 
       <Button
         className={cn('relative ms-auto', classNames?.button)}
-        disabled={isLoading}
         size='sm'
+        loading={isLoading}
         variant='outline'
         onClick={handleDeletePasskey}
       >
         <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {localization.delete}
+          {t('account.delete')}
         </span>
-
-        {isLoading && (
-          <span className='absolute'>
-            <Loader2 className='animate-spin' />
-          </span>
-        )}
       </Button>
     </Card>
   );

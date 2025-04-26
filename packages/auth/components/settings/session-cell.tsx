@@ -1,25 +1,25 @@
 'use client';
 
 import type { Session } from 'better-auth';
-import { LaptopIcon, Loader2, SmartphoneIcon } from 'lucide-react';
+import { LaptopIcon, SmartphoneIcon } from 'lucide-react';
 import { useContext, useState } from 'react';
 import { UAParser } from 'ua-parser-js';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
+import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 
-import type { AuthLocalization } from '../../lib/auth-localization';
 import type { SettingsCardClassNames } from './shared/settings-card';
 
 export interface SessionCellProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   session: Session;
-  localization?: Partial<AuthLocalization>;
   refetch?: () => Promise<void>;
 }
 
@@ -27,20 +27,15 @@ export function SessionCell({
   className,
   classNames,
   session,
-  localization,
   refetch,
-}: SessionCellProps) {
+}: Readonly<SessionCellProps>) {
+  const t = useI18n();
   const {
     hooks: { useSession },
     mutators: { revokeSession },
-    localization: authLocalization,
     navigate,
-    toast,
     basePath,
-    viewPaths,
   } = useContext(AuthUIContext);
-
-  localization = { ...authLocalization, ...localization };
 
   const { data: sessionData } = useSession();
   const isCurrentSession = session.id === sessionData?.session?.id;
@@ -49,7 +44,7 @@ export function SessionCell({
 
   const handleRevoke = async () => {
     if (isCurrentSession) {
-      navigate(`${basePath}/${viewPaths.signOut}`);
+      navigate(`${basePath}/sign-out}`);
       return;
     }
 
@@ -61,10 +56,7 @@ export function SessionCell({
     } catch (error) {
       setIsLoading(false);
 
-      toast({
-        variant: 'error',
-        message: getErrorMessage(error) || localization.requestFailed,
-      });
+      toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }
   };
 
@@ -87,7 +79,7 @@ export function SessionCell({
 
       <div className='flex flex-col'>
         <span className='font-semibold text-sm'>
-          {isCurrentSession ? localization.currentSession : session?.ipAddress}
+          {isCurrentSession ? t('account.currentSession') : session?.ipAddress}
         </span>
 
         <span className='text-muted-foreground text-xs'>
@@ -97,20 +89,14 @@ export function SessionCell({
 
       <Button
         className={cn('relative ms-auto', classNames?.button)}
-        disabled={isLoading}
+        loading={isLoading}
         size='sm'
         variant='outline'
         onClick={handleRevoke}
       >
         <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {isCurrentSession ? localization.signOut : localization.revoke}
+          {isCurrentSession ? t('account.signOut') : t('account.revoke')}
         </span>
-
-        {isLoading && (
-          <span className='absolute'>
-            <Loader2 className='animate-spin' />
-          </span>
-        )}
       </Button>
     </Card>
   );
