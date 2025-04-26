@@ -53,7 +53,7 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
         </CardHeader>
         <CardContent className='space-y-4'>
           <Alert variant='destructive'>
-            <AlertCircle className='h-4 w-4' />
+            <AlertCircle className='size-4' />
             <AlertTitle>{t('authentication.resetPwAccessDenied')}</AlertTitle>
             <AlertDescription>
               {t('authentication.resetPwAccessDeniedDescription')}

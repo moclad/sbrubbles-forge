@@ -124,6 +124,7 @@ export function UpdateAvatarCard({
 
     try {
       await updateUser({ image });
+      toast.success(t('account.avatarUpdated'));
     } catch (error) {
       toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }
@@ -160,7 +161,7 @@ export function UpdateAvatarCard({
           classNames={classNames}
         />
 
-        <button className={cn('me-6')} type='button' onClick={openFileDialog}>
+        <button type='button' onClick={openFileDialog}>
           {isPending || loading ? (
             <Skeleton
               className={cn('size-20 rounded-full', classNames?.avatar?.base)}
@@ -168,7 +169,7 @@ export function UpdateAvatarCard({
           ) : (
             <UserAvatar
               key={sessionData?.user.image}
-              className='size-10 text-2xl'
+              className='m-4 size-10 text-2xl'
               classNames={classNames?.avatar}
               user={sessionData?.user}
             />

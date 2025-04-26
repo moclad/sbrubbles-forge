@@ -1,10 +1,11 @@
 "use client"
 
-import * as React from "react"
-import * as ToastPrimitives from "@radix-ui/react-toast"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@repo/design-system/lib/utils"
-import { Cross2Icon } from "@radix-ui/react-icons"
+import { cva, type, VariantProps } from 'class-variance-authority';
+import * as React from 'react';
+
+import { Cross2Icon } from '@radix-ui/react-icons';
+import * as ToastPrimitives from '@radix-ui/react-toast';
+import { cn } from '@repo/design-system/lib/utils';
 
 const ToastProvider = ToastPrimitives.Provider
 
@@ -82,7 +83,7 @@ const ToastClose = React.forwardRef<
     toast-close=""
     {...props}
   >
-    <Cross2Icon className="h-4 w-4" />
+    <Cross2Icon className="size-4" />
   </ToastPrimitives.Close>
 ))
 ToastClose.displayName = ToastPrimitives.Close.displayName

@@ -158,7 +158,6 @@ export default {
     magicLinkEmail: 'Check your email for the magic link',
     name: 'Name',
     nameDescription: 'Please enter your full name, or a display name.',
-    nameInstructions: 'Please use 32 characters at maximum.',
     namePlaceholder: 'Name',
     newPassword: 'New Password',
     newPasswordPlaceholder: 'New Password',

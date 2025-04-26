@@ -38,10 +38,10 @@ export function SettingsCardFooter({
   return (
     <CardFooter
       className={cn(
-        'flex flex-col justify-between gap-4 rounded-b-xl md:flex-row',
-        (actionLabel || instructions) && '!py-4 border-t',
+        'flex w-full justify-between gap-4 ',
+        (actionLabel || instructions) && '!py-2 border-t',
         variant === 'default'
-          ? 'bg-muted dark:bg-transparent'
+          ? 'dark:bg-transparent'
           : 'border-destructive/30 bg-destructive/10',
         className,
         classNames?.footer
@@ -49,15 +49,12 @@ export function SettingsCardFooter({
     >
       {isPending ? (
         <>
-          {instructions && (
-            <Skeleton
-              className={cn(
-                'my-0.5 h-3 w-48 max-w-full md:h-4 md:w-56',
-                classNames?.skeleton
-              )}
-            />
-          )}
-
+          <Skeleton
+            className={cn(
+              'my-0.5 h-3 w-48 max-w-full md:h-4 md:w-56',
+              classNames?.skeleton
+            )}
+          />
           {actionLabel && (
             <Skeleton
               className={cn('h-8 w-14 md:ms-auto', classNames?.skeleton)}
@@ -66,16 +63,14 @@ export function SettingsCardFooter({
         </>
       ) : (
         <>
-          {instructions && (
-            <CardDescription
-              className={cn(
-                'text-muted-foreground text-xs md:text-sm',
-                classNames?.instructions
-              )}
-            >
-              {instructions}
-            </CardDescription>
-          )}
+          <CardDescription
+            className={cn(
+              'text-muted-foreground text-xs md:text-sm',
+              classNames?.instructions
+            )}
+          >
+            {instructions}
+          </CardDescription>
 
           {actionLabel && (
             <Button

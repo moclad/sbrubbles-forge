@@ -2,7 +2,8 @@
 
 @source "../**/*.{ts,tsx}";
 
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
+
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));

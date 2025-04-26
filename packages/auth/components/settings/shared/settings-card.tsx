@@ -67,6 +67,7 @@ export function SettingsCard({
   ) => {
     try {
       await formAction?.(formData);
+      toast.success(t('account.requestSuccess'));
     } catch (error) {
       toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }

@@ -70,7 +70,7 @@ export function UserAvatar({
         delayMs={src ? 600 : undefined}
       >
         {firstTwoCharacters(name) ?? (
-          <UserIcon className={cn('size-[50%]', classNames?.fallbackIcon)} />
+          <UserIcon className={cn('size-20', classNames?.fallbackIcon)} />
         )}
       </AvatarFallback>
     </Avatar>

@@ -33,7 +33,6 @@ export function UpdateNameCard({
       defaultValue={sessionData?.user.name}
       description={t('account.nameDescription')}
       field='name'
-      instructions={t('account.nameInstructions')}
       isPending={isPending}
       label={t('account.name')}
       placeholder={t('account.namePlaceholder')}
