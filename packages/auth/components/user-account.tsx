@@ -42,7 +42,7 @@ export const UserAccount = () => {
     ];
   }, [t]);
   return (
-    <div className='w-full max-w-3xl'>
+    <div className='w-full max-w-2xl'>
       <TabsNavigation tabs={tabs} />
       <Tabs
         orientation='horizontal'
@@ -50,7 +50,7 @@ export const UserAccount = () => {
         onValueChange={setActiveTab}
         className='mx-auto w-full'
       >
-        <TabsList className='grid w-full grid-cols-3'>
+        <TabsList>
           <TabsTrigger value='account' className='flex items-center gap-2'>
             <User className='size-4' />
             Account

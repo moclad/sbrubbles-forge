@@ -19,9 +19,7 @@ const Page = async () => {
 
   return (
     <PageContent header={t('account.title')} subTitle={t('account.subTitle')}>
-      <div className='flex w-full justify-center'>
-        <UserAccount />
-      </div>
+      <UserAccount />
     </PageContent>
   );
 };

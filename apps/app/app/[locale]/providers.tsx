@@ -18,11 +18,11 @@ export function Providers({
   return (
     <NuqsAdapter>
       <I18nProviderClient locale={locale}>
-        <AuthProvider router={router}>
-          <DesignSystemProvider>
-            <AnalyticsProvider>{children}</AnalyticsProvider>
-          </DesignSystemProvider>
-        </AuthProvider>
+        <AnalyticsProvider>
+          <AuthProvider router={router}>
+            <DesignSystemProvider>{children}</DesignSystemProvider>
+          </AuthProvider>
+        </AnalyticsProvider>
       </I18nProviderClient>
     </NuqsAdapter>
   );
