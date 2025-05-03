@@ -10,11 +10,11 @@
   },
   "author": "Beno Dresch",
   "license": "MIT License",
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.10.0",
   "devDependencies": {
     "playwright": "^1.52.0",
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.2",
+    "@types/node": "^22.15.3",
     "dotenv": "^16.5.0",
     "path": "^0.12.7"
   }
