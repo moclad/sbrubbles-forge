@@ -3,7 +3,6 @@ import { Bell, Lock, LockIcon, User, UserIcon } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import { UpdateAvatarCard } from '@repo/auth/components/settings/update-avatar-card';
-import { TabsNavigation } from '@repo/design-system/components/tabs-navigation';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Label } from '@repo/design-system/components/ui/label';
 import { Switch } from '@repo/design-system/components/ui/switch';
@@ -41,18 +40,21 @@ export const UserAccount = () => {
       },
     ];
   }, [t]);
+
   return (
-    <div className='w-full max-w-2xl'>
-      <TabsNavigation tabs={tabs} />
+    <div className='border bg-blue-800 p-10'>
       <Tabs
         orientation='horizontal'
         value={activeTab}
         onValueChange={setActiveTab}
-        className='mx-auto w-full'
+        className='mx-auto max-w-2xl'
       >
-        <TabsList>
-          <TabsTrigger value='account' className='flex items-center gap-2'>
-            <User className='size-4' />
+        <TabsList className='w-full'>
+          <TabsTrigger
+            value='account'
+            className='flex items-center gap-2 bg-blue-700'
+          >
+            <User className='size-' />
             Account
           </TabsTrigger>
           <TabsTrigger value='security' className='flex items-center gap-2'>

@@ -19,7 +19,9 @@ const Page = async () => {
 
   return (
     <PageContent header={t('account.title')} subTitle={t('account.subTitle')}>
-      <UserAccount />
+      <div className='bg-red-600 p-4'>
+        <UserAccount />
+      </div>
     </PageContent>
   );
 };
