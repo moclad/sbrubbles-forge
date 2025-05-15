@@ -5,9 +5,7 @@
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -18,7 +16,6 @@
     "test": "turbo test",
     "analyze": "turbo analyze",
     "boundaries": "turbo boundaries",
-    "bump-deps": "npx npm-check-updates --deep -u && pnpm install",
     "bump-ui": "npx shadcn@latest add --all --overwrite -c packages/design-system",
     "db:migrate": "cd packages/database && npx drizzle-kit migrate",
     "db:generate": "cd packages/database && npx drizzle-kit generate",
