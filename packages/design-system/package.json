@@ -52,7 +52,7 @@
     "react-day-picker": "^9.6.7",
     "react-hook-form": "catalog:",
     "react-moveable": "^0.56.0",
-    "react-resizable-panels": "^3.0.1",
+    "react-resizable-panels": "^3.0.2",
     "recharts": "^2.15.3",
     "server-only": "catalog:",
     "sonner": "^2.0.3",

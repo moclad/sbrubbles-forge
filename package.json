@@ -5,7 +5,9 @@
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },
-  "files": ["dist/index.js"],
+  "files": [
+    "dist/index.js"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -48,7 +50,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.0",
   "dependencies": {
     "@clack/prompts": "^0.10.1",
     "commander": "^13.1.0"
