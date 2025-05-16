@@ -1,10 +1,10 @@
 "use client"
 
-import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react';
-import * as React from 'react';
+import * as React from "react"
+import * as MenubarPrimitive from "@radix-ui/react-menubar"
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
 
-import * as MenubarPrimitive from '@radix-ui/react-menubar';
-import { cn } from '@repo/design-system/lib/utils';
+import { cn } from "@repo/design-system/lib/utils"
 
 function Menubar({
   className,
@@ -235,7 +235,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4" />
+      <ChevronRightIcon className="ml-auto h-4 w-4" />
     </MenubarPrimitive.SubTrigger>
   )
 }
