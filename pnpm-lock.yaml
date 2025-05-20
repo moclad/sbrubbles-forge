@@ -599,6 +599,15 @@ importers:
       server-only:
         specifier: 'catalog:'
         version: 0.0.1
+      tailwind-merge:
+        specifier: catalog:tailwind
+        version: 3.3.0
+      tailwindcss:
+        specifier: catalog:tailwind
+        version: 4.1.7
+      tw-animate-css:
+        specifier: catalog:tailwind
+        version: 1.2.9
       ua-parser-js:
         specifier: ^2.0.3
         version: 2.0.3
@@ -609,15 +618,21 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@tailwindcss/postcss':
+        specifier: catalog:tailwind
+        version: 4.1.7
+      '@tailwindcss/typography':
+        specifier: catalog:tailwind
+        version: 0.5.16(tailwindcss@4.1.7)
       '@types/node':
         specifier: 'catalog:'
         version: 22.15.18
       '@types/react':
         specifier: catalog:react19
         version: 19.1.4
-      '@types/react-dom':
-        specifier: catalog:react19
-        version: 19.1.5(@types/react@19.1.4)
+      postcss:
+        specifier: catalog:tailwind
+        version: 8.5.3
       typescript:
         specifier: 'catalog:'
         version: 5.8.3

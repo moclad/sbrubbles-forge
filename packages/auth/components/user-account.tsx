@@ -6,12 +6,7 @@ import { UpdateAvatarCard } from '@repo/auth/components/settings/update-avatar-c
 import { Button } from '@repo/design-system/components/ui/button';
 import { Label } from '@repo/design-system/components/ui/label';
 import { Switch } from '@repo/design-system/components/ui/switch';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@repo/design-system/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import { useI18n } from '@repo/localization/i18n/client';
 
 import { ChangeEmailCard } from './settings/change-email-card';
@@ -33,7 +28,7 @@ export const UserAccount = () => {
       orientation='horizontal'
       value={activeTab}
       onValueChange={setActiveTab}
-      className='mx-auto max-w-2xl'
+      className='mx-auto max-w-3xl'
     >
       <TabsList className='w-full'>
         <TabsTrigger value='account' className='flex items-center gap-2'>

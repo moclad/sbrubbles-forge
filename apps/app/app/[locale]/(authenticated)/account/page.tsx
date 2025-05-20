@@ -1,3 +1,4 @@
+import { UserAccount } from '@repo/auth/components/user-account';
 import { PageContent } from '@repo/design-system/components/page-content';
 import {} from '@repo/design-system/components/ui/tabs';
 import { getI18n } from '@repo/localization/i18n/server';
@@ -18,8 +19,7 @@ const Page = async () => {
 
   return (
     <PageContent header={t('account.title')} subTitle={t('account.subTitle')}>
-      <UserAccountA />
-      {/* <UserAccount /> */}
+      <UserAccount />
     </PageContent>
   );
 };

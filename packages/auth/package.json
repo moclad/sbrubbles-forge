@@ -24,13 +24,18 @@
     "react": "catalog:react19",
     "server-only": "catalog:",
     "ua-parser-js": "^2.0.3",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "tailwind-merge": "catalog:tailwind",
+    "tailwindcss": "catalog:tailwind",
+    "tw-animate-css": "catalog:tailwind"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "catalog:tailwind",
+    "@tailwindcss/typography": "catalog:tailwind",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
-    "@types/react-dom": "catalog:react19",
+    "postcss": "catalog:tailwind",
     "typescript": "catalog:"
   }
 }
