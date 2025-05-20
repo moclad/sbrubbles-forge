@@ -6,7 +6,12 @@ import { UpdateAvatarCard } from '@repo/auth/components/settings/update-avatar-c
 import { Button } from '@repo/design-system/components/ui/button';
 import { Label } from '@repo/design-system/components/ui/label';
 import { Switch } from '@repo/design-system/components/ui/switch';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@repo/design-system/components/ui/tabs';
 import { useI18n } from '@repo/localization/i18n/client';
 
 import { ChangeEmailCard } from './settings/change-email-card';
@@ -28,20 +33,20 @@ export const UserAccount = () => {
       orientation='horizontal'
       value={activeTab}
       onValueChange={setActiveTab}
-      className='mx-auto max-w-3xl'
+      className='mx-auto max-w-2xl bg-red-500'
     >
       <TabsList className='w-full'>
         <TabsTrigger value='account' className='flex items-center gap-2'>
           <User className='size-4' />
-          Account
+          {t('account.account')}
         </TabsTrigger>
         <TabsTrigger value='security' className='flex items-center gap-2'>
           <Lock className='size-4' />
-          Security
+          {t('account.security')}
         </TabsTrigger>
         <TabsTrigger value='notifications' className='flex items-center gap-2'>
           <Bell className='size-4' />
-          Notifications
+          {t('account.notifications')}
         </TabsTrigger>
       </TabsList>
       <TabsContent value='account' className='space-y-6 pt-4'>
@@ -69,15 +74,6 @@ export const UserAccount = () => {
                 </p>
               </div>
               <Switch id='email-updates' defaultChecked />
-            </div>
-            <div className='flex items-center justify-between'>
-              <div className='space-y-0.5'>
-                <Label htmlFor='email-marketing'>Marketing Emails</Label>
-                <p className='text-muted-foreground text-sm'>
-                  Receive emails about new products, features, and more.
-                </p>
-              </div>
-              <Switch id='email-marketing' />
             </div>
           </div>
 

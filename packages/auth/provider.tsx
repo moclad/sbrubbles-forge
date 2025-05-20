@@ -14,10 +14,12 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ router, children }: AuthProviderProps) => {
+  console.log('AuthProvider', router);
   return (
     <AuthUIProvider
       authClient={authClient}
       navigate={router.push}
+      confirmPassword={true}
       replace={router.replace}
       onSessionChange={() => {
         // Clear router cache (protected routes)

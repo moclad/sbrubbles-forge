@@ -9,6 +9,11 @@ export const config: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
   },
+  transpilePackages: [
+    'packages/auth',
+    'packages/design-system',
+    'packages/localization',
+  ],
 
   turbopack: {},
 

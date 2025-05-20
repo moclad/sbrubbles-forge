@@ -259,6 +259,7 @@ export const AuthUIProvider = ({
   settingsFields = ['name'],
   signUp = true,
   signUpFields = ['name'],
+  confirmPassword = true,
   navigate,
   replace,
   uploadAvatar,
@@ -340,6 +341,7 @@ export const AuthUIProvider = ({
       replace: replace || navigate || defaultReplace,
       uploadAvatar,
       Link,
+      confirmPassword,
     }),
     [
       authClient,
@@ -364,6 +366,7 @@ export const AuthUIProvider = ({
       replace,
       uploadAvatar,
       Link,
+      confirmPassword,
     ]
   );
 

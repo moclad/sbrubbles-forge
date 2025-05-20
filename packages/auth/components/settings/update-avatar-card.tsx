@@ -137,7 +137,13 @@ export function UpdateAvatarCard({
   const isPending = externalIsPending || sessionPending;
 
   return (
-    <Card className={cn('w-full pb-0 text-start', className, classNames?.base)}>
+    <Card
+      className={cn(
+        'w-full pb-0 text-start shadow-lg',
+        className,
+        classNames?.base
+      )}
+    >
       <input
         ref={fileInputRef}
         accept='image/*'

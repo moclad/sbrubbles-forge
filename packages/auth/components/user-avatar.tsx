@@ -66,15 +66,11 @@ export function UserAvatar({
       />
 
       <AvatarFallback
-        className={cn('uppercase', classNames?.fallback)}
+        className={cn('rounded-lg uppercase', classNames?.fallback)}
         delayMs={src ? 600 : undefined}
       >
-        {firstTwoCharacters(name) ?? (
-          <UserIcon className={cn('size-20', classNames?.fallbackIcon)} />
-        )}
+        <UserIcon className={classNames?.fallbackIcon} />
       </AvatarFallback>
     </Avatar>
   );
 }
-
-const firstTwoCharacters = (name?: string | null) => name?.slice(0, 2);

@@ -81,7 +81,7 @@ export function SettingsCard({
     <form action={internalAction}>
       <Card
         className={cn(
-          'w-full pb-0 text-start',
+          'w-full pb-0 text-start shadow-lg',
           variant === 'destructive' && 'border-destructive/40',
           className,
           classNames?.base

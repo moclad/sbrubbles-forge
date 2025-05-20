@@ -93,6 +93,8 @@ export default {
     avatar: 'Avatar',
     profile: 'Profile',
     user: 'User',
+    security: 'Security',
+    notifications: 'Notifications',
     account: 'Account',
     accounts: 'Accounts',
     accountsDescription: 'Switch between your currently signed in accounts.',
@@ -230,5 +232,6 @@ export default {
       "Please verify your email address. Check your inbox for the verification email. If you haven't received the email, click the button below to resend.",
     resendCode: 'Resend code',
     goBack: 'Go back',
+    requestSuccess: 'Request successful',
   },
 } as const;
