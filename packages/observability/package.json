@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@logtail/next": "^0.2.0",
-    "@sentry/nextjs": "^9.21.0",
+    "@sentry/nextjs": "^9.19.0",
     "@t3-oss/env-nextjs": "catalog:",
     "react": "catalog:react19",
     "server-only": "catalog:",

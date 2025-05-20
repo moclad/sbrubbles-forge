@@ -15,14 +15,14 @@
     "@repo/auth": "workspace:*",
     "@repo/database": "workspace:*",
     "@repo/design-system": "workspace:*",
-    "@repo/localization": "workspace:*",
     "@repo/next-config": "workspace:*",
     "@repo/notifications": "workspace:*",
     "@repo/observability": "workspace:*",
+    "@repo/localization": "workspace:*",
     "@repo/security": "workspace:*",
     "@repo/seo": "workspace:*",
     "@repo/webhooks": "workspace:*",
-    "@sentry/nextjs": "^9.21.0",
+    "@sentry/nextjs": "^9.19.0",
     "@t3-oss/env-nextjs": "catalog:",
     "fuse.js": "^7.1.0",
     "import-in-the-middle": "^1.13.2",
@@ -48,6 +48,6 @@
     "cross-env": "^7.0.3",
     "jsdom": "^26.1.0",
     "typescript": "catalog:",
-    "vitest": "^3.1.4"
+    "vitest": "^3.1.3"
   }
 }
