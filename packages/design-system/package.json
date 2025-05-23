@@ -70,5 +70,12 @@
     "@types/react": "catalog:react19",
     "postcss": "catalog:tailwind",
     "typescript": "catalog:"
+  },
+  "exports": {
+    "./postcss.config": "./postcss.config.mjs",
+    "./components/*": "./components/**/.tsx",
+    "./lib/*": "./lib/*.ts",
+    "./styles/*": "./styles/*",
+    "./hooks/*": ["./hooks/*.ts", "./hooks/*.tsx"]
   }
 }
