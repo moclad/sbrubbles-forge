@@ -1,5 +1,6 @@
 'use client';
 
+import { LogIn } from 'lucide-react';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -22,6 +23,7 @@ import { useI18n } from '@repo/localization/i18n/client';
 
 import { signIn } from '../../client';
 import { signInFormSchema } from '../../lib/auth-schema';
+import { PasskeyButton } from './passkey-button';
 
 import type { z } from 'zod';
 export const SignIn = () => {
@@ -128,11 +130,25 @@ export const SignIn = () => {
               loading={loading}
               data-testid='sign-in-btn'
             >
+              <LogIn />
               {t('authentication.actions.signIn')}
             </Button>
           </form>
         </Form>
+        <div className='flex items-center gap-2 py-4'>
+          <Separator className={'!w-auto grow'} />
+
+          <span className='flex-shrink-0 text-muted-foreground text-sm'>
+            {t('authentication.orContinueWith')}
+          </span>
+
+          <Separator className={'!w-auto grow'} />
+        </div>
+
+        <PasskeyButton isSubmitting={loading} setIsSubmitting={setLoading} />
+
         <Separator className='mt-4 mb-4' />
+
         <div className='mt-4 flex justify-center'>
           <p className='text-muted-foreground text-sm'>
             {t('authentication.noAccountQuestion')}{' '}

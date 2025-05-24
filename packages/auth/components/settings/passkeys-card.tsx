@@ -43,9 +43,8 @@ export function PasskeysCard({
   }
 
   const addPasskey = async () => {
-    await (authClient as AuthClient).passkey.addPasskey({
-      fetchOptions: { throw: true },
-    });
+    await (authClient as AuthClient).passkey.addPasskey();
+
     await refetch?.();
   };
 

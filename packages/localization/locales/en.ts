@@ -5,6 +5,7 @@ export default {
     and: 'and',
     privacy: 'Privacy Policy',
     welcome: 'Welcome back',
+    passkey: 'Passkey',
     welcomeSubTitle: 'Enter your details to sign in.',
     createAccount: 'Create an account',
     createSubTitle: 'Enter your details to get started.',
@@ -34,6 +35,7 @@ export default {
       signedIn: 'Signed in successfully',
       signUp: 'Sign up',
       signingUp: 'Signing up...',
+      signInWith: 'Sign in with {provider}',
       signedUp:
         'Registration successful, please check your email for verification instructions.',
       checkEmail: 'Check your email for the reset link',
@@ -56,6 +58,7 @@ export default {
       passwordConfirmationPlaceholder: 'Confirm your password',
       forgotPassword: 'Forgot your password?',
     },
+    orContinueWith: 'Or continue with',
   },
   common: {
     pleaseWait: 'Please wait...',
@@ -164,7 +167,6 @@ export default {
     newPassword: 'New Password',
     newPasswordPlaceholder: 'New Password',
     oneTimePassword: 'One-Time Password',
-    orContinueWith: 'Or continue with',
     passkey: 'Passkey',
     passkeys: 'Passkeys',
     passkeysDescription: 'Manage your passkeys for secure access.',
@@ -193,7 +195,6 @@ export default {
     signInDescription: 'Enter your email below to login to your account',
     signInUsernameDescription:
       'Enter your username below to login to your account',
-    signInWith: 'Sign in with',
     signOut: 'Sign Out',
     signUp: 'Sign Up',
     signUpAction: 'Create an account',
