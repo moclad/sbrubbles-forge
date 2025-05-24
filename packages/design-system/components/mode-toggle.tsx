@@ -18,15 +18,15 @@ import {
   HybridTooltipTrigger,
 } from './ui/touch-provider';
 
-const themes = [
-  { label: 'Light', value: 'light', icon: <SunIcon /> },
-  { label: 'Dark', value: 'dark', icon: <MoonIcon /> },
-  { label: 'System', value: 'system', icon: <SunMoon /> },
-];
-
 export const ModeToggle = () => {
   const t = useI18n();
   const { setTheme } = useTheme();
+
+  const themes = [
+    { label: t('theme.light'), value: 'light', icon: <SunIcon /> },
+    { label: t('theme.dark'), value: 'dark', icon: <MoonIcon /> },
+    { label: t('theme.system'), value: 'system', icon: <SunMoon /> },
+  ];
 
   return (
     <DropdownMenu>

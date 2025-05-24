@@ -6,6 +6,8 @@ import type { NextConfig } from 'next';
 
 let nextConfig: NextConfig = withLogging(config);
 
+nextConfig.transpilePackages = ['@repo/design-system', '@repo/auth'];
+
 if (env.VERCEL) {
   nextConfig = withSentry(nextConfig);
 }

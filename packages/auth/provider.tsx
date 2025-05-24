@@ -14,7 +14,6 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ router, children }: AuthProviderProps) => {
-  console.log('AuthProvider', router);
   return (
     <AuthUIProvider
       authClient={authClient}

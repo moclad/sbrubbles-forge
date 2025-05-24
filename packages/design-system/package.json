@@ -73,9 +73,10 @@
   },
   "exports": {
     "./postcss.config": "./postcss.config.mjs",
-    "./components/*": "./components/**/.tsx",
+    "./components/*": "./components/**/*.tsx",
     "./lib/*": "./lib/*.ts",
     "./styles/*": "./styles/*",
-    "./hooks/*": ["./hooks/*.ts", "./hooks/*.tsx"]
+    "./hooks/*": ["./hooks/*.ts", "./hooks/*.tsx"],
+    "./global.css": "./styles/globals.css"
   }
 }

@@ -9,13 +9,9 @@ export const config: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
   },
-  transpilePackages: [
-    'packages/auth',
-    'packages/design-system',
-    'packages/localization',
-  ],
-
   turbopack: {},
+
+  transpilePackages: ['@repo/design-system', '@repo/auth'],
 
   // This is required to support PostHog trailing slash API requests
   output: 'standalone',

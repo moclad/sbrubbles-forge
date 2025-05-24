@@ -28,7 +28,9 @@ const AppLayout = async ({ children }: AppLayoutProperties) => {
 
   return (
     <NotificationsProvider userId={session.user.id}>
-      <GlobalSidebar>{children}</GlobalSidebar>
+      <GlobalSidebar>
+        <div className='container mx-auto '>{children}</div>
+      </GlobalSidebar>
     </NotificationsProvider>
   );
 };

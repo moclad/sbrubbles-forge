@@ -1,15 +1,12 @@
 'use client';
 
-import { BellIcon, Sparkles } from 'lucide-react';
+import { BellIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -38,7 +35,7 @@ export function NotificationsMenu() {
               size='icon'
               className='shrink-0 text-foreground '
             >
-              <BellIcon className='dark:-rotate-90 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:scale-0' />
+              <BellIcon />
             </Button>
           </DropdownMenuTrigger>
         </HybridTooltipTrigger>
@@ -50,14 +47,6 @@ export function NotificationsMenu() {
             {t('notifications.label')}
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Sparkles />
-            Upgrade to Pro
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );

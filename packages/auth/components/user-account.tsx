@@ -30,10 +30,10 @@ export const UserAccount = () => {
   return (
     <Tabs
       defaultValue='account'
-      orientation='horizontal'
+      orientation='vertical'
       value={activeTab}
       onValueChange={setActiveTab}
-      className='mx-auto max-w-2xl bg-red-500'
+      className='space-y-6'
     >
       <TabsList className='w-full'>
         <TabsTrigger value='account' className='flex items-center gap-2'>
@@ -87,15 +87,6 @@ export const UserAccount = () => {
                 </p>
               </div>
               <Switch id='push-everything' />
-            </div>
-            <div className='flex items-center justify-between'>
-              <div className='space-y-0.5'>
-                <Label htmlFor='push-mentions'>Mentions</Label>
-                <p className='text-muted-foreground text-sm'>
-                  Get notified when you're mentioned in comments.
-                </p>
-              </div>
-              <Switch id='push-mentions' defaultChecked />
             </div>
           </div>
         </div>
