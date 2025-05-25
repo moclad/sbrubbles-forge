@@ -28,7 +28,6 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
   baseURL: keys().BETTER_AUTH_URL,
   plugins: [
     passkey({
-      rpID: 'sbrubbles-forge',
       origin: keys().PUBLIC_APP_URL,
       rpName: 'Sbrubbles Forge',
       authenticatorSelection: {
