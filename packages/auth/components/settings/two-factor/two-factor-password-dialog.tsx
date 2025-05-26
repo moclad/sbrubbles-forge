@@ -153,11 +153,21 @@ export function TwoFactorPasswordDialog({
 
           if (!open) {
             const url = `${basePath}/two-factor`;
-            navigate(
+
+            console.log('Navigating to:', basePath);
+
+            console.log(
+              'Navigating to:',
               twoFactor?.includes('totp') && totpURI
                 ? `${url}?totpURI=${totpURI}`
                 : url
             );
+
+            //navigate(
+            //  twoFactor?.includes('totp') && totpURI
+            //    ? `${url}?totpURI=${totpURI}`
+            //    : url
+            //);
           }
         }}
         backupCodes={backupCodes}

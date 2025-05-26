@@ -10,7 +10,7 @@ catalog:
   "@t3-oss/env-core": "^0.13.4"
   "@t3-oss/env-nextjs": "^0.13.4"
   "@types/negotiator": "^0.6.3"
-  "@types/node": "^22.15.20"
+  "@types/node": "^22.15.21"
   "international-types": "^0.8.1"
   "lucide-react": "^0.511.0"
   "negotiator": "^1.0.0"
@@ -20,7 +20,7 @@ catalog:
   "react-hook-form": "^7.56.4"
   "server-only": "^0.0.1"
   "typescript": "^5.8.3"
-  "zod": "^3.25.7"
+  "zod": "^3.25.28"
 
 catalogs:
   tailwind:
