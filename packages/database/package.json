@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "catalog:",
-    "drizzle-orm": "^0.43.1",
+    "drizzle-orm": "^0.44.1",
     "pg": "^8.16.0",
     "server-only": "catalog:",
     "undici": "^7.9.0",
