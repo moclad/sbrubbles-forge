@@ -58,6 +58,9 @@ export function ProvidersCard({
     }
   }, [refetch]);
 
+  if (!providers || !otherProviders) {
+    return <></>;
+  }
   return (
     <SettingsCard
       className={className}

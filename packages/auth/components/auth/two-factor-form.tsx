@@ -18,7 +18,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -28,7 +28,7 @@ import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 import { getSearchParam } from '../../lib/utils';
-import { OTPInputGroup } from '../opt-input-group';
+import { OTPInputGroup } from '../otp-input-group';
 
 import type { BetterFetchError } from '@better-fetch/fetch';
 import type { AuthClient } from '../../types/auth-client';
@@ -161,16 +161,10 @@ export function TwoFactorForm({
       await onSuccess();
 
       if (sessionData && !isTwoFactorEnabled) {
-        toast({
-          variant: 'success',
-          message: t('account.twoFactorEnabled'),
-        });
+        toast.success(t('account.twoFactorEnabled'));
       }
     } catch (error) {
-      toast({
-        variant: 'error',
-        message: getErrorMessage(error),
-      });
+      toast.error(getErrorMessage(error));
 
       form.reset();
     }

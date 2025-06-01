@@ -20,6 +20,7 @@ export const AuthProvider = ({ router, children }: AuthProviderProps) => {
       authClient={authClient}
       navigate={router.push}
       confirmPassword={true}
+      twoFactor={['totp']}
       replace={router.replace}
       onSessionChange={() => {
         // Clear router cache (protected routes)

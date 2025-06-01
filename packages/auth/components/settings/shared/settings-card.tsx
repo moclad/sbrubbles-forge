@@ -43,6 +43,7 @@ export interface SettingsCardProps {
   formAction?: (formData: FormData) => Promise<unknown> | Promise<void> | void;
   optimistic?: boolean;
   variant?: 'default' | 'destructive';
+  showToast?: boolean;
 }
 
 export function SettingsCard({
@@ -59,6 +60,7 @@ export function SettingsCard({
   formAction,
   optimistic,
   variant = 'default',
+  showToast = true,
 }: Readonly<SettingsCardProps>) {
   const t = useI18n();
   const performAction = async (
@@ -67,7 +69,9 @@ export function SettingsCard({
   ) => {
     try {
       await formAction?.(formData);
-      toast.success(t('account.requestSuccess'));
+      if (showToast) {
+        toast.success(t('account.requestSuccess'));
+      }
     } catch (error) {
       toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
     }

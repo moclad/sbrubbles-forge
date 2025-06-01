@@ -10,18 +10,18 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
+import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { BackupCodesDialog } from './backup-codes-dialog';
 
-import type { AuthClient } from '../../../types/auth-client';
 interface TwoFactorPasswordDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -33,13 +33,14 @@ export function TwoFactorPasswordDialog({
   onOpenChange,
   isTwoFactorEnabled,
 }: Readonly<TwoFactorPasswordDialogProps>) {
-  const { authClient, basePath, navigate, twoFactor } =
-    useContext(AuthUIContext);
+  const { navigate, twoFactor } = useContext(AuthUIContext);
   const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [showBackupCodesDialog, setShowBackupCodesDialog] = useState(false);
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [totpURI, setTotpURI] = useState<string | null>(null);
+
+  console.log('twoFactor', twoFactor);
 
   async function handleEnableTwoFactor(formData: FormData) {
     const password = formData.get('password') as string;
@@ -47,7 +48,7 @@ export function TwoFactorPasswordDialog({
     setIsLoading(true);
 
     try {
-      const data = await (authClient as AuthClient).twoFactor.enable({
+      const data = await authClient.twoFactor.enable({
         password,
         fetchOptions: { throw: true },
       });
@@ -75,7 +76,7 @@ export function TwoFactorPasswordDialog({
     setIsLoading(true);
 
     try {
-      await (authClient as AuthClient).twoFactor.disable({
+      await authClient.twoFactor.disable({
         password,
         fetchOptions: { throw: true },
       });
@@ -152,22 +153,20 @@ export function TwoFactorPasswordDialog({
           setShowBackupCodesDialog(open);
 
           if (!open) {
-            const url = `${basePath}/two-factor`;
-
-            console.log('Navigating to:', basePath);
-
+            const url = 'account/two-factor';
+            console.log('TwoFactor', twoFactor);
             console.log(
-              'Navigating to:',
+              'navigate toast,',
               twoFactor?.includes('totp') && totpURI
                 ? `${url}?totpURI=${totpURI}`
                 : url
             );
 
-            //navigate(
-            //  twoFactor?.includes('totp') && totpURI
-            //    ? `${url}?totpURI=${totpURI}`
-            //    : url
-            //);
+            navigate(
+              twoFactor?.includes('totp') && totpURI
+                ? `account/two-factor?totpURI=${totpURI}`
+                : url
+            );
           }
         }}
         backupCodes={backupCodes}
