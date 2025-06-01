@@ -7,6 +7,7 @@ import QRCode from 'react-qr-code';
 import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { cn } from '@repo/design-system//lib/utils';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
 import { Label } from '@repo/design-system/components//ui/label';
 import { Button } from '@repo/design-system/components/ui/button';
@@ -17,22 +18,23 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/design-system/components/ui/form';
+import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
 import { useIsHydrated } from '../../hooks/use-hydrated';
 import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
-import { cn, getSearchParam } from '../../lib/utils';
-import { OTPInputGroup } from '../otp-input-group';
+import { getErrorMessage } from '../../lib/get-error-message';
+import { getSearchParam } from '../../lib/utils';
+import { OTPInputGroup } from '../opt-input-group';
 
 import type { BetterFetchError } from '@better-fetch/fetch';
-import type { AuthClient } from '../../../types/auth-client';
-import type { AuthFormClassNames } from '../auth-form';
+import type { AuthClient } from '../../types/auth-client';
+
 export interface TwoFactorFormProps {
   className?: string;
-  classNames?: AuthFormClassNames;
   isSubmitting?: boolean;
   otpSeparators?: 0 | 1 | 2;
   redirectTo?: string;
@@ -41,12 +43,11 @@ export interface TwoFactorFormProps {
 
 export function TwoFactorForm({
   className,
-  classNames,
   isSubmitting,
   otpSeparators = 0,
   redirectTo,
   setIsSubmitting,
-}: TwoFactorFormProps) {
+}: Readonly<TwoFactorFormProps>) {
   const isHydrated = useIsHydrated();
   const totpURI = isHydrated ? getSearchParam('totpURI') : null;
   const initialSendRef = useRef(false);
@@ -57,8 +58,6 @@ export function TwoFactorForm({
     basePath,
     hooks: { useSession },
     twoFactor,
-    viewPaths,
-    toast,
     Link,
   } = useContext(AuthUIContext);
 
@@ -74,7 +73,7 @@ export function TwoFactorForm({
   );
 
   const [isSendingOtp, setIsSendingOtp] = useState(false);
-  const [cooldownSeconds, setCooldownSeconds] = useState(0);
+  const [coolDownSeconds, setCoolDownSeconds] = useState(0);
 
   const formSchema = z.object({
     code: z
@@ -92,6 +91,7 @@ export function TwoFactorForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       code: '',
+      trustDevice: false,
     },
   });
 
@@ -102,37 +102,37 @@ export function TwoFactorForm({
     setIsSubmitting?.(form.formState.isSubmitting || transitionPending);
   }, [form.formState.isSubmitting, transitionPending, setIsSubmitting]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
-    if (method === 'otp' && cooldownSeconds <= 0 && !initialSendRef.current) {
+    if (method === 'otp' && coolDownSeconds <= 0 && !initialSendRef.current) {
       initialSendRef.current = true;
       sendOtp();
     }
-  }, [method]);
+  }, [method, coolDownSeconds]);
 
   useEffect(() => {
-    if (cooldownSeconds <= 0) return;
+    if (coolDownSeconds <= 0) {
+      return;
+    }
 
     const timer = setTimeout(() => {
-      setCooldownSeconds((prev) => prev - 1);
+      setCoolDownSeconds((prev) => prev - 1);
     }, 1000);
     return () => clearTimeout(timer);
-  }, [cooldownSeconds]);
+  }, [coolDownSeconds]);
 
   const sendOtp = async () => {
-    if (isSendingOtp || cooldownSeconds > 0) return;
+    if (isSendingOtp || coolDownSeconds > 0) {
+      return;
+    }
 
     try {
       setIsSendingOtp(true);
       await (authClient as AuthClient).twoFactor.sendOtp({
         fetchOptions: { throw: true },
       });
-      setCooldownSeconds(60);
+      setCoolDownSeconds(60);
     } catch (error) {
-      toast({
-        variant: 'error',
-        message: getLocalizedError({ error, localization }),
-      });
+      toast.error(getErrorMessage(error));
 
       if (
         (error as BetterFetchError).error.code === 'INVALID_TWO_FACTOR_COOKIE'
@@ -163,13 +163,13 @@ export function TwoFactorForm({
       if (sessionData && !isTwoFactorEnabled) {
         toast({
           variant: 'success',
-          message: localization?.twoFactorEnabled,
+          message: t('account.twoFactorEnabled'),
         });
       }
     } catch (error) {
       toast({
         variant: 'error',
-        message: getLocalizedError({ error, localization }),
+        message: getErrorMessage(error),
       });
 
       form.reset();
@@ -180,18 +180,13 @@ export function TwoFactorForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(verifyCode)}
-        className={cn('grid w-full gap-6', className, classNames?.base)}
+        className={cn('grid w-full gap-6', className)}
       >
         {twoFactor?.includes('totp') && totpURI && method === 'totp' && (
           <div className='space-y-3'>
-            <Label className={classNames?.label}>
-              {localization.twoFactorTotpLabel}
-            </Label>
+            <Label>{t('account.twoFactorTotpLabel')}</Label>
 
-            <QRCode
-              className={cn('border shadow-xs', classNames?.qrCode)}
-              value={totpURI}
-            />
+            <QRCode className={'border shadow-xs'} value={totpURI} />
           </div>
         )}
 
@@ -203,18 +198,13 @@ export function TwoFactorForm({
               render={({ field }) => (
                 <FormItem>
                   <div className='flex items-center justify-between'>
-                    <FormLabel className={classNames?.label}>
-                      {localization.oneTimePassword}
-                    </FormLabel>
+                    <FormLabel>{t('account.oneTimePassword')}</FormLabel>
 
                     <Link
-                      className={cn(
-                        'text-sm hover:underline',
-                        classNames?.forgotPasswordLink
-                      )}
-                      href={`${basePath}/${viewPaths.recoverAccount}${isHydrated ? window.location.search : ''}`}
+                      className={cn('text-sm hover:underline')}
+                      href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
                     >
-                      {localization.forgotAuthenticator}
+                      {t('account.forgotAuthenticator')}
                     </Link>
                   </div>
 
@@ -229,15 +219,13 @@ export function TwoFactorForm({
                           form.handleSubmit(verifyCode)();
                         }
                       }}
-                      containerClassName={classNames?.otpInputContainer}
-                      className={classNames?.otpInput}
                       disabled={isSubmitting}
                     >
                       <OTPInputGroup otpSeparators={otpSeparators} />
                     </InputOTP>
                   </FormControl>
 
-                  <FormMessage className={classNames?.error} />
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -252,13 +240,10 @@ export function TwoFactorForm({
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={isSubmitting}
-                      className={classNames?.checkbox}
                     />
                   </FormControl>
 
-                  <FormLabel className={classNames?.label}>
-                    {localization.trustDevice}
-                  </FormLabel>
+                  <FormLabel>{t('account.trustDevice')}</FormLabel>
                 </FormItem>
               )}
             />
@@ -267,13 +252,9 @@ export function TwoFactorForm({
 
         <div className='grid gap-4'>
           {method !== null && (
-            <Button
-              type='submit'
-              disabled={isSubmitting}
-              className={cn(classNames?.button, classNames?.primaryButton)}
-            >
+            <Button type='submit' loading={isSubmitting}>
               {isSubmitting && <Loader2 className='animate-spin' />}
-              {localization.twoFactorAction}
+              {t('account.twoFactorAction')}
             </Button>
           )}
 
@@ -282,17 +263,17 @@ export function TwoFactorForm({
               type='button'
               variant='outline'
               onClick={sendOtp}
-              disabled={cooldownSeconds > 0 || isSendingOtp || isSubmitting}
-              className={cn(classNames?.button, classNames?.outlineButton)}
+              disabled={coolDownSeconds > 0 || isSendingOtp || isSubmitting}
+              loading={isSendingOtp || isSubmitting}
             >
               {isSendingOtp ? (
                 <Loader2 className='animate-spin' />
               ) : (
-                <SendIcon className={classNames?.icon} />
+                <SendIcon />
               )}
 
-              {localization.resendCode}
-              {cooldownSeconds > 0 && ` (${cooldownSeconds})`}
+              {t('account.resendCode')}
+              {coolDownSeconds > 0 && ` (${coolDownSeconds})`}
             </Button>
           )}
 
@@ -300,12 +281,12 @@ export function TwoFactorForm({
             <Button
               type='button'
               variant='secondary'
-              className={cn(classNames?.button, classNames?.secondaryButton)}
               onClick={() => setMethod('otp')}
               disabled={isSubmitting}
+              loading={isSubmitting}
             >
-              <SendIcon className={classNames?.icon} />
-              {localization.sendVerificationCode}
+              <SendIcon />
+              {t('account.sendVerificationCode')}
             </Button>
           )}
 
@@ -313,12 +294,12 @@ export function TwoFactorForm({
             <Button
               type='button'
               variant='secondary'
-              className={cn(classNames?.button, classNames?.secondaryButton)}
               onClick={() => setMethod('totp')}
               disabled={isSubmitting}
+              loading={isSubmitting}
             >
-              <QrCodeIcon className={classNames?.icon} />
-              {localization.continueWithAuthenticator}
+              <QrCodeIcon />
+              {t('account.continueWithAuthenticator')}
             </Button>
           )}
         </div>

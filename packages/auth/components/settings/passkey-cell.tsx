@@ -62,9 +62,7 @@ export function PasskeyCell({
         variant='outline'
         onClick={handleDeletePasskey}
       >
-        <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {t('account.delete')}
-        </span>
+        {t('account.delete')}
       </Button>
     </Card>
   );

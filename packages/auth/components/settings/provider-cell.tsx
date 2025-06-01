@@ -131,9 +131,7 @@ export function ProviderCell({
           }
         }}
       >
-        <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {isLinked ? t('account.unlink') : t('account.link')}
-        </span>
+        {isLinked ? t('account.unlink') : t('account.link')}
       </Button>
     </Card>
   );
