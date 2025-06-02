@@ -9,7 +9,6 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@repo/design-system//lib/utils';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
-import { Label } from '@repo/design-system/components//ui/label';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import {
@@ -18,7 +17,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -39,6 +38,7 @@ export interface TwoFactorFormProps {
   otpSeparators?: 0 | 1 | 2;
   redirectTo?: string;
   setIsSubmitting?: (value: boolean) => void;
+  totpURI?: string | null;
 }
 
 export function TwoFactorForm({
@@ -47,11 +47,15 @@ export function TwoFactorForm({
   otpSeparators = 0,
   redirectTo,
   setIsSubmitting,
+  totpURI = null,
 }: Readonly<TwoFactorFormProps>) {
   const isHydrated = useIsHydrated();
-  const totpURI = isHydrated ? getSearchParam('totpURI') : null;
+  const effectiveTotpURI =
+    totpURI ?? (isHydrated ? getSearchParam('totpURI') : null);
   const initialSendRef = useRef(false);
   const t = useI18n();
+
+  console.log(isHydrated, effectiveTotpURI, totpURI);
 
   const {
     authClient,
@@ -176,13 +180,13 @@ export function TwoFactorForm({
         onSubmit={form.handleSubmit(verifyCode)}
         className={cn('grid w-full gap-6', className)}
       >
-        {twoFactor?.includes('totp') && totpURI && method === 'totp' && (
-          <div className='space-y-3'>
-            <Label>{t('account.twoFactorTotpLabel')}</Label>
-
-            <QRCode className={'border shadow-xs'} value={totpURI} />
-          </div>
-        )}
+        {twoFactor?.includes('totp') &&
+          effectiveTotpURI &&
+          method === 'totp' && (
+            <div className='flex items-center justify-center'>
+              <QRCode className={'border shadow-xs'} value={effectiveTotpURI} />
+            </div>
+          )}
 
         {method !== null && (
           <>
@@ -194,12 +198,12 @@ export function TwoFactorForm({
                   <div className='flex items-center justify-between'>
                     <FormLabel>{t('account.oneTimePassword')}</FormLabel>
 
-                    <Link
+                    {/* <Link
                       className={cn('text-sm hover:underline')}
                       href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
                     >
                       {t('account.forgotAuthenticator')}
-                    </Link>
+                    </Link> */}
                   </div>
 
                   <FormControl>

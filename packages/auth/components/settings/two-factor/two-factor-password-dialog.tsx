@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@repo/design-system/components/ui/dialog';
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
@@ -21,6 +21,7 @@ import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { BackupCodesDialog } from './backup-codes-dialog';
+import { ConfirmTwoFactorDialog } from './confirm-two-factor-dialog';
 
 interface TwoFactorPasswordDialogProps {
   open: boolean;
@@ -39,6 +40,7 @@ export function TwoFactorPasswordDialog({
   const [showBackupCodesDialog, setShowBackupCodesDialog] = useState(false);
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [totpURI, setTotpURI] = useState<string | null>(null);
+  const [showConfirm2FADialog, setShowConfirm2FADialog] = useState(false);
 
   console.log('twoFactor', twoFactor);
 
@@ -153,6 +155,7 @@ export function TwoFactorPasswordDialog({
           setShowBackupCodesDialog(open);
 
           if (!open) {
+            setShowConfirm2FADialog(true);
             const url = 'account/two-factor';
             console.log('TwoFactor', twoFactor);
             console.log(
@@ -162,14 +165,22 @@ export function TwoFactorPasswordDialog({
                 : url
             );
 
-            navigate(
-              twoFactor?.includes('totp') && totpURI
-                ? `account/two-factor?totpURI=${totpURI}`
-                : url
-            );
+            // navigate(
+            // twoFactor?.includes('totp') && totpURI
+            //  ? `account/two-factor?totpURI=${totpURI}`
+            //  : url
+            //);
           }
         }}
         backupCodes={backupCodes}
+      />
+
+      <ConfirmTwoFactorDialog
+        totpURI={totpURI}
+        open={showConfirm2FADialog}
+        onOpenChange={(open) => {
+          setShowConfirm2FADialog(open);
+        }}
       />
     </>
   );

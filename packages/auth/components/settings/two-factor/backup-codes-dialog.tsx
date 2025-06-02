@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 
@@ -27,6 +27,7 @@ export function BackupCodesDialog({
 }: Readonly<BackupCodesDialogProps>) {
   const [copied, setCopied] = useState(false);
   const t = useI18n();
+
   const handleCopy = () => {
     const codeText = backupCodes.join('\n');
     navigator.clipboard.writeText(codeText);

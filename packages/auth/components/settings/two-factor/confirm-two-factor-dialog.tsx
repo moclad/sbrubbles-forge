@@ -9,19 +9,23 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 
-interface ActivateTwoFactorProps {
+import { TwoFactorForm } from '../../auth/two-factor-form';
+
+interface ConfirmTwoFactorProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  totpURI?: string | null;
 }
 
-export function ActivateTwoFactorDialog({
+export function ConfirmTwoFactorDialog({
   open,
   onOpenChange,
-}: Readonly<ActivateTwoFactorProps>) {
+  totpURI,
+}: Readonly<ConfirmTwoFactorProps>) {
   const t = useI18n();
 
   return (
@@ -30,9 +34,10 @@ export function ActivateTwoFactorDialog({
         <DialogHeader>
           <DialogTitle>{t('account.twoFactor')}</DialogTitle>
           <DialogDescription>
-            {t('account.twoFactorDescription')}
+            {t('account.twoFactorTotpLabel')}
           </DialogDescription>
         </DialogHeader>
+        <TwoFactorForm totpURI={totpURI} />
 
         <DialogFooter>
           <Button

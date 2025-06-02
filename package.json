@@ -44,12 +44,12 @@
     "turbo": "^2.5.4",
     "typescript": "catalog:",
     "ultracite": "^4.2.5",
-    "vitest": "^3.1.4"
+    "vitest": "^3.2.0"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.11.1",
   "dependencies": {
     "@clack/prompts": "^0.10.1",
     "commander": "^13.1.0"

@@ -1,4 +1,3 @@
-import { TwoFactorForm } from '@repo/auth/components/auth/two-factor-form';
 import { PageContent } from '@repo/design-system/components/page-content';
 import { getI18n } from '@repo/localization/i18n/server';
 
@@ -18,9 +17,7 @@ const Page = async () => {
     <PageContent
       header={t('account.twoFactor')}
       subTitle={t('account.twoFactorDescription')}
-    >
-      <TwoFactorForm />
-    </PageContent>
+    ></PageContent>
   );
 };
 
