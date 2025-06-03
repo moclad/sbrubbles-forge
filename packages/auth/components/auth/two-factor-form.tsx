@@ -251,7 +251,6 @@ export function TwoFactorForm({
         <div className='grid gap-4'>
           {method !== null && (
             <Button type='submit' loading={isSubmitting}>
-              {isSubmitting && <Loader2 className='animate-spin' />}
               {t('account.twoFactorAction')}
             </Button>
           )}

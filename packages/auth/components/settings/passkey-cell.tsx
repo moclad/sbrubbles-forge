@@ -59,7 +59,7 @@ export function PasskeyCell({
         className={cn('relative ms-auto', classNames?.button)}
         size='sm'
         loading={isLoading}
-        variant='outline'
+        variant='destructive'
         onClick={handleDeletePasskey}
       >
         {t('account.delete')}

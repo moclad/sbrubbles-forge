@@ -1,6 +1,4 @@
 'use client';
-
-import { Loader2 } from 'lucide-react';
 import { FormEvent, useContext, useState } from 'react';
 
 import { Button } from '@repo/design-system/components/ui/button';
@@ -10,7 +8,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
@@ -138,8 +136,7 @@ export function TwoFactorPasswordDialog({
                 {t('account.cancel')}
               </Button>
 
-              <Button type='submit' disabled={isLoading}>
-                {isLoading && <Loader2 className='animate-spin' />}
+              <Button type='submit' disabled={isLoading} loading={isLoading}>
                 {isTwoFactorEnabled
                   ? t('account.disable')
                   : t('account.enable')}
