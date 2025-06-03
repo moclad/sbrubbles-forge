@@ -1,9 +1,8 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { action } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
+import { action } from 'storybook/actions';
 import * as z from 'zod';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
   FormControl,
@@ -11,9 +10,10 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/design-system/components/ui/form';
 
+import type { Meta, StoryObj } from '@storybook/nextjs';
 /**
  * Building forms with React Hook Form and Zod.
  */
