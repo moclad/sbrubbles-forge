@@ -13,17 +13,17 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "catalog:",
-    "drizzle-orm": "^0.43.1",
+    "drizzle-orm": "^0.44.1",
     "pg": "^8.16.0",
     "server-only": "catalog:",
-    "undici": "^7.9.0",
+    "undici": "^7.10.0",
     "ws": "^8.18.2",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
-    "@types/pg": "^8.15.2",
+    "@types/pg": "^8.15.4",
     "@types/ws": "^8.18.1",
     "bufferutil": "^4.0.9",
     "drizzle-kit": "^0.31.1",

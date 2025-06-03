@@ -490,7 +490,7 @@ importers:
         specifier: 'catalog:'
         version: 0.13.6(arktype@2.1.20)(typescript@5.8.3)(valibot@1.0.0-beta.15(typescript@5.8.3))(zod@3.25.49)
       ai:
-        specifier: ^4.3.15
+        specifier: ^4.3.16
         version: 4.3.16(react@19.1.0)(zod@3.25.49)
       react:
         specifier: catalog:react19
@@ -521,7 +521,7 @@ importers:
   packages/analytics:
     dependencies:
       '@next/third-parties':
-        specifier: ^15.3.2
+        specifier: ^15.3.3
         version: 15.3.3(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
@@ -576,10 +576,10 @@ importers:
         specifier: 'catalog:'
         version: 0.13.6(arktype@2.1.20)(typescript@5.8.3)(valibot@1.0.0-beta.15(typescript@5.8.3))(zod@3.25.49)
       better-auth:
-        specifier: ^1.2.7
+        specifier: ^1.2.8
         version: 1.2.8
       better-auth-harmony:
-        specifier: ^1.2.4
+        specifier: ^1.2.5
         version: 1.2.5(better-auth@1.2.8)
       lucide-react:
         specifier: 'catalog:'
@@ -646,8 +646,8 @@ importers:
         specifier: 'catalog:'
         version: 0.13.6(arktype@2.1.20)(typescript@5.8.3)(valibot@1.0.0-beta.15(typescript@5.8.3))(zod@3.25.49)
       drizzle-orm:
-        specifier: ^0.43.1
-        version: 0.43.1(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@5.8.3))(typescript@5.8.3))(@types/pg@8.15.4)(gel@2.0.1)(kysely@0.28.2)(pg@8.16.0)(prisma@6.3.1(typescript@5.8.3))
+        specifier: ^0.44.1
+        version: 0.44.1(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@5.8.3))(typescript@5.8.3))(@types/pg@8.15.4)(@upstash/redis@1.35.0)(gel@2.0.1)(kysely@0.28.2)(pg@8.16.0)(prisma@6.3.1(typescript@5.8.3))
       pg:
         specifier: ^8.16.0
         version: 8.16.0
@@ -655,7 +655,7 @@ importers:
         specifier: 'catalog:'
         version: 0.0.1
       undici:
-        specifier: ^7.9.0
+        specifier: ^7.10.0
         version: 7.10.0
       ws:
         specifier: ^8.18.2
@@ -671,7 +671,7 @@ importers:
         specifier: 'catalog:'
         version: 22.15.29
       '@types/pg':
-        specifier: ^8.15.2
+        specifier: ^8.15.4
         version: 8.15.4
       '@types/ws':
         specifier: ^8.18.1
@@ -1084,11 +1084,11 @@ importers:
   packages/security:
     dependencies:
       '@arcjet/next':
-        specifier: 1.0.0-beta.7
-        version: 1.0.0-beta.7(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@nosecone/next':
-        specifier: 1.0.0-beta.7
-        version: 1.0.0-beta.7(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
         version: 0.13.6(arktype@2.1.20)(typescript@5.8.3)(valibot@1.0.0-beta.15(typescript@5.8.3))(zod@3.25.49)
@@ -1231,58 +1231,62 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@arcjet/analyze-wasm@1.0.0-beta.7':
-    resolution: {integrity: sha512-3Ua3A4Jga6gGzz9LwUYjYtPwzOya+41dWE2DvjuDOAgK50D0JzZ3uTLzRtFnpbGgbiw9ZNM8/uvJF5Aq641wmA==}
+  '@arcjet/analyze-wasm@1.0.0-beta.8':
+    resolution: {integrity: sha512-vDlKVHXJh045ASH/pRGH1j5vmPe2tfSbnBCFAc5uWQUG22XWZokd+83puTjqaFAj9SxpgQM/r/ql9SId9c3WmQ==}
     engines: {node: '>=18'}
 
-  '@arcjet/analyze@1.0.0-beta.7':
-    resolution: {integrity: sha512-LAJSQ1aJoXP0NoFcKPA0MCQaEKkbcyHUu1K1D57NWgYUTKn52fPF6z3X80llqCU1azjDyUmcwzpxU5ohkVdsbg==}
+  '@arcjet/analyze@1.0.0-beta.8':
+    resolution: {integrity: sha512-noWNtOLqRI5DnAzzr0UaqP+STop1E6raCkaO8WY7h50T2e3XknEMd0DKvjUohuGBm1YjT87+rW50PZ7v8lJ1Lw==}
     engines: {node: '>=18'}
 
-  '@arcjet/duration@1.0.0-beta.7':
-    resolution: {integrity: sha512-ZJkh1vHFS6uzt5QCF/2v7DNrzI19gTlrIxakf1aCLbq1NqfNb6CwvG50dYKhKAauOf/NQo7cPWM7CO25gk3Ciw==}
+  '@arcjet/cache@1.0.0-beta.8':
+    resolution: {integrity: sha512-bVpoSYRiBtsOnXJNow5rnZbNcZ3p0yxui3GcSNJVp4eIlj/6srO4jobAqzAUW8ABGpsu75Ft3t7aaB0Y6HxKzg==}
     engines: {node: '>=18'}
 
-  '@arcjet/env@1.0.0-beta.7':
-    resolution: {integrity: sha512-/YxYnQuI0joplHgnoc3Z+wsirYtA6wSjZ+500mte5LiImk1/GbKhTZlbJ/JpvQW0LwfAIUjzdm0iyoRBEj0kHg==}
+  '@arcjet/duration@1.0.0-beta.8':
+    resolution: {integrity: sha512-mVpZDmuNS8LRTK3OZrdFhOuPBps67LiAJl/jK8U0uhFmBHf5omN/0WPA+mfsb4QGuI24b9r78ogQYuyPZf0vbw==}
     engines: {node: '>=18'}
 
-  '@arcjet/headers@1.0.0-beta.7':
-    resolution: {integrity: sha512-FLXSxkY+1nn85w8qN2O6Ilbh89u/UeZF8Av+wP20UFMYj5+ccbzIXpm+d9a8fqTc3LeOVZ+W1ojybBVGvp5NUw==}
+  '@arcjet/env@1.0.0-beta.8':
+    resolution: {integrity: sha512-t4j5s8SySxLdcF7aF2n76hRW0/jcug9Gkh6Fst0kpbG9iWEpnvKUOcuM0WVkrEKr0IrcfGbpGXbY9pZpDZMmcw==}
     engines: {node: '>=18'}
 
-  '@arcjet/ip@1.0.0-beta.7':
-    resolution: {integrity: sha512-wLwPfczHDIuV1tu4dz8N+K6Tt5MKOHp0C6tmeTXUHNs3/8lfEhyyCAxZ2j5b3GdZacH0r8QMBzw2/5WI9puELQ==}
+  '@arcjet/headers@1.0.0-beta.8':
+    resolution: {integrity: sha512-npqyyLtuM7DLBYTf+HfrXVBFiDbVt8UZpGeXGvL1FGONry53sEl5hnQ4CH1QqZRMVlOcuD2twfYAdGADvby1cQ==}
     engines: {node: '>=18'}
 
-  '@arcjet/logger@1.0.0-beta.7':
-    resolution: {integrity: sha512-toPNur2ptB0xLwkmig/etkHRxlTaa10fWhDxfN8qHc2QoYIBwIvlFeXHPowfnI+hSoorNC1UTU9p+cE/AwGWrQ==}
+  '@arcjet/ip@1.0.0-beta.8':
+    resolution: {integrity: sha512-FUKoXaquLJQNf51CjmgCTpgFcVYmxlGAIhdlgCBV66eoFi6gBplCBANlPbdv/Al7Cu8DMJAt4B/Kuo1cHcnJZw==}
     engines: {node: '>=18'}
 
-  '@arcjet/next@1.0.0-beta.7':
-    resolution: {integrity: sha512-PhP17NQiZFTP5M2JAwDg7CYU2S27lN58k3f5KCp5pE+F5To1aXx4dlnqJrf1O8eIj8lNNHm5agdX7LtWKaq4AQ==}
+  '@arcjet/logger@1.0.0-beta.8':
+    resolution: {integrity: sha512-TQ5o8qnlfZR64UHTjq3/98TmNkHPGzG9bwiteFLIm+dJx3jZfpSldR1STe/hkrguE+SXnoMvS1ullRjD67QTTw==}
+    engines: {node: '>=18'}
+
+  '@arcjet/next@1.0.0-beta.8':
+    resolution: {integrity: sha512-pa3pRHhN9HP0cp6Fh1elpzzuQG+n/j8eFxSQOVwJukAkOBGVAG9BxGZ6NXz4VKMr8s2kV1fJ11o3VM67BL2mug==}
     engines: {node: '>=18'}
     peerDependencies:
       next: '>=13'
 
-  '@arcjet/protocol@1.0.0-beta.7':
-    resolution: {integrity: sha512-qtvBvjSLwBdn0ilDtvjbAs1wpt4qqglC5ZZ7LxVaD/OzhSXhFplBEc0p8aHq3GOJFZNZfuYzls6VSxk7fjB8Xw==}
+  '@arcjet/protocol@1.0.0-beta.8':
+    resolution: {integrity: sha512-f6oJ6vq73tKRSVJGE+Km2hJwfroIgZurkRL2gPJvW65AWHDh6pQbqrusa2qYaIuWlyUqUHI4vnlZSKkFdk/zzw==}
     engines: {node: '>=18'}
 
-  '@arcjet/runtime@1.0.0-beta.7':
-    resolution: {integrity: sha512-QyknFqsiA0jv6kIW6XeefRUQHFYqwe44MqSqJNKXadhwrP8uUvGwTBtkwjX6LMNmxpX+O5MQCVdsw2E8AWuUDA==}
+  '@arcjet/runtime@1.0.0-beta.8':
+    resolution: {integrity: sha512-tSWnrdVrB8m3q+/YtB0c6kvcxBtxvYPVyaLF5rveNRI96u63rx3qbuyjuuZrhJyVI7qx2Q7EPhnvBae6AvNdow==}
     engines: {node: '>=18'}
 
-  '@arcjet/sprintf@1.0.0-beta.7':
-    resolution: {integrity: sha512-ZFh3RubNkBcqa0LYTz2lhvHunx5l8Zq90H5nc5Kq7I0P3bpkKClE2zpRmC7ojwD61CbHUPb2igtX1qBsujEqTw==}
+  '@arcjet/sprintf@1.0.0-beta.8':
+    resolution: {integrity: sha512-Zqzu5zH5nd0mvWvfV6JYdTof2lR2NovTV1GykfMC3GX1OdK8OuzKS7cbnFVi1YfN3gjR9e7BCvwHHsJBCwlt6A==}
     engines: {node: '>=18'}
 
-  '@arcjet/stable-hash@1.0.0-beta.7':
-    resolution: {integrity: sha512-NvxMyUzJe6T25Hszx++HKQHNmOOWdntanB7O/3JTiGM+HMG8WDwOLO8DYXLUYc68zqvJHXbLNEtU9YW8q65GSQ==}
+  '@arcjet/stable-hash@1.0.0-beta.8':
+    resolution: {integrity: sha512-KH6YI3eS3l9F6wg1IYvAEVbaAerrsxW9B+uwV3WlqlXNiG09t6rjSgTKTXr2AL2KWOz7vhq7+nzbkr2xHiBr5A==}
     engines: {node: '>=18'}
 
-  '@arcjet/transport@1.0.0-beta.7':
-    resolution: {integrity: sha512-W8i0zOImUDFQNh8U0YaCXjqqvD4dt3KDMR3sNqmNouFin4BNAmQDRL+4QmC12s/Jc6zy79FwY2f4FUYqYdGyLA==}
+  '@arcjet/transport@1.0.0-beta.8':
+    resolution: {integrity: sha512-Nlbd5ngPLkkZhmDece8S/kJPgXn1FubjXgTX90XayMFqUXUU+GJ8Jh5mqK1hnV91Y8BU8MvN4CYZ6NjpJ3VZ+g==}
     engines: {node: '>=18'}
 
   '@ark/schema@0.46.0':
@@ -3204,8 +3208,8 @@ packages:
   '@nodeutils/defaults-deep@1.1.0':
     resolution: {integrity: sha512-gG44cwQovaOFdSR02jR9IhVRpnDP64VN6JdjYJTfNz4J4fWn7TQnmrf22nSjRqlwlxPcW8PL/L3KbJg3tdwvpg==}
 
-  '@nosecone/next@1.0.0-beta.7':
-    resolution: {integrity: sha512-CpPNEaxER4qI3/zgn9wyKCTRwACY+r0mVVez4Wbd8kEuwTQKN7xmbUL0Qz/kF+lpIRwJIIUDt1TetTnICtB3Hg==}
+  '@nosecone/next@1.0.0-beta.8':
+    resolution: {integrity: sha512-sjgk8UP3+C/E+l1bRo09QXNUPaq9w+HtKu25HPhMzSnJmYeMnBbKB/KbXbbH8VRaGppQs2h1IunVxZKXKu5sqg==}
     engines: {node: '>=18'}
     peerDependencies:
       next: '>=14'
@@ -5862,8 +5866,8 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
-  arcjet@1.0.0-beta.7:
-    resolution: {integrity: sha512-Rk58gG8kWVmLz5WuLlpFooP/kZqTAW/IqxMB66eERnYX+F4X2hI9mzIPF1V4kRmmtHqUdgOqrGQHXJDCljaNYA==}
+  arcjet@1.0.0-beta.8:
+    resolution: {integrity: sha512-5nkeNqVbvIpqloZ7rhuYZEzUc4L2KBlBdA+kit5CQQC+XNtdpLEobNQMgDfdz3LrPn9TOfRuXwMQvNvWY8lqig==}
     engines: {node: '>=18'}
 
   arg@4.1.3:
@@ -6905,8 +6909,8 @@ packages:
     resolution: {integrity: sha512-PUjYKWtzOzPtdtQlTHQG3qfv4Y0XT8+Eas6UbxCmxTj7qgMf+39dDujf1BP1I+qqZtw9uzwTh8jYtkMuCq+B0Q==}
     hasBin: true
 
-  drizzle-orm@0.43.1:
-    resolution: {integrity: sha512-dUcDaZtE/zN4RV/xqGrVSMpnEczxd5cIaoDeor7Zst9wOe/HzC/7eAaulywWGYXdDEc9oBPMjayVEDg0ziTLJA==}
+  drizzle-orm@0.44.1:
+    resolution: {integrity: sha512-prIWOlwJbiYInvcJxE+IMiJCtMiFVrSUJCwx6AXSJvGOdLu35qZ46QncTZDgloiLNCG0XxTC8agQElSmsl++TA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -6922,6 +6926,7 @@ packages:
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
@@ -6964,6 +6969,8 @@ packages:
       '@types/pg':
         optional: true
       '@types/sql.js':
+        optional: true
+      '@upstash/redis':
         optional: true
       '@vercel/postgres':
         optional: true
@@ -8741,8 +8748,8 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
-  nosecone@1.0.0-beta.7:
-    resolution: {integrity: sha512-noZ9L3wR1xgItmrVCVbLFmHiru7UtXVWni41s3KoK3TF39ZfIalkv4DLgrzSRCOgXdyRZZJf0EE6t6vJbqHJNA==}
+  nosecone@1.0.0-beta.8:
+    resolution: {integrity: sha512-uOS+VoivSJ6TlS8yb7weIc+wc9w6TMpWXchT91/NAul6hNG6bfj/m7LmTE97wGLYf0DImGgOUXqkiKsawX/B2g==}
     engines: {node: '>=18'}
 
   npm-run-path@4.0.1:
@@ -9109,9 +9116,6 @@ packages:
 
   pg-protocol@1.10.0:
     resolution: {integrity: sha512-IpdytjudNuLv8nhlHs/UrVBhU0e78J0oIS/0AVdTbWxSOkFUVdsHC/NrorO6nXsQNDTT1kzDSOMJubBQviX18Q==}
-
-  pg-protocol@1.9.5:
-    resolution: {integrity: sha512-DYTWtWpfd5FOro3UnAfwvhD8jh59r2ig8bPtc9H8Ds7MscE/9NYruUQWFAOuraRl29jwcT2kyMFQ3MxeaVjUhg==}
 
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
@@ -11070,9 +11074,6 @@ packages:
     peerDependencies:
       zod: ^3.24.1
 
-  zod@3.25.48:
-    resolution: {integrity: sha512-0X1mz8FtgEIvaxGjdIImYpZEaZMrund9pGXm3M6vM7Reba0e2eI71KPjSCGXBfwKDPwPoywf6waUKc3/tFvX2Q==}
-
   zod@3.25.49:
     resolution: {integrity: sha512-JMMPMy9ZBk3XFEdbM3iL1brx4NUSejd6xr3ELrrGEfGb355gjhiAWtG3K5o+AViV/3ZfkIrCzXsZn6SbLwTR8Q==}
 
@@ -11119,13 +11120,6 @@ snapshots:
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.49)
       zod: 3.25.49
 
-  '@ai-sdk/provider-utils@2.2.8(zod@3.25.48)':
-    dependencies:
-      '@ai-sdk/provider': 1.1.3
-      nanoid: 3.3.11
-      secure-json-parse: 2.7.0
-      zod: 3.25.48
-
   '@ai-sdk/provider-utils@2.2.8(zod@3.25.49)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
@@ -11137,16 +11131,6 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.2.12(react@19.1.0)(zod@3.25.48)':
-    dependencies:
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.48)
-      '@ai-sdk/ui-utils': 1.2.11(zod@3.25.48)
-      react: 19.1.0
-      swr: 2.3.3(react@19.1.0)
-      throttleit: 2.1.0
-    optionalDependencies:
-      zod: 3.25.48
-
   '@ai-sdk/react@1.2.12(react@19.1.0)(zod@3.25.49)':
     dependencies:
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.49)
@@ -11157,19 +11141,12 @@ snapshots:
     optionalDependencies:
       zod: 3.25.49
 
-  '@ai-sdk/ui-utils@1.2.11(zod@3.25.48)':
-    dependencies:
-      '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.48)
-      zod: 3.25.48
-      zod-to-json-schema: 3.24.3(zod@3.25.48)
-
   '@ai-sdk/ui-utils@1.2.11(zod@3.25.49)':
     dependencies:
       '@ai-sdk/provider': 1.1.3
       '@ai-sdk/provider-utils': 2.2.8(zod@3.25.49)
       zod: 3.25.49
-      zod-to-json-schema: 3.24.3(zod@3.25.49)
+      zod-to-json-schema: 3.24.5(zod@3.25.49)
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -11178,49 +11155,52 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@arcjet/analyze-wasm@1.0.0-beta.7': {}
+  '@arcjet/analyze-wasm@1.0.0-beta.8': {}
 
-  '@arcjet/analyze@1.0.0-beta.7':
+  '@arcjet/analyze@1.0.0-beta.8':
     dependencies:
-      '@arcjet/analyze-wasm': 1.0.0-beta.7
-      '@arcjet/protocol': 1.0.0-beta.7
+      '@arcjet/analyze-wasm': 1.0.0-beta.8
+      '@arcjet/protocol': 1.0.0-beta.8
 
-  '@arcjet/duration@1.0.0-beta.7': {}
+  '@arcjet/cache@1.0.0-beta.8': {}
 
-  '@arcjet/env@1.0.0-beta.7': {}
+  '@arcjet/duration@1.0.0-beta.8': {}
 
-  '@arcjet/headers@1.0.0-beta.7': {}
+  '@arcjet/env@1.0.0-beta.8': {}
 
-  '@arcjet/ip@1.0.0-beta.7': {}
+  '@arcjet/headers@1.0.0-beta.8': {}
 
-  '@arcjet/logger@1.0.0-beta.7':
+  '@arcjet/ip@1.0.0-beta.8': {}
+
+  '@arcjet/logger@1.0.0-beta.8':
     dependencies:
-      '@arcjet/sprintf': 1.0.0-beta.7
+      '@arcjet/sprintf': 1.0.0-beta.8
 
-  '@arcjet/next@1.0.0-beta.7(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@arcjet/next@1.0.0-beta.8(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
-      '@arcjet/env': 1.0.0-beta.7
-      '@arcjet/headers': 1.0.0-beta.7
-      '@arcjet/ip': 1.0.0-beta.7
-      '@arcjet/logger': 1.0.0-beta.7
-      '@arcjet/protocol': 1.0.0-beta.7
-      '@arcjet/transport': 1.0.0-beta.7
-      arcjet: 1.0.0-beta.7
+      '@arcjet/env': 1.0.0-beta.8
+      '@arcjet/headers': 1.0.0-beta.8
+      '@arcjet/ip': 1.0.0-beta.8
+      '@arcjet/logger': 1.0.0-beta.8
+      '@arcjet/protocol': 1.0.0-beta.8
+      '@arcjet/transport': 1.0.0-beta.8
+      arcjet: 1.0.0-beta.8
       next: 15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  '@arcjet/protocol@1.0.0-beta.7':
+  '@arcjet/protocol@1.0.0-beta.8':
     dependencies:
+      '@arcjet/cache': 1.0.0-beta.8
       '@bufbuild/protobuf': 1.10.1
       '@connectrpc/connect': 1.6.1(@bufbuild/protobuf@1.10.1)
       typeid-js: 1.2.0
 
-  '@arcjet/runtime@1.0.0-beta.7': {}
+  '@arcjet/runtime@1.0.0-beta.8': {}
 
-  '@arcjet/sprintf@1.0.0-beta.7': {}
+  '@arcjet/sprintf@1.0.0-beta.8': {}
 
-  '@arcjet/stable-hash@1.0.0-beta.7': {}
+  '@arcjet/stable-hash@1.0.0-beta.8': {}
 
-  '@arcjet/transport@1.0.0-beta.7':
+  '@arcjet/transport@1.0.0-beta.8':
     dependencies:
       '@bufbuild/protobuf': 1.10.1
       '@connectrpc/connect': 1.6.1(@bufbuild/protobuf@1.10.1)
@@ -13009,8 +12989,8 @@ snapshots:
       p-queue: 6.6.2
       p-retry: 4.6.2
       uuid: 10.0.0
-      zod: 3.25.48
-      zod-to-json-schema: 3.24.5(zod@3.25.48)
+      zod: 3.25.49
+      zod-to-json-schema: 3.24.5(zod@3.25.49)
     transitivePeerDependencies:
       - openai
 
@@ -13039,8 +13019,8 @@ snapshots:
       express-rate-limit: 7.5.0(express@5.1.0)
       pkce-challenge: 5.0.0
       raw-body: 3.0.0
-      zod: 3.25.48
-      zod-to-json-schema: 3.24.5(zod@3.25.48)
+      zod: 3.25.49
+      zod-to-json-schema: 3.24.5(zod@3.25.49)
     transitivePeerDependencies:
       - supports-color
 
@@ -13134,10 +13114,10 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  '@nosecone/next@1.0.0-beta.7(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@nosecone/next@1.0.0-beta.8(next@15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
     dependencies:
       next: 15.3.3(@opentelemetry/api@1.9.0)(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      nosecone: 1.0.0-beta.7
+      nosecone: 1.0.0-beta.8
 
   '@octokit/auth-token@5.1.2': {}
 
@@ -15777,7 +15757,7 @@ snapshots:
 
   '@types/pg-pool@2.0.6':
     dependencies:
-      '@types/pg': 8.6.1
+      '@types/pg': 8.15.4
 
   '@types/pg@8.11.6':
     dependencies:
@@ -15789,7 +15769,7 @@ snapshots:
   '@types/pg@8.15.4':
     dependencies:
       '@types/node': 22.15.29
-      pg-protocol: 1.9.5
+      pg-protocol: 1.10.0
       pg-types: 2.2.0
 
   '@types/pg@8.6.1':
@@ -16103,13 +16083,13 @@ snapshots:
   agents@0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.1.0):
     dependencies:
       '@modelcontextprotocol/sdk': 1.11.0
-      ai: 4.3.16(react@19.1.0)(zod@3.25.48)
+      ai: 4.3.16(react@19.1.0)(zod@3.25.49)
       cron-schedule: 5.0.4
       nanoid: 5.1.5
       partyserver: 0.0.67(@cloudflare/workers-types@4.20250430.0)
       partysocket: 1.1.3
       react: 19.1.0
-      zod: 3.25.48
+      zod: 3.25.49
     transitivePeerDependencies:
       - '@cloudflare/workers-types'
       - supports-color
@@ -16118,18 +16098,6 @@ snapshots:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
-
-  ai@4.3.16(react@19.1.0)(zod@3.25.48):
-    dependencies:
-      '@ai-sdk/provider': 1.1.3
-      '@ai-sdk/provider-utils': 2.2.8(zod@3.25.48)
-      '@ai-sdk/react': 1.2.12(react@19.1.0)(zod@3.25.48)
-      '@ai-sdk/ui-utils': 1.2.11(zod@3.25.48)
-      '@opentelemetry/api': 1.9.0
-      jsondiffpatch: 0.6.0
-      zod: 3.25.48
-    optionalDependencies:
-      react: 19.1.0
 
   ai@4.3.16(react@19.1.0)(zod@3.25.49):
     dependencies:
@@ -16203,14 +16171,15 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  arcjet@1.0.0-beta.7:
+  arcjet@1.0.0-beta.8:
     dependencies:
-      '@arcjet/analyze': 1.0.0-beta.7
-      '@arcjet/duration': 1.0.0-beta.7
-      '@arcjet/headers': 1.0.0-beta.7
-      '@arcjet/protocol': 1.0.0-beta.7
-      '@arcjet/runtime': 1.0.0-beta.7
-      '@arcjet/stable-hash': 1.0.0-beta.7
+      '@arcjet/analyze': 1.0.0-beta.8
+      '@arcjet/cache': 1.0.0-beta.8
+      '@arcjet/duration': 1.0.0-beta.8
+      '@arcjet/headers': 1.0.0-beta.8
+      '@arcjet/protocol': 1.0.0-beta.8
+      '@arcjet/runtime': 1.0.0-beta.8
+      '@arcjet/stable-hash': 1.0.0-beta.8
 
   arg@4.1.3: {}
 
@@ -17363,13 +17332,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@5.8.3))(typescript@5.8.3))(@types/pg@8.15.4)(gel@2.0.1)(kysely@0.28.2)(pg@8.16.0)(prisma@6.3.1(typescript@5.8.3)):
+  drizzle-orm@0.44.1(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@5.8.3))(typescript@5.8.3))(@types/pg@8.15.4)(@upstash/redis@1.35.0)(gel@2.0.1)(kysely@0.28.2)(pg@8.16.0)(prisma@6.3.1(typescript@5.8.3)):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250430.0
       '@neondatabase/serverless': 0.10.4
       '@opentelemetry/api': 1.9.0
       '@prisma/client': 6.3.1(prisma@6.3.1(typescript@5.8.3))(typescript@5.8.3)
       '@types/pg': 8.15.4
+      '@upstash/redis': 1.35.0
       gel: 2.0.1
       kysely: 0.28.2
       pg: 8.16.0
@@ -19413,7 +19383,7 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  nosecone@1.0.0-beta.7: {}
+  nosecone@1.0.0-beta.8: {}
 
   npm-run-path@4.0.1:
     dependencies:
@@ -19818,8 +19788,6 @@ snapshots:
       pg: 8.16.0
 
   pg-protocol@1.10.0: {}
-
-  pg-protocol@1.9.5: {}
 
   pg-types@2.2.0:
     dependencies:
@@ -22020,19 +21988,13 @@ snapshots:
 
   yoctocolors@2.1.1: {}
 
-  zod-to-json-schema@3.24.3(zod@3.25.48):
-    dependencies:
-      zod: 3.25.48
-
   zod-to-json-schema@3.24.3(zod@3.25.49):
     dependencies:
       zod: 3.25.49
 
-  zod-to-json-schema@3.24.5(zod@3.25.48):
+  zod-to-json-schema@3.24.5(zod@3.25.49):
     dependencies:
-      zod: 3.25.48
-
-  zod@3.25.48: {}
+      zod: 3.25.49
 
   zod@3.25.49: {}
 
