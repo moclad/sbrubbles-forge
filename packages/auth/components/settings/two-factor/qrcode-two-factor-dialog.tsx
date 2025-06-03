@@ -1,7 +1,12 @@
 'use client';
 
-import {} from 'lucide-react';
+import { Smartphone } from 'lucide-react';
+import QRCode from 'react-qr-code';
 
+import {
+  Alert,
+  AlertDescription,
+} from '@repo/design-system/components/ui/alert';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Dialog,
@@ -9,36 +14,44 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 
-import { TwoFactorForm } from '../../auth/two-factor-form';
-
-interface ConfirmTwoFactorProps {
+interface QrCodeTwoFactorProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   totpURI?: string | null;
 }
 
-export function ConfirmTwoFactorDialog({
+export function QrCodeTwoFactorDialog({
   open,
   onOpenChange,
   totpURI,
-}: Readonly<ConfirmTwoFactorProps>) {
+}: Readonly<QrCodeTwoFactorProps>) {
   const t = useI18n();
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>{t('account.twoFactor')}</DialogTitle>
+          <DialogTitle>{t('account.scanQrCode')}</DialogTitle>
           <DialogDescription>
-            {t('account.twoFactorTotpLabel')}
+            {t('account.scanQrCodeDescription')}
           </DialogDescription>
         </DialogHeader>
-        <TwoFactorForm totpURI={totpURI} />
+        <div className='space-y-2'>
+          {totpURI && (
+            <div className='flex items-center justify-center'>
+              <QRCode className={'border shadow-xs'} value={totpURI} />
+            </div>
+          )}
 
+          <Alert variant='default'>
+            <Smartphone />
+            <AlertDescription>{t('account.twoFactorAdvice')}</AlertDescription>
+          </Alert>
+        </div>
         <DialogFooter>
           <Button
             type='button'

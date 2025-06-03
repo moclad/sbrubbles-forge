@@ -19,7 +19,7 @@ import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { BackupCodesDialog } from './backup-codes-dialog';
-import { ConfirmTwoFactorDialog } from './confirm-two-factor-dialog';
+import { QrCodeTwoFactorDialog } from './qrcode-two-factor-dialog';
 
 interface TwoFactorPasswordDialogProps {
   open: boolean;
@@ -172,7 +172,7 @@ export function TwoFactorPasswordDialog({
         backupCodes={backupCodes}
       />
 
-      <ConfirmTwoFactorDialog
+      <QrCodeTwoFactorDialog
         totpURI={totpURI}
         open={showConfirm2FADialog}
         onOpenChange={(open) => {
