@@ -9,7 +9,7 @@
   "dependencies": {
     "@repo/auth": "workspace:*",
     "@t3-oss/env-nextjs": "catalog:",
-    "svix": "^1.65.0",
+    "svix": "catalog:",
     "server-only": "catalog:",
     "zod": "catalog:"
   },

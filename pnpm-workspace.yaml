@@ -7,6 +7,7 @@ packages:
 catalog:
   "@formatjs/intl-localematcher": "^0.6.1"
   "@hookform/resolvers": "^5.0.1"
+  "@sentry/nextjs": "^9.25.1"
   "@t3-oss/env-core": "^0.13.6"
   "@t3-oss/env-nextjs": "^0.13.6"
   "@types/negotiator": "^0.6.3"
@@ -19,6 +20,7 @@ catalog:
   "next": "^15.3.3"
   "react-hook-form": "^7.57.0"
   "server-only": "^0.0.1"
+  "svix": "^1.66.0"
   "typescript": "^5.8.3"
   "zod": "^3.25.49"
 
