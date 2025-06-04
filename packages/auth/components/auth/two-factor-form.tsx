@@ -1,7 +1,7 @@
 'use client';
 
 import { Loader2, QrCodeIcon, SendIcon } from 'lucide-react';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import QRCode from 'react-qr-code';
 import * as z from 'zod';
@@ -17,7 +17,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -39,6 +39,7 @@ export interface TwoFactorFormProps {
   redirectTo?: string;
   setIsSubmitting?: (value: boolean) => void;
   totpURI?: string | null;
+  children?: ReactNode;
 }
 
 export function TwoFactorForm({
@@ -48,14 +49,13 @@ export function TwoFactorForm({
   redirectTo,
   setIsSubmitting,
   totpURI = null,
+  children,
 }: Readonly<TwoFactorFormProps>) {
   const isHydrated = useIsHydrated();
   const effectiveTotpURI =
     totpURI ?? (isHydrated ? getSearchParam('totpURI') : null);
   const initialSendRef = useRef(false);
   const t = useI18n();
-
-  console.log(isHydrated, effectiveTotpURI, totpURI);
 
   const {
     authClient,
@@ -249,7 +249,8 @@ export function TwoFactorForm({
         )}
 
         <div className='grid gap-4'>
-          {method !== null && (
+          {children}
+          {children === null && method !== null && (
             <Button type='submit' loading={isSubmitting}>
               {t('account.twoFactorAction')}
             </Button>

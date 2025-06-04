@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 
@@ -81,7 +81,7 @@ export function BackupCodesDialog({
             variant='default'
             onClick={() => onOpenChange(false)}
           >
-            {t('account.continue')}
+            {t('common.continue')}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -39,9 +39,6 @@ export function TwoFactorPasswordDialog({
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [totpURI, setTotpURI] = useState<string | null>(null);
   const [showConfirm2FADialog, setShowConfirm2FADialog] = useState(false);
-
-  console.log('twoFactor', twoFactor);
-
   async function handleEnableTwoFactor(formData: FormData) {
     const password = formData.get('password') as string;
 
@@ -153,20 +150,6 @@ export function TwoFactorPasswordDialog({
 
           if (!open) {
             setShowConfirm2FADialog(true);
-            const url = 'account/two-factor';
-            console.log('TwoFactor', twoFactor);
-            console.log(
-              'navigate toast,',
-              twoFactor?.includes('totp') && totpURI
-                ? `${url}?totpURI=${totpURI}`
-                : url
-            );
-
-            // navigate(
-            // twoFactor?.includes('totp') && totpURI
-            //  ? `account/two-factor?totpURI=${totpURI}`
-            //  : url
-            //);
           }
         }}
         backupCodes={backupCodes}

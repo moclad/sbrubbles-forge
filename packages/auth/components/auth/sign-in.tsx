@@ -64,8 +64,6 @@ export const SignIn = () => {
           });
           form.reset();
 
-          console.log('context', context);
-          console.log(`${basePath}/two-factor${window.location.search}`);
           if (context.data.twoFactorRedirect) {
             router.push(`${basePath}/two-factor${window.location.search}`);
           } else {

@@ -78,7 +78,11 @@ export default {
     sendVerificationCode: 'Send verification code',
   },
   common: {
+    back: 'Back',
     pleaseWait: 'Please wait...',
+    continue: 'Continue',
+    verify: 'Verify',
+    verifying: 'Verifying...',
   },
   notFound: {
     back: 'Go back',
@@ -141,7 +145,6 @@ export default {
     confirmPasswordPlaceholder: 'Confirm Password',
     copiedToClipboard: 'Copied to clipboard',
     copyAllCodes: 'Copy all codes',
-    continue: 'Continue',
     currentPassword: 'Current Password',
     currentPasswordPlaceholder: 'Current Password',
     currentSession: 'Current Session',
@@ -227,8 +230,12 @@ export default {
     switchAccount: 'Switch Account',
     twoFactor: 'Two-Factor Authentication',
     twoFactorAction: 'Verify code',
+    twoFactorVerify: 'Verify',
+    twoFactorSetupDescription:
+      'Enter the 6-digit code from your authenticator app',
     twoFactorDescription: 'Please enter your one-time password to continue',
-    twoFactorCardDescription: 'Add an extra layer of security to your account.',
+    twoFactorCardDescription:
+      'Add an extra layer of security to your account by enabling 2FA',
     twoFactorDisableInstructions: 'Please enter your password to disable 2FA.',
     twoFactorEnableInstructions: 'Please enter your password to enable 2FA.',
     twoFactorEnabled: 'Two-factor authentication enabled',
@@ -236,7 +243,8 @@ export default {
     twoFactorPrompt: 'Two-Factor Authentication',
     twoFactorTotpLabel: 'Scan the QR Code with your Authenticator',
     continueWithAuthenticator: 'Continue with Authenticator',
-    twoFactorAdvice: 'Popular authenticator apps: Google Authenticator, Authy, Microsoft Authenticator, or 1Password.',
+    twoFactorAdvice:
+      'Popular authenticator apps: Google Authenticator, Authy, Microsoft Authenticator, or 1Password.',
     trustDevice: 'Trust this device',
     scanQrCode: 'Scan QR Code',
     scanQrCodeDescription: 'Use your authenticator app to scan this QR code',
