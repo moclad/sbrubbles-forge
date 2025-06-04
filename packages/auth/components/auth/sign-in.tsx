@@ -2,7 +2,8 @@
 
 import { LogIn } from 'lucide-react';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,6 +24,7 @@ import { useI18n } from '@repo/localization/i18n/client';
 
 import { signIn } from '../../client';
 import { signInFormSchema } from '../../lib/auth-schema';
+import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { PasskeyButton } from './passkey-button';
 
 import type { z } from 'zod';
@@ -37,6 +39,9 @@ export const SignIn = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const t = useI18n();
+  const router = useRouter();
+
+  const { basePath } = useContext(AuthUIContext);
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
@@ -45,7 +50,6 @@ export const SignIn = () => {
       {
         email,
         password,
-        callbackURL: '/dashboard',
       },
       {
         onRequest: () => {
@@ -54,11 +58,19 @@ export const SignIn = () => {
           );
           setLoading(true);
         },
-        onSuccess: () => {
+        onSuccess: (context) => {
           toast.success(t('authentication.actions.signedIn'), {
             id: toastIdRef.current ?? undefined,
           });
           form.reset();
+
+          console.log('context', context);
+          console.log(`${basePath}/two-factor${window.location.search}`);
+          if (context.data.twoFactorRedirect) {
+            router.push(`${basePath}/two-factor${window.location.search}`);
+          } else {
+            router.push(`${basePath}/dashboard${window.location.search}`);
+          }
         },
         onError: (ctx) => {
           toast.error(

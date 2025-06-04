@@ -7,7 +7,7 @@ import { keys } from './keys';
 
 import type { NextRequest } from 'next/server';
 
-const authRoutes = ['/sign-in', '/sign-up'];
+const authRoutes = ['/sign-in', '/sign-up', '/two-factor'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];
 const appRoutes = ['/dashboard'];
 
