@@ -65,6 +65,8 @@ export default {
     isTheSame: 'is the same',
     twoFactor: 'Two-Factor Authentication',
     twoFactorAction: 'Verify code',
+    twoFactorRequired:
+      'You must first log in to authenticate with two-factor authentication.',
     twoFactorDescription: 'Please enter your one-time password to continue',
     twoFactorCardDescription: 'Add an extra layer of security to your account.',
     twoFactorDisableInstructions: 'Please enter your password to disable 2FA.',
@@ -81,8 +83,6 @@ export default {
     back: 'Back',
     pleaseWait: 'Please wait...',
     continue: 'Continue',
-    verify: 'Verify',
-    verifying: 'Verifying...',
   },
   notFound: {
     back: 'Go back',
@@ -129,6 +129,7 @@ export default {
     avatarDescription:
       'Click on the avatar to upload a custom one from your files.',
     avatarInstructions: 'An avatar is optional but strongly recommended.',
+    backToSignIn: 'Back to Sign In',
     backupCodes: 'Backup Codes',
     backupCodesDescription:
       'Save these backup codes in a secure place. You can use them to access your account if you lose your two-factor authentication method.',
@@ -211,6 +212,7 @@ export default {
     requestFailed: 'Request failed',
     revoke: 'Revoke',
     signIn: 'Sign In',
+    signedInAs: 'Signed in as:',
     signInAction: 'Login',
     signInDescription: 'Enter your email below to login to your account',
     signInUsernameDescription:
@@ -229,8 +231,10 @@ export default {
     save: 'Save',
     switchAccount: 'Switch Account',
     twoFactor: 'Two-Factor Authentication',
-    twoFactorAction: 'Verify code',
-    twoFactorVerify: 'Verify',
+    twoFactorVerify: 'Verify code',
+    twoFactorVerifying: 'Verifying code...',
+    twoFactorCodeSuccess:
+      'Two-factor authentication code verified successfully',
     twoFactorSetupDescription:
       'Enter the 6-digit code from your authenticator app',
     twoFactorDescription: 'Please enter your one-time password to continue',

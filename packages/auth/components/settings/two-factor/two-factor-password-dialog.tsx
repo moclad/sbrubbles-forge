@@ -39,6 +39,7 @@ export function TwoFactorPasswordDialog({
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [totpURI, setTotpURI] = useState<string | null>(null);
   const [showConfirm2FADialog, setShowConfirm2FADialog] = useState(false);
+
   async function handleEnableTwoFactor(formData: FormData) {
     const password = formData.get('password') as string;
 

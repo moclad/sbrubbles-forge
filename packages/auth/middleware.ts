@@ -28,6 +28,7 @@ export const authMiddleware = async (request: NextRequest) => {
       },
     }
   );
+  console.log('Session:', session);
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {

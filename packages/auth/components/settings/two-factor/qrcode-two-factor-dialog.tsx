@@ -194,7 +194,7 @@ export function QrCodeTwoFactorDialog({
             </div>
             <DialogFooter>
               <Button type='submit' loading={isSubmitting}>
-                {t('account.twoFactorAction')}
+                {t('account.twoFactorVerify')}
               </Button>
             </DialogFooter>
           </DialogContent>
