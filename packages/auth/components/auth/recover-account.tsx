@@ -116,7 +116,7 @@ export function RecoverAccountForm({
           type='button'
           variant='secondary'
           className='w-full'
-          loading={isSubmitting}
+          disabled={isSubmitting}
           onClick={() => navigate(`${basePath}/sign-in`)}
         >
           {t('account.backToSignIn')}
