@@ -7,7 +7,7 @@ import { keys } from './keys';
 
 import type { NextRequest } from 'next/server';
 
-const authRoutes = ['/sign-in', '/sign-up', '/two-factor'];
+const authRoutes = ['/sign-in', '/sign-up', '/two-factor', '/recover-account'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];
 const appRoutes = ['/dashboard'];
 
@@ -28,7 +28,6 @@ export const authMiddleware = async (request: NextRequest) => {
       },
     }
   );
-  console.log('Session:', session);
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {

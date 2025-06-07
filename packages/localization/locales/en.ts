@@ -136,6 +136,7 @@ export default {
     backupCodePlaceholder: 'Backup Code',
     backupCode: 'Backup Code',
     backupCodeAction: 'Recover account',
+    backupCodeRequired: 'Backup code is required',
     cancel: 'Cancel',
     changePassword: 'Change Password',
     changePasswordDescription:

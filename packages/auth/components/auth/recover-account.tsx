@@ -1,5 +1,4 @@
 'use client';
-import { Loader2 } from 'lucide-react';
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -15,43 +14,37 @@ import {
 } from '@repo/design-system/components//ui/form';
 import { Input } from '@repo/design-system/components//ui/input';
 import { Button } from '@repo/design-system/components/ui/button';
+import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
+import { useI18n } from '@repo/localization/i18n/client';
 
 import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
+import { getErrorMessage } from '../../lib/get-error-message';
 
 import type { AuthClient } from '../../types/auth-client';
 export interface RecoverAccountFormProps {
   className?: string;
-  classNames?: AuthFormClassNames;
   isSubmitting?: boolean;
-  localization: Partial<AuthLocalization>;
   redirectTo?: string;
   setIsSubmitting?: (value: boolean) => void;
 }
 
 export function RecoverAccountForm({
   className,
-  classNames,
   isSubmitting,
-  localization,
   redirectTo,
   setIsSubmitting,
 }: RecoverAccountFormProps) {
-  const {
-    authClient,
-    localization: contextLocalization,
-    toast,
-  } = useContext(AuthUIContext);
-
-  localization = { ...contextLocalization, ...localization };
+  const { authClient, basePath, navigate } = useContext(AuthUIContext);
+  const t = useI18n();
 
   const { onSuccess, isPending: transitionPending } = useOnSuccessTransition({
     redirectTo,
   });
 
   const formSchema = z.object({
-    code: z.string().min(1, { message: localization.backupCodeRequired }),
+    code: z.string().min(1, { message: t('account.backupCodeRequired') }),
   });
 
   const form = useForm({
@@ -77,10 +70,7 @@ export function RecoverAccountForm({
 
       await onSuccess();
     } catch (error) {
-      toast({
-        variant: 'error',
-        message: getLocalizedError({ error, localization }),
-      });
+      toast.error(getErrorMessage(error));
 
       form.reset();
     }
@@ -90,28 +80,25 @@ export function RecoverAccountForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(verifyBackupCode)}
-        className={cn('grid gap-6', className, classNames?.base)}
+        className={cn('mt-4 space-y-4', className)}
       >
         <FormField
           control={form.control}
           name='code'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={classNames?.label}>
-                {localization.backupCode}
-              </FormLabel>
+              <FormLabel>{t('account.backupCode')}</FormLabel>
 
               <FormControl>
                 <Input
-                  placeholder={localization.backupCodePlaceholder}
+                  placeholder={t('account.backupCodePlaceholder')}
                   autoComplete='off'
-                  className={classNames?.input}
                   disabled={isSubmitting}
                   {...field}
                 />
               </FormControl>
 
-              <FormMessage className={classNames?.error} />
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -119,13 +106,20 @@ export function RecoverAccountForm({
         <Button
           type='submit'
           disabled={isSubmitting}
-          className={cn(classNames?.button, classNames?.primaryButton)}
+          loading={isSubmitting}
+          className='mt-4 w-full'
         >
-          {isSubmitting ? (
-            <Loader2 className='animate-spin' />
-          ) : (
-            localization.recoverAccountAction
-          )}
+          {t('account.recoverAction')}
+        </Button>
+
+        <Button
+          type='button'
+          variant='secondary'
+          className='w-full'
+          loading={isSubmitting}
+          onClick={() => navigate(`${basePath}/sign-in`)}
+        >
+          {t('account.backToSignIn')}
         </Button>
       </form>
     </Form>
