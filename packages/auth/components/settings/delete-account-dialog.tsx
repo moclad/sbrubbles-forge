@@ -1,4 +1,3 @@
-import { Loader2 } from 'lucide-react';
 import { useActionState, useContext } from 'react';
 
 import { Button } from '@repo/design-system/components/ui/button';
@@ -131,17 +130,12 @@ export function DeleteAccountDialog({
             <Button
               className={classNames?.button}
               disabled={isSubmitting}
+              loading={isSubmitting}
               variant='destructive'
             >
               <span className={cn(isSubmitting && 'opacity-0')}>
                 {isFresh ? t('account.deleteAccount') : t('account.signOut')}
               </span>
-
-              {isSubmitting && (
-                <span className='absolute'>
-                  <Loader2 className='animate-spin' />
-                </span>
-              )}
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -4,14 +4,15 @@ import { useContext } from 'react';
 
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
+import { useI18n } from '@repo/localization/i18n/client';
 
-import { useI18n } from '../../../localization/i18n/client';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { PasskeyCell } from './passkey-cell';
 import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
 
 import type { AuthClient } from '../../types/auth-client';
+
 export interface PasskeysCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -43,9 +44,7 @@ export function PasskeysCard({
   }
 
   const addPasskey = async () => {
-    await (authClient as AuthClient).passkey.addPasskey({
-      fetchOptions: { throw: true },
-    });
+    await (authClient as AuthClient).passkey.addPasskey({});
     await refetch?.();
   };
 

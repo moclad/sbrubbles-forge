@@ -7,7 +7,7 @@ import {
   TouchProvider,
 } from '@repo/design-system/components/ui/touch-provider';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 /**
  * A popup that displays information related to an element when the element
  * receives keyboard focus, the mouse hovers over it or touch display is in use.

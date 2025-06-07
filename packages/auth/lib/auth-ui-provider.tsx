@@ -1,10 +1,9 @@
 'use client';
-
-import type { SocialProvider } from 'better-auth/social-providers';
 import { ReactNode, createContext, useMemo } from 'react';
 
 import { useAuthData } from '../hooks/use-auth-data';
 
+import type { SocialProvider } from 'better-auth/social-providers';
 import type { AdditionalFields } from '../types/additional-fields';
 import type { AnyAuthClient } from '../types/any-auth-client';
 import type { AuthClient } from '../types/auth-client';
@@ -12,7 +11,6 @@ import type { AuthHooks } from '../types/auth-hooks';
 import type { AuthMutators } from '../types/auth-mutators';
 import type { Link } from '../types/link';
 import type { Provider } from './social-providers';
-
 const DefaultLink: Link = ({ href, className, children }) => (
   <a className={className} href={href}>
     {children}
@@ -246,7 +244,7 @@ export const AuthUIProvider = ({
   authClient,
   avatarExtension = 'png',
   avatarSize,
-  basePath = '/auth',
+  basePath = '',
   baseURL = '',
   redirectTo = '/',
   credentials = true,
@@ -262,6 +260,7 @@ export const AuthUIProvider = ({
   confirmPassword = true,
   navigate,
   replace,
+  twoFactor = ['totp'],
   uploadAvatar,
   Link = DefaultLink,
   ...props
@@ -342,6 +341,7 @@ export const AuthUIProvider = ({
       uploadAvatar,
       Link,
       confirmPassword,
+      twoFactor,
     }),
     [
       authClient,
@@ -367,6 +367,7 @@ export const AuthUIProvider = ({
       uploadAvatar,
       Link,
       confirmPassword,
+      twoFactor,
     ]
   );
 

@@ -27,6 +27,7 @@ export function BackupCodesDialog({
 }: Readonly<BackupCodesDialogProps>) {
   const [copied, setCopied] = useState(false);
   const t = useI18n();
+
   const handleCopy = () => {
     const codeText = backupCodes.join('\n');
     navigator.clipboard.writeText(codeText);
@@ -80,7 +81,7 @@ export function BackupCodesDialog({
             variant='default'
             onClick={() => onOpenChange(false)}
           >
-            {t('account.continue')}
+            {t('common.continue')}
           </Button>
         </DialogFooter>
       </DialogContent>

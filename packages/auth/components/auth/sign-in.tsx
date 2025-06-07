@@ -1,7 +1,9 @@
 'use client';
 
+import { LogIn } from 'lucide-react';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -22,6 +24,8 @@ import { useI18n } from '@repo/localization/i18n/client';
 
 import { signIn } from '../../client';
 import { signInFormSchema } from '../../lib/auth-schema';
+import { AuthUIContext } from '../../lib/auth-ui-provider';
+import { PasskeyButton } from './passkey-button';
 
 import type { z } from 'zod';
 export const SignIn = () => {
@@ -35,6 +39,9 @@ export const SignIn = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const t = useI18n();
+  const router = useRouter();
+
+  const { basePath } = useContext(AuthUIContext);
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     const { email, password } = values;
@@ -43,7 +50,6 @@ export const SignIn = () => {
       {
         email,
         password,
-        callbackURL: '/dashboard',
       },
       {
         onRequest: () => {
@@ -52,11 +58,17 @@ export const SignIn = () => {
           );
           setLoading(true);
         },
-        onSuccess: () => {
+        onSuccess: (context) => {
           toast.success(t('authentication.actions.signedIn'), {
             id: toastIdRef.current ?? undefined,
           });
           form.reset();
+
+          if (context.data.twoFactorRedirect) {
+            router.push(`${basePath}/two-factor${window.location.search}`);
+          } else {
+            router.push(`${basePath}/dashboard${window.location.search}`);
+          }
         },
         onError: (ctx) => {
           toast.error(
@@ -128,11 +140,25 @@ export const SignIn = () => {
               loading={loading}
               data-testid='sign-in-btn'
             >
+              <LogIn />
               {t('authentication.actions.signIn')}
             </Button>
           </form>
         </Form>
+        <div className='flex items-center gap-2 py-4'>
+          <Separator className={'!w-auto grow'} />
+
+          <span className='flex-shrink-0 text-muted-foreground text-sm'>
+            {t('authentication.orContinueWith')}
+          </span>
+
+          <Separator className={'!w-auto grow'} />
+        </div>
+
+        <PasskeyButton isSubmitting={loading} setIsSubmitting={setLoading} />
+
         <Separator className='mt-4 mb-4' />
+
         <div className='mt-4 flex justify-center'>
           <p className='text-muted-foreground text-sm'>
             {t('authentication.noAccountQuestion')}{' '}

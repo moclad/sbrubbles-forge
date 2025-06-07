@@ -59,12 +59,10 @@ export function PasskeyCell({
         className={cn('relative ms-auto', classNames?.button)}
         size='sm'
         loading={isLoading}
-        variant='outline'
+        variant='destructive'
         onClick={handleDeletePasskey}
       >
-        <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {t('account.delete')}
-        </span>
+        {t('account.delete')}
       </Button>
     </Card>
   );

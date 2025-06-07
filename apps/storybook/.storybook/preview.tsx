@@ -1,14 +1,15 @@
 import '@repo/design-system/styles/globals.css';
 
+import { themes } from 'storybook/theming';
+
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
 import { ThemeProvider } from '@repo/design-system/providers/theme';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { themes } from '@storybook/theming';
 
 import { commonTheme, darkUIStorybook, lightUIStorybook } from './themes-storybook-ui';
 
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/nextjs';
 
 const preview: Preview = {
   parameters: {

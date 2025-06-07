@@ -1,6 +1,4 @@
 'use client';
-
-import { Loader2 } from 'lucide-react';
 import { FormEvent, useContext, useState } from 'react';
 
 import { Button } from '@repo/design-system/components/ui/button';
@@ -17,11 +15,12 @@ import { PasswordInput } from '@repo/design-system/components/ui/password-input'
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 
+import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { BackupCodesDialog } from './backup-codes-dialog';
+import { QrCodeTwoFactorDialog } from './qrcode-two-factor-dialog';
 
-import type { AuthClient } from '../../../types/auth-client';
 interface TwoFactorPasswordDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -33,13 +32,13 @@ export function TwoFactorPasswordDialog({
   onOpenChange,
   isTwoFactorEnabled,
 }: Readonly<TwoFactorPasswordDialogProps>) {
-  const { authClient, basePath, navigate, twoFactor } =
-    useContext(AuthUIContext);
+  const { navigate, twoFactor } = useContext(AuthUIContext);
   const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [showBackupCodesDialog, setShowBackupCodesDialog] = useState(false);
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [totpURI, setTotpURI] = useState<string | null>(null);
+  const [showConfirm2FADialog, setShowConfirm2FADialog] = useState(false);
 
   async function handleEnableTwoFactor(formData: FormData) {
     const password = formData.get('password') as string;
@@ -47,7 +46,7 @@ export function TwoFactorPasswordDialog({
     setIsLoading(true);
 
     try {
-      const data = await (authClient as AuthClient).twoFactor.enable({
+      const data = await authClient.twoFactor.enable({
         password,
         fetchOptions: { throw: true },
       });
@@ -75,7 +74,7 @@ export function TwoFactorPasswordDialog({
     setIsLoading(true);
 
     try {
-      await (authClient as AuthClient).twoFactor.disable({
+      await authClient.twoFactor.disable({
         password,
         fetchOptions: { throw: true },
       });
@@ -135,8 +134,7 @@ export function TwoFactorPasswordDialog({
                 {t('account.cancel')}
               </Button>
 
-              <Button type='submit' disabled={isLoading}>
-                {isLoading && <Loader2 className='animate-spin' />}
+              <Button type='submit' disabled={isLoading} loading={isLoading}>
                 {isTwoFactorEnabled
                   ? t('account.disable')
                   : t('account.enable')}
@@ -152,15 +150,18 @@ export function TwoFactorPasswordDialog({
           setShowBackupCodesDialog(open);
 
           if (!open) {
-            const url = `${basePath}/two-factor`;
-            navigate(
-              twoFactor?.includes('totp') && totpURI
-                ? `${url}?totpURI=${totpURI}`
-                : url
-            );
+            setShowConfirm2FADialog(true);
           }
         }}
         backupCodes={backupCodes}
+      />
+
+      <QrCodeTwoFactorDialog
+        totpURI={totpURI}
+        open={showConfirm2FADialog}
+        onOpenChange={(open) => {
+          setShowConfirm2FADialog(open);
+        }}
       />
     </>
   );

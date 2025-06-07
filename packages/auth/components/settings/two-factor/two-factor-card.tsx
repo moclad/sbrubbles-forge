@@ -45,6 +45,7 @@ export function TwoFactorCard({
             : t('account.twoFactorEnableInstructions')
         }
         formAction={() => setShowPasswordDialog(true)}
+        showToast={false}
       />
 
       <TwoFactorPasswordDialog

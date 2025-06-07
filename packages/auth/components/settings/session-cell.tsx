@@ -94,9 +94,7 @@ export function SessionCell({
         variant='outline'
         onClick={handleRevoke}
       >
-        <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-          {isCurrentSession ? t('account.signOut') : t('account.revoke')}
-        </span>
+        {isCurrentSession ? t('account.signOut') : t('account.revoke')}
       </Button>
     </Card>
   );

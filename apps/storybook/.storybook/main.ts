@@ -1,22 +1,21 @@
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
+
 import type { StorybookConfig } from '@storybook/nextjs';
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
     '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
+  framework: "@storybook/nextjs",
   addons: [
-    '@storybook/addon-onboarding',
-    '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
+    '@storybook/addon-docs',
     '@storybook/addon-themes',
-    '@storybook/theming',
+    'storybook-dark-mode'
   ],
-  framework: {
-    name: '@storybook/nextjs',
-    options: {},
-  },
   staticDirs: ['../public'],
   core: {
     disableTelemetry: true,
@@ -24,3 +23,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}

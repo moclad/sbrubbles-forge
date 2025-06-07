@@ -1,9 +1,9 @@
-import { action } from '@storybook/addon-actions';
-import type { Meta, StoryObj } from '@storybook/react';
 import { toast } from 'sonner';
+import { action } from 'storybook/actions';
 
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 
+import type { Meta, StoryObj } from '@storybook/nextjs';
 /**
  * An opinionated toast component for React.
  */

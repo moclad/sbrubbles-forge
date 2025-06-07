@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
@@ -82,13 +82,12 @@ export function AccountCell({
           <Button
             className={cn('relative ms-auto', classNames?.button)}
             disabled={isLoading}
+            loading={isLoading}
             size='icon'
             type='button'
             variant='outline'
           >
-            <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
-              <EllipsisIcon />
-            </span>
+            <EllipsisIcon />
 
             {isLoading && (
               <span className='absolute'>
