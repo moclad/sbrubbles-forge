@@ -43,15 +43,6 @@ services:
       - "5432:5432"
     restart: unless-stopped
 
-  bugsink:
-    image: bugsink/bugsink
-    restart: unless-stopped
-    environment:
-      SECRET_KEY: ${BUG_SINK_SECRET_KEY:-secret_key}
-      CREATE_SUPERUSER: ${BUG_SINK_ADMIN:-admin}:${BUG_SINK_ADMIN_PW:-admin}
-    ports:
-      - "8005:8000"
-
   ntfy:
     image: binwiederhier/ntfy
     container_name: ntfy
@@ -64,8 +55,63 @@ services:
       - 8010:80
     restart: unless-stopped
 
+  master:
+    image: chrislusf/seaweedfs:latest
+    container_name: seaweedfs-master
+    command: "master -ip=master -mdir=/data"
+    ports:
+      - "9333:9333"   # Master HTTP
+      - "9324:9324"   # Master gRPC
+    volumes:
+      - seaweed_master:/data
+    restart: unless-stopped
+
+  volume:
+    image: chrislusf/seaweedfs:latest
+    container_name: seaweedfs-volume
+    command: "volume -mserver=master:9333 -ip=volume -dir=/data -max=5"
+    depends_on:
+      - master
+    ports:
+      - "8080:8080"   # Volume HTTP (file upload/download)
+      - "18080:18080" # Volume metrics
+    volumes:
+      - seaweed_volume:/data
+    restart: unless-stopped
+
+  filer:
+    image: chrislusf/seaweedfs:latest
+    container_name: seaweedfs-filer
+    command: "filer -master=master:9333 -ip=filer"
+    depends_on:
+      - master
+      - volume
+    ports:
+      - "8888:8888"   # Filer HTTP
+    volumes:
+      - seaweed_filer:/data
+    restart: unless-stopped
+
+  s3:
+    image: chrislusf/seaweedfs:latest
+    container_name: seaweedfs-s3
+    command: "s3 -filer=filer:8888 -port=8333"
+    depends_on:
+      - master
+      - volume
+      - filer
+    ports:
+      - "8333:8333"   # S3 API endpoint
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-seaweedfs}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-seaweedfs_key}
+    restart: unless-stopped
+
 volumes:
     ntfy:
     ntfy-etc:
     postgres:
     postgres-umami:
+    seaweed_master:
+    seaweed_volume:
+    seaweed_filer:
