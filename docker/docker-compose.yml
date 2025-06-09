@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_UMAMI_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_UMAMI_PASSWORD:-mypassword}
-      POSTGRES_DB: ${POSTGRES_DB:-umami}
+      POSTGRES_DB: ${POSTGRES_UMAMI_DB:-umami}
       PGDATA: /data/postgres
     volumes:
        - postgres-umami:/data/postgres

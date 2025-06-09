@@ -33,7 +33,7 @@ export const UserAccount = () => {
       orientation='vertical'
       value={activeTab}
       onValueChange={setActiveTab}
-      className='space-y-6'
+      className='space-y-2'
     >
       <TabsList className='w-full'>
         <TabsTrigger value='account' className='flex items-center gap-2'>
@@ -49,12 +49,12 @@ export const UserAccount = () => {
           {t('account.notifications')}
         </TabsTrigger>
       </TabsList>
-      <TabsContent value='account' className='space-y-6 pt-4'>
+      <TabsContent value='account' className='space-y-6 pt-2'>
         <UpdateAvatarCard />
         <UpdateNameCard />
         <ChangeEmailCard />
       </TabsContent>
-      <TabsContent value='security' className='space-y-6 pt-4'>
+      <TabsContent value='security' className='space-y-6 pt-2'>
         <ChangePasswordCard />
         <ProvidersCard />
         <TwoFactorCard />
@@ -62,7 +62,7 @@ export const UserAccount = () => {
         <SessionsCard />
         <DeleteAccountCard />
       </TabsContent>
-      <TabsContent value='notifications' className='space-y-6 pt-4'>
+      <TabsContent value='notifications' className='space-y-6 pt-2'>
         <div className='space-y-4'>
           <div className='space-y-4'>
             <h3 className='font-medium text-lg'>Email Notifications</h3>
