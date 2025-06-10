@@ -3,7 +3,8 @@
   "private": true,
   "version": "4.1.20",
   "scripts": {
-    "dev": "next dev -p 3002 --turbopack",
+    "dev": "concurrently \"npm:next\" \"npm:stripe\"",
+    "next": "next dev -p 3002 --turbopack",
     "build": "next build --turbopack",
     "start": "next start -p 3002 --turbopack",
     "analyze": "cross-env ANALYZE=true pnpm build",
