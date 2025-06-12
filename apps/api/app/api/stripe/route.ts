@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { env } from '@/env';
+import { auth } from '@repo/auth/server';
 import { database } from '@repo/database';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
@@ -56,6 +57,14 @@ const handleSubscriptionScheduleCanceled = async (
 export const POST = async (request: Request): Promise<Response> => {
   if (!env.STRIPE_WEBHOOK_SECRET) {
     return NextResponse.json({ message: 'Not configured', ok: false });
+  }
+
+  const session = await auth.api.getSession({
+    headers: await headers(), // some endpoint might require headers
+  });
+
+  if (!session) {
+    return new Response('Unauthorized', { status: 401 });
   }
 
   try {

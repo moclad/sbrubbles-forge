@@ -123,7 +123,25 @@ export function UpdateAvatarCard({
     }
 
     try {
-      await updateUser({ image });
+      //await updateUser({ image });
+
+      //const res = await fetch(
+      //  `http://localhost:3002/api/avatar?filename=${encodeURIComponent(file.name)}`
+      //);
+      //const { url } = await res.json();
+
+      // Upload the file directly to S3/SeaweedFS
+      await fetch(
+        `http://localhost:3002/api/upload?filename=${encodeURIComponent(file.name)}`,
+        {
+          method: 'POST',
+          body: file,
+          headers: {
+            'Content-Type': file.type,
+          },
+        }
+      );
+
       toast.success(t('account.avatarUpdated'));
     } catch (error) {
       toast.error(getErrorMessage(error) ?? t('account.requestFailed'));
