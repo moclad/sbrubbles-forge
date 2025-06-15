@@ -14,11 +14,17 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export const s3Client = new S3Client({
   region: keys().S3_REGION || 'us-east-1',
   endpoint: keys().S3_ENDPOINT || 'http://localhost:8333',
+
   credentials: {
     accessKeyId: keys().S3_ACCESS_KEY_ID || 'your-access-key',
     secretAccessKey: keys().S3_SECRET_ACCESS_KEY || 'your-secret-key',
   },
   forcePathStyle: true, // Needed for S3-compatible services
+  // dual stack endpoint is not supported by seaweed
+  useDualstackEndpoint: false,
+  // checksum validation should be disabled, overwise `x-amz-checksum` will be injected directly into files
+  responseChecksumValidation: 'WHEN_REQUIRED',
+  requestChecksumCalculation: 'WHEN_REQUIRED',
 });
 
 export const uploadRouteHandler = createUploadRouteHandler({
@@ -32,6 +38,8 @@ export const uploadRouteHandler = createUploadRouteHandler({
 });
 
 export async function getFiles(bucket: string) {
+  console.log(keys());
+
   const response = await s3Client.send(
     new ListObjectsCommand({ Bucket: bucket })
   );

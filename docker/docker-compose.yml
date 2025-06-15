@@ -95,13 +95,15 @@ services:
   s3:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-s3
-    command: "s3 -filer=filer:8888 -port=8333"
+    command: "s3 -filer=filer:8888 -port=8333 -config=/etc/seaweedfs/config.json"
     depends_on:
       - master
       - volume
       - filer
     ports:
       - "8333:8333"   # S3 API endpoint
+    volumes:
+      - ./seaweed.config.json:/etc/seaweedfs/config.json
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-seaweedfs}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-seaweedfs_key}
