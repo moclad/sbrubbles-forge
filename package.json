@@ -5,9 +5,7 @@
   "bin": {
     "sbrubbles-forge": "dist/index.js"
   },
-  "files": [
-    "dist/index.js"
-  ],
+  "files": ["dist/index.js"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -29,7 +27,8 @@
     "release:minor": "release-it minor",
     "release:major": "release-it major",
     "release:next-version": "release-it --ci --release-version | tail -n1",
-    "clean": "git clean -xdf node_modules"
+    "clean": "git clean -xdf node_modules",
+    "services:start": "docker compose -f docker-compose.yml -f ./docker-compose-storage.yml up -d --remove-orphans"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -54,10 +53,7 @@
     "@clack/prompts": "^0.11.0",
     "commander": "^14.0.0"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": ["apps/*", "packages/*"],
   "type": "module",
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -70,11 +66,7 @@
       "esbuild",
       "sharp"
     ],
-    "ignoredBuiltDependencies": [
-      "@prisma/client",
-      "@prisma/engines",
-      "prisma"
-    ]
+    "ignoredBuiltDependencies": ["@prisma/client", "@prisma/engines", "prisma"]
   },
   "repository": "sbrubbles-work/sbrubbles-forge",
   "author": "Beno Dresch <sbrubbles@sbrubbles.work>"

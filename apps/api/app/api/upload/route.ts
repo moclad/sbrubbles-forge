@@ -8,8 +8,19 @@ export async function GET(): Promise<Response> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  if (!session || !session.user) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Unauthorized',
+      },
+      { status: 401 }
+    );
+  }
 
-  return await getFiles('public-assets');
+  const userId = session.user.id;
+
+  return await getFiles(userId);
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {

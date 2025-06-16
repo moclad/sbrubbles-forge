@@ -13,27 +13,36 @@ const storageClient = new StorageClient(keys().STORAGE_URL ?? '', {
   Authorization: `Bearer ${SERVICE_KEY}`,
 });
 
-export async function getFiles(bucket: string) {
+export async function getFiles(userId: string) {
   const { data: list, error: listError } =
-    await storageClient.getBucket(bucket);
+    await storageClient.getBucket(PUBLIC_ASSETS_BUCKET);
+
+  const { data } = await storageClient
+    .from(PUBLIC_ASSETS_BUCKET)
+    .createSignedUrl(`${userId}/avatar`, 60 * 60 * 24 * 7); // 7 days
+
+  console.log(data);
 
   if (listError && (listError as StorageApiError)?.status === 400) {
-    const { data, error } = await storageClient.createBucket(bucket, {
-      public: true,
-      fileSizeLimit: 100 * 1024 * 1024, // 100 MB
-      allowedMimeTypes: [
-        'image/png',
-        'image/jpeg',
-        'image/gif',
-        'image/webp',
-        'image/svg+xml',
-      ],
-    });
+    const { data, error } = await storageClient.createBucket(
+      PUBLIC_ASSETS_BUCKET,
+      {
+        public: true,
+        fileSizeLimit: 100 * 1024 * 1024, // 100 MB
+        allowedMimeTypes: [
+          'image/png',
+          'image/jpeg',
+          'image/gif',
+          'image/webp',
+          'image/svg+xml',
+        ],
+      }
+    );
 
     return NextResponse.json(data ?? []);
   }
 
-  return NextResponse.json(list ?? []);
+  return NextResponse.json(data ?? []);
 }
 
 export async function uploadAvatar(userId: string, fileStream: File | Blob) {
