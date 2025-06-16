@@ -11,7 +11,7 @@ export const config: NextConfig = {
   },
   turbopack: {},
 
-  transpilePackages: ['@repo/design-system', '@repo/auth'],
+  transpilePackages: ['@repo/design-system', '@repo/auth', '@repo/storage'],
 
   // This is required to support PostHog trailing slash API requests
   output: 'standalone',

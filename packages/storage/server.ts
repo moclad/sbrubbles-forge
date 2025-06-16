@@ -1,67 +1,49 @@
-import { createUploadRouteHandler, route } from 'better-upload/server';
 import { NextResponse } from 'next/server';
 
-import {
-  ListObjectsCommand,
-  PutObjectCommand,
-  S3Client,
-} from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { StorageApiError, StorageClient } from '@supabase/storage-js';
 
+import { PUBLIC_ASSETS_BUCKET } from './buckets';
 import { keys } from './keys';
 
-import type { NextApiRequest, NextApiResponse } from 'next';
-export const s3Client = new S3Client({
-  region: keys().S3_REGION || 'us-east-1',
-  endpoint: keys().S3_ENDPOINT || 'http://localhost:8333',
+const SERVICE_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU';
 
-  credentials: {
-    accessKeyId: keys().S3_ACCESS_KEY_ID || 'your-access-key',
-    secretAccessKey: keys().S3_SECRET_ACCESS_KEY || 'your-secret-key',
-  },
-  forcePathStyle: true, // Needed for S3-compatible services
-  // dual stack endpoint is not supported by seaweed
-  useDualstackEndpoint: false,
-  // checksum validation should be disabled, overwise `x-amz-checksum` will be injected directly into files
-  responseChecksumValidation: 'WHEN_REQUIRED',
-  requestChecksumCalculation: 'WHEN_REQUIRED',
-});
-
-export const uploadRouteHandler = createUploadRouteHandler({
-  client: s3Client,
-  bucketName: 'avatar',
-  routes: {
-    upload: route({
-      fileTypes: ['image/*'],
-    }),
-  },
+const storageClient = new StorageClient(keys().STORAGE_URL ?? '', {
+  apikey: SERVICE_KEY,
+  Authorization: `Bearer ${SERVICE_KEY}`,
 });
 
 export async function getFiles(bucket: string) {
-  console.log(keys());
+  const { data: list, error: listError } =
+    await storageClient.getBucket(bucket);
 
-  const response = await s3Client.send(
-    new ListObjectsCommand({ Bucket: bucket })
-  );
-  console.log('Files in bucket:', response);
+  if (listError && (listError as StorageApiError)?.status === 400) {
+    const { data, error } = await storageClient.createBucket(bucket, {
+      public: true,
+      fileSizeLimit: 100 * 1024 * 1024, // 100 MB
+      allowedMimeTypes: [
+        'image/png',
+        'image/jpeg',
+        'image/gif',
+        'image/webp',
+        'image/svg+xml',
+      ],
+    });
 
-  return NextResponse.json(response?.Contents ?? []);
-}
-
-export async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { filename } = req.query;
-  const key = Array.isArray(filename) ? filename[0] : filename;
-
-  if (!key) {
-    res.status(400).json({ error: 'Filename is required' });
-    return;
+    return NextResponse.json(data ?? []);
   }
 
-  const command = new PutObjectCommand({
-    Bucket: 'your-bucket',
-    Key: key,
-  });
+  return NextResponse.json(list ?? []);
+}
 
-  const url = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
-  res.status(200).json({ url });
+export async function uploadAvatar(userId: string, fileStream: File | Blob) {
+  const { data, error } = await storageClient
+    .from(PUBLIC_ASSETS_BUCKET)
+    .upload(`${userId}/avatar`, fileStream, { upsert: true });
+
+  if (error) {
+    return NextResponse.json(error);
+  }
+
+  return NextResponse.json(data?.id ?? '');
 }

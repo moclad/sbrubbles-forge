@@ -1,5 +1,4 @@
 'use client';
-
 import { useContext, useRef, useState } from 'react';
 
 import { Card } from '@repo/design-system/components/ui/card';
@@ -15,7 +14,6 @@ import { SettingsCardFooter } from './shared/settings-card-footer';
 import { SettingsCardHeader } from './shared/settings-card-header';
 
 import type { SettingsCardClassNames } from './shared/settings-card';
-
 async function resizeAndCropImage(
   file: File,
   name: string,
@@ -130,15 +128,15 @@ export function UpdateAvatarCard({
       //);
       //const { url } = await res.json();
 
-      // Upload the file directly to S3/SeaweedFS
+      const formData = new FormData();
+      formData.append('file', file);
+
       await fetch(
         `http://localhost:3002/api/upload?filename=${encodeURIComponent(file.name)}`,
         {
           method: 'POST',
-          body: file,
-          headers: {
-            'Content-Type': file.type,
-          },
+          body: formData,
+          credentials: 'include',
         }
       );
 

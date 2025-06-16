@@ -58,10 +58,11 @@ services:
   master:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-master
-    command: "master -ip=master -mdir=/data"
+    command: "master -ip=master -ip.bind=0.0.0.0 -metricsPort=9324 -mdir=/data -volumeSizeLimitMB=3000"
     ports:
       - "9333:9333"   # Master HTTP
       - "9324:9324"   # Master gRPC
+      - "19333:19333" # Master metrics
     volumes:
       - seaweed_master:/data
     restart: unless-stopped
@@ -69,12 +70,13 @@ services:
   volume:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-volume
-    command: "volume -mserver=master:9333 -ip=volume -dir=/data -max=5"
+    command: "volume -mserver=master:9333 -ip=volume -dir=/data -max=100  -ip.bind=0.0.0.0 -port=8080 -metricsPort=9325"
     depends_on:
       - master
     ports:
       - "8080:8080"   # Volume HTTP (file upload/download)
       - "18080:18080" # Volume metrics
+      - 9325:9325
     volumes:
       - seaweed_volume:/data
     restart: unless-stopped
@@ -82,12 +84,16 @@ services:
   filer:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-filer
-    command: "filer -master=master:9333 -ip=filer"
+    command: "filer -master=master:9333 -ip.bind=0.0.0.0 -metricsPort=9326"
     depends_on:
       - master
       - volume
     ports:
       - "8888:8888"   # Filer HTTP
+      - 18888:18888
+      - 9326:9326
+    tty: true
+    stdin_open: true
     volumes:
       - seaweed_filer:/data
     restart: unless-stopped
@@ -95,7 +101,7 @@ services:
   s3:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-s3
-    command: "s3 -filer=filer:8888 -port=8333 -config=/etc/seaweedfs/config.json"
+    command: "s3 -filer=filer:8888 -config=/etc/seaweedfs/config.json -ip.bind=0.0.0.0 -metricsPort=9327"
     depends_on:
       - master
       - volume
