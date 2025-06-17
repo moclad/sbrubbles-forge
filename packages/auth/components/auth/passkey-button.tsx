@@ -10,13 +10,14 @@ import { getErrorMessage } from '../../lib/get-error-message';
 
 interface PasskeyButtonProps {
   isSubmitting?: boolean;
+  disabled?: boolean;
   setIsSubmitting?: (isSubmitting: boolean) => void;
 }
 
 export function PasskeyButton({
   isSubmitting,
   setIsSubmitting,
-}: PasskeyButtonProps) {
+}: Readonly<PasskeyButtonProps>) {
   const t = useI18n();
   const { onSuccess } = useOnSuccessTransition({ redirectTo: '/dashboard' });
 
@@ -26,6 +27,7 @@ export function PasskeyButton({
     const result = await authClient.signIn.passkey({
       fetchOptions: {
         onError: (ctx) => {
+          console.log('Error signing in with passkey:', ctx.error);
           toast(getErrorMessage({ error: ctx.error }));
           setIsSubmitting?.(false);
         },

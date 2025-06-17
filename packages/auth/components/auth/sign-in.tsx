@@ -14,7 +14,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
@@ -38,6 +38,7 @@ export const SignIn = () => {
   });
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
+  const [loadingPasskey, setLoadingPasskey] = useState(false);
   const t = useI18n();
   const router = useRouter();
 
@@ -138,6 +139,7 @@ export const SignIn = () => {
             <Button
               className='w-full'
               type='submit'
+              disabled={loadingPasskey}
               loading={loading}
               data-testid='sign-in-btn'
             >
@@ -156,7 +158,11 @@ export const SignIn = () => {
           <Separator className={'!w-auto grow'} />
         </div>
 
-        <PasskeyButton isSubmitting={loading} setIsSubmitting={setLoading} />
+        <PasskeyButton
+          disabled={loading}
+          isSubmitting={loadingPasskey}
+          setIsSubmitting={setLoadingPasskey}
+        />
 
         <Separator className='mt-4 mb-4' />
 
