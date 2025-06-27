@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, type } from 'next/server';
 
 // the list of all allowed origins
 const allowedOrigins = ['http://localhost:3000', 'https://example-1.com'];

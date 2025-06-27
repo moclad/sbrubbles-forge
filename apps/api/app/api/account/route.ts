@@ -1,37 +1,60 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { auth } from '@repo/auth/server';
+import {
+  getAvatarUrl,
+  uploadUserAvatar,
+} from '@repo/storage/actions/user-avatar';
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
-import { getErrorMessage } from '@/utils/getErrorMessage';
-import { S3Client } from '@aws-sdk/client-s3';
-import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
-
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { query } = req;
-  const { filename, contentType } = query;
-
-  try {
-    const client = new S3Client({ region: process.env.AWS_REGION });
-
-    const { url, fields } = await createPresignedPost(client, {
-      Bucket: process.env.AWS_BUCKET_NAME!,
-      Key: filename ? filename.toString() : '',
-      Conditions: [
-        [
-          'starts-with',
-          '$Content-Type',
-          contentType ? contentType.toString() : '',
-        ],
-      ],
-      Fields: {
-        acl: 'public-read',
-        'Content-Type': contentType ? contentType.toString() : '',
+export async function GET(): Promise<Response> {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!(session && session.user)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Unauthorized',
       },
-      Expires: 600,
-    });
-
-    return res.json({ url, fields });
-  } catch (error) {
-    return res.json({ error: getErrorMessage(error) });
+      { status: 401 }
+    );
   }
-};
 
-export default handler;
+  const userId = session.user.id;
+
+  return NextResponse.json(await getAvatarUrl(userId));
+}
+
+export async function POST(req: NextRequest, res: NextResponse) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!(session && session.user)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Unauthorized',
+      },
+      { status: 401 }
+    );
+  }
+
+  const formData = await req.formData();
+  const body = Object.fromEntries(formData);
+  const file = (body.file as Blob) || null;
+  const userId = session.user.id;
+
+  if (file) {
+    await uploadUserAvatar(userId, file);
+  } else {
+    return NextResponse.json({
+      success: false,
+    });
+  }
+
+  return NextResponse.json({
+    success: true,
+    name: (body.file as File).name,
+  });
+}

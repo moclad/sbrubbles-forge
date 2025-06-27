@@ -7,6 +7,7 @@ import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
 
+import { uploadAvatar } from '../../actions/avatar';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 import { UserAvatar } from '../user-avatar';
@@ -80,7 +81,6 @@ export function UpdateAvatarCard({
     hooks: { useSession },
     mutators: { updateUser },
     optimistic,
-    uploadAvatar,
     avatarSize,
     avatarExtension,
   } = useContext(AuthUIContext);
@@ -103,42 +103,23 @@ export function UpdateAvatarCard({
       avatarExtension
     );
 
-    let image: string | undefined | null;
-
-    if (uploadAvatar) {
-      image = await uploadAvatar(resizedFile);
-    } else {
-      image = await fileToBase64(resizedFile);
-    }
-
-    if (!image) {
-      setLoading(false);
-      return;
-    }
-
     if (optimistic && !uploadAvatar) {
       setLoading(false);
     }
 
     try {
-      //await updateUser({ image });
-
-      //const res = await fetch(
-      //  `http://localhost:3002/api/avatar?filename=${encodeURIComponent(file.name)}`
-      //);
-      //const { url } = await res.json();
+      if (!file) {
+        toast.error(t('account.selectedFileNotValid'));
+        return;
+      }
+      // Get the file name and extension
+      const extension = file.name?.split('.').pop()?.toLowerCase();
 
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', resizedFile);
+      formData.append('extension', extension ?? avatarExtension);
 
-      await fetch(
-        `http://localhost:3002/api/upload?filename=${encodeURIComponent(file.name)}`,
-        {
-          method: 'POST',
-          body: formData,
-          credentials: 'include',
-        }
-      );
+      uploadAvatar(formData);
 
       toast.success(t('account.avatarUpdated'));
     } catch (error) {
@@ -208,13 +189,4 @@ export function UpdateAvatarCard({
       />
     </Card>
   );
-}
-
-async function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
 }

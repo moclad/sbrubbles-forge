@@ -205,11 +205,6 @@ type AuthUIContextType = {
    */
   replace: typeof defaultReplace;
   /**
-   * Upload an Avatar image and return the URL string
-   * @remarks `(file: File) => Promise<string>`
-   */
-  uploadAvatar?: (file: File) => Promise<string | undefined | null>;
-  /**
    * Custom Link component for navigation
    * @default <a>
    */
@@ -261,7 +256,6 @@ export const AuthUIProvider = ({
   navigate,
   replace,
   twoFactor = ['totp'],
-  uploadAvatar,
   Link = DefaultLink,
   ...props
 }: AuthUIProviderProps) => {
@@ -322,7 +316,7 @@ export const AuthUIProvider = ({
     () => ({
       authClient,
       avatarExtension,
-      avatarSize: avatarSize ?? (uploadAvatar ? 256 : 128),
+      avatarSize: avatarSize ?? 256,
       basePath: basePath === '/' ? '' : basePath,
       baseURL,
       redirectTo,
@@ -338,7 +332,6 @@ export const AuthUIProvider = ({
       signUpFields,
       navigate: navigate || defaultNavigate,
       replace: replace || navigate || defaultReplace,
-      uploadAvatar,
       Link,
       confirmPassword,
       twoFactor,
@@ -364,7 +357,6 @@ export const AuthUIProvider = ({
       signUpFields,
       navigate,
       replace,
-      uploadAvatar,
       Link,
       confirmPassword,
       twoFactor,

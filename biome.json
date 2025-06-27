@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
   "extends": ["ultracite"],
   "vcs": {
     "enabled": true,
@@ -19,10 +19,5 @@
         "useImportType": "off"
       }
     }
-  },
-  "files": {
-    "ignore": [
-      "apps/email/.react-email/**"
-    ]
   }
 }

@@ -100,6 +100,7 @@ export const SignIn = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      autoComplete='email'
                       placeholder={t('authentication.fields.emailPlaceholder')}
                       {...field}
                     />

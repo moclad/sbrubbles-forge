@@ -4,11 +4,11 @@ services:
     ports:
       - "6005:3000"
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-mypassword}@postgres-umami:5432/umami
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-mypassword}@postgres_forge:5432/umami_db
       DATABASE_TYPE: postgresql
       APP_SECRET: replace-me-with-a-random-string
     depends_on:
-      - postgres-umami
+      - postgres_forge
     init: true
     restart: always
     healthcheck:
@@ -16,32 +16,25 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - sbrubbles-forge-network
 
-  postgres-umami:
-    container_name: postgres-umami
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_UMAMI_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_UMAMI_PASSWORD:-mypassword}
-      POSTGRES_DB: ${POSTGRES_UMAMI_DB:-umami}
-      PGDATA: /data/postgres
-    volumes:
-       - postgres-umami:/data/postgres
-    restart: unless-stopped
-
-  postgres:
+  postgres_forge:
     container_name: postgres_forge
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mypassword}
-      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-sbrubbles_forge_db}  # Default database, additional ones created by init script
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
+       - postgres_forge:/data/postgres
+       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     ports:
       - "5432:5432"
     restart: unless-stopped
+    networks:
+      - sbrubbles-forge-network
 
   ntfy:
     image: binwiederhier/ntfy
@@ -54,9 +47,15 @@ services:
     ports:
       - 8010:80
     restart: unless-stopped
+    networks:
+      - sbrubbles-forge-network
 
 volumes:
     ntfy:
     ntfy-etc:
-    postgres:
-    postgres-umami:
+    postgres_forge:
+
+networks:
+  sbrubbles-forge-network:
+    driver: bridge
+    name: sbrubbles-forge-network
