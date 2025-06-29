@@ -83,7 +83,3 @@ const button = {
   width: '210px',
   padding: '14px 7px',
 };
-
-const anchor = {
-  textDecoration: 'underline',
-};

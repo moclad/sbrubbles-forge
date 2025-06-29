@@ -36,7 +36,7 @@
     "@biomejs/biome": "2.0.6",
     "@release-it/conventional-changelog": "^10.0.1",
     "@repo/typescript-config": "workspace:*",
-    "@turbo/gen": "^2.5.5-canary.0",
+    "@turbo/gen": "2.5.5-canary.0",
     "@types/node": "catalog:",
     "import-in-the-middle": "^1.13.2",
     "prettier": "^3.5.3",
@@ -46,13 +46,13 @@
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
     "typescript": "catalog:",
-    "ultracite": "^5.0.12",
-    "vitest": "^3.2.2"
+    "ultracite": "^5.0.26",
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.12.3",
+  "packageManager": "pnpm@10.12.4",
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "commander": "^14.0.0"

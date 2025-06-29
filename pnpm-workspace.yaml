@@ -10,7 +10,7 @@ catalog:
   '@t3-oss/env-core': ^0.13.8
   '@t3-oss/env-nextjs': ^0.13.8
   '@types/negotiator': ^0.6.4
-  '@types/node': ^24.0.4
+  '@types/node': ^24.0.7
   international-types: ^0.8.1
   lucide-react: ^0.523.0
   negotiator: ^1.0.0
