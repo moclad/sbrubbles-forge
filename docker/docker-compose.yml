@@ -1,5 +1,8 @@
+name: sbrubbles-forge
+
 services:
   umami:
+    container_name: umami.sbrubbles
     image: ghcr.io/umami-software/umami:postgresql-latest
     ports:
       - "6005:3000"
@@ -20,7 +23,7 @@ services:
       - sbrubbles-forge-network
 
   postgres_forge:
-    container_name: postgres_forge
+    container_name: postgres.sbrubbles
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -38,7 +41,7 @@ services:
 
   ntfy:
     image: binwiederhier/ntfy
-    container_name: ntfy
+    container_name: ntfy.sbrubbles
     command:
       - serve
     volumes:

@@ -6,4 +6,4 @@ import { keys } from './keys';
 
 const pool = new Pool({ connectionString: keys().DATABASE_URL });
 
-export const database = drizzle({ client: pool, schema: schema });
+export const database = drizzle({ client: pool, schema });

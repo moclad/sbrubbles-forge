@@ -33,12 +33,13 @@
     "services:start": "docker compose -f docker-compose.yml -f ./docker-compose-storage.yml up -d --remove-orphans"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.0.5",
+    "@biomejs/biome": "2.0.6",
     "@release-it/conventional-changelog": "^10.0.1",
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^2.5.5-canary.0",
     "@types/node": "catalog:",
-    "prettier": "^3.6.2",
+    "import-in-the-middle": "^1.13.2",
+    "prettier": "^3.5.3",
     "release-it": "^19.0.3",
     "release-it-pnpm": "^4.6.6",
     "ts-node": "^10.9.2",

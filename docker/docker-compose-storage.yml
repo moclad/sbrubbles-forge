@@ -1,8 +1,10 @@
+name: sbrubbles-forge
+
 services:
 
   master:
     image: chrislusf/seaweedfs:latest
-    container_name: seaweedfs-master
+    container_name: seaweedfs-master.sbrubbles
     command: "master -ip=master -ip.bind=0.0.0.0 -metricsPort=9324 -mdir=/data -volumeSizeLimitMB=3000"
     ports:
       - "9333:9333"   # Master HTTP
@@ -16,7 +18,7 @@ services:
 
   volume:
     image: chrislusf/seaweedfs:latest
-    container_name: seaweedfs-volume
+    container_name: seaweedfs-volume.sbrubbles
     command: "volume -mserver=master:9333 -ip=volume -dir=/data -max=100  -ip.bind=0.0.0.0 -port=8080 -metricsPort=9325"
     depends_on:
       - master
@@ -32,7 +34,7 @@ services:
 
   filer:
     image: chrislusf/seaweedfs:latest
-    container_name: seaweedfs-filer
+    container_name: seaweedfs-filer.sbrubbles
     command: "filer -master=master:9333 -ip.bind=0.0.0.0 -metricsPort=9326"
     depends_on:
       - master
@@ -51,7 +53,7 @@ services:
 
   s3:
     image: chrislusf/seaweedfs:latest
-    container_name: seaweedfs-s3
+    container_name: seaweedfs-s3.sbrubbles
     command: "s3 -filer=filer:8888 -config=/etc/seaweedfs/config.json -ip.bind=0.0.0.0 -metricsPort=9327"
     depends_on:
       - master
@@ -69,7 +71,10 @@ services:
       - sbrubbles-forge-network
 
   storage:
+    container_name: storage.sbrubbles
     image: supabase/storage-api:latest
+    depends_on:
+      - postgres_forge
     ports:
       - '5000:5000'
     environment:
@@ -108,6 +113,7 @@ services:
       - sbrubbles-forge-network
 
   imgproxy:
+    container_name: imgproxy.sbrubbles
     image: darthsim/imgproxy
     volumes:
       - ./imgproxy_data:/images/data

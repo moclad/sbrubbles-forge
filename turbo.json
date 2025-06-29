@@ -1,51 +1,51 @@
 {
-	"$schema": "https://turbo.build/schema.json",
-	"globalDependencies": ["**/.env.*local"],
-	"ui": "tui",
-	"envMode": "loose",
-	"concurrency": "100%",
-	"tasks": {
-		"build": {
-			"dependsOn": ["^build", "test"],
-			"outputs": [
-				".next/**",
-				"!.next/cache/**",
-				"**/generated/**",
-				"storybook-static/**",
-				".react-email/**",
-				"migrations/**"
-			]
-		},
-		"test": {
-			"dependsOn": ["^test"]
-		},
-		"e2e": {
-			"dependsOn": ["^build", "^e2e"],
-			"with": ["start"],
-			"cache": false,
-			"persistent": true
-		},
-		"analyze": {
-			"dependsOn": ["^analyze"]
-		},
-		"start": {
-			"persistent": false,
-			"cache": true,
-			"outputs": [
-				".next/**",
-				"!.next/cache/**",
-				"**/generated/**",
-				"storybook-static/**",
-				".react-email/**",
-				"migrations/**"
-			]
-		},
-		"dev": {
-			"cache": false,
-			"persistent": true
-		},
-		"clean": {
-			"cache": false
-		}
-	}
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "ui": "stream",
+  "envMode": "loose",
+  "concurrency": "100%",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "test"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "**/generated/**",
+        "storybook-static/**",
+        ".react-email/**",
+        "migrations/**"
+      ]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "e2e": {
+      "dependsOn": ["^build", "^e2e"],
+      "with": ["start"],
+      "cache": false,
+      "persistent": true
+    },
+    "analyze": {
+      "dependsOn": ["^analyze"]
+    },
+    "start": {
+      "persistent": false,
+      "cache": true,
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "**/generated/**",
+        "storybook-static/**",
+        ".react-email/**",
+        "migrations/**"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import { StorageApiError, StorageClient } from '@supabase/storage-js';
 
-import { PUBLIC_ASSETS_BUCKET, PRIVATE_ASSETS_BUCKET } from './buckets';
+import { log } from '../observability/log';
+import { PRIVATE_ASSETS_BUCKET, PUBLIC_ASSETS_BUCKET } from './buckets';
 import { keys } from './keys';
 
 const SERVICE_KEY =
@@ -28,21 +29,32 @@ const BUCKET_CONFIG = {
 };
 
 export async function initializeStandardBuckets() {
-  for (const bucket of STANDARD_BUCKETS) {
-    try {
-      await storageClient.getBucket(bucket.name);
-    } catch (error) {
-      if ((error as StorageApiError)?.status === 400) {
-        await storageClient.createBucket(bucket.name, {
-          ...BUCKET_CONFIG,
-          ...bucket.config,
-        });
-      } else {
-        throw error;
+  log.info('Initializing standard buckets...');
+  await Promise.all(
+    STANDARD_BUCKETS.map(async (bucket) => {
+      try {
+        log.info(`Checking bucket: ${bucket.name}`);
+        const res = await storageClient.getBucket(bucket.name);
+        log.info(`Checking bucket: ${res}`);
+        log.info(res);
+      } catch (error) {
+        log.info(`Bucket ${bucket.name} not found, creating...`);
+        if ((error as StorageApiError)?.status === 400) {
+          await storageClient.createBucket(bucket.name, {
+            ...BUCKET_CONFIG,
+            ...bucket.config,
+          });
+        } else {
+          log.error(
+            `Failed to initialize bucket ${bucket.name}:`,
+            error.message
+          );
+          throw error;
+        }
       }
-    }
-  }
+    })
+  );
 }
 
 // Initialize standard buckets at startup
-initializeStandardBuckets().catch(console.error);
+initializeStandardBuckets();

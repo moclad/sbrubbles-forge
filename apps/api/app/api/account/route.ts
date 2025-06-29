@@ -10,7 +10,7 @@ export async function GET(): Promise<Response> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  if (!(session && session.user)) {
+  if (!session?.user) {
     return NextResponse.json(
       {
         success: false,
@@ -25,12 +25,12 @@ export async function GET(): Promise<Response> {
   return NextResponse.json(await getAvatarUrl(userId));
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest, _res: NextResponse) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  if (!(session && session.user)) {
+  if (!session?.user) {
     return NextResponse.json(
       {
         success: false,

@@ -1,11 +1,10 @@
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-
 import { auth } from '@repo/auth/server';
 import { database } from '@repo/database';
 import { pageTable } from '@repo/database/db/schema';
-
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 const title = 'Acme Inc';
 const description = 'My application.';
 

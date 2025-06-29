@@ -1,10 +1,17 @@
+import { log } from '@repo/observability/log';
+
 import { PUBLIC_ASSETS_BUCKET } from '../buckets';
 import { storageClient } from '../server';
 
-export async function getAvatarUploadUrl(userId: string, extension: string) {
+export async function getAvatarUploadUrl(userId: string, _extension: string) {
+  await storageClient;
   const { data, error } = await storageClient
     .from(PUBLIC_ASSETS_BUCKET)
-    .createSignedUploadUrl(`${userId}/avatar.${extension}`, { upsert: true });
+    .createSignedUploadUrl(`/avatar/${userId}/avatar.${_extension}`, {
+      upsert: true,
+    });
+
+  log.info(error.message);
 
   if (error) {
     throw new Error(`Failed to create url: ${error.message}`);

@@ -1,19 +1,18 @@
 import 'server-only';
 
+import { database } from '@repo/database';
 import { betterAuth } from 'better-auth';
-import { emailHarmony } from 'better-auth-harmony';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { nextCookies } from 'better-auth/next-js';
 import { admin, openAPI, organization, twoFactor } from 'better-auth/plugins';
 import { passkey } from 'better-auth/plugins/passkey';
-
-import { database } from '@repo/database';
+import { emailHarmony } from 'better-auth-harmony';
 
 import { keys } from './keys';
 import { sendResetEmail, sendWelcomeEmail } from './lib/email';
 
 export const auth: ReturnType<typeof betterAuth> = betterAuth({
-  appName: 'Sbrubbles Forge',
+  appName: 'Sbrubbles.Forge',
   database: drizzleAdapter(database, {
     provider: 'pg',
   }),
