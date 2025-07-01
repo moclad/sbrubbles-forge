@@ -22,7 +22,7 @@ catalog:
   "server-only": "^0.0.1"
   "svix": "^1.66.0"
   "typescript": "^5.8.3"
-  "zod": "^3.25.49"
+  "zod": "^3.25.67"
 
 catalogs:
   tailwind:
