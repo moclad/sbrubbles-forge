@@ -29,7 +29,7 @@
     "@storybook/addon-onboarding": "^9.0.4",
     "storybook-dark-mode": "^4.0.2",
     "@storybook/addon-themes": "^9.0.4",
-    "@storybook/nextjs": "^9.0.4",
+    "@storybook/nextjs": "^9.0.15",
     "@storybook/types": "^8.6.14",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
