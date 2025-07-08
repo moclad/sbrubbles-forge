@@ -1,11 +1,5 @@
 'use client';
 
-import { LogIn } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useContext, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -14,20 +8,23 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
-
+import { LogIn } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useContext, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import type { z } from 'zod';
 import { signIn } from '../../client';
 import { signInFormSchema } from '../../lib/auth-schema';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { PasskeyButton } from './passkey-button';
-
-import type { z } from 'zod';
 export const SignIn = () => {
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
@@ -160,7 +157,7 @@ export const SignIn = () => {
 
         <PasskeyButton
           disabled={loading}
-          isSubmitting={loadingPasskey}
+          isSubmitting={loadingPasskey || loading}
           setIsSubmitting={setLoadingPasskey}
         />
 

@@ -38,15 +38,15 @@
     "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "2.5.5-canary.0",
     "@types/node": "catalog:",
-    "import-in-the-middle": "^1.13.2",
-    "prettier": "^3.5.3",
+    "import-in-the-middle": "^1.14.2",
+    "prettier": "^3.6.2",
     "release-it": "^19.0.3",
     "release-it-pnpm": "^4.6.6",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
     "typescript": "catalog:",
-    "ultracite": "^5.0.26",
+    "ultracite": "^5.0.32",
     "vitest": "^3.2.4"
   },
   "engines": {

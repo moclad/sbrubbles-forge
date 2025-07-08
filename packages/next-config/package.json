@@ -11,7 +11,7 @@
     "next": "catalog:"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^15.3.3",
+    "@next/bundle-analyzer": "^15.3.5",
     "@t3-oss/env-core": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
     "zod": "catalog:"

@@ -1,8 +1,7 @@
-import { KeyIcon } from 'lucide-react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { KeyIcon } from 'lucide-react';
 
 import { authClient } from '../../client';
 import { useOnSuccessTransition } from '../../hooks/on-success-transition';
@@ -17,6 +16,7 @@ interface PasskeyButtonProps {
 export function PasskeyButton({
   isSubmitting,
   setIsSubmitting,
+  disabled,
 }: Readonly<PasskeyButtonProps>) {
   const t = useI18n();
   const { onSuccess } = useOnSuccessTransition({ redirectTo: '/dashboard' });
@@ -27,7 +27,6 @@ export function PasskeyButton({
     const result = await authClient.signIn.passkey({
       fetchOptions: {
         onError: (ctx) => {
-          console.log('Error signing in with passkey:', ctx.error);
           toast(getErrorMessage({ error: ctx.error }));
           setIsSubmitting?.(false);
         },
@@ -53,6 +52,7 @@ export function PasskeyButton({
       value='true'
       variant='secondary'
       onClick={signInPassKey}
+      disabled={disabled}
     >
       <KeyIcon />
       {t('authentication.actions.signInWith', {

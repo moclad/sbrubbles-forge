@@ -1,43 +1,43 @@
 {
-  "name": "@repo/auth",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "migrate:auth": "npx @better-auth/cli generate  --config server"
-  },
-  "dependencies": {
-    "@better-fetch/fetch": "^1.1.18",
-    "@hookform/resolvers": "catalog:",
-    "@repo/database": "workspace:*",
-    "@repo/design-system": "workspace:*",
-    "@repo/email": "workspace:*",
-    "@repo/localization": "workspace:*",
-    "@repo/storage": "workspace:*",
-    "@t3-oss/env-nextjs": "catalog:",
-    "better-auth": "^1.2.8",
-    "better-auth-harmony": "^1.2.5",
-    "lucide-react": "catalog:",
-    "next-themes": "catalog:",
-    "react-hook-form": "catalog:",
-    "next": "catalog:",
-    "react": "catalog:react19",
-    "react-qr-code": "^2.0.15",
-    "server-only": "catalog:",
-    "ua-parser-js": "^2.0.3",
-    "zod": "catalog:",
-    "tailwind-merge": "catalog:tailwind",
-    "tailwindcss": "catalog:tailwind",
-    "tw-animate-css": "catalog:tailwind"
-  },
-  "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@tailwindcss/postcss": "catalog:tailwind",
-    "@tailwindcss/typography": "catalog:tailwind",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:react19",
-    "postcss": "catalog:tailwind",
-    "typescript": "catalog:"
-  }
+	"name": "@repo/auth",
+	"version": "4.1.20",
+	"private": true,
+	"scripts": {
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"typecheck": "tsc --noEmit --emitDeclarationOnly false",
+		"migrate:auth": "npx @better-auth/cli generate  --config server"
+	},
+	"dependencies": {
+		"@better-fetch/fetch": "^1.1.18",
+		"@hookform/resolvers": "catalog:",
+		"@repo/database": "workspace:*",
+		"@repo/design-system": "workspace:*",
+		"@repo/email": "workspace:*",
+		"@repo/localization": "workspace:*",
+		"@repo/storage": "workspace:*",
+		"@t3-oss/env-nextjs": "catalog:",
+		"better-auth": "^1.2.12",
+		"better-auth-harmony": "^1.2.5",
+		"lucide-react": "catalog:",
+		"next-themes": "catalog:",
+		"react-hook-form": "catalog:",
+		"next": "catalog:",
+		"react": "catalog:react19",
+		"react-qr-code": "^2.0.18",
+		"server-only": "catalog:",
+		"ua-parser-js": "^2.0.4",
+		"zod": "catalog:",
+		"tailwind-merge": "catalog:tailwind",
+		"tailwindcss": "catalog:tailwind",
+		"tw-animate-css": "catalog:tailwind"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*",
+		"@tailwindcss/postcss": "catalog:tailwind",
+		"@tailwindcss/typography": "catalog:tailwind",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:react19",
+		"postcss": "catalog:tailwind",
+		"typescript": "catalog:"
+	}
 }
