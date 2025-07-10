@@ -27,12 +27,13 @@ import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { PasskeyButton } from './passkey-button';
 export const SignIn = () => {
   const form = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
+    resolver: zodResolver(signInFormSchema),
   });
+
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadingPasskey, setLoadingPasskey] = useState(false);
@@ -50,6 +51,17 @@ export const SignIn = () => {
         password,
       },
       {
+        onError: (ctx) => {
+          toast.error(
+            t('authentication.error.signInFailed', {
+              error: ctx.error.message,
+            }),
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
+          setLoading(false);
+        },
         onRequest: () => {
           toastIdRef.current = toast.loading(
             t('authentication.actions.signingIn')
@@ -68,17 +80,6 @@ export const SignIn = () => {
             router.push(`${basePath}/dashboard${window.location.search}`);
           }
         },
-        onError: (ctx) => {
-          toast.error(
-            t('authentication.error.signInFailed', {
-              error: ctx.error.message,
-            }),
-            {
-              id: toastIdRef.current ?? undefined,
-            }
-          );
-          setLoading(false);
-        },
       }
     );
   }
@@ -87,7 +88,7 @@ export const SignIn = () => {
     <div className='mx-auto w-full max-w-md'>
       <div className='space-y-2'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+          <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name='email'
@@ -124,8 +125,8 @@ export const SignIn = () => {
                     />
                   </FormControl>
                   <Link
-                    href='/forgot-password'
                     className='ml-auto inline-block text-muted-foreground text-sm hover:underline'
+                    href='/forgot-password'
                   >
                     {t('authentication.fields.forgotPassword')}
                   </Link>
@@ -135,10 +136,10 @@ export const SignIn = () => {
             />
             <Button
               className='w-full'
-              type='submit'
+              data-testid='sign-in-btn'
               disabled={loadingPasskey}
               loading={loading}
-              data-testid='sign-in-btn'
+              type='submit'
             >
               <LogIn />
               {t('authentication.actions.signIn')}
@@ -157,7 +158,7 @@ export const SignIn = () => {
 
         <PasskeyButton
           disabled={loading}
-          isSubmitting={loadingPasskey || loading}
+          isSubmitting={loadingPasskey}
           setIsSubmitting={setLoadingPasskey}
         />
 
@@ -167,8 +168,8 @@ export const SignIn = () => {
           <p className='text-muted-foreground text-sm'>
             {t('authentication.noAccountQuestion')}{' '}
             <Link
-              href='/sign-up'
               className='underline underline-offset-4 hover:text-primary'
+              href='/sign-up'
             >
               {t('authentication.actions.signUp')}
             </Link>

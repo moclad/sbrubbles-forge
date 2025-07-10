@@ -7,9 +7,9 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@supabase/storage-js": "^2.7.3",
+    "@supabase/storage-js": "^2.10.1",
     "@t3-oss/env-nextjs": "catalog:",
-    "better-upload": "^0.3.2",
+    "better-upload": "^0.3.3",
     "next": "catalog:",
     "zod": "catalog:"
   },

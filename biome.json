@@ -1,6 +1,25 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "extends": ["ultracite"],
+  "files": {
+    "ignoreUnknown": true,
+    "experimentalScannerIgnores": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.next/**",
+      "**/.cache/**",
+      "**/storybook-static/**",
+      "**/.react-email/**"
+    ]
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on"
+      }
+    }
+  },
   "vcs": {
     "enabled": true,
     "clientKind": "git",

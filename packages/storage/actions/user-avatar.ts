@@ -11,7 +11,7 @@ export async function getAvatarUploadUrl(userId: string, _extension: string) {
       upsert: true,
     });
 
-  log.info(error.message);
+  log.info(error?.message ?? '');
 
   if (error) {
     throw new Error(`Failed to create url: ${error.message}`);

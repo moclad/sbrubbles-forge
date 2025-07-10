@@ -14,8 +14,8 @@ export async function uploadAvatar(formData: FormData) {
   if (!session?.user) {
     return NextResponse.json(
       {
-        success: false,
         error: 'Unauthorized',
+        success: false,
       },
       { status: 401 }
     );
@@ -29,11 +29,11 @@ export async function uploadAvatar(formData: FormData) {
   const url = await getAvatarUploadUrl(userId, extension);
 
   const _res = await fetch(url.signedUrl, {
-    method: 'PUT',
+    body: file,
     headers: {
       'Content-Type': file.type,
     },
-    body: file,
+    method: 'PUT',
   });
 
   //     await updateUser({ image: res.url });
@@ -46,7 +46,7 @@ export async function uploadAvatar(formData: FormData) {
   // }
 
   return NextResponse.json({
-    success: true,
     name: (body.file as File).name,
+    success: true,
   });
 }
