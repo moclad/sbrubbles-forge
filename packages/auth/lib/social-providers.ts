@@ -15,60 +15,60 @@ import {
 
 export const socialProviders = [
   {
-    provider: 'apple',
-    name: 'Apple',
     icon: AppleIcon,
+    name: 'Apple',
+    provider: 'apple',
   },
   {
-    provider: 'discord',
-    name: 'Discord',
     icon: DiscordIcon,
+    name: 'Discord',
+    provider: 'discord',
   },
   {
-    provider: 'dropbox',
-    name: 'Dropbox',
     icon: DropboxIcon,
+    name: 'Dropbox',
+    provider: 'dropbox',
   },
   {
-    provider: 'facebook',
-    name: 'Facebook',
     icon: FacebookIcon,
+    name: 'Facebook',
+    provider: 'facebook',
   },
   {
-    provider: 'github',
-    name: 'GitHub',
     icon: GitHubIcon,
+    name: 'GitHub',
+    provider: 'github',
   },
   {
-    provider: 'gitlab',
-    name: 'GitLab',
     icon: GitLabIcon,
+    name: 'GitLab',
+    provider: 'gitlab',
   },
   {
-    provider: 'google',
-    name: 'Google',
     icon: GoogleIcon,
+    name: 'Google',
+    provider: 'google',
   },
 
   {
-    provider: 'linkedin',
-    name: 'LinkedIn',
     icon: LinkedInIcon,
+    name: 'LinkedIn',
+    provider: 'linkedin',
   },
   {
-    provider: 'microsoft',
-    name: 'Microsoft',
     icon: MicrosoftIcon,
+    name: 'Microsoft',
+    provider: 'microsoft',
   },
   {
-    provider: 'twitch',
-    name: 'Twitch',
     icon: TwitchIcon,
+    name: 'Twitch',
+    provider: 'twitch',
   },
   {
-    provider: 'twitter',
-    name: 'X',
     icon: XIcon,
+    name: 'X',
+    provider: 'twitter',
   },
 ] as const;
 

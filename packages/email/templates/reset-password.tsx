@@ -29,7 +29,7 @@ export function ResetPasswordTemplate({ name, email, resetUrl }: Props) {
               <Text style={text}>
                 We received a request to reset the password for your account:
               </Text>
-              <Button style={button} href={resetUrl}>
+              <Button href={resetUrl} style={button}>
                 Reset password
               </Button>
               <Text style={text}>
@@ -63,11 +63,11 @@ const container = {
 };
 
 const text = {
-  fontSize: '16px',
+  color: '#404040',
   fontFamily:
     "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontSize: '16px',
   fontWeight: '300',
-  color: '#404040',
   lineHeight: '26px',
 };
 
@@ -75,11 +75,11 @@ const button = {
   backgroundColor: '#007ee6',
   borderRadius: '4px',
   color: '#fff',
+  display: 'block',
   fontFamily: "'Open Sans', 'Helvetica Neue', Arial",
   fontSize: '15px',
-  textDecoration: 'none',
-  textAlign: 'center' as const,
-  display: 'block',
-  width: '210px',
   padding: '14px 7px',
+  textAlign: 'center' as const,
+  textDecoration: 'none',
+  width: '210px',
 };

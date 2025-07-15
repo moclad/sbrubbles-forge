@@ -1,11 +1,15 @@
 'use client';
 
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@repo/design-system/components/ui/tabs';
+import { cn } from '@repo/design-system/lib/utils';
 import type { Session, User } from 'better-auth';
 import { KeyIcon, UserIcon } from 'lucide-react';
 import { useContext } from 'react';
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
-import { cn } from '@repo/design-system/lib/utils';
 
 import { useI18n } from '../../../localization/i18n/client';
 import { useAuthenticate } from '../../hooks/use-authenticate';
@@ -17,13 +21,12 @@ import { DeleteAccountCard } from './delete-account-card';
 import { PasskeysCard } from './passkeys-card';
 import { ProvidersCard } from './providers-card';
 import { SessionsCard } from './sessions-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
 import { UpdateFieldCard } from './shared/update-field-card';
 import { TwoFactorCard } from './two-factor/two-factor-card';
 import { UpdateAvatarCard } from './update-avatar-card';
 import { UpdateNameCard } from './update-name-card';
 import { UpdateUsernameCard } from './update-username-card';
-
-import type { SettingsCardClassNames } from './shared/settings-card';
 export type SettingsCardsClassNames = {
   base?: string;
   card?: SettingsCardClassNames;
@@ -120,19 +123,19 @@ export function SettingsCards({
       )}
     >
       <Tabs
-        defaultValue='account'
         className={cn('flex w-full flex-col gap-4', classNames?.tabs?.base)}
+        defaultValue='account'
       >
         <TabsList
           className={cn('grid w-full grid-cols-2', classNames?.tabs?.list)}
         >
-          <TabsTrigger value='account' className={classNames?.tabs?.trigger}>
+          <TabsTrigger className={classNames?.tabs?.trigger} value='account'>
             <UserIcon />
 
             {t('account.account')}
           </TabsTrigger>
 
-          <TabsTrigger value='security' className={classNames?.tabs?.trigger}>
+          <TabsTrigger className={classNames?.tabs?.trigger} value='security'>
             <KeyIcon />
 
             {t('account.security')}
@@ -140,8 +143,8 @@ export function SettingsCards({
         </TabsList>
 
         <TabsContent
-          value='account'
           className={cn('flex flex-col gap-4', classNames?.tabs?.content)}
+          value='account'
         >
           {avatar && (
             <UpdateAvatarCard
@@ -187,18 +190,18 @@ export function SettingsCards({
               validate,
             } = additionalField;
 
-            // @ts-ignore Custom fields are not typed
+            // @ts-expect-error Custom fields are not typed
             const defaultValue = sessionData?.user[field] as unknown;
 
             return (
               <UpdateFieldCard
-                key={field}
                 classNames={classNames?.card}
                 defaultValue={defaultValue}
                 description={description}
                 field={field}
                 instructions={instructions}
                 isPending={sessionPending}
+                key={field}
                 label={label}
                 placeholder={placeholder}
                 required={required}
@@ -220,8 +223,8 @@ export function SettingsCards({
         </TabsContent>
 
         <TabsContent
-          value='security'
           className={cn('flex flex-col gap-4', classNames?.tabs?.content)}
+          value='security'
         >
           {credentials && (
             <ChangePasswordCard
@@ -259,8 +262,8 @@ export function SettingsCards({
           <SessionsCard
             classNames={classNames?.card}
             isPending={sessionsPending}
-            sessions={sessions}
             refetch={refetchSessions}
+            sessions={sessions}
             skipHook
           />
 

@@ -9,13 +9,18 @@ import { keys } from './keys';
 
 export const initializeSentry = (): ReturnType<typeof init> =>
   init({
-    dsn: keys().NEXT_PUBLIC_SENTRY_DSN,
-
-    // Adjust this value in production, or use tracesSampler for greater control
-    tracesSampleRate: 1,
-
     // Setting this option to true will print useful information to the console while you're setting up Sentry.
     debug: false,
+    dsn: keys().NEXT_PUBLIC_SENTRY_DSN,
+
+    // You can remove this option if you're not planning to use the Sentry Session Replay feature:
+    integrations: [
+      replayIntegration({
+        blockAllMedia: true,
+        // Additional Replay configuration goes in here, for example:
+        maskAllText: true,
+      }),
+    ],
 
     replaysOnErrorSampleRate: 1,
 
@@ -25,12 +30,6 @@ export const initializeSentry = (): ReturnType<typeof init> =>
      */
     replaysSessionSampleRate: 0.1,
 
-    // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-    integrations: [
-      replayIntegration({
-        // Additional Replay configuration goes in here, for example:
-        maskAllText: true,
-        blockAllMedia: true,
-      }),
-    ],
+    // Adjust this value in production, or use tracesSampler for greater control
+    tracesSampleRate: 1,
   });

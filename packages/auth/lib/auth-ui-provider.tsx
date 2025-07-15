@@ -1,9 +1,8 @@
 'use client';
-import { ReactNode, createContext, useMemo } from 'react';
-
-import { useAuthData } from '../hooks/use-auth-data';
 
 import type { SocialProvider } from 'better-auth/social-providers';
+import { createContext, ReactNode, useMemo } from 'react';
+import { useAuthData } from '../hooks/use-auth-data';
 import type { AdditionalFields } from '../types/additional-fields';
 import type { AnyAuthClient } from '../types/any-auth-client';
 import type { AuthClient } from '../types/auth-client';
@@ -11,6 +10,7 @@ import type { AuthHooks } from '../types/auth-hooks';
 import type { AuthMutators } from '../types/auth-mutators';
 import type { Link } from '../types/link';
 import type { Provider } from './social-providers';
+
 const DefaultLink: Link = ({ href, className, children }) => (
   <a className={className} href={href}>
     {children}
@@ -281,13 +281,13 @@ export const AuthUIProvider = ({
           ...params,
           fetchOptions: { throw: true },
         }),
-      updateUser: (params) =>
-        authClient.updateUser({
+      unlinkAccount: (params) =>
+        authClient.unlinkAccount({
           ...params,
           fetchOptions: { throw: true },
         }),
-      unlinkAccount: (params) =>
-        authClient.unlinkAccount({
+      updateUser: (params) =>
+        authClient.updateUser({
           ...params,
           fetchOptions: { throw: true },
         }),
@@ -297,7 +297,6 @@ export const AuthUIProvider = ({
 
   const defaultHooks: AuthHooks = useMemo(
     () => ({
-      useSession: (authClient as AuthClient).useSession,
       // biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
       useListAccounts: () => useAuthData({ queryFn: authClient.listAccounts }),
       useListDeviceSessions: () =>
@@ -305,9 +304,10 @@ export const AuthUIProvider = ({
         useAuthData({
           queryFn: (authClient as AuthClient).multiSession.listDeviceSessions,
         }),
+      useListPasskeys: (authClient as AuthClient).useListPasskeys,
       // biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
       useListSessions: () => useAuthData({ queryFn: authClient.listSessions }),
-      useListPasskeys: (authClient as AuthClient).useListPasskeys,
+      useSession: (authClient as AuthClient).useSession,
     }),
     [authClient]
   );
@@ -319,21 +319,21 @@ export const AuthUIProvider = ({
       avatarSize: avatarSize ?? 256,
       basePath: basePath === '/' ? '' : basePath,
       baseURL,
-      redirectTo,
       changeEmail,
+      confirmPassword,
       credentials,
       forgotPassword,
       freshAge,
       hooks: { ...defaultHooks, ...hooks },
+      Link,
       mutators: { ...defaultMutates, ...mutators },
       nameRequired,
+      navigate: navigate || defaultNavigate,
+      redirectTo,
+      replace: replace || navigate || defaultReplace,
       settingsFields,
       signUp,
       signUpFields,
-      navigate: navigate || defaultNavigate,
-      replace: replace || navigate || defaultReplace,
-      Link,
-      confirmPassword,
       twoFactor,
     }),
     [

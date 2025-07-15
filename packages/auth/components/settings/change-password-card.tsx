@@ -1,13 +1,12 @@
 'use client';
 
-import { useContext, useState } from 'react';
-
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { ConfirmPasswordInput } from '../confirm-password-input';
@@ -55,8 +54,8 @@ export function ChangePasswordCard({
 
     await authClient.forgetPassword({
       email,
-      redirectTo: `${basePath}/reset-password`,
       fetchOptions: { throw: true },
+      redirectTo: `${basePath}/reset-password`,
     });
 
     toast.success(t('account.setPasswordEmailSent'));
@@ -75,9 +74,9 @@ export function ChangePasswordCard({
 
     await authClient.changePassword({
       currentPassword,
+      fetchOptions: { throw: true },
       newPassword,
       revokeOtherSessions: true,
-      fetchOptions: { throw: true },
     });
 
     toast.error(t('account.changePasswordSuccess'));
@@ -87,31 +86,31 @@ export function ChangePasswordCard({
     (acc) => acc.provider === 'credential'
   );
 
-  if (!isPending && !credentialsLinked) {
+  if (!(isPending || credentialsLinked)) {
     return (
       <SettingsCard
-        title={t('account.changePassword')}
-        description={t('account.setPasswordDescription')}
         actionLabel={t('account.setPassword')}
-        formAction={setPassword}
-        isPending={isPending}
         className={className}
         classNames={classNames}
+        description={t('account.setPasswordDescription')}
+        formAction={setPassword}
+        isPending={isPending}
+        title={t('account.changePassword')}
       />
     );
   }
 
   return (
     <SettingsCard
-      title={t('account.changePassword')}
-      description={t('account.changePasswordDescription')}
       actionLabel={t('account.save')}
-      disabled={disabled}
-      isPending={isPending}
-      instructions={t('account.changePasswordInstructions')}
       className={className}
       classNames={classNames}
+      description={t('account.changePasswordDescription')}
+      disabled={disabled}
       formAction={changePassword}
+      instructions={t('account.changePasswordInstructions')}
+      isPending={isPending}
+      title={t('account.changePassword')}
     >
       <CardContent className={cn('grid gap-6', classNames?.content)}>
         {isPending || !accounts ? (
@@ -131,10 +130,10 @@ export function ChangePasswordCard({
               </Label>
 
               <PasswordInput
+                autoComplete='current-password'
+                className={classNames?.input}
                 id='currentPassword'
                 name='currentPassword'
-                className={classNames?.input}
-                autoComplete='current-password'
                 placeholder={t('account.currentPasswordPlaceholder')}
                 required
               />
@@ -146,23 +145,23 @@ export function ChangePasswordCard({
               </Label>
 
               <PasswordInput
+                autoComplete='new-password'
+                className={classNames?.input}
                 id='newPassword'
                 name='newPassword'
-                className={classNames?.input}
-                autoComplete='new-password'
-                placeholder={t('account.newPasswordPlaceholder')}
-                required
                 onChange={(e) =>
                   !confirmPasswordEnabled && setDisabled(e.target.value === '')
                 }
+                placeholder={t('account.newPasswordPlaceholder')}
+                required
               />
             </div>
 
             {confirmPasswordEnabled && (
               <ConfirmPasswordInput
+                autoComplete='current-password'
                 classNames={classNames}
                 onChange={() => setDisabled(false)}
-                autoComplete='current-password'
               />
             )}
           </>

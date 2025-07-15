@@ -1,9 +1,5 @@
 'use client';
 
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@repo/design-system//lib/utils';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
@@ -19,14 +15,16 @@ import {
 } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
 import { useIsHydrated } from '../../hooks/use-hydrated';
 import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
-import { OTPInputGroup } from '../otp-input-group';
-
 import type { AuthClient } from '../../types/auth-client';
+import { OTPInputGroup } from '../otp-input-group';
 export interface TwoFactorFormProps {
   className?: string;
   isSubmitting?: boolean;
@@ -69,11 +67,11 @@ export function TwoFactorForm({
   });
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       code: '',
       trustDevice: false,
     },
+    resolver: zodResolver(formSchema),
   });
 
   isSubmitting =
@@ -85,8 +83,8 @@ export function TwoFactorForm({
 
       await verifyMethod({
         code,
-        trustDevice,
         fetchOptions: { throw: true },
+        trustDevice,
       });
 
       await onSuccess();
@@ -106,8 +104,8 @@ export function TwoFactorForm({
       <div className='space-y-4'>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(verifyCode)}
             className='mt-4 space-y-4'
+            onSubmit={form.handleSubmit(verifyCode)}
           >
             <>
               <FormField
@@ -131,6 +129,7 @@ export function TwoFactorForm({
                         <InputOTP
                           autoFocus
                           {...field}
+                          disabled={isSubmitting}
                           maxLength={6}
                           onChange={(value) => {
                             field.onChange(value);
@@ -139,7 +138,6 @@ export function TwoFactorForm({
                               form.handleSubmit(verifyCode)();
                             }
                           }}
-                          disabled={isSubmitting}
                         >
                           <OTPInputGroup otpSeparators={otpSeparators} />
                         </InputOTP>
@@ -159,8 +157,8 @@ export function TwoFactorForm({
                     <FormControl>
                       <Checkbox
                         checked={field.value}
-                        onCheckedChange={field.onChange}
                         disabled={isSubmitting}
+                        onCheckedChange={field.onChange}
                       />
                     </FormControl>
 
@@ -171,9 +169,9 @@ export function TwoFactorForm({
             </>
 
             <Button
-              type='submit'
               className='mt-4 w-full'
               loading={isSubmitting}
+              type='submit'
             >
               {isSubmitting
                 ? t('account.twoFactorVerifying')
@@ -181,11 +179,11 @@ export function TwoFactorForm({
             </Button>
 
             <Button
-              type='button'
-              variant='secondary'
               className='w-full'
               disabled={isSubmitting}
               onClick={() => navigate(`${basePath}/sign-in`)}
+              type='button'
+              variant='secondary'
             >
               {t('account.backToSignIn')}
             </Button>

@@ -1,20 +1,19 @@
 'use client';
 
-import type { Session, User } from 'better-auth';
-import { EllipsisIcon, Loader2, LogOutIcon, RepeatIcon } from 'lucide-react';
-import { useContext, useState } from 'react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import type { Session, User } from 'better-auth';
+import { EllipsisIcon, Loader2, LogOutIcon, RepeatIcon } from 'lucide-react';
+import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';

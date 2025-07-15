@@ -54,15 +54,15 @@ services:
   s3:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-s3.sbrubbles
-    command: "s3 -filer=filer:8888 -config=/etc/seaweedfs/config.json -ip.bind=0.0.0.0 -metricsPort=9327"
+    command: "s3 -filer=filer:8888 -ip.bind=0.0.0.0 -metricsPort=9327"
     depends_on:
       - master
       - volume
       - filer
     ports:
       - "8333:8333"   # S3 API endpoint
-    volumes:
-      - ./seaweed.config.json:/etc/seaweedfs/config.json
+#    volumes:
+#      - ./seaweed.config.json:/etc/seaweedfs/config.json
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-seaweedfs}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-seaweedfs_key}
@@ -73,6 +73,7 @@ services:
   storage:
     container_name: storage.sbrubbles
     image: supabase/storage-api:latest
+    restart: unless-stopped
     depends_on:
       - postgres_forge
     ports:
@@ -84,14 +85,14 @@ services:
       AUTH_JWT_SECRET: ${STORAGE_AUTH_JWT_SECRET:-super-secret-jwt-token-with-at-least-32-characters-long}
       AUTH_JWT_ALGORITHM: ${STORAGE_AUTH_JWT_ALGORITHM:-HS256}
       # Single tenant Mode
-      DATABASE_URL: ${STORAGE_DATABASE_URL:-postgres://postgres:mypassword@postgres_forge:5432/sbrubbles_forge_db}
+      DATABASE_URL: ${STORAGE_DATABASE_URL:-postgres://postgres:mypassword@postgres_forge:5432/postgres}
       #DATABASE_POOL_URL: postgresql://postgres:postgres@pg_bouncer:6432/postgres
       # Migrations
       DB_INSTALL_ROLES: true # set to false if you want to manage roles yourself
       # Storage
       STORAGE_BACKEND: ${STORAGE_TYPE:-s3}
       STORAGE_S3_BUCKET: ${STORAGE_S3_BUCKET:-sbrubbles-forge}
-      STORAGE_S3_ENDPOINT: s3:8333
+      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT:-s3:8333}
       STORAGE_S3_FORCE_PATH_STYLE: "true"
       STORAGE_S3_REGION: us-east-1
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-seaweedfs}
@@ -115,6 +116,7 @@ services:
   imgproxy:
     container_name: imgproxy.sbrubbles
     image: darthsim/imgproxy
+    restart: unless-stopped
     volumes:
       - ./imgproxy_data:/images/data
     environment:

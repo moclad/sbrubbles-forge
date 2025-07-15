@@ -46,13 +46,13 @@ export function PasskeyButton({
   return (
     <Button
       className='w-full'
-      loading={isSubmitting}
+      disabled={disabled}
       formNoValidate
+      loading={isSubmitting}
       name='passkey'
+      onClick={signInPassKey}
       value='true'
       variant='secondary'
-      onClick={signInPassKey}
-      disabled={disabled}
     >
       <KeyIcon />
       {t('authentication.actions.signInWith', {

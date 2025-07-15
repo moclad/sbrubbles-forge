@@ -1,17 +1,15 @@
 'use client';
 
-import { ReactNode, useActionState } from 'react';
-
 import { Card } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { ReactNode, useActionState } from 'react';
 
 import { getErrorMessage } from '../../../lib/get-error-message';
+import type { UserAvatarClassNames } from '../../user-avatar';
 import { SettingsCardFooter } from './settings-card-footer';
 import { SettingsCardHeader } from './settings-card-header';
-
-import type { UserAvatarClassNames } from '../../user-avatar';
 
 export type SettingsCardClassNames = {
   base?: string;
@@ -92,21 +90,21 @@ export function SettingsCard({
         )}
       >
         <SettingsCardHeader
-          title={title}
+          classNames={classNames}
           description={description}
           isPending={isPending}
-          classNames={classNames}
+          title={title}
         />
 
         {children}
 
         <SettingsCardFooter
           actionLabel={actionLabel}
-          disabled={disabled}
-          isSubmitting={isSubmitting || externalIsSubmitting}
-          isPending={isPending}
-          instructions={instructions}
           classNames={classNames}
+          disabled={disabled}
+          instructions={instructions}
+          isPending={isPending}
+          isSubmitting={isSubmitting || externalIsSubmitting}
           optimistic={optimistic}
           variant={variant}
         />

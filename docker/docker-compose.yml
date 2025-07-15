@@ -28,7 +28,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mypassword}
-      POSTGRES_DB: ${POSTGRES_DB:-sbrubbles_forge_db}  # Default database, additional ones created by init script
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}  # Default database, additional ones created by init script
       PGDATA: /data/postgres
     volumes:
        - postgres_forge:/data/postgres

@@ -3,8 +3,8 @@ import { createI18nServer } from 'next-international/server';
 type CreateI18nServerReturn = ReturnType<typeof createI18nServer>;
 
 const i18nServer: CreateI18nServerReturn = createI18nServer({
-  en: () => import('../locales/en'),
   de: () => import('../locales/de'),
+  en: () => import('../locales/en'),
   'pt-BR': () => import('../locales/pt-BR'),
 });
 

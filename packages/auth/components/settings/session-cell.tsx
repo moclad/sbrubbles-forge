@@ -1,15 +1,14 @@
 'use client';
 
-import type { Session } from 'better-auth';
-import { LaptopIcon, SmartphoneIcon } from 'lucide-react';
-import { useContext, useState } from 'react';
-import { UAParser } from 'ua-parser-js';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import type { Session } from 'better-auth';
+import { LaptopIcon, SmartphoneIcon } from 'lucide-react';
+import { useContext, useState } from 'react';
+import { UAParser } from 'ua-parser-js';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
@@ -90,9 +89,9 @@ export function SessionCell({
       <Button
         className={cn('relative ms-auto', classNames?.button)}
         loading={isLoading}
+        onClick={handleRevoke}
         size='sm'
         variant='outline'
-        onClick={handleRevoke}
       >
         {isCurrentSession ? t('account.signOut') : t('account.revoke')}
       </Button>

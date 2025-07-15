@@ -18,14 +18,14 @@ export const send = async (
   const svix = new Svix(svixToken);
 
   return svix.message.create(orgId, {
+    application: {
+      name: orgId,
+      uid: orgId,
+    },
     eventType,
     payload: {
       eventType,
       ...payload,
-    },
-    application: {
-      name: orgId,
-      uid: orgId,
     },
   });
 };

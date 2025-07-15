@@ -1,20 +1,20 @@
 'use client';
-import { useContext, useRef, useState } from 'react';
 
 import { Card } from '@repo/design-system/components/ui/card';
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext, useRef, useState } from 'react';
 
 import { uploadAvatar } from '../../actions/avatar';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 import { UserAvatar } from '../user-avatar';
+import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCardFooter } from './shared/settings-card-footer';
 import { SettingsCardHeader } from './shared/settings-card-header';
 
-import type { SettingsCardClassNames } from './shared/settings-card';
 async function resizeAndCropImage(
   file: File,
   name: string,
@@ -112,12 +112,10 @@ export function UpdateAvatarCard({
         toast.error(t('account.selectedFileNotValid'));
         return;
       }
-      // Get the file name and extension
-      const extension = file.name?.split('.').pop()?.toLowerCase();
 
       const formData = new FormData();
       formData.append('file', resizedFile);
-      formData.append('extension', extension ?? avatarExtension);
+      formData.append('extension', avatarExtension);
 
       uploadAvatar(formData);
 
@@ -142,38 +140,38 @@ export function UpdateAvatarCard({
       )}
     >
       <input
-        ref={fileInputRef}
         accept='image/*'
         disabled={loading}
         hidden
-        type='file'
         onChange={(e) => {
           const file = e.target.files?.item(0);
           if (file) {
             handleAvatarChange(file);
           }
         }}
+        ref={fileInputRef}
+        type='file'
       />
 
       <div className='flex justify-between'>
         <SettingsCardHeader
           className='grow self-start'
-          title={t('account.avatar')}
+          classNames={classNames}
           description={t('account.avatarDescription')}
           isPending={isPending}
-          classNames={classNames}
+          title={t('account.avatar')}
         />
 
-        <button type='button' onClick={openFileDialog}>
+        <button onClick={openFileDialog} type='button'>
           {isPending || loading ? (
             <Skeleton
               className={cn('size-20 rounded-full', classNames?.avatar?.base)}
             />
           ) : (
             <UserAvatar
-              key={sessionData?.user.image}
               className='m-4 size-10 text-2xl'
               classNames={classNames?.avatar}
+              key={sessionData?.user.image}
               user={sessionData?.user}
             />
           )}
@@ -182,8 +180,8 @@ export function UpdateAvatarCard({
 
       <SettingsCardFooter
         className='!py-5'
-        instructions={t('account.avatarInstructions')}
         classNames={classNames}
+        instructions={t('account.avatarInstructions')}
         isPending={isPending}
         isSubmitting={loading}
       />

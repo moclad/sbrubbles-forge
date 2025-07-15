@@ -1,13 +1,11 @@
 'use client';
 
+import { useI18n } from '@repo/localization/i18n/client';
 import { useContext } from 'react';
 
-import { useI18n } from '@repo/localization/i18n/client';
-
 import { AuthUIContext } from '../../lib/auth-ui-provider';
-import { UpdateFieldCard } from './shared/update-field-card';
-
 import type { SettingsCardClassNames } from './shared/settings-card';
+import { UpdateFieldCard } from './shared/update-field-card';
 export interface UpdateNameCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;

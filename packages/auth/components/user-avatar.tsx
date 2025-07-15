@@ -1,5 +1,3 @@
-import { UserIcon } from 'lucide-react';
-
 import {
   Avatar,
   AvatarFallback,
@@ -7,6 +5,7 @@ import {
 } from '@repo/design-system/components/ui/avatar';
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
+import { UserIcon } from 'lucide-react';
 
 import type { ComponentProps } from 'react';
 

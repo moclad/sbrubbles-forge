@@ -3,7 +3,7 @@
 import {
   InputOTPGroup,
   InputOTPSeparator,
-  InputOTPSlot
+  InputOTPSlot,
 } from '@repo/design-system/components/ui/input-otp';
 
 export function OTPInputGroup({

@@ -2,12 +2,11 @@
 
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import Link from 'next/link';
-
+import type { ReactNode } from 'react';
 import { authClient } from './client';
 import { keys } from './keys';
 import { AuthUIProvider } from './lib/auth-ui-provider';
 
-import type { ReactNode } from 'react';
 type AuthProviderProps = {
   children: ReactNode;
   router: AppRouterInstance;
@@ -16,17 +15,17 @@ type AuthProviderProps = {
 export const AuthProvider = ({ router, children }: AuthProviderProps) => {
   return (
     <AuthUIProvider
-      baseURL={keys().NEXT_PUBLIC_BETTER_AUTH_URL}
       authClient={authClient}
-      navigate={router.push}
+      baseURL={keys().NEXT_PUBLIC_BETTER_AUTH_URL}
       confirmPassword={true}
-      twoFactor={['totp']}
-      replace={router.replace}
+      Link={Link}
+      navigate={router.push}
       onSessionChange={() => {
         // Clear router cache (protected routes)
         router.refresh();
       }}
-      Link={Link}
+      replace={router.replace}
+      twoFactor={['totp']}
     >
       {children}
     </AuthUIProvider>

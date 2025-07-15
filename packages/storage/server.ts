@@ -4,12 +4,11 @@ import { log } from '../observability/log';
 import { PRIVATE_ASSETS_BUCKET, PUBLIC_ASSETS_BUCKET } from './buckets';
 import { keys } from './keys';
 
-const SERVICE_KEY = 'super-secret-jwt-token-with-at-least-32-characters-long';
-
-export const storageClient = new StorageClient(keys().STORAGE_URL ?? '', {
-  Authorization: `Bearer ${SERVICE_KEY}`,
-  apikey: SERVICE_KEY,
-});
+export const storageClient = (token: string) => {
+  return new StorageClient(keys().STORAGE_URL ?? '', {
+    Authorization: `Bearer ${token}`,
+  });
+};
 
 const STANDARD_BUCKETS = [
   { config: { public: true }, name: PUBLIC_ASSETS_BUCKET },
@@ -28,32 +27,34 @@ const BUCKET_CONFIG = {
 };
 
 export async function initializeStandardBuckets() {
+  // const result = await fetch(`${keys().BETTER_AUTH_URL}/api/auth/token`);
+  // log.error(result);
+  const token =
+    'eyJhbGciOiJFZERTQSIsImtpZCI6InFhUlRURXpQSWQzOGZRTGRPaXpUY2xBdXVOWGJCWTNVIn0.eyJuYW1lIjoiU2JydWJibGVzIFcuIiwiZW1haWwiOiJzYnJ1YmJsZXNAc2JydWJibGVzLndvcmsiLCJlbWFpbFZlcmlmaWVkIjp0cnVlLCJpbWFnZSI6bnVsbCwiY3JlYXRlZEF0IjoiMjAyNS0wNi0yN1QxNjowNzoxOC42MzRaIiwidXBkYXRlZEF0IjoiMjAyNS0wNi0yN1QxNjowNzoxOC42MzRaIiwidHdvRmFjdG9yRW5hYmxlZCI6bnVsbCwicm9sZSI6InVzZXIiLCJiYW5uZWQiOm51bGwsImJhblJlYXNvbiI6bnVsbCwiYmFuRXhwaXJlcyI6bnVsbCwiaWQiOiIwUEVaUDJkMUVGVmxOb0FRSzl6THlYeks1TXFFNURoeiIsImlhdCI6MTc1MjUyNTYxNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDozMDAyIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAyIiwiZXhwIjoxNzUyNTI2NTE2LCJzdWIiOiIwUEVaUDJkMUVGVmxOb0FRSzl6THlYeks1TXFFNURoeiJ9.gMAljSRkqCwDOwi8kJy5qMAkR_rZl-SJTo7JnCVNaUBhMOyuUsaCiGIGJQRhH-hxhHkvk177aWv_N66bxhr_CQ';
+
   log.error('Initializing standard buckets...', keys().STORAGE_URL);
   await Promise.all(
     STANDARD_BUCKETS.map(async (bucket) => {
       try {
         log.info(`Checking bucket: ${bucket.name}`);
-        const { error } = await storageClient.getBucket(bucket.name);
+        const { error } = await storageClient(token).getBucket(bucket.name);
 
         if (error) {
           log.info(`Bucket ${bucket.name} not found, creating...`);
           if ((error as StorageApiError)?.status === 400) {
-            await storageClient.createBucket(bucket.name, {
+            await storageClient(token).createBucket(bucket.name, {
               ...BUCKET_CONFIG,
               ...bucket.config,
             });
           } else {
-            log.error(
-              `Failed to initialize bucket ${bucket.name}:`,
-              error.message
-            );
+            log.error(`Failed to initialize bucket ${bucket.name}:`, error);
             throw error;
           }
         }
       } catch (error) {
         log.info(`Bucket ${bucket.name} not found, creating...`);
         if ((error as StorageApiError)?.status === 400) {
-          await storageClient.createBucket(bucket.name, {
+          await storageClient(token).createBucket(bucket.name, {
             ...BUCKET_CONFIG,
             ...bucket.config,
           });

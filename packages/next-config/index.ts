@@ -9,13 +9,13 @@ export const config: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
   },
-  turbopack: {},
-
-  transpilePackages: ['@repo/design-system', '@repo/auth', '@repo/storage'],
 
   // This is required to support PostHog trailing slash API requests
   output: 'standalone',
   skipTrailingSlashRedirect: true,
+
+  transpilePackages: ['@repo/design-system', '@repo/auth', '@repo/storage'],
+  turbopack: {},
 };
 
 export const withAnalyzer = (sourceConfig: NextConfig): NextConfig =>

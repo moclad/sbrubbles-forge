@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
-
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { DeleteAccountDialog } from './delete-account-dialog';
@@ -37,21 +36,21 @@ export function DeleteAccountCard({
   return (
     <>
       <SettingsCard
-        title={t('account.deleteAccount')}
-        description={t('account.deleteAccountDescription')}
         actionLabel={t('account.deleteAccount')}
-        formAction={() => setShowDialog(true)}
         className={className}
         classNames={classNames}
-        variant='destructive'
+        description={t('account.deleteAccountDescription')}
+        formAction={() => setShowDialog(true)}
         isPending={isPending}
+        title={t('account.deleteAccount')}
+        variant='destructive'
       />
 
       <DeleteAccountDialog
-        open={showDialog}
-        onOpenChange={setShowDialog}
-        classNames={classNames}
         accounts={accounts}
+        classNames={classNames}
+        onOpenChange={setShowDialog}
+        open={showDialog}
       />
     </>
   );

@@ -1,8 +1,5 @@
 'use client';
 
-import { CheckIcon, CopyIcon } from 'lucide-react';
-import { useState } from 'react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Dialog,
@@ -13,6 +10,8 @@ import {
   DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
+import { CheckIcon, CopyIcon } from 'lucide-react';
+import { useState } from 'react';
 
 interface BackupCodesDialogProps {
   open: boolean;
@@ -36,7 +35,7 @@ export function BackupCodesDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>{t('account.backupCodes')}</DialogTitle>
@@ -48,8 +47,8 @@ export function BackupCodesDialog({
         <div className='grid grid-cols-2 gap-2'>
           {backupCodes.map((code, index) => (
             <div
-              key={index}
               className='rounded-md bg-muted p-2 text-center font-mono text-sm'
+              key={index}
             >
               {code}
             </div>
@@ -58,10 +57,10 @@ export function BackupCodesDialog({
 
         <DialogFooter>
           <Button
+            disabled={copied}
+            onClick={handleCopy}
             type='button'
             variant='outline'
-            onClick={handleCopy}
-            disabled={copied}
           >
             {copied ? (
               <>
@@ -77,9 +76,9 @@ export function BackupCodesDialog({
           </Button>
 
           <Button
+            onClick={() => onOpenChange(false)}
             type='button'
             variant='default'
-            onClick={() => onOpenChange(false)}
           >
             {t('common.continue')}
           </Button>

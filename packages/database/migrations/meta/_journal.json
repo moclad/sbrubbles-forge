@@ -64,6 +64,13 @@
       "when": 1745351261400,
       "tag": "0008_unusual_loa",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1752521124322,
+      "tag": "0009_slimy_stranger",
+      "breakpoints": true
     }
   ]
 }

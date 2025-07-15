@@ -33,7 +33,7 @@ export function WelcomeTemplate({ name, email, confirmationUrl }: Props) {
               <Text style={text}>
                 Confirm your email address by clicking the link below:
               </Text>
-              <Button style={button} href={confirmationUrl}>
+              <Button href={confirmationUrl} style={button}>
                 Activate account
               </Button>
               <Text style={text}>Happy Sbrubbling!</Text>
@@ -59,11 +59,11 @@ const container = {
 };
 
 const text = {
-  fontSize: '16px',
+  color: '#404040',
   fontFamily:
     "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontSize: '16px',
   fontWeight: '300',
-  color: '#404040',
   lineHeight: '26px',
 };
 
@@ -71,13 +71,13 @@ const button = {
   backgroundColor: '#007ee6',
   borderRadius: '4px',
   color: '#fff',
+  display: 'block',
   fontFamily: "'Open Sans', 'Helvetica Neue', Arial",
   fontSize: '15px',
-  textDecoration: 'none',
-  textAlign: 'center' as const,
-  display: 'block',
-  width: '210px',
   padding: '14px 7px',
+  textAlign: 'center' as const,
+  textDecoration: 'none',
+  width: '210px',
 };
 
 const anchor = {

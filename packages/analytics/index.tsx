@@ -1,9 +1,7 @@
 import Script from 'next/script';
-
+import type { ReactNode } from 'react';
 import { GoogleAnalytics } from './google';
 import { keys } from './keys';
-
-import type { ReactNode } from 'react';
 
 type AnalyticsProviderProps = {
   readonly children: ReactNode;
@@ -19,8 +17,8 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderProps) => (
   <div>
     {NEXT_PUBLIC_UMAMI_SCRIPT_URL && NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
       <Script
-        src={NEXT_PUBLIC_UMAMI_SCRIPT_URL}
         data-website-id={NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        src={NEXT_PUBLIC_UMAMI_SCRIPT_URL}
         strategy='lazyOnload'
       />
     )}

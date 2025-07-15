@@ -11,120 +11,138 @@ import {
 export const userRoleEnums = pgEnum('Role', ['user', 'admin', 'superAdmin']);
 
 export const user = pgTable('user', {
-  id: text('id').primaryKey(),
-  name: text('name').notNull(),
-  email: text('email').notNull().unique(),
-  emailVerified: boolean('email_verified').notNull(),
-  image: text('image'),
-  createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
-  twoFactorEnabled: boolean('two_factor_enabled'),
-  role: userRoleEnums('role').default('user').notNull(),
+  banExpires: timestamp('ban_expires'),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
-  banExpires: timestamp('ban_expires'),
+  createdAt: timestamp('created_at')
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  email: text('email').notNull().unique(),
+  emailVerified: boolean('email_verified')
+    .$defaultFn(() => false)
+    .notNull(),
+  id: text('id').primaryKey(),
+  image: text('image'),
+  name: text('name').notNull(),
   normalizedEmail: text('normalized_email').unique(),
+  role: userRoleEnums('role').default('user').notNull(),
+  twoFactorEnabled: boolean('two_factor_enabled'),
+  updatedAt: timestamp('updated_at')
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
 });
 
 export const session = pgTable('session', {
-  id: text('id').primaryKey(),
-  expiresAt: timestamp('expires_at').notNull(),
-  token: text('token').notNull().unique(),
+  activeOrganizationId: text('active_organization_id'),
   createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  id: text('id').primaryKey(),
+  impersonatedBy: text('impersonated_by'),
   ipAddress: text('ip_address'),
+  token: text('token').notNull().unique(),
+  updatedAt: timestamp('updated_at').notNull(),
   userAgent: text('user_agent'),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  impersonatedBy: text('impersonated_by'),
-  activeOrganizationId: text('active_organization_id'),
 });
 
 export const account = pgTable('account', {
-  id: text('id').primaryKey(),
+  accessToken: text('access_token'),
+  accessTokenExpiresAt: timestamp('access_token_expires_at'),
   accountId: text('account_id').notNull(),
+  createdAt: timestamp('created_at').notNull(),
+  id: text('id').primaryKey(),
+  idToken: text('id_token'),
+  password: text('password'),
   providerId: text('provider_id').notNull(),
+  refreshToken: text('refresh_token'),
+  refreshTokenExpiresAt: timestamp('refresh_token_expires_at'),
+  scope: text('scope'),
+  updatedAt: timestamp('updated_at').notNull(),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  accessToken: text('access_token'),
-  refreshToken: text('refresh_token'),
-  idToken: text('id_token'),
-  accessTokenExpiresAt: timestamp('access_token_expires_at'),
-  refreshTokenExpiresAt: timestamp('refresh_token_expires_at'),
-  scope: text('scope'),
-  password: text('password'),
-  createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
 });
 
 export const verification = pgTable('verification', {
+  createdAt: timestamp('created_at').$defaultFn(
+    () => /* @__PURE__ */ new Date()
+  ),
+  expiresAt: timestamp('expires_at').notNull(),
   id: text('id').primaryKey(),
   identifier: text('identifier').notNull(),
+  updatedAt: timestamp('updated_at').$defaultFn(
+    () => /* @__PURE__ */ new Date()
+  ),
   value: text('value').notNull(),
-  expiresAt: timestamp('expires_at').notNull(),
-  createdAt: timestamp('created_at'),
-  updatedAt: timestamp('updated_at'),
 });
 
 export const passkey = pgTable('passkey', {
+  aaguid: text('aaguid'),
+  backedUp: boolean('backed_up').notNull(),
+  counter: integer('counter').notNull(),
+  createdAt: timestamp('created_at'),
+  credentialID: text('credential_i_d').notNull(),
+  deviceType: text('device_type').notNull(),
   id: text('id').primaryKey(),
   name: text('name'),
   publicKey: text('public_key').notNull(),
+  transports: text('transports'),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  credentialID: text('credential_i_d').notNull(),
-  counter: integer('counter').notNull(),
-  deviceType: text('device_type').notNull(),
-  backedUp: boolean('backed_up').notNull(),
-  transports: text('transports'),
-  createdAt: timestamp('created_at'),
 });
 
 export const twoFactor = pgTable('two_factor', {
+  backupCodes: text('backup_codes').notNull(),
   id: text('id').primaryKey(),
   secret: text('secret').notNull(),
-  backupCodes: text('backup_codes').notNull(),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
 });
 
 export const organization = pgTable('organization', {
+  createdAt: timestamp('created_at').notNull(),
   id: text('id').primaryKey(),
+  logo: text('logo'),
+  metadata: text('metadata'),
   name: text('name').notNull(),
   slug: text('slug').unique(),
-  logo: text('logo'),
-  createdAt: timestamp('created_at').notNull(),
-  metadata: text('metadata'),
 });
 
 export const member = pgTable('member', {
+  createdAt: timestamp('created_at').notNull(),
   id: text('id').primaryKey(),
   organizationId: text('organization_id')
     .notNull()
     .references(() => organization.id, { onDelete: 'cascade' }),
+  role: userRoleEnums('role').default('user').notNull(),
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
-  role: text('role').notNull(),
-  createdAt: timestamp('created_at').notNull(),
 });
 
 export const invitation = pgTable('invitation', {
-  id: text('id').primaryKey(),
-  organizationId: text('organization_id')
-    .notNull()
-    .references(() => organization.id, { onDelete: 'cascade' }),
   email: text('email').notNull(),
-  role: text('role'),
-  status: text('status').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
+  id: text('id').primaryKey(),
   inviterId: text('inviter_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
+  organizationId: text('organization_id')
+    .notNull()
+    .references(() => organization.id, { onDelete: 'cascade' }),
+  role: userRoleEnums('role'),
+  status: text('status').default('pending').notNull(),
+});
+
+export const jwks = pgTable('jwks', {
+  createdAt: timestamp('created_at').notNull(),
+  id: text('id').primaryKey(),
+  privateKey: text('private_key').notNull(),
+  publicKey: text('public_key').notNull(),
 });
 
 export type User = InferSelectModel<typeof user>;

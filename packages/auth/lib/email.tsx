@@ -5,9 +5,9 @@ import { WelcomeTemplate } from '@repo/email/templates/welcome';
 export async function sendResetEmail(name: string, email: string, url: string) {
   await resend.emails.send({
     from: 'noreply@sbrubbles.work',
-    to: email,
+    react: <ResetPasswordTemplate email={email} name={name} resetUrl={url} />,
     subject: 'Reset your password',
-    react: <ResetPasswordTemplate name={name} email={email} resetUrl={url} />,
+    to: email,
   });
 }
 
@@ -18,8 +18,8 @@ export async function sendWelcomeEmail(
 ) {
   await resend.emails.send({
     from: 'noreply@sbrubbles.work',
-    to: email,
+    react: <WelcomeTemplate confirmationUrl={url} email={email} name={name} />,
     subject: 'Welcome to Sbrubbles Forge',
-    react: <WelcomeTemplate name={name} email={email} confirmationUrl={url} />,
+    to: email,
   });
 }

@@ -1,18 +1,16 @@
 'use client';
 
-import { ReactNode, useContext, useState } from 'react';
-
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
+import { ReactNode, useContext, useState } from 'react';
 
 import { useI18n } from '../../../../localization/i18n/client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
-import { SettingsCard, SettingsCardClassNames } from './settings-card';
-
 import type { FieldType } from '../../../types/additional-fields';
+import { SettingsCard, SettingsCardClassNames } from './settings-card';
 export interface UpdateFieldCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -85,16 +83,16 @@ export function UpdateFieldCard({
 
   return (
     <SettingsCard
+      actionLabel={t('account.save')}
       className={className}
       classNames={classNames}
       description={description}
+      disabled={disabled}
       formAction={updateField}
       instructions={instructions}
       isPending={isPending || sessionPending}
-      title={label}
-      actionLabel={t('account.save')}
-      disabled={disabled}
       optimistic={optimistic}
+      title={label}
     >
       <CardContent className={classNames?.content}>
         {type === 'boolean' ? (
@@ -107,7 +105,7 @@ export function UpdateFieldCard({
               name={field}
               onCheckedChange={() => setDisabled(false)}
             />
-            <label htmlFor={field} className={classNames?.label}>
+            <label className={classNames?.label} htmlFor={field}>
               {label}
             </label>
           </div>
@@ -115,16 +113,16 @@ export function UpdateFieldCard({
           <Skeleton className={cn('h-9 w-full', classNames?.skeleton)} />
         ) : (
           <Input
-            key={`${defaultValue}`}
             className={classNames?.input}
             defaultValue={defaultValue as string}
+            key={`${defaultValue}`}
             name={field}
+            onChange={(e) => setDisabled(e.target.value === defaultValue)}
             placeholder={
               placeholder ?? (typeof label === 'string' ? label : '')
             }
             required={required}
             type={type === 'number' ? 'number' : 'text'}
-            onChange={(e) => setDisabled(e.target.value === defaultValue)}
           />
         )}
       </CardContent>

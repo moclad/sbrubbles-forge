@@ -1,8 +1,7 @@
-import type { ChangeEvent } from 'react';
-
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { useI18n } from '@repo/localization/i18n/client';
+import type { ChangeEvent } from 'react';
 
 export type AuthInputClassNames = {
   label?: string;
@@ -35,13 +34,13 @@ export function ConfirmPasswordInput({
       </div>
 
       <PasswordInput
-        id='confirmPassword'
-        name='confirmPassword'
         autoComplete={autoComplete}
         className={classNames?.input}
+        id='confirmPassword'
+        name='confirmPassword'
+        onChange={onChange}
         placeholder={t('account.confirmPasswordPlaceholder')}
         required={required}
-        onChange={onChange}
       />
     </div>
   );

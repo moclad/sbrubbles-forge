@@ -1,14 +1,12 @@
 'use client';
 
+import { useI18n } from '@repo/localization/i18n/client';
 import { useContext, useState } from 'react';
 
-import { useI18n } from '@repo/localization/i18n/client';
-
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
+import type { SettingsCardClassNames } from '../shared/settings-card';
 import { SettingsCard } from '../shared/settings-card';
 import { TwoFactorPasswordDialog } from './two-factor-password-dialog';
-
-import type { SettingsCardClassNames } from '../shared/settings-card';
 export interface TwoFactorCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -31,27 +29,27 @@ export function TwoFactorCard({
   return (
     <div>
       <SettingsCard
-        className={className}
-        classNames={classNames}
-        isPending={isPending}
-        description={t('account.twoFactorCardDescription')}
-        title={t('account.twoFactor')}
         actionLabel={
           isTwoFactorEnabled ? t('account.disable') : t('account.enable')
         }
+        className={className}
+        classNames={classNames}
+        description={t('account.twoFactorCardDescription')}
+        formAction={() => setShowPasswordDialog(true)}
         instructions={
           isTwoFactorEnabled
             ? t('account.twoFactorDisableInstructions')
             : t('account.twoFactorEnableInstructions')
         }
-        formAction={() => setShowPasswordDialog(true)}
+        isPending={isPending}
         showToast={false}
+        title={t('account.twoFactor')}
       />
 
       <TwoFactorPasswordDialog
-        open={showPasswordDialog}
-        onOpenChange={setShowPasswordDialog}
         isTwoFactorEnabled={!!isTwoFactorEnabled}
+        onOpenChange={setShowPasswordDialog}
+        open={showPasswordDialog}
       />
     </div>
   );

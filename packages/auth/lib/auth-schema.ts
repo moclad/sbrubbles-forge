@@ -1,18 +1,17 @@
 import { z } from 'zod';
 
 export const formSchema = z.object({
-  name: z
-    .string()
-    .nonempty({ message: 'Name is required' })
-    .min(2, { message: 'Name must be at least 2 characters long' })
-    .max(50, { message: 'Name cannot exceed 50 characters' }),
-
   email: z
     .string()
     .nonempty({ message: 'Email is required' })
     .email({ message: 'Please enter a valid email address' })
     .min(2)
     .max(50),
+  name: z
+    .string()
+    .nonempty({ message: 'Name is required' })
+    .min(2, { message: 'Name must be at least 2 characters long' })
+    .max(50, { message: 'Name cannot exceed 50 characters' }),
 
   password: z
     .string()
@@ -34,8 +33,8 @@ export const signInFormSchema = formSchema.pick({
 
 export const signUpFormSchema = formSchema
   .pick({
-    name: true,
     email: true,
+    name: true,
     password: true,
     passwordConfirmation: true,
   })

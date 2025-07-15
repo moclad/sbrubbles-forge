@@ -1,13 +1,12 @@
 'use client';
 
-import { FingerprintIcon } from 'lucide-react';
-import { useContext, useState } from 'react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { FingerprintIcon } from 'lucide-react';
+import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
@@ -57,10 +56,10 @@ export function PasskeyCell({
 
       <Button
         className={cn('relative ms-auto', classNames?.button)}
-        size='sm'
         loading={isLoading}
-        variant='destructive'
         onClick={handleDeletePasskey}
+        size='sm'
+        variant='destructive'
       >
         {t('account.delete')}
       </Button>

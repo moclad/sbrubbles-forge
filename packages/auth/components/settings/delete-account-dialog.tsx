@@ -1,5 +1,3 @@
-import { useActionState, useContext } from 'react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Dialog,
@@ -14,6 +12,7 @@ import { Label } from '@repo/design-system/components/ui/label';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useActionState, useContext } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
@@ -84,7 +83,7 @@ export function DeleteAccountDialog({
   const [_, action, isSubmitting] = useActionState(formAction, null);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <form action={action}>
         <DialogContent className='sm:max-w-md'>
           <DialogHeader>
@@ -120,9 +119,9 @@ export function DeleteAccountDialog({
 
           <DialogFooter>
             <Button
+              onClick={() => onOpenChange(false)}
               type='button'
               variant='secondary'
-              onClick={() => onOpenChange(false)}
             >
               {t('account.cancel')}
             </Button>

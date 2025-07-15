@@ -1,7 +1,4 @@
 'use client';
-import { useContext, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -17,6 +14,9 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
 import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
@@ -48,10 +48,10 @@ export function RecoverAccountForm({
   });
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       code: '',
     },
+    resolver: zodResolver(formSchema),
   });
 
   isSubmitting =
@@ -79,8 +79,8 @@ export function RecoverAccountForm({
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(verifyBackupCode)}
         className={cn('mt-4 space-y-4', className)}
+        onSubmit={form.handleSubmit(verifyBackupCode)}
       >
         <FormField
           control={form.control}
@@ -91,9 +91,9 @@ export function RecoverAccountForm({
 
               <FormControl>
                 <Input
-                  placeholder={t('account.backupCodePlaceholder')}
                   autoComplete='off'
                   disabled={isSubmitting}
+                  placeholder={t('account.backupCodePlaceholder')}
                   {...field}
                 />
               </FormControl>
@@ -104,20 +104,20 @@ export function RecoverAccountForm({
         />
 
         <Button
-          type='submit'
+          className='mt-4 w-full'
           disabled={isSubmitting}
           loading={isSubmitting}
-          className='mt-4 w-full'
+          type='submit'
         >
           {t('account.recoverAction')}
         </Button>
 
         <Button
-          type='button'
-          variant='secondary'
           className='w-full'
           disabled={isSubmitting}
           onClick={() => navigate(`${basePath}/sign-in`)}
+          type='button'
+          variant='secondary'
         >
           {t('account.backToSignIn')}
         </Button>

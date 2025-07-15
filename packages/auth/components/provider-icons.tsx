@@ -271,9 +271,9 @@ export const TwitchIcon: ProviderIcon = ({ className, variant }) =>
       version='1.1'
       viewBox='0 0 2400 2800'
       x='0px'
-      xmlSpace='preserve'
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'
+      xmlSpace='preserve'
       y='0px'
     >
       <style type='text/css'>

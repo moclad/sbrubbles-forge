@@ -1,11 +1,5 @@
 'use client';
 
-import { Smartphone } from 'lucide-react';
-import { useContext, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import QRCode from 'react-qr-code';
-import z from 'zod';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
 import {
@@ -32,14 +26,19 @@ import {
 } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { Smartphone } from 'lucide-react';
+import { useContext, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import QRCode from 'react-qr-code';
+import z from 'zod';
 
 import { useIsHydrated } from '../../../hooks/use-hydrated';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { getSearchParam } from '../../../lib/utils';
+import type { AuthClient } from '../../../types/auth-client';
 import { OTPInputGroup } from '../../otp-input-group';
 
-import type { AuthClient } from '../../../types/auth-client';
 interface QrCodeTwoFactorProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -79,11 +78,11 @@ export function QrCodeTwoFactorDialog({
   });
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       code: '',
       trustDevice: false,
     },
+    resolver: zodResolver(formSchema),
   });
 
   const isSubmitting = form.formState.isSubmitting;
@@ -94,8 +93,8 @@ export function QrCodeTwoFactorDialog({
 
       await verifyMethod({
         code,
-        trustDevice,
         fetchOptions: { throw: true },
+        trustDevice,
       });
 
       if (sessionData && !isTwoFactorEnabled) {
@@ -111,11 +110,11 @@ export function QrCodeTwoFactorDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(verifyCode)}
           className={'grid w-full gap-6'}
+          onSubmit={form.handleSubmit(verifyCode)}
         >
           <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
             <DialogHeader>
@@ -147,6 +146,7 @@ export function QrCodeTwoFactorDialog({
                       <FormControl>
                         <InputOTP
                           {...field}
+                          disabled={isSubmitting}
                           maxLength={6}
                           onChange={(value) => {
                             field.onChange(value);
@@ -155,7 +155,6 @@ export function QrCodeTwoFactorDialog({
                               form.handleSubmit(verifyCode)();
                             }
                           }}
-                          disabled={isSubmitting}
                         >
                           <OTPInputGroup otpSeparators={1} />
                         </InputOTP>
@@ -174,8 +173,8 @@ export function QrCodeTwoFactorDialog({
                       <FormControl>
                         <Checkbox
                           checked={field.value}
-                          onCheckedChange={field.onChange}
                           disabled={isSubmitting}
+                          onCheckedChange={field.onChange}
                         />
                       </FormControl>
 
@@ -193,7 +192,7 @@ export function QrCodeTwoFactorDialog({
               </Alert>
             </div>
             <DialogFooter>
-              <Button type='submit' loading={isSubmitting}>
+              <Button loading={isSubmitting} type='submit'>
                 {t('account.twoFactorVerify')}
               </Button>
             </DialogFooter>

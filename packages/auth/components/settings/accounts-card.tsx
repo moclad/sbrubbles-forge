@@ -1,18 +1,16 @@
 'use client';
 
-import type { Session, User } from 'better-auth';
-import { useContext } from 'react';
-
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import type { Session, User } from 'better-auth';
+import { useContext } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { AccountCell } from './account-cell';
+import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
-
-import type { SettingsCardClassNames } from './shared/settings-card';
 export interface AccountsCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -49,14 +47,14 @@ export function AccountsCard({
 
   return (
     <SettingsCard
+      actionLabel={t('account.addAccount')}
       className={className}
       classNames={classNames}
-      title={t('account.accounts')}
       description={t('account.accountsDescription')}
-      actionLabel={t('account.addAccount')}
       formAction={() => navigate(`${basePath}/sign-in`)}
       instructions={t('account.accountsInstructions')}
       isPending={isPending}
+      title={t('account.accounts')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
@@ -64,10 +62,10 @@ export function AccountsCard({
         ) : (
           deviceSessions?.map((deviceSession) => (
             <AccountCell
-              key={deviceSession.session.id}
+              activeSessionId={session?.id}
               classNames={classNames}
               deviceSession={deviceSession}
-              activeSessionId={session?.id}
+              key={deviceSession.session.id}
               refetch={refetch}
             />
           ))

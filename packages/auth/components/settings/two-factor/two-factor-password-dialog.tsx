@@ -1,5 +1,4 @@
 'use client';
-import { FormEvent, useContext, useState } from 'react';
 
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -14,6 +13,7 @@ import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { FormEvent, useContext, useState } from 'react';
 
 import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
@@ -47,8 +47,8 @@ export function TwoFactorPasswordDialog({
 
     try {
       const data = await authClient.twoFactor.enable({
-        password,
         fetchOptions: { throw: true },
+        password,
       });
 
       onOpenChange(false);
@@ -75,8 +75,8 @@ export function TwoFactorPasswordDialog({
 
     try {
       await authClient.twoFactor.disable({
-        password,
         fetchOptions: { throw: true },
+        password,
       });
 
       toast.success(t('account.twoFactorDisabled'));
@@ -101,7 +101,7 @@ export function TwoFactorPasswordDialog({
 
   return (
     <>
-      <Dialog open={open} onOpenChange={onOpenChange}>
+      <Dialog onOpenChange={onOpenChange} open={open}>
         <DialogContent className='sm:max-w-md'>
           <DialogHeader>
             <DialogTitle>{t('account.twoFactor')}</DialogTitle>
@@ -116,25 +116,25 @@ export function TwoFactorPasswordDialog({
             <div className='grid gap-2'>
               <Label htmlFor='password'>{t('account.password')}</Label>
               <PasswordInput
+                autoComplete='current-password'
                 id='password'
                 name='password'
                 placeholder={t('account.passwordPlaceholder')}
-                autoComplete='current-password'
                 required
               />
             </div>
 
             <DialogFooter className='mt-4'>
               <Button
+                disabled={isLoading}
+                onClick={() => onOpenChange(false)}
                 type='button'
                 variant='secondary'
-                onClick={() => onOpenChange(false)}
-                disabled={isLoading}
               >
                 {t('account.cancel')}
               </Button>
 
-              <Button type='submit' disabled={isLoading} loading={isLoading}>
+              <Button disabled={isLoading} loading={isLoading} type='submit'>
                 {isTwoFactorEnabled
                   ? t('account.disable')
                   : t('account.enable')}
@@ -145,7 +145,7 @@ export function TwoFactorPasswordDialog({
       </Dialog>
 
       <BackupCodesDialog
-        open={showBackupCodesDialog}
+        backupCodes={backupCodes}
         onOpenChange={(open) => {
           setShowBackupCodesDialog(open);
 
@@ -153,15 +153,15 @@ export function TwoFactorPasswordDialog({
             setShowConfirm2FADialog(true);
           }
         }}
-        backupCodes={backupCodes}
+        open={showBackupCodesDialog}
       />
 
       <QrCodeTwoFactorDialog
-        totpURI={totpURI}
-        open={showConfirm2FADialog}
         onOpenChange={(open) => {
           setShowConfirm2FADialog(open);
         }}
+        open={showConfirm2FADialog}
+        totpURI={totpURI}
       />
     </>
   );

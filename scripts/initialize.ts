@@ -1,7 +1,16 @@
 import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
+import {
+  cancel,
+  intro,
+  isCancel,
+  log,
+  outro,
+  select,
+  spinner,
+  text,
+} from '@clack/prompts';
 
 import {
   exec,
@@ -9,7 +18,7 @@ import {
   internalContentDirs,
   internalContentFiles,
   supportedPackageManagers,
-  url
+  url,
 } from './utils.js';
 
 const cloneNextForge = async (name: string, packageManager: string) => {
@@ -28,7 +37,7 @@ const cloneNextForge = async (name: string, packageManager: string) => {
 
 const deleteInternalContent = async () => {
   for (const folder of internalContentDirs) {
-    await rm(folder, { recursive: true, force: true });
+    await rm(folder, { force: true, recursive: true });
   }
 
   for (const file of internalContentFiles) {
@@ -180,12 +189,12 @@ const getName = async () => {
 
 const getPackageManager = async () => {
   const value = await select({
+    initialValue: 'pnpm',
     message: 'Which package manager would you like to use?',
     options: supportedPackageManagers.map((choice) => ({
-      value: choice,
       label: choice,
+      value: choice,
     })),
-    initialValue: 'pnpm',
   });
 
   if (isCancel(value)) {

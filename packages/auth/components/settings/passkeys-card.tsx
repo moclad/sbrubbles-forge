@@ -1,17 +1,15 @@
 'use client';
 
-import { useContext } from 'react';
-
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
+import type { AuthClient } from '../../types/auth-client';
 import { PasskeyCell } from './passkey-cell';
 import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
-
-import type { AuthClient } from '../../types/auth-client';
 
 export interface PasskeysCardProps {
   className?: string;
@@ -50,14 +48,14 @@ export function PasskeysCard({
 
   return (
     <SettingsCard
+      actionLabel={t('account.addPasskey')}
       className={className}
       classNames={classNames}
-      title={t('account.passkeys')}
       description={t('account.passkeysDescription')}
-      actionLabel={t('account.addPasskey')}
       formAction={addPasskey}
       instructions={t('account.passkeysInstructions')}
       isPending={isPending}
+      title={t('account.passkeys')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
@@ -65,8 +63,8 @@ export function PasskeysCard({
         ) : (
           passkeys?.map((passkey) => (
             <PasskeyCell
-              key={passkey.id}
               classNames={classNames}
+              key={passkey.id}
               passkey={passkey}
               refetch={refetch}
             />

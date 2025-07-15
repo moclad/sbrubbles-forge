@@ -1,6 +1,19 @@
 import type { Config } from 'release-it';
 
 export default {
+  git: {
+    commit: true,
+    commitMessage: 'chore: release v${version}',
+    push: true,
+    requireCleanWorkingDir: false,
+    tagName: 'v${version}',
+  },
+  github: {
+    release: true,
+  },
+  npm: {
+    publish: false,
+  },
   plugins: {
     'release-it-pnpm': {
       pnpm: {
@@ -8,18 +21,5 @@ export default {
         publishCommand: '',
       },
     },
-  },
-  npm: {
-    publish: false,
-  },
-  git: {
-    tagName: 'v${version}',
-    push: true,
-    commit: true,
-    requireCleanWorkingDir: false,
-    commitMessage: 'chore: release v${version}',
-  },
-  github: {
-    release: true,
   },
 } satisfies Config;

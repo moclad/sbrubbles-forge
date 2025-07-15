@@ -4,12 +4,13 @@
   "files": {
     "ignoreUnknown": true,
     "experimentalScannerIgnores": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/.next/**",
-      "**/.cache/**",
-      "**/storybook-static/**",
-      "**/.react-email/**"
+      "node_modules",
+      "dist",
+      ".next",
+      ".turbo",
+      ".cache",
+      "storybook-static",
+      ".react-email"
     ]
   },
   "assist": {
@@ -21,7 +22,7 @@
     }
   },
   "vcs": {
-    "enabled": true,
+    "enabled": false,
     "clientKind": "git",
     "useIgnoreFile": true,
     "defaultBranch": "main"

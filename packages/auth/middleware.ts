@@ -1,11 +1,8 @@
-import { NextResponse } from 'next/server';
-
 import { betterFetch } from '@better-fetch/fetch';
 import i18nMiddleware from '@repo/localization/middleware';
-
-import { keys } from './keys';
-
 import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import { keys } from './keys';
 
 const authRoutes = ['/sign-in', '/sign-up', '/two-factor', '/recover-account'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];

@@ -1,13 +1,12 @@
 'use client';
 
-import type { SocialProvider } from 'better-auth/social-providers';
-import { useContext, useState } from 'react';
-
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import type { SocialProvider } from 'better-auth/social-providers';
+import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
@@ -53,8 +52,8 @@ export function ProviderCell({
 
     if (other) {
       const { error } = await (authClient as AuthClient).oauth2.link({
-        providerId: provider.provider as SocialProvider,
         callbackURL,
+        providerId: provider.provider as SocialProvider,
       });
 
       if (error) {
@@ -62,8 +61,8 @@ export function ProviderCell({
       }
     } else {
       const { error } = await authClient.linkSocial({
-        provider: provider.provider as SocialProvider,
         callbackURL,
+        provider: provider.provider as SocialProvider,
       });
 
       if (error) {
@@ -120,9 +119,6 @@ export function ProviderCell({
       <Button
         className={cn('relative ms-auto', classNames?.button)}
         loading={isLoading}
-        size='sm'
-        type='button'
-        variant={isLinked ? 'outline' : 'default'}
         onClick={() => {
           if (isLinked) {
             handleUnlink();
@@ -130,6 +126,9 @@ export function ProviderCell({
             handleLink();
           }
         }}
+        size='sm'
+        type='button'
+        variant={isLinked ? 'outline' : 'default'}
       >
         {isLinked ? t('account.unlink') : t('account.link')}
       </Button>

@@ -1,10 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
@@ -19,11 +14,14 @@ import { PasswordInput } from '@repo/design-system/components/ui/password-input'
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
-
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import type { z } from 'zod';
 import { resetPassword } from '../../client';
 import { resetPwFormSchema } from '../../lib/auth-schema';
 
-import type { z } from 'zod';
 type Props = {
   token: string;
 };
@@ -35,11 +33,11 @@ export const ResetPassword = ({ token }: Props) => {
   const t = useI18n();
 
   const form = useForm<z.infer<typeof resetPwFormSchema>>({
-    resolver: zodResolver(resetPwFormSchema),
     defaultValues: {
       password: '',
       passwordConfirmation: '',
     },
+    resolver: zodResolver(resetPwFormSchema),
   });
 
   async function onSubmit(values: z.infer<typeof resetPwFormSchema>) {
@@ -56,6 +54,17 @@ export const ResetPassword = ({ token }: Props) => {
         token,
       },
       {
+        onError: (ctx) => {
+          toast.error(
+            t('authentication.error.passwordUpdateFailed', {
+              error: ctx.error.message,
+            }),
+            {
+              id: toastIdRef.current ?? undefined,
+            }
+          );
+          setLoading(false);
+        },
         onRequest: () => {
           toastIdRef.current = toast.loading(t('common.pleaseWait'));
           setLoading(true);
@@ -68,17 +77,6 @@ export const ResetPassword = ({ token }: Props) => {
           setLoading(false);
           router.push('/sign-in');
         },
-        onError: (ctx) => {
-          toast.error(
-            t('authentication.error.passwordUpdateFailed', {
-              error: ctx.error.message,
-            }),
-            {
-              id: toastIdRef.current ?? undefined,
-            }
-          );
-          setLoading(false);
-        },
       }
     );
   }
@@ -87,7 +85,7 @@ export const ResetPassword = ({ token }: Props) => {
     <div className='mx-auto w-full max-w-md'>
       <div className='space-y-2'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+          <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name='password'
@@ -128,7 +126,7 @@ export const ResetPassword = ({ token }: Props) => {
                 </FormItem>
               )}
             />
-            <Button className='w-full' type='submit' loading={loading}>
+            <Button className='w-full' loading={loading} type='submit'>
               {t('authentication.actions.resetPassword')}
             </Button>
           </form>
@@ -139,7 +137,7 @@ export const ResetPassword = ({ token }: Props) => {
       <div className='mt-4 flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           {t('authentication.withAccountQuestion')}{' '}
-          <Link href='/sign-in' className='font-medium hover:underline'>
+          <Link className='font-medium hover:underline' href='/sign-in'>
             {t('authentication.actions.signIn')}
           </Link>
         </p>

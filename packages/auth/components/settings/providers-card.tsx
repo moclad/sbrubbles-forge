@@ -1,9 +1,9 @@
 'use client';
-import { useContext, useEffect, useRef } from 'react';
 
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useContext, useEffect, useRef } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { socialProviders } from '../../lib/social-providers';
@@ -58,16 +58,16 @@ export function ProvidersCard({
     }
   }, [refetch]);
 
-  if (!providers || !otherProviders) {
+  if (!(providers && otherProviders)) {
     return <></>;
   }
   return (
     <SettingsCard
       className={className}
       classNames={classNames}
-      title={t('account.providers')}
       description={t('account.providersDescription')}
       isPending={isPending}
+      title={t('account.providers')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
@@ -85,21 +85,21 @@ export function ProvidersCard({
 
               return (
                 <ProviderCell
-                  key={provider}
-                  classNames={classNames}
-                  provider={socialProvider}
                   accounts={accounts}
+                  classNames={classNames}
+                  key={provider}
+                  provider={socialProvider}
                 />
               );
             })}
 
             {otherProviders?.map((provider) => (
               <ProviderCell
-                key={provider.provider}
-                classNames={classNames}
-                provider={provider}
                 accounts={accounts}
+                classNames={classNames}
+                key={provider.provider}
                 other
+                provider={provider}
               />
             ))}
           </>

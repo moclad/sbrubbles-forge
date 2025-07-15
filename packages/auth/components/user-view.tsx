@@ -1,9 +1,7 @@
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
-
-import { UserAvatar, UserAvatarClassNames } from './user-avatar';
-
 import type { Profile } from '../types/profile';
+import { UserAvatar, UserAvatarClassNames } from './user-avatar';
 export interface UserClassNames {
   base?: string;
   avatar?: UserAvatarClassNames;
@@ -42,10 +40,10 @@ export function UserView({
       )}
     >
       <UserAvatar
-        isPending={isPending}
-        user={user}
         className='my-0.5'
         classNames={classNames?.avatar}
+        isPending={isPending}
+        user={user}
       />
 
       <div className='flex flex-col truncate text-left'>

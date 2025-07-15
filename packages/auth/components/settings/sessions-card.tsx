@@ -1,10 +1,9 @@
 'use client';
 
-import type { Session } from 'better-auth';
-import { useContext } from 'react';
-
 import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
+import type { Session } from 'better-auth';
+import { useContext } from 'react';
 
 import { useI18n } from '../../../localization/i18n/client';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
@@ -45,9 +44,9 @@ export function SessionsCard({
     <SettingsCard
       className={className}
       classNames={classNames}
-      title={t('account.sessions')}
       description={t('account.sessionsDescription')}
       isPending={isPending}
+      title={t('account.sessions')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
@@ -55,10 +54,10 @@ export function SessionsCard({
         ) : (
           sessions?.map((session) => (
             <SessionCell
-              key={session.id}
               classNames={classNames}
-              session={session}
+              key={session.id}
               refetch={refetch}
+              session={session}
             />
           ))
         )}

@@ -33,7 +33,7 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "cSpell.words": ["mserver", "POSTHOG", "seaweedfs", "sonner"],
+  "cSpell.words": ["mserver", "POSTHOG", "seaweedfs", "sonner", "ultracite"],
   "i18n-ally.localesPaths": ["packages/localization/locales"],
   "i18n-ally.autoDetection": true,
   "i18n-ally.editor.preferEditor": true,

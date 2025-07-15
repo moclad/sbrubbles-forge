@@ -1,7 +1,6 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { AuthUIContext } from '../lib/auth-ui-provider';
 import { getErrorMessage } from '../lib/get-error-message';

@@ -1,11 +1,19 @@
-import { useCallback, useContext, useEffect, useState, useTransition } from 'react';
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useTransition,
+} from 'react';
 
 import { AuthUIContext } from '../lib/auth-ui-provider';
 import { getSearchParam } from '../lib/utils';
 
 export function useOnSuccessTransition({
   redirectTo: redirectToProp,
-}: { redirectTo?: string }) {
+}: {
+  redirectTo?: string;
+}) {
   const { redirectTo: contextRedirectTo } = useContext(AuthUIContext);
 
   const getRedirectTo = useCallback(
@@ -43,5 +51,5 @@ export function useOnSuccessTransition({
     }
   }, [refetchSession, onSessionChange]);
 
-  return { onSuccess, isPending };
+  return { isPending, onSuccess };
 }
