@@ -1,11 +1,16 @@
 import { log } from '@repo/observability/log';
 
 import { PUBLIC_ASSETS_BUCKET } from '../buckets';
-import { storageClient } from '../server';
+import { initializeStandardBuckets, storageClient } from '../server';
 
-export async function getAvatarUploadUrl(userId: string, _extension: string) {
+export async function getAvatarUploadUrl(
+  token: string,
+  userId: string,
+  _extension: string
+) {
+  await initializeStandardBuckets();
   await storageClient;
-  const { data, error } = await storageClient
+  const { data, error } = await storageClient(token)
     .from(PUBLIC_ASSETS_BUCKET)
     .createSignedUploadUrl(`/avatar/${userId}/avatar.${_extension}`, {
       upsert: true,
@@ -19,7 +24,7 @@ export async function getAvatarUploadUrl(userId: string, _extension: string) {
 
   return data;
 }
-
+/*
 export async function uploadUserAvatar(
   userId: string,
   fileStream: File | Blob
@@ -77,3 +82,4 @@ export async function getUserAvatarInfo(userId: string) {
 
   return data.length > 0 ? data[0] : null;
 }
+*/

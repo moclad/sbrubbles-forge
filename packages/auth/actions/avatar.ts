@@ -26,7 +26,7 @@ export async function uploadAvatar(formData: FormData) {
   const extension = (body.extension as string) || 'png';
   const userId = session.user.id;
 
-  const url = await getAvatarUploadUrl(userId, extension);
+  const url = await getAvatarUploadUrl('', userId, extension);
 
   const _res = await fetch(url.signedUrl, {
     body: file,

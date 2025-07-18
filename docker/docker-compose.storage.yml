@@ -9,7 +9,7 @@ services:
     ports:
       - "9333:9333"   # Master HTTP
       - "9324:9324"   # Master gRPC
-      - "19333:19333" # Master metrics
+#      - "19333:19333" # Master metrics
     volumes:
       - seaweed_master:/data
     restart: unless-stopped
@@ -22,10 +22,10 @@ services:
     command: "volume -mserver=master:9333 -ip=volume -dir=/data -max=100  -ip.bind=0.0.0.0 -port=8080 -metricsPort=9325"
     depends_on:
       - master
-    ports:
-      - "8080:8080"   # Volume HTTP (file upload/download)
-      - "18080:18080" # Volume metrics
-      - 9325:9325
+#    ports:
+#      - "8080:8080"   # Volume HTTP (file upload/download)
+#      - "18080:18080" # Volume metrics
+#      - 9325:9325
     volumes:
       - seaweed_volume:/data
     restart: unless-stopped
@@ -41,8 +41,8 @@ services:
       - volume
     ports:
       - "8888:8888"   # Filer HTTP
-      - 18888:18888
-      - 9326:9326
+#      - 18888:18888
+#      - 9326:9326
     tty: true
     stdin_open: true
     volumes:
@@ -54,15 +54,15 @@ services:
   s3:
     image: chrislusf/seaweedfs:latest
     container_name: seaweedfs-s3.sbrubbles
-    command: "s3 -filer=filer:8888 -ip.bind=0.0.0.0 -metricsPort=9327"
+    command: "s3 -filer=filer:8888 -ip.bind=0.0.0.0 -metricsPort=9327 -config=/etc/seaweedfs/config.json "
     depends_on:
       - master
       - volume
       - filer
     ports:
       - "8333:8333"   # S3 API endpoint
-#    volumes:
-#      - ./seaweed.config.json:/etc/seaweedfs/config.json
+    volumes:
+      - ./seaweed.config.json:/etc/seaweedfs/config.json
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-seaweedfs}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-seaweedfs_key}
@@ -83,7 +83,8 @@ services:
       SERVER_PORT: 5000
       # Auth
       AUTH_JWT_SECRET: ${STORAGE_AUTH_JWT_SECRET:-super-secret-jwt-token-with-at-least-32-characters-long}
-      AUTH_JWT_ALGORITHM: ${STORAGE_AUTH_JWT_ALGORITHM:-HS256}
+      AUTH_JWT_ALGORITHM: ${STORAGE_AUTH_JWT_ALGORITHM:-EdDSA}
+      JWT_JWKS: ${STORAGE_JWT_JWKS}
       # Single tenant Mode
       DATABASE_URL: ${STORAGE_DATABASE_URL:-postgres://postgres:mypassword@postgres_forge:5432/postgres}
       #DATABASE_POOL_URL: postgresql://postgres:postgres@pg_bouncer:6432/postgres

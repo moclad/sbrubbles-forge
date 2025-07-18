@@ -53,5 +53,12 @@
   "i18n-ally.extract.keyMaxLength": 30,
   "i18n-ally.parsers.typescript.compilerOptions": {
     "moduleResolution": "node"
+  },
+  "spellright.language": ["en"],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext"],
+  "spellright.parserByClass": {
+    "dockercompose": {
+      "parser": "code"
+    }
   }
 }

@@ -30,30 +30,35 @@ export async function initializeStandardBuckets() {
   // const result = await fetch(`${keys().BETTER_AUTH_URL}/api/auth/token`);
   // log.error(result);
   const token =
-    'eyJhbGciOiJFZERTQSIsImtpZCI6InFhUlRURXpQSWQzOGZRTGRPaXpUY2xBdXVOWGJCWTNVIn0.eyJuYW1lIjoiU2JydWJibGVzIFcuIiwiZW1haWwiOiJzYnJ1YmJsZXNAc2JydWJibGVzLndvcmsiLCJlbWFpbFZlcmlmaWVkIjp0cnVlLCJpbWFnZSI6bnVsbCwiY3JlYXRlZEF0IjoiMjAyNS0wNi0yN1QxNjowNzoxOC42MzRaIiwidXBkYXRlZEF0IjoiMjAyNS0wNi0yN1QxNjowNzoxOC42MzRaIiwidHdvRmFjdG9yRW5hYmxlZCI6bnVsbCwicm9sZSI6InVzZXIiLCJiYW5uZWQiOm51bGwsImJhblJlYXNvbiI6bnVsbCwiYmFuRXhwaXJlcyI6bnVsbCwiaWQiOiIwUEVaUDJkMUVGVmxOb0FRSzl6THlYeks1TXFFNURoeiIsImlhdCI6MTc1MjUyNTYxNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDozMDAyIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDozMDAyIiwiZXhwIjoxNzUyNTI2NTE2LCJzdWIiOiIwUEVaUDJkMUVGVmxOb0FRSzl6THlYeks1TXFFNURoeiJ9.gMAljSRkqCwDOwi8kJy5qMAkR_rZl-SJTo7JnCVNaUBhMOyuUsaCiGIGJQRhH-hxhHkvk177aWv_N66bxhr_CQ';
+    'eyJhbGciOiJFZERTQSIsImtpZCI6IngzOFpzcDR2Nklhc3d1NnFyZnZGQlZJUGVhd1pmdzFFIn0.eyJuYW1lIjoiU2JydWJsZXMgV29yayIsImVtYWlsIjoic2JydWJibGVzQHNicnViYmxlcy53b3JrIiwiZW1haWxWZXJpZmllZCI6dHJ1ZSwiaW1hZ2UiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjUtMDctMTVUMTk6MDg6MjAuOTgzWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDctMTVUMTk6MDg6MjAuOTgzWiIsInR3b0ZhY3RvckVuYWJsZWQiOm51bGwsInJvbGUiOiJ1c2VyIiwiYmFubmVkIjpudWxsLCJiYW5SZWFzb24iOm51bGwsImJhbkV4cGlyZXMiOm51bGwsImlkIjoic0VGUjd4TzlJd2NtU0JncmUwSmlubGlRcnZFbm9yMHciLCJpYXQiOjE3NTI4NTEwOTgsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMiIsImV4cCI6MTc1Mjg1MTk5OCwic3ViIjoic0VGUjd4TzlJd2NtU0JncmUwSmlubGlRcnZFbm9yMHcifQ.fH5zbRNJUYuXY-0W2ZPddI-EzqqSMCC6y1ACpt-ivoz7-csq0Jf5uNMyafrSRGSPEGeQCO0Czirv2dBkKyLxDg';
 
-  log.error('Initializing standard buckets...', keys().STORAGE_URL);
   await Promise.all(
     STANDARD_BUCKETS.map(async (bucket) => {
       try {
-        log.info(`Checking bucket: ${bucket.name}`);
+        log.info(` --> Checking bucket: ${bucket.name}`);
         const { error } = await storageClient(token).getBucket(bucket.name);
 
         if (error) {
-          log.info(`Bucket ${bucket.name} not found, creating...`);
-          if ((error as StorageApiError)?.status === 400) {
-            await storageClient(token).createBucket(bucket.name, {
-              ...BUCKET_CONFIG,
-              ...bucket.config,
-            });
+          if ((error as StorageApiError)?.status === 404) {
+            const result = await storageClient(token).createBucket(
+              bucket.name,
+              {
+                ...BUCKET_CONFIG,
+                ...bucket.config,
+              }
+            );
+            log.info(
+              `Bucket ${bucket.name} not found, creating..., result:`,
+              result
+            );
           } else {
             log.error(`Failed to initialize bucket ${bucket.name}:`, error);
             throw error;
           }
         }
-      } catch (error) {
+      } catch (error: unknown) {
         log.info(`Bucket ${bucket.name} not found, creating...`);
-        if ((error as StorageApiError)?.status === 400) {
+        if ((error as StorageApiError)?.status === 404) {
           await storageClient(token).createBucket(bucket.name, {
             ...BUCKET_CONFIG,
             ...bucket.config,
@@ -61,7 +66,7 @@ export async function initializeStandardBuckets() {
         } else {
           log.error(
             `Failed to initialize bucket ${bucket.name}:`,
-            error.message
+            (error as Error)?.message
           );
           throw error;
         }
@@ -71,4 +76,4 @@ export async function initializeStandardBuckets() {
 }
 
 // Initialize standard buckets at startup
-initializeStandardBuckets();
+//initializeStandardBuckets();
