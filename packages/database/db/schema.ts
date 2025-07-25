@@ -7,4 +7,5 @@ export const pageTable = pgTable('Page', {
 });
 
 export * from './auth';
+export * from './storage';
 export * from './subscriptions';

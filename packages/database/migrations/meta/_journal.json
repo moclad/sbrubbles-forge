@@ -71,6 +71,13 @@
       "when": 1752521124322,
       "tag": "0009_slimy_stranger",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1753470050307,
+      "tag": "0010_good_eddie_brock",
+      "breakpoints": true
     }
   ]
 }

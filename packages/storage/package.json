@@ -7,10 +7,12 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@supabase/storage-js": "^2.10.1",
     "@t3-oss/env-nextjs": "catalog:",
+    "@repo/database": "workspace:*",
     "better-upload": "^0.3.3",
     "next": "catalog:",
+    "nanoid": "^5.1.5",
+    "minio": "^8.0.5",
     "zod": "catalog:"
   },
   "devDependencies": {

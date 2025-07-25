@@ -5,23 +5,23 @@ packages:
 
 catalog:
   '@formatjs/intl-localematcher': ^0.6.1
-  '@hookform/resolvers': ^5.1.1
-  '@sentry/nextjs': ^9.38.0
+  '@hookform/resolvers': ^5.2.0
+  '@sentry/nextjs': ^9.42.0
   '@t3-oss/env-core': ^0.13.8
   '@t3-oss/env-nextjs': ^0.13.8
   '@types/negotiator': ^0.6.4
-  '@types/node': ^24.0.13
+  '@types/node': ^24.1.0
   international-types: ^0.8.1
   lucide-react: ^0.525.0
   negotiator: ^1.0.0
-  next: ^15.3.5
+  next: ^15.4.4
   next-international: ^1.3.1
   next-themes: ^0.4.6
-  react-hook-form: ^7.60.0
+  react-hook-form: ^7.61.1
   server-only: ^0.0.1
   svix: ^1.69.0
   typescript: ^5.8.3
-  zod: ^4.0.5
+  zod: ^4.0.10
 
 catalogs:
   react19:
@@ -35,4 +35,4 @@ catalogs:
     postcss: ^8.5.6
     tailwind-merge: ^3.3.1
     tailwindcss: ^4.1.11
-    tw-animate-css: ^1.3.5
+    tw-animate-css: ^1.3.6
