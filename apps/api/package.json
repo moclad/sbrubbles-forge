@@ -39,7 +39,7 @@
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "cross-env": "^7.0.3",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "typescript": "catalog:"
   }
 }
