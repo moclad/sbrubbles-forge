@@ -10,11 +10,11 @@ const config: StorybookConfig = {
     '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
-  framework: "@storybook/nextjs",
+  framework: getAbsolutePath("@storybook/nextjs"),
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-themes',
-    'storybook-dark-mode'
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-themes"),
+    getAbsolutePath("storybook-dark-mode")
   ],
   staticDirs: ['../public'],
   core: {

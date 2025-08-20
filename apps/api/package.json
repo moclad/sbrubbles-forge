@@ -3,13 +3,13 @@
   "private": true,
   "version": "4.1.20",
   "scripts": {
-    "dev": "next dev -p 3002 --turbopack",
-    "next": "next dev -p 3002 --turbopack",
+    "dev": "next dev -p 3006 --turbopack",
+    "next": "next dev -p 3006 --turbopack",
     "build": "next build --turbopack",
-    "start": "next start -p 3002 --turbopack",
+    "start": "next start -p 3006 --turbopack",
     "analyze": "cross-env ANALYZE=true pnpm build",
     "test": "cross-env NODE_ENV=test vitest run",
-    "stripe": "stripe listen --forward-to localhost:3002/webhooks/stripe",
+    "stripe": "stripe listen --forward-to localhost:3006/webhooks/stripe",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },

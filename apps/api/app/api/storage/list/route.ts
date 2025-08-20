@@ -1,5 +1,7 @@
-import handler from '@repo/storage/operations/list';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { getAvatarUploadUrl } from '@repo/storage/avatar';
+import { NextResponse } from 'next/server';
 
-export const GET = async (req: NextApiRequest, res: NextApiResponse) =>
-  await handler(req, res);
+export const GET = async () => {
+  const url = await getAvatarUploadUrl('', 'user-id', 'png');
+  return NextResponse.json({ url });
+};

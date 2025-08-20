@@ -7,7 +7,7 @@
   "scripts": {
     "analyze": "drizzle-kit generate",
     "build": "drizzle-kit generate",
-    "dev": "drizzle-kit studio --port 3005",
+    "dev": "drizzle-kit studio --port 3008",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
