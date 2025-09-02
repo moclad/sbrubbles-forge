@@ -12,7 +12,7 @@
   "license": "MIT License",
   "packageManager": "pnpm@10.11.1",
   "devDependencies": {
-    "playwright": "^1.52.0",
+    "playwright": "^1.55.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "catalog:",
     "dotenv": "^16.5.0",
