@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@knocklabs/node": "^1.5.0",
-    "@knocklabs/react": "^0.7.12",
+    "@knocklabs/react": "^0.7.34",
     "@t3-oss/env-nextjs": "catalog:",
     "react": "catalog:react19",
     "zod": "catalog:"
