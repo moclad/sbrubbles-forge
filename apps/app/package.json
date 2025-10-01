@@ -29,7 +29,7 @@
     "lucide-react": "catalog:",
     "next": "catalog:",
     "next-themes": "catalog:",
-    "nuqs": "^2.4.3",
+    "nuqs": "^2.7.0",
     "pg": "^8.16.0",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
