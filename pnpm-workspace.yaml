@@ -21,7 +21,7 @@ catalog:
   "react-hook-form": "^7.57.0"
   "server-only": "^0.0.1"
   "svix": "^1.66.0"
-  "typescript": "^5.8.3"
+  "typescript": "^5.9.3"
   "zod": "^3.25.49"
 
 catalogs:
