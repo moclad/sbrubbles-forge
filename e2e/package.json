@@ -13,7 +13,7 @@
   "packageManager": "pnpm@10.11.1",
   "devDependencies": {
     "playwright": "^1.52.0",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.56.1",
     "@types/node": "catalog:",
     "dotenv": "^16.5.0",
     "path": "^0.12.7"
