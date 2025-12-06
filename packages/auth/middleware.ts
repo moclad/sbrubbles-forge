@@ -1,9 +1,11 @@
+import { NextResponse } from 'next/server';
+
 import { betterFetch } from '@better-fetch/fetch';
 import i18nMiddleware from '@repo/localization/middleware';
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+
 import { keys } from './keys';
 
+import type { NextRequest } from 'next/server';
 const authRoutes = ['/sign-in', '/sign-up', '/two-factor', '/recover-account'];
 const passwordRoutes = ['/reset-password', '/forgot-password'];
 const appRoutes = ['/dashboard'];
@@ -16,6 +18,7 @@ export const authMiddleware = async (request: NextRequest) => {
   const isPasswordRoute = passwordRoutes.includes(pathName);
   const isAppRoute = appRoutes.includes(pathName);
 
+  console.log('----------------------------', keys().BETTER_AUTH_URL);
   const { data: session } = await betterFetch<Session>(
     '/api/auth/get-session',
     {
