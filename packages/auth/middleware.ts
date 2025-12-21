@@ -18,7 +18,6 @@ export const authMiddleware = async (request: NextRequest) => {
   const isPasswordRoute = passwordRoutes.includes(pathName);
   const isAppRoute = appRoutes.includes(pathName);
 
-  console.log('----------------------------', keys().BETTER_AUTH_URL);
   const { data: session } = await betterFetch<Session>(
     '/api/auth/get-session',
     {
