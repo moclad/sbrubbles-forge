@@ -25,7 +25,7 @@
     "@types/node": "catalog:",
     "@types/pg": "^8.15.4",
     "@types/ws": "^8.18.1",
-    "bufferutil": "^4.0.9",
+    "bufferutil": "^4.1.0",
     "drizzle-kit": "^0.31.1",
     "tsx": "^4.19.4",
     "typescript": "catalog:"
