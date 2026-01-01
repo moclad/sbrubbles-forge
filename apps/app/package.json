@@ -45,7 +45,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "jsdom": "^26.1.0",
     "typescript": "catalog:",
     "vitest": "^3.1.3"
