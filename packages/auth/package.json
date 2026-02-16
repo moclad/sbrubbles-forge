@@ -8,7 +8,8 @@
     "migrate:auth": "npx @better-auth/cli generate  --config server"
   },
   "dependencies": {
-    "@better-fetch/fetch": "^1.1.18",
+    "@better-fetch/fetch": "^1.1.21",
+    "@better-auth/passkey": "^1.4.9",
     "@hookform/resolvers": "catalog:",
     "@repo/database": "workspace:*",
     "@repo/design-system": "workspace:*",
@@ -16,7 +17,7 @@
     "@repo/localization": "workspace:*",
     "@repo/storage": "workspace:*",
     "@t3-oss/env-nextjs": "catalog:",
-    "better-auth": "^1.2.12",
+    "better-auth": "^1.4.10",
     "better-auth-harmony": "^1.2.5",
     "lucide-react": "catalog:",
     "next-themes": "catalog:",
@@ -25,7 +26,7 @@
     "react": "catalog:react19",
     "react-qr-code": "^2.0.18",
     "server-only": "catalog:",
-    "ua-parser-js": "^2.0.4",
+    "ua-parser-js": "^2.0.7",
     "zod": "catalog:",
     "tailwind-merge": "catalog:tailwind",
     "tailwindcss": "catalog:tailwind",

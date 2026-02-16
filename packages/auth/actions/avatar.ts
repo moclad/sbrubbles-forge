@@ -1,6 +1,5 @@
 'use server';
 
-import { getAvatarUploadUrl } from '@repo/storage/actions/user-avatar';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
@@ -26,15 +25,7 @@ export async function uploadAvatar(formData: FormData) {
   const extension = (body.extension as string) || 'png';
   const userId = session.user.id;
 
-  const url = await getAvatarUploadUrl('', userId, extension);
 
-  const _res = await fetch(url.signedUrl, {
-    body: file,
-    headers: {
-      'Content-Type': file.type,
-    },
-    method: 'PUT',
-  });
 
   //     await updateUser({ image: res.url });
 

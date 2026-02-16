@@ -1,12 +1,9 @@
 'use client';
 
-import {
-  adminClient,
-  organizationClient,
-  passkeyClient,
-  twoFactorClient,
-} from 'better-auth/client/plugins';
+import { adminClient, organizationClient, twoFactorClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/react';
+
+import { passkeyClient } from '@better-auth/passkey/client';
 
 import { keys } from './keys';
 
@@ -25,6 +22,5 @@ export const {
   signUp,
   useSession,
   signOut,
-  forgetPassword,
   resetPassword,
 } = authClient;
