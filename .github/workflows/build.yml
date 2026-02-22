@@ -1,15 +1,13 @@
-
 name: Build
 
 on:
   push:
 
-
 jobs:
   build:
     runs-on: docker
     container:
-      image: node:23.7
+      image: node:25
 
     steps:
       - name: Checkout

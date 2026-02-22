@@ -12,6 +12,9 @@ export const config: NextConfig = {
   output: 'standalone',
   skipTrailingSlashRedirect: true,
 
+  // Exclude packages that use Node.js built-ins from bundling
+  serverExternalPackages: ['@sentry/nextjs', '@logtail/next'],
+
   transpilePackages: ['@repo/design-system', '@repo/auth', '@repo/storage'],
   turbopack: {},
 
