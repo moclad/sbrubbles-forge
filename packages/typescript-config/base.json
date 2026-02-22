@@ -27,6 +27,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"

@@ -57,7 +57,7 @@ export async function initializeStandardBuckets() {
             throw error;
           }
         }
-      } catch (error: unknown) {
+      } catch (error: any) {
         log.info(`Bucket ${bucket.name} not found, creating...`);
         if ((error as StorageApiError)?.status === 404) {
           await storageClient(token).createBucket(bucket.name, {
@@ -67,7 +67,7 @@ export async function initializeStandardBuckets() {
         } else {
           log.error(
             `Failed to initialize bucket ${bucket.name}:`,
-            (error as Error)?.message
+            error
           );
           throw error;
         }

@@ -10,11 +10,11 @@ type MetadataGenerator = Omit<Metadata, 'description' | 'title'> & {
 
 const applicationName = 'next-forge';
 const author: Metadata['authors'] = {
-  name: 'Hayden Bleasel',
-  url: 'https://haydenbleasel.com/',
+  name: 'Beno Dresch',
+  url: 'https://sbrubbles.work/',
 };
-const publisher = 'Hayden Bleasel';
-const twitterHandle = '@haydenbleasel';
+const publisher = 'Beno Dresch';
+const twitterHandle = '@BenoDresch';
 const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
 const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 

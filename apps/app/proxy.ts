@@ -1,8 +1,9 @@
 import { authMiddleware } from '@repo/auth/middleware';
-import type { NextMiddleware, NextRequest } from 'next/server';
 
-export default async function middleware(request: NextRequest) {
-  return (await authMiddleware(request)) as unknown as NextMiddleware;
+import type { NextProxy, NextRequest } from 'next/server';
+
+export default async function proxy(request: NextRequest) {
+  return (await authMiddleware(request)) as unknown as NextProxy;
 }
 
 export const config = {
