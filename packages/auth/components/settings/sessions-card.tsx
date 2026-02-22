@@ -8,16 +8,17 @@ import { useContext } from 'react';
 import { useI18n } from '../../../localization/i18n/client';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { SessionCell } from './session-cell';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
 
 export interface SessionsCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
+  refetch?: () => Promise<void>;
   sessions?: Session[] | null;
   skipHook?: boolean;
-  refetch?: () => Promise<void>;
 }
 
 export function SessionsCard({

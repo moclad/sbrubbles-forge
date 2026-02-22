@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 /**
  * Displays a form input field or a component that looks like an input field.

@@ -1,9 +1,9 @@
 import { Tab } from './tab';
-import { TabsNavigationProps } from './types';
+import type { TabsNavigationProps } from './types';
 
 export const TabsNavigation = ({ tabs }: TabsNavigationProps) => {
   return (
-    <div className='border-b '>
+    <div className='border-b'>
       <div className='flex space-x-5'>
         {tabs.map((tab) => {
           return <Tab key={tab.href} {...tab} />;

@@ -1,4 +1,5 @@
-import { Ratelimit, RatelimitConfig, type } from '@upstash/ratelimit';
+import type { RatelimitConfig } from '@upstash/ratelimit';
+import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
 import { keys } from './keys';

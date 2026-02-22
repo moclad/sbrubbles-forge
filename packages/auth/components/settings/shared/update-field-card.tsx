@@ -5,23 +5,25 @@ import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
-import { ReactNode, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
+import { useContext, useState } from 'react';
 
 import { useI18n } from '../../../../localization/i18n/client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import type { FieldType } from '../../../types/additional-fields';
-import { SettingsCard, SettingsCardClassNames } from './settings-card';
+import type { SettingsCardClassNames } from './settings-card';
+import { SettingsCard } from './settings-card';
 export interface UpdateFieldCardProps {
   className?: string;
   classNames?: SettingsCardClassNames;
   defaultValue?: unknown;
   description?: ReactNode;
+  field: string;
   instructions?: ReactNode;
   isPending?: boolean;
-  field: string;
+  label?: ReactNode;
   placeholder?: string;
   required?: boolean;
-  label?: ReactNode;
   type?: FieldType;
   validate?: (value: string) => boolean | Promise<boolean>;
 }

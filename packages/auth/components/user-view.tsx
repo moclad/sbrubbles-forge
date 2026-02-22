@@ -1,10 +1,11 @@
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
 import type { Profile } from '../types/profile';
-import { UserAvatar, UserAvatarClassNames } from './user-avatar';
+import type { UserAvatarClassNames } from './user-avatar';
+import { UserAvatar } from './user-avatar';
 export interface UserClassNames {
-  base?: string;
   avatar?: UserAvatarClassNames;
+  base?: string;
   p?: string;
   small?: string;
 }

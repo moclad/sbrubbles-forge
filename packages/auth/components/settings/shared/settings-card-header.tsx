@@ -12,11 +12,11 @@ import type { ReactNode } from 'react';
 import type { SettingsCardClassNames } from './settings-card';
 
 export interface SettingsCardHeaderProps {
-  title: ReactNode;
+  className?: string;
+  classNames?: SettingsCardClassNames;
   description?: ReactNode;
   isPending?: boolean;
-  classNames?: SettingsCardClassNames;
-  className?: string;
+  title: ReactNode;
 }
 
 export function SettingsCardHeader({

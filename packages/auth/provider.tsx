@@ -1,6 +1,6 @@
 'use client';
 
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { authClient } from './client';

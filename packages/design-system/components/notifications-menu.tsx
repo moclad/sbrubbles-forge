@@ -1,8 +1,5 @@
 'use client';
 
-import { BellIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
+import { BellIcon } from 'lucide-react';
 
 import { Button } from './ui/button';
 import {
@@ -19,7 +17,6 @@ import {
 } from './ui/touch-provider';
 
 export function NotificationsMenu() {
-  const router = useRouter();
   const t = useI18n();
 
   return (
@@ -31,9 +28,9 @@ export function NotificationsMenu() {
             className='hover:bg-transparent focus:ring-0 focus:ring-none'
           >
             <Button
-              variant='ghost'
+              className='shrink-0 text-foreground'
               size='icon'
-              className='shrink-0 text-foreground '
+              variant='ghost'
             >
               <BellIcon />
             </Button>

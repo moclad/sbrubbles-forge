@@ -8,16 +8,17 @@ import { useContext, useEffect, useRef } from 'react';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { socialProviders } from '../../lib/social-providers';
 import { ProviderCell } from './provider-cell';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
 
 export interface ProvidersCardProps {
+  accounts?: { accountId: string; provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
-  accounts?: { accountId: string; provider: string }[] | null;
   isPending?: boolean;
-  skipHook?: boolean;
   refetch?: () => void;
+  skipHook?: boolean;
 }
 
 export function ProvidersCard({

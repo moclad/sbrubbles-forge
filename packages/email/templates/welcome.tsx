@@ -16,7 +16,7 @@ type Props = {
   readonly confirmationUrl: string;
 };
 
-export function WelcomeTemplate({ name, email, confirmationUrl }: Props) {
+export function WelcomeTemplate({ name, confirmationUrl }: Props) {
   return (
     <Tailwind>
       <Html>
@@ -78,8 +78,4 @@ const button = {
   textAlign: 'center' as const,
   textDecoration: 'none',
   width: '210px',
-};
-
-const anchor = {
-  textDecoration: 'underline',
 };

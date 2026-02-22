@@ -10,13 +10,14 @@ import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { ConfirmPasswordInput } from '../confirm-password-input';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 import { InputFieldSkeleton } from './skeletons/input-field-skeleton';
 
 export interface ChangePasswordCardProps {
+  accounts?: { provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
-  accounts?: { provider: string }[] | null;
   isPending?: boolean;
   skipHook?: boolean;
 }

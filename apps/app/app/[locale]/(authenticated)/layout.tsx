@@ -1,14 +1,12 @@
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-
-import { env } from '@/env';
 import { auth } from '@repo/auth/server';
 import { NotificationsProvider } from '@repo/notifications/components/provider';
 import { secure } from '@repo/security';
-
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import type { ReactNode } from 'react';
+import { env } from '@/env';
 import { GlobalSidebar } from './components/global-sidebar';
 
-import type { ReactNode } from 'react';
 type AppLayoutProperties = {
   readonly children: ReactNode;
 };
@@ -29,7 +27,7 @@ const AppLayout = async ({ children }: AppLayoutProperties) => {
   return (
     <NotificationsProvider userId={session.user.id}>
       <GlobalSidebar>
-        <div className='container mx-auto '>{children}</div>
+        <div className='container mx-auto'>{children}</div>
       </GlobalSidebar>
     </NotificationsProvider>
   );

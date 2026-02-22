@@ -1,5 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-
 import {
   Table,
   TableBody,
@@ -9,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@repo/design-system/components/ui/table';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const invoices = [
   {

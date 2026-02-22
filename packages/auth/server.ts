@@ -1,13 +1,18 @@
 import 'server-only';
 
-import { betterAuth } from 'better-auth';
-import { emailHarmony } from 'better-auth-harmony';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { nextCookies } from 'better-auth/next-js';
-import { admin, jwt, openAPI, organization, twoFactor } from 'better-auth/plugins';
-
 import { passkey } from '@better-auth/passkey';
 import { database } from '@repo/database';
+import { betterAuth } from 'better-auth';
+import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { nextCookies } from 'better-auth/next-js';
+import {
+  admin,
+  jwt,
+  openAPI,
+  organization,
+  twoFactor,
+} from 'better-auth/plugins';
+import { emailHarmony } from 'better-auth-harmony';
 
 import { keys } from './keys';
 import { sendResetEmail, sendWelcomeEmail } from './lib/email';

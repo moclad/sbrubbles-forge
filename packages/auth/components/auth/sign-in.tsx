@@ -1,6 +1,9 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from '@repo/auth/client';
+import { signInFormSchema } from '@repo/auth/lib/auth-schema';
+import { AuthUIContext } from '@repo/auth/lib/auth-ui-provider';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Form,
@@ -21,9 +24,6 @@ import { useRouter } from 'next/navigation';
 import { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { z } from 'zod';
-import { signIn } from '../../client';
-import { signInFormSchema } from '../../lib/auth-schema';
-import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { PasskeyButton } from './passkey-button';
 export const SignIn = () => {
   const form = useForm<z.infer<typeof signInFormSchema>>({

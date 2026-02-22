@@ -1,10 +1,5 @@
-import arcjet, {
-  type ArcjetBotCategory,
-  type ArcjetWellKnownBot,
-  detectBot,
-  request,
-  shield,
-} from '@arcjet/next';
+import type { ArcjetBotCategory, ArcjetWellKnownBot } from '@arcjet/next';
+import { detectBot, request, shield } from '@arcjet/next';
 
 import { keys } from './keys';
 

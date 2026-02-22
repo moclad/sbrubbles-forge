@@ -1,4 +1,13 @@
 'use client';
+
+import { useSession } from '@repo/auth/client';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from '@repo/design-system/components/ui/sidebar';
 import {
   AudioWaveform,
   BookOpen,
@@ -11,22 +20,11 @@ import {
   Settings2,
   SquareTerminal,
 } from 'lucide-react';
-
-import { useSession } from '@repo/auth/client';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@repo/design-system/components/ui/sidebar';
-
+import type { ComponentProps } from 'react';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';
 import { NavUser } from './nav-user';
 import { TeamSwitcher } from './team-switcher';
-
-import type { ComponentProps } from 'react';
 
 // This is sample data.
 const data = {

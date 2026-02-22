@@ -16,8 +16,8 @@ export interface AccountsCardProps {
   classNames?: SettingsCardClassNames;
   deviceSessions?: { user: User; session: Session }[] | null;
   isPending?: boolean;
-  skipHook?: boolean;
   refetch?: () => Promise<void>;
+  skipHook?: boolean;
 }
 
 export function AccountsCard({

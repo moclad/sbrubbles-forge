@@ -1,43 +1,57 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite"],
-  "files": {
-    "ignoreUnknown": true,
-    "experimentalScannerIgnores": [
-      "node_modules",
-      "dist",
-      ".next",
-      ".turbo",
-      ".cache",
-      "storybook-static",
-      ".react-email"
-    ]
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "defaultBranch": "main",
+    "useIgnoreFile": true
   },
-  "assist": {
-    "actions": {
-      "source": {
-        "useSortedAttributes": "on",
-        "useSortedKeys": "on"
+  "files": {
+    "ignoreUnknown": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "type"
+          },
+          "fix": "safe"
+        },
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          },
+          "fix": "safe"
+        }
       }
     }
-  },
-  "vcs": {
-    "enabled": false,
-    "clientKind": "git",
-    "useIgnoreFile": true,
-    "defaultBranch": "main"
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "jsxQuoteStyle": "single"
+      "jsxQuoteStyle": "single",
+      "enabled": true,
+      "indentWidth": 2,
+      "indentStyle": "space"
     }
   },
-  "linter": {
-    "rules": {
-      "style": {
-        "useImportType": "off"
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on"
       }
     }
-  }
+  },
+  "extends": ["ultracite/biome/core", "ultracite/biome/next"]
 }

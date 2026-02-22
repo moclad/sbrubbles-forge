@@ -1,4 +1,5 @@
-import { defaults, NoseconeOptions, type } from '@nosecone/next';
+import type { NoseconeOptions } from '@nosecone/next';
+import { defaults } from '@nosecone/next';
 
 export { createMiddleware as noseconeMiddleware } from '@nosecone/next';
 

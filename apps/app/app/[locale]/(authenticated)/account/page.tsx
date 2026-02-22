@@ -3,6 +3,7 @@ import { PageContent } from '@repo/design-system/components/page-content';
 import { getI18n } from '@repo/localization/i18n/server';
 
 import type { Metadata } from 'next';
+
 const title = 'Acme Inc';
 const description = 'My application.';
 

@@ -8,7 +8,8 @@ import { useContext } from 'react';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import type { AuthClient } from '../../types/auth-client';
 import { PasskeyCell } from './passkey-cell';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
 
 export interface PasskeysCardProps {
@@ -16,8 +17,8 @@ export interface PasskeysCardProps {
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
   passkeys?: { id: string; createdAt: Date }[] | null;
-  skipHook?: boolean;
   refetch?: () => Promise<void>;
+  skipHook?: boolean;
 }
 
 export function PasskeysCard({

@@ -14,9 +14,9 @@ import { CheckIcon, CopyIcon } from 'lucide-react';
 import { useState } from 'react';
 
 interface BackupCodesDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
   backupCodes: string[];
+  onOpenChange: (open: boolean) => void;
+  open: boolean;
 }
 
 export function BackupCodesDialog({

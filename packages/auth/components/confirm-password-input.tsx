@@ -9,11 +9,11 @@ export type AuthInputClassNames = {
 };
 
 export interface ConfirmPasswordInputProps {
+  autoComplete?: string;
   className?: string;
   classNames?: AuthInputClassNames;
-  required?: boolean;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  autoComplete?: string;
+  required?: boolean;
 }
 
 export function ConfirmPasswordInput({

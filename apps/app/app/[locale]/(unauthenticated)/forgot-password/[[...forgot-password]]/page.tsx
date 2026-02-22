@@ -1,9 +1,7 @@
-import dynamic from 'next/dynamic';
-
 import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
-
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 const ForgotPassword = dynamic(() =>
   import('@repo/auth/components/auth/forgot-password').then(
@@ -19,7 +17,7 @@ const ForgotPasswordPage = async () => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight '>
+        <h1 className='font-semibold text-2xl tracking-tight'>
           {t('authentication.forgotPassword')}
         </h1>
         <p className='text-muted-foreground text-sm'>

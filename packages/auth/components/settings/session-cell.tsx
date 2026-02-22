@@ -18,8 +18,8 @@ import type { SettingsCardClassNames } from './shared/settings-card';
 export interface SessionCellProps {
   className?: string;
   classNames?: SettingsCardClassNames;
-  session: Session;
   refetch?: () => Promise<void>;
+  session: Session;
 }
 
 export function SessionCell({

@@ -1,8 +1,7 @@
 'use client';
 
-import { Languages } from 'lucide-react';
-
 import { useChangeLocale, useI18n } from '@repo/localization/i18n/client';
+import { Languages } from 'lucide-react';
 
 import { Button } from '../../components/ui/button';
 import {
@@ -30,9 +29,9 @@ export function LanguageToggle() {
             className='hover:bg-transparent focus:ring-0 focus:ring-none'
           >
             <Button
-              variant='ghost'
-              size='icon'
               className='shrink-0 text-foreground'
+              size='icon'
+              variant='ghost'
             >
               <Languages className='absolute transition-all dark:rotate-0 dark:scale-100 dark:hover:text-white' />
               <span className='sr-only'>{t('language.label')}</span>

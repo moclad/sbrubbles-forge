@@ -5,7 +5,8 @@
     "paths": {
       "@repo/*": ["../*"],
       "@repo/auth/*": ["./*"]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": [
     "**/*.ts",

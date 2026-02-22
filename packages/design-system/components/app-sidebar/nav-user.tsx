@@ -1,9 +1,10 @@
 'use client';
 
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles, User } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@repo/design-system/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,15 +12,25 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
 import { useI18n } from '@repo/localization/i18n/client';
+import {
+  BadgeCheck,
+  Bell,
+  ChevronsUpDown,
+  CreditCard,
+  LogOut,
+  Sparkles,
+  User,
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export function NavUser({
   user,
@@ -48,11 +59,11 @@ export function NavUser({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
-              size='lg'
               className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+              size='lg'
             >
               <Avatar className='h-8 w-8 rounded-lg'>
-                {user.image && <AvatarImage src={user.image} alt={user.name} />}
+                {user.image && <AvatarImage alt={user.name} src={user.image} />}
                 <AvatarFallback className='rounded-lg'>
                   <User />
                 </AvatarFallback>
@@ -65,16 +76,16 @@ export function NavUser({
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
+            align='end'
             className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
             side={isMobile ? 'bottom' : 'right'}
-            align='end'
             sideOffset={4}
           >
             <DropdownMenuLabel className='p-0 font-normal'>
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                 <Avatar className='h-8 w-8 rounded-lg'>
                   {user.image && (
-                    <AvatarImage src={user.image} alt={user.name} />
+                    <AvatarImage alt={user.name} src={user.image} />
                   )}
                   <AvatarFallback className='rounded-lg'>
                     <User />
@@ -96,8 +107,8 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem
-                onClick={() => openAccount()}
                 className='cursor-pointer'
+                onClick={() => openAccount()}
               >
                 <BadgeCheck />
                 {t('userMenu.title')}
@@ -113,8 +124,8 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => logout()}
               className='cursor-pointer'
+              onClick={() => logout()}
             >
               <LogOut />
               {t('authentication.actions.signOut')}

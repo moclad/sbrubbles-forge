@@ -7,6 +7,6 @@ export interface AuthMutators {
   revokeDeviceSession: MutateFn<{ sessionToken: string }>;
   revokeSession: MutateFn<{ token: string }>;
   setActiveSession: MutateFn<{ sessionToken: string }>;
-  updateUser: MutateFn;
   unlinkAccount: MutateFn<{ providerId: string; accountId?: string }>;
+  updateUser: MutateFn;
 }

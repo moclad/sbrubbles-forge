@@ -4,7 +4,8 @@ import { Card } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
-import { ReactNode, useActionState } from 'react';
+import type { ReactNode } from 'react';
+import { useActionState } from 'react';
 
 import { getErrorMessage } from '../../../lib/get-error-message';
 import type { UserAvatarClassNames } from '../../user-avatar';
@@ -28,20 +29,20 @@ export type SettingsCardClassNames = {
 };
 
 export interface SettingsCardProps {
-  children?: ReactNode;
-  title: ReactNode;
-  description?: ReactNode;
-  instructions?: ReactNode;
   actionLabel?: ReactNode;
-  isSubmitting?: boolean;
-  disabled?: boolean;
-  isPending?: boolean;
+  children?: ReactNode;
   className?: string;
   classNames?: SettingsCardClassNames;
+  description?: ReactNode;
+  disabled?: boolean;
   formAction?: (formData: FormData) => Promise<unknown> | Promise<void> | void;
+  instructions?: ReactNode;
+  isPending?: boolean;
+  isSubmitting?: boolean;
   optimistic?: boolean;
-  variant?: 'default' | 'destructive';
   showToast?: boolean;
+  title: ReactNode;
+  variant?: 'default' | 'destructive';
 }
 
 export function SettingsCard({

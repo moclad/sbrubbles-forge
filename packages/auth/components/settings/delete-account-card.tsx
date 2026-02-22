@@ -3,12 +3,13 @@ import { useContext, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { DeleteAccountDialog } from './delete-account-dialog';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 
 export interface DeleteAccountCardProps {
+  accounts?: { provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
-  accounts?: { provider: string }[] | null;
   isPending?: boolean;
   skipHook?: boolean;
 }

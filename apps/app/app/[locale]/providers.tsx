@@ -1,12 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
-
 import { AnalyticsProvider } from '@repo/analytics';
 import { AuthProvider } from '@repo/auth/provider';
 import { DesignSystemProvider } from '@repo/design-system';
 import { I18nProviderClient } from '@repo/localization/i18n/client';
+import { useRouter } from 'next/navigation';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import type { ReactNode } from 'react';
 export function Providers({

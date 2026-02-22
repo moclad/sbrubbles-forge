@@ -16,7 +16,7 @@ import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { z } from 'zod';
 
 import { useOnSuccessTransition } from '../../hooks/use-success-transition';
 import { AuthUIContext } from '../../lib/auth-ui-provider';

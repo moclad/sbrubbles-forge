@@ -1,6 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@repo/auth/client';
+import { forgetPwFormSchema } from '@repo/auth/lib/auth-schema';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Form,
@@ -18,9 +20,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import type { z } from 'zod';
-import { forgetPassword } from '../../client';
-import { forgetPwFormSchema } from '../../lib/auth-schema';
 export const ForgotPassword = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ export const ForgotPassword = () => {
 
   async function onSubmit(values: z.infer<typeof forgetPwFormSchema>) {
     const { email } = values;
-    await forgetPassword(
+    await authClient.requestPasswordReset(
       {
         email,
         redirectTo: '/reset-password',

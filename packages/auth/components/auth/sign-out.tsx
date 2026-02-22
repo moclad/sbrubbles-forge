@@ -1,5 +1,8 @@
 'use client';
 
+import { authClient } from '@repo/auth/client';
+import { useOnSuccessTransition } from '@repo/auth/hooks/on-success-transition';
+import { AuthUIContext } from '@repo/auth/lib/auth-ui-provider';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Card,
@@ -12,10 +15,6 @@ import { useI18n } from '@repo/localization/i18n/client';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useRef } from 'react';
-
-import { authClient } from '../../client';
-import { useOnSuccessTransition } from '../../hooks/on-success-transition';
-import { AuthUIContext } from '../../lib/auth-ui-provider';
 
 export default function SignOut() {
   const signingOut = useRef(false);

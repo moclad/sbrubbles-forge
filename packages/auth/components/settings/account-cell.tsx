@@ -21,10 +21,10 @@ import { UserView } from '../user-view';
 
 import type { SettingsCardClassNames } from './shared/settings-card';
 export interface AccountCellProps {
+  activeSessionId?: string;
   className?: string;
   classNames?: SettingsCardClassNames;
   deviceSession: { user: User; session: Session };
-  activeSessionId?: string;
   refetch?: () => Promise<void>;
 }
 

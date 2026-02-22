@@ -1,15 +1,16 @@
 import '@repo/design-system/styles/globals.css';
 
-import { themes } from 'storybook/theming';
-
 import { Toaster } from '@repo/design-system/components/ui/sonner';
 import { TooltipProvider } from '@repo/design-system/components/ui/tooltip';
 import { ThemeProvider } from '@repo/design-system/providers/theme';
 import { withThemeByClassName } from '@storybook/addon-themes';
-
-import { commonTheme, darkUIStorybook, lightUIStorybook } from './themes-storybook-ui';
-
 import type { Preview } from '@storybook/nextjs';
+import { themes } from 'storybook/theming';
+import {
+  commonTheme,
+  darkUIStorybook,
+  lightUIStorybook,
+} from './themes-storybook-ui';
 
 const preview: Preview = {
   parameters: {
@@ -59,7 +60,7 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <div className=' bg-background'>
+        <div className='bg-background'>
           <ThemeProvider>
             <TooltipProvider>
               <Story />

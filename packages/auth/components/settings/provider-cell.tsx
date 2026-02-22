@@ -16,9 +16,9 @@ import type { AuthClient } from '../../types/auth-client';
 import type { SettingsCardClassNames } from './shared/settings-card';
 
 export interface ProviderCellProps {
+  accounts?: { accountId: string; provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
-  accounts?: { accountId: string; provider: string }[] | null;
   isPending?: boolean;
   other?: boolean;
   provider: Provider;

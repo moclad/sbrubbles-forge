@@ -22,9 +22,9 @@ import type { z } from 'zod';
 import { resetPassword } from '../../client';
 import { resetPwFormSchema } from '../../lib/auth-schema';
 
-type Props = {
+interface Props {
   token: string;
-};
+}
 
 export const ResetPassword = ({ token }: Props) => {
   const toastIdRef = useRef<string | number | null>(null);

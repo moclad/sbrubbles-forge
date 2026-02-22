@@ -1,13 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-
-import {
-  Toast,
-  ToastAction,
-  type ToastActionElement,
-  type ToastProps,
+import type {
+  ToastActionElement,
+  ToastProps,
 } from '@repo/design-system/components/ui/toast';
+import { Toast, ToastAction } from '@repo/design-system/components/ui/toast';
 import { Toaster } from '@repo/design-system/components/ui/toaster';
 import { useToast } from '@repo/design-system/hooks/use-toast';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 /**
  * A succinct message that is displayed temporarily.
@@ -25,10 +23,10 @@ const meta = {
     return (
       <div>
         <button
-          type='button'
           onClick={() => {
             toast(args);
           }}
+          type='button'
         >
           Show Toast
         </button>

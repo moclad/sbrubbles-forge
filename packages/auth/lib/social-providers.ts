@@ -1,3 +1,4 @@
+import type { ProviderIcon } from '../components/provider-icons';
 import {
   AppleIcon,
   DiscordIcon,
@@ -8,7 +9,6 @@ import {
   GoogleIcon,
   LinkedInIcon,
   MicrosoftIcon,
-  ProviderIcon,
   TwitchIcon,
   XIcon,
 } from '../components/provider-icons';

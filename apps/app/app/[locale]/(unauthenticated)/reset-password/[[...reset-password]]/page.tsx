@@ -1,7 +1,3 @@
-import { AlertCircle } from 'lucide-react';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-
 import {
   Alert,
   AlertDescription,
@@ -18,8 +14,10 @@ import {
 } from '@repo/design-system/components/ui/card';
 import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
-
+import { AlertCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const ResetPassword = dynamic(() =>
   import('@repo/auth/components/auth/reset-password').then(
@@ -75,7 +73,7 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight '>
+        <h1 className='font-semibold text-2xl tracking-tight'>
           {t('authentication.resetPassword')}
         </h1>
         <p className='text-muted-foreground text-sm'>

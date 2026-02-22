@@ -13,7 +13,8 @@ import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
-import { FormEvent, useContext, useState } from 'react';
+import type { FormEvent } from 'react';
+import { useContext, useState } from 'react';
 
 import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
@@ -22,9 +23,9 @@ import { BackupCodesDialog } from './backup-codes-dialog';
 import { QrCodeTwoFactorDialog } from './qrcode-two-factor-dialog';
 
 interface TwoFactorPasswordDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
   isTwoFactorEnabled: boolean;
+  onOpenChange: (open: boolean) => void;
+  open: boolean;
 }
 
 export function TwoFactorPasswordDialog({

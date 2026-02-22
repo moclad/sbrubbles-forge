@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { PageContentContainer } from './page-content-container';
-import { PageContentHeading, PageHeadingProps } from './page-content-heading';
+import type { PageHeadingProps } from './page-content-heading';
+import { PageContentHeading } from './page-content-heading';
 
 type PageContentProps = PageHeadingProps & {
   children?: ReactNode;

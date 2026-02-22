@@ -1,6 +1,5 @@
-import { ComponentPropsWithoutRef } from 'react';
-
 import { Slot } from '@radix-ui/react-slot';
+import type { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '../../../lib/utils';
 
@@ -13,5 +12,5 @@ export function P({
 }) {
   const classNames = cn('leading-7', '&:not(:first-child):mt-6', className);
   const Component = asChild ? Slot : 'p';
-  return <Component className={classNames} {...rest}></Component>;
+  return <Component className={classNames} {...rest} />;
 }

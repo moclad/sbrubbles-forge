@@ -26,13 +26,13 @@
     "@sentry/nextjs": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
     "next": "catalog:",
-    "pg": "^8.16.0",
+    "pg": "catalog:",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "require-in-the-middle": "^8.0.1",
-    "import-in-the-middle": "^2.0.1",
+    "import-in-the-middle": "^3.0.0",
     "svix": "catalog:",
-    "vitest": "^4.0.16",
+    "vitest": "^4.0.18",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -40,7 +40,8 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "@types/formidable": "^3.4.5",
+    "@vitejs/plugin-react": "^5.1.1",
+    "@types/formidable": "^3.4.6",
     "cross-env": "^10.1.0",
     "typescript": "catalog:"
   }

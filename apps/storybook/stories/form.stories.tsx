@@ -1,7 +1,3 @@
-import { useForm } from 'react-hook-form';
-import { action } from 'storybook/actions';
-import * as z from 'zod';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
@@ -10,10 +6,13 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@repo/design-system/components/ui/form';
-
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import { useForm } from 'react-hook-form';
+import { action } from 'storybook/actions';
+import * as z from 'zod';
+
 /**
  * Building forms with React Hook Form and Zod.
  */
@@ -47,7 +46,7 @@ const ProfileForm = (args: Story['args']) => {
   }
   return (
     <Form {...args} {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form className='space-y-8' onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name='username'

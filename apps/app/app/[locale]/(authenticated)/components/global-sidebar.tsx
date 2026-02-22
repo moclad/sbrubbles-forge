@@ -8,6 +8,7 @@ import {
 } from '@repo/design-system/components/ui/sidebar';
 
 import type { ReactNode } from 'react';
+
 type GlobalSidebarProperties = {
   readonly children: ReactNode;
 };

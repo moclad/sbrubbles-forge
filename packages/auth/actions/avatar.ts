@@ -25,8 +25,6 @@ export async function uploadAvatar(formData: FormData) {
   const extension = (body.extension as string) || 'png';
   const userId = session.user.id;
 
-
-
   //     await updateUser({ image: res.url });
 
   //  console.log(await uploadUserAvatar(userId, file));

@@ -9,7 +9,8 @@ import { useI18n } from '@repo/localization/i18n/client';
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import { AuthUIContext } from '../../lib/auth-ui-provider';
-import { SettingsCard, SettingsCardClassNames } from './shared/settings-card';
+import type { SettingsCardClassNames } from './shared/settings-card';
+import { SettingsCard } from './shared/settings-card';
 
 export interface ChangeEmailCardProps {
   className?: string;

@@ -1,8 +1,7 @@
-import { headers } from 'next/headers';
-
 import { auth } from '@repo/auth/server';
 import { database } from '@repo/database';
 import { pageTable } from '@repo/database/db/schema';
+import { headers } from 'next/headers';
 
 export const GET = async () => {
   const session = await auth.api.getSession({

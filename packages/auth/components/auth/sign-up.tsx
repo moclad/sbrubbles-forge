@@ -1,6 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signUp } from '@repo/auth//client';
+import { signUpFormSchema } from '@repo/auth//lib/auth-schema';
 import { Button } from '@repo/design-system/components/ui/button';
 import {
   Form,
@@ -19,9 +21,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import type { z } from 'zod';
-import { signUp } from '../../client';
-import { signUpFormSchema } from '../../lib/auth-schema';
 export const SignUp = () => {
   const toastIdRef = useRef<string | number | null>(null);
   const [loading, setLoading] = useState(false);

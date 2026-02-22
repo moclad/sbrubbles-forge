@@ -40,8 +40,8 @@ import type { AuthClient } from '../../../types/auth-client';
 import { OTPInputGroup } from '../../otp-input-group';
 
 interface QrCodeTwoFactorProps {
-  open: boolean;
   onOpenChange: (open: boolean) => void;
+  open: boolean;
   totpURI?: string | null;
 }
 

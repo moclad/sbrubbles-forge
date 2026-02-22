@@ -4,7 +4,12 @@
  * https://docs.sentry.io/platforms/javascript/guides/nextjs/
  */
 
-import { init, replayIntegration } from '@sentry/nextjs';
+import {
+  consoleLoggingIntegration,
+  init,
+  replayIntegration,
+} from '@sentry/nextjs';
+
 import { keys } from './keys';
 
 export const initializeSentry = (): ReturnType<typeof init> =>
@@ -20,6 +25,7 @@ export const initializeSentry = (): ReturnType<typeof init> =>
         // Additional Replay configuration goes in here, for example:
         maskAllText: true,
       }),
+      consoleLoggingIntegration({ levels: ['log', 'error', 'warn'] }),
     ],
 
     replaysOnErrorSampleRate: 1,
@@ -32,4 +38,6 @@ export const initializeSentry = (): ReturnType<typeof init> =>
 
     // Adjust this value in production, or use tracesSampler for greater control
     tracesSampleRate: 1,
+
+    // Send console.log, console.error, and console.warn calls as logs to Sentry
   });

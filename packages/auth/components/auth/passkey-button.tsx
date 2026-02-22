@@ -1,16 +1,16 @@
-import { KeyIcon } from 'lucide-react';
-
+import type { ErrorContext } from '@better-fetch/fetch';
 import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
+import { KeyIcon } from 'lucide-react';
 
 import { authClient } from '../../client';
 import { useOnSuccessTransition } from '../../hooks/on-success-transition';
 import { getErrorMessage } from '../../lib/get-error-message';
 
 interface PasskeyButtonProps {
-  isSubmitting?: boolean;
   disabled?: boolean;
+  isSubmitting?: boolean;
   setIsSubmitting?: (isSubmitting: boolean) => void;
 }
 
@@ -27,7 +27,7 @@ export function PasskeyButton({
 
     const result = await authClient.signIn.passkey({
       fetchOptions: {
-        onError: (ctx: any) => {
+        onError: (ctx: ErrorContext) => {
           toast(getErrorMessage({ error: ctx.error }));
           setIsSubmitting?.(false);
         },

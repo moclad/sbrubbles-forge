@@ -10,13 +10,13 @@ import {
   Text,
 } from '@react-email/components';
 
-type Props = {
-  readonly name: string;
+interface Props {
   readonly email: string;
+  readonly name: string;
   readonly resetUrl: string;
-};
+}
 
-export function ResetPasswordTemplate({ name, email, resetUrl }: Props) {
+export function ResetPasswordTemplate({ name, resetUrl }: Props) {
   return (
     <Tailwind>
       <Html>

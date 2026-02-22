@@ -13,16 +13,16 @@ import type { Profile } from '../types/profile';
 
 export interface UserAvatarClassNames {
   base?: string;
-  image?: string;
   fallback?: string;
   fallbackIcon?: string;
+  image?: string;
   skeleton?: string;
 }
 
 export interface UserAvatarProps {
-  user?: Profile;
   classNames?: UserAvatarClassNames;
   isPending?: boolean;
+  user?: Profile;
 }
 
 /**

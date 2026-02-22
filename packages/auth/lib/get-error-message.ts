@@ -1,4 +1,4 @@
-import { BetterFetchError } from '@better-fetch/fetch';
+import type { BetterFetchError } from '@better-fetch/fetch';
 
 import type { FetchError } from '../types/fetch-error';
 

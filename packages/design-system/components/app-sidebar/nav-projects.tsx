@@ -1,14 +1,6 @@
 'use client';
 
 import {
-  Folder,
-  Forward,
-  LucideIcon,
-  MoreHorizontal,
-  Trash2,
-} from 'lucide-react';
-
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -24,6 +16,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@repo/design-system/components/ui/sidebar';
+import type { LucideIcon } from 'lucide-react';
+import { Folder, Forward, MoreHorizontal, Trash2 } from 'lucide-react';
 
 export function NavProjects({
   projects,
@@ -56,9 +50,9 @@ export function NavProjects({
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
               <DropdownMenuContent
+                align={isMobile ? 'end' : 'start'}
                 className='w-48 rounded-lg'
                 side={isMobile ? 'bottom' : 'right'}
-                align={isMobile ? 'end' : 'start'}
               >
                 <DropdownMenuItem>
                   <Folder className='text-muted-foreground' />

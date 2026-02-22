@@ -29,7 +29,7 @@
     "i18n-ally.parsers.typescript.compilerOptions": {
       "moduleResolution": "node"
     },
-    "cSpell.words": ["totp"],
+    "cSpell.words": ["totp", "turbopack"],
     "sqltools.connections": [
       {
         "previewLimit": 50,

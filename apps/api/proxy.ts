@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse, type } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 // the list of all allowed origins
 const allowedOrigins = ['http://localhost:3005', 'https://example-1.com'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // retrieve the current response
   const res = NextResponse.next();
 

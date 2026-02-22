@@ -10,11 +10,11 @@ const config: StorybookConfig = {
     '../stories/**/*.mdx',
     '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
-  framework: getAbsolutePath("@storybook/nextjs"),
+  framework: getAbsolutePath('@storybook/nextjs'),
   addons: [
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-themes"),
-    getAbsolutePath("storybook-dark-mode")
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-themes'),
+    getAbsolutePath('storybook-dark-mode'),
   ],
   staticDirs: ['../public'],
   core: {
@@ -25,5 +25,5 @@ const config: StorybookConfig = {
 export default config;
 
 function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
+  return dirname(require.resolve(join(value, 'package.json')));
 }

@@ -1,6 +1,5 @@
-import type { NextMiddleware, NextRequest } from 'next/server';
-
 import { authMiddleware } from '@repo/auth/middleware';
+import type { NextMiddleware, NextRequest } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
   return (await authMiddleware(request)) as unknown as NextMiddleware;

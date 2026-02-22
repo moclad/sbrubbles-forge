@@ -19,10 +19,10 @@ import { getErrorMessage } from '../../lib/get-error-message';
 
 import type { SettingsCardClassNames } from './shared/settings-card';
 export interface DeleteAccountDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
   accounts?: { provider: string }[] | null;
   classNames?: SettingsCardClassNames;
+  onOpenChange: (open: boolean) => void;
+  open: boolean;
 }
 
 export function DeleteAccountDialog({

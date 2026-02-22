@@ -14,12 +14,12 @@ import type { SettingsCardClassNames } from './settings-card';
 
 export interface SettingsCardFooterProps {
   actionLabel?: ReactNode;
-  disabled?: boolean;
-  isSubmitting?: boolean;
-  isPending?: boolean;
-  instructions?: ReactNode;
-  classNames?: SettingsCardClassNames;
   className?: string;
+  classNames?: SettingsCardClassNames;
+  disabled?: boolean;
+  instructions?: ReactNode;
+  isPending?: boolean;
+  isSubmitting?: boolean;
   optimistic?: boolean;
   variant?: 'default' | 'destructive';
 }
@@ -38,7 +38,7 @@ export function SettingsCardFooter({
   return (
     <CardFooter
       className={cn(
-        'flex w-full justify-between gap-4 ',
+        'flex w-full justify-between gap-4',
         (actionLabel || instructions) && '!py-2 border-t',
         variant === 'default'
           ? 'dark:bg-transparent'

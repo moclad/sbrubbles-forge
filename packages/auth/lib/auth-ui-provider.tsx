@@ -1,7 +1,8 @@
 'use client';
 
 import type { SocialProvider } from 'better-auth/social-providers';
-import { createContext, ReactNode, useMemo } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useMemo } from 'react';
 import { useAuthData } from '../hooks/use-auth-data';
 import type { AdditionalFields } from '../types/additional-fields';
 import type { AnyAuthClient } from '../types/any-auth-client';

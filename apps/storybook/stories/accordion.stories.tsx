@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@repo/design-system/components/ui/accordion';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 /**
  * A vertically stacked set of interactive headings that each reveal a section

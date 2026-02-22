@@ -1,4 +1,5 @@
-import { StorageApiError, StorageClient } from '@supabase/storage-js';
+import type { StorageApiError } from '@supabase/storage-js';
+import { StorageClient } from '@supabase/storage-js';
 
 import { log } from '../observability/log';
 import { PRIVATE_ASSETS_BUCKET, PUBLIC_ASSETS_BUCKET } from './buckets';

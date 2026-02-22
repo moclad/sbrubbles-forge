@@ -1,9 +1,8 @@
-import dynamic from 'next/dynamic';
-
 import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
-
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+
 const title = 'Create an account';
 const description = 'Enter your details to get started.';
 const SignUp = dynamic(() =>

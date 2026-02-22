@@ -1,6 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useIsHydrated } from '@repo/auth/hooks/use-hydrated';
+import { useOnSuccessTransition } from '@repo/auth/hooks/use-success-transition';
+import { AuthUIContext } from '@repo/auth/lib/auth-ui-provider';
+import { getErrorMessage } from '@repo/auth/lib/get-error-message';
+import type { AuthClient } from '@repo/auth/types/auth-client';
 import { cn } from '@repo/design-system//lib/utils';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
 import { Button } from '@repo/design-system/components/ui/button';
@@ -17,13 +22,7 @@ import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-import { useIsHydrated } from '../../hooks/use-hydrated';
-import { useOnSuccessTransition } from '../../hooks/use-success-transition';
-import { AuthUIContext } from '../../lib/auth-ui-provider';
-import { getErrorMessage } from '../../lib/get-error-message';
-import type { AuthClient } from '../../types/auth-client';
+import { z } from 'zod';
 import { OTPInputGroup } from '../otp-input-group';
 export interface TwoFactorFormProps {
   className?: string;
@@ -107,66 +106,64 @@ export function TwoFactorForm({
             className='mt-4 space-y-4'
             onSubmit={form.handleSubmit(verifyCode)}
           >
-            <>
-              <FormField
-                control={form.control}
-                name='code'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='flex items-center justify-between'>
-                      <FormLabel>{t('account.oneTimePassword')}</FormLabel>
+            <FormField
+              control={form.control}
+              name='code'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex items-center justify-between'>
+                    <FormLabel>{t('account.oneTimePassword')}</FormLabel>
 
-                      <Link
-                        className={cn('text-sm hover:underline')}
-                        href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
-                      >
-                        {t('account.forgotAuthenticator')}
-                      </Link>
-                    </div>
+                    <Link
+                      className={cn('text-sm hover:underline')}
+                      href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
+                    >
+                      {t('account.forgotAuthenticator')}
+                    </Link>
+                  </div>
 
-                    <div className='flex items-center justify-center'>
-                      <FormControl>
-                        <InputOTP
-                          autoFocus
-                          {...field}
-                          disabled={isSubmitting}
-                          maxLength={6}
-                          onChange={(value) => {
-                            field.onChange(value);
-
-                            if (value.length === 6) {
-                              form.handleSubmit(verifyCode)();
-                            }
-                          }}
-                        >
-                          <OTPInputGroup otpSeparators={otpSeparators} />
-                        </InputOTP>
-                      </FormControl>
-                    </div>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='trustDevice'
-                render={({ field }) => (
-                  <FormItem className='flex'>
+                  <div className='flex items-center justify-center'>
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
+                      <InputOTP
+                        autoFocus
+                        {...field}
                         disabled={isSubmitting}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
+                        maxLength={6}
+                        onChange={(value) => {
+                          field.onChange(value);
 
-                    <FormLabel>{t('account.trustDevice')}</FormLabel>
-                  </FormItem>
-                )}
-              />
-            </>
+                          if (value.length === 6) {
+                            form.handleSubmit(verifyCode)();
+                          }
+                        }}
+                      >
+                        <OTPInputGroup otpSeparators={otpSeparators} />
+                      </InputOTP>
+                    </FormControl>
+                  </div>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='trustDevice'
+              render={({ field }) => (
+                <FormItem className='flex'>
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      disabled={isSubmitting}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+
+                  <FormLabel>{t('account.trustDevice')}</FormLabel>
+                </FormItem>
+              )}
+            />
 
             <Button
               className='mt-4 w-full'
