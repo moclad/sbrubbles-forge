@@ -7,15 +7,13 @@ import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
 import type { SocialProvider } from 'better-auth/social-providers';
 import { useContext, useState } from 'react';
-
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
-
 import type { Provider } from '../../lib/social-providers';
 import type { AuthClient } from '../../types/auth-client';
 import type { SettingsCardClassNames } from './shared/settings-card';
 
-export interface ProviderCellProps {
+export type ProviderCellProps = {
   accounts?: { accountId: string; provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -23,7 +21,7 @@ export interface ProviderCellProps {
   other?: boolean;
   provider: Provider;
   refetch?: () => void;
-}
+};
 
 export function ProviderCell({
   className,

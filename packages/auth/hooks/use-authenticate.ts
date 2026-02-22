@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 
 import { AuthUIContext } from '../lib/auth-ui-provider';
 
-interface AuthenticateOptions {
+type AuthenticateOptions = {
   enabled?: boolean;
-}
+};
 
 export function useAuthenticate(options?: AuthenticateOptions) {
   const { enabled = true } = options ?? {};

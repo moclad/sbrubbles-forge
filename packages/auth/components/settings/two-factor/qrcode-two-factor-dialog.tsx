@@ -27,7 +27,7 @@ import {
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Smartphone } from 'lucide-react';
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import QRCode from 'react-qr-code';
 import z from 'zod';
@@ -39,11 +39,11 @@ import { getSearchParam } from '../../../lib/utils';
 import type { AuthClient } from '../../../types/auth-client';
 import { OTPInputGroup } from '../../otp-input-group';
 
-interface QrCodeTwoFactorProps {
+type QrCodeTwoFactorProps = {
   onOpenChange: (open: boolean) => void;
   open: boolean;
   totpURI?: string | null;
-}
+};
 
 export function QrCodeTwoFactorDialog({
   open,
@@ -53,7 +53,6 @@ export function QrCodeTwoFactorDialog({
   const isHydrated = useIsHydrated();
   const effectiveTotpURI =
     totpURI ?? (isHydrated ? getSearchParam('totpURI') : null);
-  const initialSendRef = useRef(false);
   const t = useI18n();
 
   const {
@@ -133,56 +132,54 @@ export function QrCodeTwoFactorDialog({
                 </div>
               )}
 
-              <>
-                <FormField
-                  control={form.control}
-                  name='code'
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className='flex items-center justify-between'>
-                        <FormLabel>{t('account.oneTimePassword')}</FormLabel>
-                      </div>
+              <FormField
+                control={form.control}
+                name='code'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex items-center justify-between'>
+                      <FormLabel>{t('account.oneTimePassword')}</FormLabel>
+                    </div>
 
-                      <FormControl>
-                        <InputOTP
-                          {...field}
-                          disabled={isSubmitting}
-                          maxLength={6}
-                          onChange={(value) => {
-                            field.onChange(value);
+                    <FormControl>
+                      <InputOTP
+                        {...field}
+                        disabled={isSubmitting}
+                        maxLength={6}
+                        onChange={(value) => {
+                          field.onChange(value);
 
-                            if (value.length === 6) {
-                              form.handleSubmit(verifyCode)();
-                            }
-                          }}
-                        >
-                          <OTPInputGroup otpSeparators={1} />
-                        </InputOTP>
-                      </FormControl>
+                          if (value.length === 6) {
+                            form.handleSubmit(verifyCode)();
+                          }
+                        }}
+                      >
+                        <OTPInputGroup otpSeparators={1} />
+                      </InputOTP>
+                    </FormControl>
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name='trustDevice'
-                  render={({ field }) => (
-                    <FormItem className='flex'>
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          disabled={isSubmitting}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
+              <FormField
+                control={form.control}
+                name='trustDevice'
+                render={({ field }) => (
+                  <FormItem className='flex'>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        disabled={isSubmitting}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
 
-                      <FormLabel>{t('account.trustDevice')}</FormLabel>
-                    </FormItem>
-                  )}
-                />
-              </>
+                    <FormLabel>{t('account.trustDevice')}</FormLabel>
+                  </FormItem>
+                )}
+              />
 
               <Alert variant='default'>
                 <Smartphone />

@@ -3,7 +3,9 @@
 import type { SocialProvider } from 'better-auth/social-providers';
 import type { ReactNode } from 'react';
 import { createContext, useMemo } from 'react';
+
 import { useAuthData } from '../hooks/use-auth-data';
+
 import type { AdditionalFields } from '../types/additional-fields';
 import type { AnyAuthClient } from '../types/any-auth-client';
 import type { AuthClient } from '../types/auth-client';
@@ -258,7 +260,6 @@ export const AuthUIProvider = ({
   replace,
   twoFactor = ['totp'],
   Link = DefaultLink,
-  ...props
 }: AuthUIProviderProps) => {
   const defaultMutates: AuthMutators = useMemo(
     () => ({
@@ -299,7 +300,17 @@ export const AuthUIProvider = ({
   const defaultHooks: AuthHooks = useMemo(
     () => ({
       // biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
-      useListAccounts: () => useAuthData({ queryFn: authClient.listAccounts }),
+      useListAccounts: () => {
+        const result = useAuthData({ queryFn: authClient.listAccounts });
+        return {
+          ...result,
+          data:
+            result.data?.map((account) => ({
+              accountId: account.accountId,
+              provider: account.providerId,
+            })) ?? null,
+        };
+      },
       useListDeviceSessions: () =>
         // biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
         useAuthData({

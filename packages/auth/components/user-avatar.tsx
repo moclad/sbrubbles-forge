@@ -11,19 +11,19 @@ import type { ComponentProps } from 'react';
 
 import type { Profile } from '../types/profile';
 
-export interface UserAvatarClassNames {
+export type UserAvatarClassNames = {
   base?: string;
   fallback?: string;
   fallbackIcon?: string;
   image?: string;
   skeleton?: string;
-}
+};
 
-export interface UserAvatarProps {
+export type UserAvatarProps = {
   classNames?: UserAvatarClassNames;
   isPending?: boolean;
   user?: Profile;
-}
+};
 
 /**
  * Displays a user avatar with image and fallback support

@@ -4,22 +4,20 @@ import { CardContent } from '@repo/design-system/components/ui/card';
 import { cn } from '@repo/design-system/lib/utils';
 import type { Session } from 'better-auth';
 import { useContext } from 'react';
-
 import { useI18n } from '../../../localization/i18n/client';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { SessionCell } from './session-cell';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
-
-export interface SessionsCardProps {
+export type SessionsCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
   refetch?: () => Promise<void>;
   sessions?: Session[] | null;
   skipHook?: boolean;
-}
+};
 
 export function SessionsCard({
   className,

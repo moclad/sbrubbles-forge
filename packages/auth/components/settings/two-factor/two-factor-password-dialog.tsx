@@ -15,25 +15,24 @@ import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import type { FormEvent } from 'react';
 import { useContext, useState } from 'react';
-
 import { authClient } from '../../../client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../../lib/get-error-message';
 import { BackupCodesDialog } from './backup-codes-dialog';
 import { QrCodeTwoFactorDialog } from './qrcode-two-factor-dialog';
 
-interface TwoFactorPasswordDialogProps {
+type TwoFactorPasswordDialogProps = {
   isTwoFactorEnabled: boolean;
   onOpenChange: (open: boolean) => void;
   open: boolean;
-}
+};
 
 export function TwoFactorPasswordDialog({
   open,
   onOpenChange,
   isTwoFactorEnabled,
 }: Readonly<TwoFactorPasswordDialogProps>) {
-  const { navigate, twoFactor } = useContext(AuthUIContext);
+  const { twoFactor } = useContext(AuthUIContext);
   const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
   const [showBackupCodesDialog, setShowBackupCodesDialog] = useState(false);

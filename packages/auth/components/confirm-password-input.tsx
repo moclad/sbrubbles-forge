@@ -1,6 +1,7 @@
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { useI18n } from '@repo/localization/i18n/client';
+
 import type { ChangeEvent } from 'react';
 
 export type AuthInputClassNames = {
@@ -8,13 +9,13 @@ export type AuthInputClassNames = {
   input?: string;
 };
 
-export interface ConfirmPasswordInputProps {
+export type ConfirmPasswordInputProps = {
   autoComplete?: string;
   className?: string;
   classNames?: AuthInputClassNames;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
-}
+};
 
 export function ConfirmPasswordInput({
   className,

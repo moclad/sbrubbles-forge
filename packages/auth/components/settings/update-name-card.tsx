@@ -6,11 +6,11 @@ import { useContext } from 'react';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { UpdateFieldCard } from './shared/update-field-card';
-export interface UpdateNameCardProps {
+export type UpdateNameCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
-}
+};
 
 export function UpdateNameCard({
   className,

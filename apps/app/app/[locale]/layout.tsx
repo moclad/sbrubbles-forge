@@ -1,10 +1,9 @@
-import '../../../../packages/design-system/styles/globals.css';
+import './styles.css';
 
 import { fonts } from '@repo/design-system/lib/fonts';
-
+import type { ReactNode } from 'react';
 import { Providers } from './providers';
 
-import type { ReactNode } from 'react';
 type RootLayoutProperties = {
   readonly children: ReactNode;
   readonly params: Promise<{ locale: string }>;

@@ -18,12 +18,12 @@ import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 
 import type { SettingsCardClassNames } from './shared/settings-card';
-export interface DeleteAccountDialogProps {
+export type DeleteAccountDialogProps = {
   accounts?: { provider: string }[] | null;
   classNames?: SettingsCardClassNames;
   onOpenChange: (open: boolean) => void;
   open: boolean;
-}
+};
 
 export function DeleteAccountDialog({
   open,

@@ -50,7 +50,7 @@ async function resizeAndCropImage(
   );
 }
 
-async function loadImage(file: File): Promise<HTMLImageElement> {
+function loadImage(file: File): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const image = new Image();
     const reader = new FileReader();
@@ -66,11 +66,11 @@ async function loadImage(file: File): Promise<HTMLImageElement> {
   });
 }
 
-export interface UpdateAvatarCardProps {
+export type UpdateAvatarCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
-}
+};
 
 export function UpdateAvatarCard({
   className,
@@ -179,7 +179,7 @@ export function UpdateAvatarCard({
       </div>
 
       <SettingsCardFooter
-        className='!py-5'
+        className='py-5!'
         classNames={classNames}
         instructions={t('account.avatarInstructions')}
         isPending={isPending}

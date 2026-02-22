@@ -3,19 +3,19 @@ import { cn } from '@repo/design-system/lib/utils';
 import type { Profile } from '../types/profile';
 import type { UserAvatarClassNames } from './user-avatar';
 import { UserAvatar } from './user-avatar';
-export interface UserClassNames {
+export type UserClassNames = {
   avatar?: UserAvatarClassNames;
   base?: string;
   p?: string;
   small?: string;
-}
+};
 
-export interface UserProps {
+export type UserProps = {
   className?: string;
   classNames?: UserClassNames;
   isPending?: boolean;
   user?: Profile;
-}
+};
 
 /**
  * Displays user information with avatar and details in a compact view

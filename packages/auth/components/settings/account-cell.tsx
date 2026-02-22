@@ -14,19 +14,17 @@ import { useI18n } from '@repo/localization/i18n/client';
 import type { Session, User } from 'better-auth';
 import { EllipsisIcon, Loader2, LogOutIcon, RepeatIcon } from 'lucide-react';
 import { useContext, useState } from 'react';
-
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 import { UserView } from '../user-view';
-
 import type { SettingsCardClassNames } from './shared/settings-card';
-export interface AccountCellProps {
+export type AccountCellProps = {
   activeSessionId?: string;
   className?: string;
   classNames?: SettingsCardClassNames;
   deviceSession: { user: User; session: Session };
   refetch?: () => Promise<void>;
-}
+};
 
 export function AccountCell({
   className,

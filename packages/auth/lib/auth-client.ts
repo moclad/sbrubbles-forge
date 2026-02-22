@@ -1,9 +1,10 @@
+import type { passkeyClient } from '@better-auth/passkey/client';
+
 import type {
   anonymousClient,
   genericOAuthClient,
   magicLinkClient,
   multiSessionClient,
-  passkeyClient,
   twoFactorClient,
   usernameClient,
 } from 'better-auth/client/plugins';

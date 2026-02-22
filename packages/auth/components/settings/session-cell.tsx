@@ -9,18 +9,16 @@ import type { Session } from 'better-auth';
 import { LaptopIcon, SmartphoneIcon } from 'lucide-react';
 import { useContext, useState } from 'react';
 import { UAParser } from 'ua-parser-js';
-
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
-
 import type { SettingsCardClassNames } from './shared/settings-card';
 
-export interface SessionCellProps {
+export type SessionCellProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   refetch?: () => Promise<void>;
   session: Session;
-}
+};
 
 export function SessionCell({
   className,

@@ -10,7 +10,6 @@ import { cn } from '@repo/design-system/lib/utils';
 import type { Session, User } from 'better-auth';
 import { KeyIcon, UserIcon } from 'lucide-react';
 import { useContext } from 'react';
-
 import { useI18n } from '../../../localization/i18n/client';
 import { useAuthenticate } from '../../hooks/use-authenticate';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
@@ -38,10 +37,10 @@ export type SettingsCardsClassNames = {
   };
 };
 
-export interface SettingsCardsProps {
+export type SettingsCardsProps = {
   className?: string;
   classNames?: SettingsCardsClassNames;
-}
+};
 
 export function SettingsCards({
   className,

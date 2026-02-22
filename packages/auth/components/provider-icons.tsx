@@ -1,9 +1,9 @@
 import type { ComponentType } from 'react';
 
-export interface ProviderIconProps {
+export type ProviderIconProps = {
   className?: string;
   variant?: 'default' | 'color';
-}
+};
 
 export type ProviderIcon = ComponentType<ProviderIconProps>;
 

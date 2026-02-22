@@ -11,12 +11,11 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthUIContext } from '../../lib/auth-ui-provider';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
-
-export interface ChangeEmailCardProps {
+export type ChangeEmailCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
-}
+};
 
 export function ChangeEmailCard({
   className,

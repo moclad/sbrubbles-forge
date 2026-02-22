@@ -7,10 +7,10 @@ import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import type { SettingsCardClassNames } from '../shared/settings-card';
 import { SettingsCard } from '../shared/settings-card';
 import { TwoFactorPasswordDialog } from './two-factor-password-dialog';
-export interface TwoFactorCardProps {
+export type TwoFactorCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
-}
+};
 
 export function TwoFactorCard({
   className,

@@ -12,7 +12,7 @@ import type { ReactNode } from 'react';
 
 import type { SettingsCardClassNames } from './settings-card';
 
-export interface SettingsCardFooterProps {
+export type SettingsCardFooterProps = {
   actionLabel?: ReactNode;
   className?: string;
   classNames?: SettingsCardClassNames;
@@ -22,7 +22,7 @@ export interface SettingsCardFooterProps {
   isSubmitting?: boolean;
   optimistic?: boolean;
   variant?: 'default' | 'destructive';
-}
+};
 
 export function SettingsCardFooter({
   actionLabel,

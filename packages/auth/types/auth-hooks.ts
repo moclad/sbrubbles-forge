@@ -6,8 +6,7 @@ type AuthHook<T> = {
   isPending: boolean;
   data?: T | null;
   error?: FetchError | null;
-  // biome-ignore lint/suspicious/noExplicitAny:
-  refetch?: () => Promise<any> | any;
+  refetch?: () => Promise<void>;
 };
 
 export type AuthHooks = {

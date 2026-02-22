@@ -11,15 +11,14 @@ import { ProviderCell } from './provider-cell';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
-
-export interface ProvidersCardProps {
+export type ProvidersCardProps = {
   accounts?: { accountId: string; provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
   refetch?: () => void;
   skipHook?: boolean;
-}
+};
 
 export function ProvidersCard({
   className,
@@ -60,7 +59,7 @@ export function ProvidersCard({
   }, [refetch]);
 
   if (!(providers && otherProviders)) {
-    return <></>;
+    return null;
   }
   return (
     <SettingsCard

@@ -13,12 +13,12 @@ import { getErrorMessage } from '../../lib/get-error-message';
 
 import type { SettingsCardClassNames } from './shared/settings-card';
 
-export interface PasskeyCellProps {
+export type PasskeyCellProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   passkey: { id: string; createdAt: Date };
   refetch?: () => Promise<void>;
-}
+};
 
 export function PasskeyCell({
   className,

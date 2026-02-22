@@ -11,15 +11,14 @@ import { PasskeyCell } from './passkey-cell';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
 import { SettingsCellSkeleton } from './skeletons/settings-cell-skeleton';
-
-export interface PasskeysCardProps {
+export type PasskeysCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
   passkeys?: { id: string; createdAt: Date }[] | null;
   refetch?: () => Promise<void>;
   skipHook?: boolean;
-}
+};
 
 export function PasskeysCard({
   className,

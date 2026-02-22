@@ -13,14 +13,13 @@ import { ConfirmPasswordInput } from '../confirm-password-input';
 import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCard } from './shared/settings-card';
 import { InputFieldSkeleton } from './skeletons/input-field-skeleton';
-
-export interface ChangePasswordCardProps {
+export type ChangePasswordCardProps = {
   accounts?: { provider: string }[] | null;
   className?: string;
   classNames?: SettingsCardClassNames;
   isPending?: boolean;
   skipHook?: boolean;
-}
+};
 
 export function ChangePasswordCard({
   className,
@@ -53,7 +52,7 @@ export function ChangePasswordCard({
       throw new Error('Email not found');
     }
 
-    await authClient.forgetPassword({
+    await authClient.requestPasswordReset({
       email,
       fetchOptions: { throw: true },
       redirectTo: `${basePath}/reset-password`,

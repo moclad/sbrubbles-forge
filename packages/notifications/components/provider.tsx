@@ -1,5 +1,6 @@
 'use client';
 
+import type { ColorMode } from '@knocklabs/react';
 import { KnockFeedProvider, KnockProvider } from '@knocklabs/react';
 import type { ReactNode } from 'react';
 import { keys } from '../keys';
@@ -10,10 +11,12 @@ const knockFeedChannelId = keys().NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID;
 type NotificationsProviderProps = {
   children: ReactNode;
   userId: string;
+  theme: ColorMode;
 };
 
 export const NotificationsProvider = ({
   children,
+  theme,
   userId,
 }: NotificationsProviderProps) => {
   if (!(knockApiKey && knockFeedChannelId)) {
@@ -21,8 +24,8 @@ export const NotificationsProvider = ({
   }
 
   return (
-    <KnockProvider apiKey={knockApiKey} userId={userId}>
-      <KnockFeedProvider feedId={knockFeedChannelId}>
+    <KnockProvider apiKey={knockApiKey} user={{ id: userId }}>
+      <KnockFeedProvider colorMode={theme} feedId={knockFeedChannelId}>
         {children}
       </KnockFeedProvider>
     </KnockProvider>

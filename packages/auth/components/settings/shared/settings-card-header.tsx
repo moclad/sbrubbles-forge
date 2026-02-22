@@ -7,17 +7,18 @@ import {
 } from '@repo/design-system/components/ui/card';
 import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
+
 import type { ReactNode } from 'react';
 
 import type { SettingsCardClassNames } from './settings-card';
 
-export interface SettingsCardHeaderProps {
+export type SettingsCardHeaderProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   description?: ReactNode;
   isPending?: boolean;
   title: ReactNode;
-}
+};
 
 export function SettingsCardHeader({
   title,
