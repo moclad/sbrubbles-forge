@@ -17,8 +17,8 @@ export const generateMetadata = async ({
   };
 };
 
-const SearchPage = async ({ searchParams }: SearchPageProperties) => {
-  const { q } = await searchParams;
+const SearchPage = async ({} : SearchPageProperties) => {
+  // const { q } = await searchParams;
   const pages = await database.query.pageTable.findMany({});
 
   return (
@@ -31,7 +31,7 @@ const SearchPage = async ({ searchParams }: SearchPageProperties) => {
             </div>
           ))}
         </div>
-        <div className='min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min' />
+        <div className='min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min' />
       </div>
     </>
   );
