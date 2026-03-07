@@ -25,12 +25,12 @@
     "@sentry/nextjs": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
     "fuse.js": "^7.1.0",
-    "import-in-the-middle": "^2.0.1",
+    "import-in-the-middle": "^3.0.0",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "next-themes": "catalog:",
-    "nuqs": "^2.4.3",
-    "pg": "^8.16.0",
+    "nuqs": "^2.8.9",
+    "pg": "^8.20.0",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "require-in-the-middle": "^8.0.1",
@@ -40,14 +40,14 @@
   "devDependencies": {
     "@repo/testing": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "cross-env": "^10.1.0",
-    "jsdom": "^27.4.0",
+    "jsdom": "^28.1.0",
     "typescript": "catalog:",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.18"
   }
 }
