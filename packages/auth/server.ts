@@ -17,7 +17,7 @@ import { emailHarmony } from 'better-auth-harmony';
 import { keys } from './keys';
 import { sendResetEmail, sendWelcomeEmail } from './lib/email';
 
-export const auth: ReturnType<typeof betterAuth> = betterAuth({
+export const auth = betterAuth({
   advanced: {
     cookiePrefix: 'sbrubbles-forge',
   },

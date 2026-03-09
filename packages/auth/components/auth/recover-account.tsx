@@ -23,12 +23,12 @@ import { AuthUIContext } from '../../lib/auth-ui-provider';
 import { getErrorMessage } from '../../lib/get-error-message';
 
 import type { AuthClient } from '../../types/auth-client';
-export interface RecoverAccountFormProps {
+export type RecoverAccountFormProps = {
   className?: string;
   isSubmitting?: boolean;
   redirectTo?: string;
   setIsSubmitting?: (value: boolean) => void;
-}
+};
 
 export function RecoverAccountForm({
   className,

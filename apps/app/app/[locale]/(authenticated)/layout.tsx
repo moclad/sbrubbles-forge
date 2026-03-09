@@ -1,9 +1,9 @@
-import { env } from '@/env';
 import { auth } from '@repo/auth/server';
 import { secure } from '@repo/security';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
+import { env } from '@/env';
 import { GlobalSidebar } from './components/global-sidebar';
 import { NotificationsProvider } from './components/notifications-provider';
 

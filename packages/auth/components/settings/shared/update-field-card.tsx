@@ -13,7 +13,7 @@ import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import type { FieldType } from '../../../types/additional-fields';
 import type { SettingsCardClassNames } from './settings-card';
 import { SettingsCard } from './settings-card';
-export interface UpdateFieldCardProps {
+export type UpdateFieldCardProps = {
   className?: string;
   classNames?: SettingsCardClassNames;
   defaultValue?: unknown;
@@ -26,7 +26,7 @@ export interface UpdateFieldCardProps {
   required?: boolean;
   type?: FieldType;
   validate?: (value: string) => boolean | Promise<boolean>;
-}
+};
 
 export function UpdateFieldCard({
   className,

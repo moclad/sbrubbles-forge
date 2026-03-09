@@ -65,10 +65,7 @@ export async function initializeStandardBuckets() {
             ...bucket.config,
           });
         } else {
-          log.error(
-            `Failed to initialize bucket ${bucket.name}:`,
-            error
-          );
+          log.error(`Failed to initialize bucket ${bucket.name}:`, error);
           throw error;
         }
       }

@@ -13,11 +13,11 @@ import { useI18n } from '@repo/localization/i18n/client';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import { useState } from 'react';
 
-interface BackupCodesDialogProps {
+type BackupCodesDialogProps = {
   backupCodes: string[];
   onOpenChange: (open: boolean) => void;
   open: boolean;
-}
+};
 
 export function BackupCodesDialog({
   open,

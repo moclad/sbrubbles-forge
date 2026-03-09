@@ -28,7 +28,7 @@ export type SettingsCardClassNames = {
   title?: string;
 };
 
-export interface SettingsCardProps {
+export type SettingsCardProps = {
   actionLabel?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -43,7 +43,7 @@ export interface SettingsCardProps {
   showToast?: boolean;
   title: ReactNode;
   variant?: 'default' | 'destructive';
-}
+};
 
 export function SettingsCard({
   children,

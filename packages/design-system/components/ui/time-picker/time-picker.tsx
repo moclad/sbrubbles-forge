@@ -7,12 +7,12 @@ import { Label } from '@/components/ui/label';
 
 import { TimePickerInput } from './time-picker-input';
 
-interface TimePickerProps {
+type TimePickerProps = {
   date: Date | undefined;
   setDate: (date: Date | undefined) => void;
   showSeconds?: boolean;
   required?: boolean;
-}
+};
 
 export function TimePicker({
   required,

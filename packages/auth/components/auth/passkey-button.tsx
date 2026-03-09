@@ -8,11 +8,11 @@ import { authClient } from '../../client';
 import { useOnSuccessTransition } from '../../hooks/on-success-transition';
 import { getErrorMessage } from '../../lib/get-error-message';
 
-interface PasskeyButtonProps {
+type PasskeyButtonProps = {
   disabled?: boolean;
   isSubmitting?: boolean;
   setIsSubmitting?: (isSubmitting: boolean) => void;
-}
+};
 
 export function PasskeyButton({
   isSubmitting,

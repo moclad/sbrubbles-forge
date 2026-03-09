@@ -10,11 +10,11 @@ import {
   Text,
 } from '@react-email/components';
 
-interface Props {
+type Props = {
   readonly email: string;
   readonly name: string;
   readonly resetUrl: string;
-}
+};
 
 export function ResetPasswordTemplate({ name, resetUrl }: Props) {
   return (

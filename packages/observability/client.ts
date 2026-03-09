@@ -5,9 +5,10 @@
  */
 
 import {
+  captureRouterTransitionStart,
   consoleLoggingIntegration,
   init,
-  replayIntegration,
+  replayIntegration
 } from '@sentry/nextjs';
 
 import { keys } from './keys';
@@ -41,3 +42,5 @@ export const initializeSentry = (): ReturnType<typeof init> =>
 
     // Send console.log, console.error, and console.warn calls as logs to Sentry
   });
+
+export const onRouterTransitionStart = captureRouterTransitionStart;

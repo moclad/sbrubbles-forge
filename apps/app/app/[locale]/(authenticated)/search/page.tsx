@@ -17,7 +17,7 @@ export const generateMetadata = async ({
   };
 };
 
-const SearchPage = async ({} : SearchPageProperties) => {
+const SearchPage = async ({}: SearchPageProperties) => {
   // const { q } = await searchParams;
   const pages = await database.query.pageTable.findMany({});
 

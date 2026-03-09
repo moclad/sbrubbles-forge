@@ -24,17 +24,25 @@ type GetValidNumberConfig = { max: number; min?: number; loop?: boolean };
 
 export function getValidNumber(
   value: string,
-  { max, min = 0, loop = false }: GetValidNumberConfig,
+  { max, min = 0, loop = false }: GetValidNumberConfig
 ) {
-  let numericValue = parseInt(value, 10);
+  let numericValue = Number.parseInt(value, 10);
 
   if (!Number.isNaN(numericValue)) {
-    if (!loop) {
-      if (numericValue > max) numericValue = max;
-      if (numericValue < min) numericValue = min;
+    if (loop) {
+      if (numericValue > max) {
+        numericValue = min;
+      }
+      if (numericValue < min) {
+        numericValue = max;
+      }
     } else {
-      if (numericValue > max) numericValue = min;
-      if (numericValue < min) numericValue = max;
+      if (numericValue > max) {
+        numericValue = max;
+      }
+      if (numericValue < min) {
+        numericValue = min;
+      }
     }
     return numericValue.toString().padStart(2, '0');
   }
@@ -43,17 +51,23 @@ export function getValidNumber(
 }
 
 export function getValidHour(value: string) {
-  if (isValidHour(value)) return value;
+  if (isValidHour(value)) {
+    return value;
+  }
   return getValidNumber(value, { max: 23 });
 }
 
 export function getValid12Hour(value: string) {
-  if (isValid12Hour(value)) return value;
+  if (isValid12Hour(value)) {
+    return value;
+  }
   return getValidNumber(value, { min: 1, max: 12 });
 }
 
 export function getValidMinuteOrSecond(value: string) {
-  if (isValidMinuteOrSecond(value)) return value;
+  if (isValidMinuteOrSecond(value)) {
+    return value;
+  }
   return getValidNumber(value, { max: 59 });
 }
 
@@ -65,9 +79,9 @@ type GetValidArrowNumberConfig = {
 
 export function getValidArrowNumber(
   value: string,
-  { min, max, step }: GetValidArrowNumberConfig,
+  { min, max, step }: GetValidArrowNumberConfig
 ) {
-  let numericValue = parseInt(value, 10);
+  let numericValue = Number.parseInt(value, 10);
   if (!Number.isNaN(numericValue)) {
     numericValue += step;
     return getValidNumber(String(numericValue), { min, max, loop: true });
@@ -89,24 +103,24 @@ export function getValidArrowMinuteOrSecond(value: string, step: number) {
 
 export function setMinutes(date: Date, value: string) {
   const minutes = getValidMinuteOrSecond(value);
-  date.setMinutes(parseInt(minutes, 10));
+  date.setMinutes(Number.parseInt(minutes, 10));
   return date;
 }
 
 export function setSeconds(date: Date, value: string) {
   const seconds = getValidMinuteOrSecond(value);
-  date.setSeconds(parseInt(seconds, 10));
+  date.setSeconds(Number.parseInt(seconds, 10));
   return date;
 }
 
 export function setHours(date: Date, value: string) {
   const hours = getValidHour(value);
-  date.setHours(parseInt(hours, 10));
+  date.setHours(Number.parseInt(hours, 10));
   return date;
 }
 
 export function set12Hours(date: Date, value: string, period: Period) {
-  const hours = parseInt(getValid12Hour(value), 10);
+  const hours = Number.parseInt(getValid12Hour(value), 10);
   const convertedHours = convert12HourTo24Hour(hours, period);
   date.setHours(convertedHours);
   return date;
@@ -119,7 +133,7 @@ export function setDateByType(
   date: Date,
   value: string,
   type: TimePickerType,
-  period?: Period,
+  period?: Period
 ) {
   switch (type) {
     case 'minutes':
@@ -129,7 +143,9 @@ export function setDateByType(
     case 'hours':
       return setHours(date, value);
     case '12hours': {
-      if (!period) return date;
+      if (!period) {
+        return date;
+      }
       return set12Hours(date, value, period);
     }
     default:
@@ -157,7 +173,7 @@ export function getDateByType(date: Date, type: TimePickerType) {
 export function getArrowByType(
   value: string,
   step: number,
-  type: TimePickerType,
+  type: TimePickerType
 ) {
   switch (type) {
     case 'minutes':
@@ -182,11 +198,13 @@ export function convert12HourTo24Hour(hour: number, period: Period) {
   if (period === 'PM') {
     if (hour <= 11) {
       return hour + 12;
-    } else {
-      return hour;
     }
-  } else if (period === 'AM') {
-    if (hour === 12) return 0;
+    return hour;
+  }
+  if (period === 'AM') {
+    if (hour === 12) {
+      return 0;
+    }
     return hour;
   }
   return hour;
@@ -198,8 +216,14 @@ export function convert12HourTo24Hour(hour: number, period: Period) {
  * in its 12-hour representation
  */
 export function display12HourValue(hours: number) {
-  if (hours === 0 || hours === 12) return '12';
-  if (hours >= 22) return `${hours - 12}`;
-  if (hours % 12 > 9) return `${hours}`;
+  if (hours === 0 || hours === 12) {
+    return '12';
+  }
+  if (hours >= 22) {
+    return `${hours - 12}`;
+  }
+  if (hours % 12 > 9) {
+    return `${hours}`;
+  }
   return `0${hours % 12}`;
 }

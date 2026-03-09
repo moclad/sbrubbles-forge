@@ -31,9 +31,12 @@
     "release:major": "release-it major",
     "release:next-version": "release-it --ci --release-version | tail -n1",
     "clean": "git clean -xdf node_modules",
+    "changeset": "changeset",
+    "release": "changeset publish",
     "services:start": "docker compose -f docker-compose.yml -f ./docker-compose-storage.yml up -d --remove-orphans"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@biomejs/biome": "2.4.6",
     "@release-it/conventional-changelog": "^10.0.5",
     "@repo/typescript-config": "workspace:*",

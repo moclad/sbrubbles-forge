@@ -24,12 +24,12 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { OTPInputGroup } from '../otp-input-group';
-export interface TwoFactorFormProps {
+export type TwoFactorFormProps = {
   className?: string;
   isSubmitting?: boolean;
   otpSeparators?: 0 | 1 | 2;
   redirectTo?: string;
-}
+};
 
 export function TwoFactorForm({
   isSubmitting,
