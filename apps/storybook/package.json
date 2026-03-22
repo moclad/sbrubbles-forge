@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@repo/design-system": "workspace:*",
-    "@chromatic-com/storybook": "^5.0.1",
+    "@chromatic-com/storybook": "^5.0.2",
     "@repo/typescript-config": "workspace:*",
     "@storybook/addon-onboarding": "^10.2.16",
     "storybook-dark-mode": "^4.0.2",
