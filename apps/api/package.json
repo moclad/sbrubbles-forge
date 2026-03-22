@@ -3,10 +3,10 @@
   "private": true,
   "version": "4.1.20",
   "scripts": {
-    "dev": "next dev -p 3006 --turbopack",
-    "next": "next dev -p 3006 --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start -p 3006 --turbopack",
+    "dev": "next dev -p 3006",
+    "next": "next dev -p 3006",
+    "build": "next build",
+    "start": "next start -p 3006",
     "analyze": "cross-env ANALYZE=true pnpm build",
     "test": "cross-env NODE_ENV=test vitest run",
     "stripe": "stripe listen --forward-to localhost:3006/webhooks/stripe",
@@ -32,7 +32,6 @@
     "require-in-the-middle": "^8.0.1",
     "import-in-the-middle": "^3.0.0",
     "svix": "catalog:",
-    "vitest": "^4.0.18",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -43,6 +42,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "@types/formidable": "^3.5.0",
     "cross-env": "^10.1.0",
+    "vitest": "catalog:test",
     "typescript": "catalog:"
   }
 }
