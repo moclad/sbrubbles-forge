@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@better-fetch/fetch": "^1.1.21",
-    "@better-auth/passkey": "^1.5.5",
+    "@better-auth/passkey": "^1.5.6",
     "@hookform/resolvers": "catalog:",
     "@repo/database": "workspace:*",
     "@repo/design-system": "workspace:*",
