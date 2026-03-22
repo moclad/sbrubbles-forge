@@ -669,9 +669,6 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
         version: 0.13.10(arktype@2.1.20)(typescript@6.0.1-rc)(valibot@1.0.0-beta.15(typescript@6.0.1-rc))(zod@4.3.6)
-      dotenv:
-        specifier: ^17.3.1
-        version: 17.3.1
       drizzle-orm:
         specifier: ^0.45.1
         version: 0.45.1(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.1-rc))(typescript@6.0.1-rc))(@types/pg@8.18.0)(@upstash/redis@1.36.3)(gel@2.0.1)(kysely@0.28.11)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.1-rc))
