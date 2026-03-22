@@ -10,13 +10,13 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@react-email/components": "1.0.8",
+    "@react-email/components": "1.0.10",
     "@repo/email": "workspace:*",
     "react": "catalog:react19",
-    "react-email": "5.2.9"
+    "react-email": "5.2.10"
   },
   "devDependencies": {
-    "@react-email/preview-server": "5.2.9",
+    "@react-email/preview-server": "5.2.10",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
