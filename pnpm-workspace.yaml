@@ -4,7 +4,7 @@ packages:
   - e2e
 
 catalog:
-  '@formatjs/intl-localematcher': ^0.8.1
+  '@formatjs/intl-localematcher': ^0.8.2
   '@hookform/resolvers': ^5.2.2
   '@sentry/nextjs': ^10.42.0
   '@t3-oss/env-core': ^0.13.10
