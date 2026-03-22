@@ -40,7 +40,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "^6.0.1",
     "@types/formidable": "^3.5.0",
     "cross-env": "^10.1.0",
     "typescript": "catalog:"
