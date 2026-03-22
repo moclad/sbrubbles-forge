@@ -10,7 +10,7 @@
   },
   "author": "Beno Dresch",
   "license": "MIT License",
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.32.1",
   "devDependencies": {
     "playwright": "^1.58.2",
     "@playwright/test": "^1.58.2",
