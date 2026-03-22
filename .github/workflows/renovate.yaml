@@ -1,0 +1,26 @@
+name: Renovate
+run-name: Renovate dependency updates
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    name: Run Renovate
+    runs-on: [docker]
+    container:
+      image: renovate/renovate
+
+    steps:
+      - name: Run Renovate
+        env:
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_PLATFORM: forgejo
+          LOG_LEVEL: info
+          RENOVATE_ENDPOINT: ${{ vars.RENOVATE_ENDPOINT }}
+          RENOVATE_REPOSITORIES: "moclad/sbrubbles-forge"
+          RENOVATE_GITHUB_COM_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          renovate
