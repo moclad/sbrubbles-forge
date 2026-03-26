@@ -147,10 +147,10 @@ export const CalendarDatePicker = forwardRef<
         let from = startOfDay(toDate(range.from as Date, { timeZone }));
         let to = range.to ? endOfDay(toDate(range.to, { timeZone })) : from;
         if (numberOfMonths === 1) {
-          if (range.from !== date.from) {
-            to = from;
-          } else {
+          if (range.from === date.from) {
             from = startOfDay(toDate(range.to as Date, { timeZone }));
+          } else {
+            to = from;
           }
         }
         onDateSelect({ from, to });

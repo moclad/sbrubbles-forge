@@ -8,7 +8,7 @@ import {
   captureRouterTransitionStart,
   consoleLoggingIntegration,
   init,
-  replayIntegration
+  replayIntegration,
 } from '@sentry/nextjs';
 
 import { keys } from './keys';

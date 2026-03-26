@@ -15,7 +15,7 @@ export function errorCodeToCamelCase(errorCode: string): string {
 }
 
 export function getSearchParam(paramName: string) {
-  return typeof window !== 'undefined'
-    ? new URLSearchParams(window.location.search).get(paramName)
-    : null;
+  return typeof window === 'undefined'
+    ? null
+    : new URLSearchParams(window.location.search).get(paramName);
 }

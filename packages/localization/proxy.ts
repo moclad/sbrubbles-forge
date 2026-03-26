@@ -1,9 +1,8 @@
+import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
+import type { NextRequest } from 'next/server';
 import { createI18nMiddleware } from 'next-international/middleware';
 
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-
-import type { NextRequest } from 'next/server';
 const locales = ['en', 'de', 'pt-BR'];
 const handleI18nMiddleware = createI18nMiddleware({
   defaultLocale: 'en',
@@ -25,7 +24,7 @@ export default function i18nMiddleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
 
 //https://nextjs.org/docs/app/building-your-application/routing/internationalization
