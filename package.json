@@ -36,7 +36,7 @@
     "services:start": "docker compose -f docker-compose.yml -f ./docker-compose-storage.yml up -d --remove-orphans"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.8",
+    "@biomejs/biome": "2.4.10",
     "@changesets/cli": "^2.30.0",
     "@release-it/conventional-changelog": "^10.0.6",
     "@repo/typescript-config": "workspace:*",
