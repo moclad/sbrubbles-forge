@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 60
     runs-on: docker
     container:
-      image: node:24.14.0
+      image: node:24.14.1
 
     services:
       pgsql:
