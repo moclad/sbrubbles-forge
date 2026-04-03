@@ -35,7 +35,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "chromatic": "^15.3.0",
+    "chromatic": "^16.1.0",
     "postcss": "catalog:tailwind",
     "storybook": "^10.2.16",
     "tailwindcss": "catalog:tailwind",
