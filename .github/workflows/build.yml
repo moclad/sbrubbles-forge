@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: docker
     container:
-      image: node:25.8.1
+      image: node:25.9.0
 
     steps:
       - name: Checkout
