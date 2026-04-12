@@ -1,6 +1,6 @@
+import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
-import { GoogleAnalytics } from './google';
 import { keys } from './keys';
 
 type AnalyticsProviderProps = {

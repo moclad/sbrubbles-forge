@@ -57,7 +57,11 @@ export const auth = betterAuth({
     emailHarmony(),
     jwt(),
   ],
-
+  rateLimit: {
+    enabled: true,
+    max: 1000, // max requests in the window
+    window: 10, // time window in seconds
+  },
   session: {
     cookieCache: {
       enabled: true,

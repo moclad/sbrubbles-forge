@@ -29,11 +29,6 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
   tunnelRoute: '/monitoring',
 
   webpack: {
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    treeshake: {
-      removeDebugLogging: true,
-    },
-
     /*
      * Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
      * See the following for more information:
@@ -41,6 +36,10 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
      * https://vercel.com/docs/cron-jobs
      */
     automaticVercelMonitors: true,
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    treeshake: {
+      removeDebugLogging: true,
+    },
   },
 
   /*

@@ -34,7 +34,7 @@ export const UserAccount = () => {
       orientation='vertical'
       value={activeTab}
     >
-      <TabsList className='w-full'>
+      <TabsList>
         <TabsTrigger className='flex items-center gap-2' value='account'>
           <User className='size-4' />
           {t('account.account')}
