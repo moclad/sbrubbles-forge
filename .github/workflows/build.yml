@@ -1,22 +1,24 @@
-name: Build
+name: Build and Test Sbrubbles Travel Application
+run-name: Build and Test Sbrubbles Travel Application
 
 on:
   push:
 
 jobs:
   build:
+    name: Build Application
     runs-on: docker
     container:
-      image: node:25.8.1
+      image: node:24.14.1
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Prepare repository
         run: git fetch --unshallow --tags -f
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
         name: Install pnpm
         with:
           run_install: false
@@ -26,13 +28,18 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v4
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v5
         name: Setup pnpm cache
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-pnpm-store
 
       - name: Install dependencies
         run: pnpm install
@@ -71,5 +78,5 @@ jobs:
           touch packages/database/.env
           echo "DATABASE_URL=postgresql://test:test@localhost:5432/test" >> packages/database/.env
 
-      - name: Build with bundle analysis
-        run: pnpm analyze
+      - name: Build
+        run: pnpm build
