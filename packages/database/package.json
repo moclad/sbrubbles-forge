@@ -16,7 +16,6 @@
     "drizzle-orm": "^0.45.2",
     "pg": "^8.20.0",
     "server-only": "catalog:",
-    "undici": "^8.0.2",
     "ws": "^8.20.0",
     "zod": "catalog:"
   },

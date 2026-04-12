@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@hookform/resolvers": "catalog:",
     "@repo/analytics": "workspace:*",
     "@repo/auth": "workspace:*",
     "@repo/database": "workspace:*",
@@ -24,10 +25,8 @@
     "@repo/storage": "workspace:*",
     "@repo/webhooks": "workspace:*",
     "@sentry/nextjs": "catalog:",
-    "@tanstack/react-table": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
-    "@hookform/resolvers": "catalog:",
-    "react-hook-form": "catalog:",
+    "@tanstack/react-table": "catalog:",
     "fuse.js": "^7.3.0",
     "import-in-the-middle": "^3.0.0",
     "lucide-react": "catalog:",
@@ -35,9 +34,11 @@
     "next-themes": "catalog:",
     "nuqs": "^2.8.9",
     "pg": "^8.20.0",
+    "pigeon-maps": "^0.22.1",
     "react": "catalog:react19",
     "react-aria-components": "catalog:",
     "react-dom": "catalog:react19",
+    "react-hook-form": "catalog:",
     "require-in-the-middle": "^8.0.1",
     "tailwindcss": "catalog:tailwind",
     "zod": "catalog:"

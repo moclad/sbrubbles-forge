@@ -12,3 +12,4 @@ export * from './categories';
 export * from './people';
 export * from './storage';
 export * from './subscriptions';
+export * from './trips';

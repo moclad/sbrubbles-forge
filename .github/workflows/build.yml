@@ -82,6 +82,7 @@ jobs:
         run: pnpm build
 
   test:
+    name: Run Tests
     timeout-minutes: 60
     runs-on: docker
     container:
