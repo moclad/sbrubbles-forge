@@ -53,10 +53,23 @@ services:
     networks:
       - sbrubbles-forge-network
 
+  rustfs:
+    container_name: rustfs.sbrubbles
+    image: rustfs/rustfs:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - rustfs:/data
+    restart: unless-stopped
+    networks:
+      - sbrubbles-forge-network
+
 volumes:
     ntfy:
     ntfy-etc:
     postgres_forge:
+    rustfs:
 
 networks:
   sbrubbles-forge-network:
