@@ -8,12 +8,14 @@ import { keys } from './keys';
 
 import type internal from 'node:stream';
 
+const storageUrl = new URL(keys().S3_STORAGE_URL ?? 'http://localhost');
+
 export const s3Client = new Minio.Client({
-  accessKey: keys().S3_ACCESS_KEY,
-  endPoint: keys().S3_STORAGE_URL ?? '',
-  port: undefined,
-  secretKey: keys().S3_SECRET_KEY,
-  useSSL: keys().S3_USE_SSL ?? false,
+  accessKey: keys().S3_ACCESS_KEY ?? '',
+  endPoint: storageUrl.hostname,
+  port: storageUrl.port ? Number(storageUrl.port) : undefined,
+  secretKey: keys().S3_SECRET_KEY ?? '',
+  useSSL: storageUrl.protocol === 'https:',
 });
 
 export async function createBucketIfNotExists(bucketName: string) {

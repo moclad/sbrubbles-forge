@@ -13,50 +13,13 @@ import {
 } from './themes-storybook-ui';
 
 const preview: Preview = {
-  parameters: {
-    options: {
-      storySort: {
-        order: ['App-Layout', 'ui'],
-      },
-    },
-    darkMode: {
-      classTarget: 'html',
-      stylePreview: true,
-      darkClass: 'dark',
-      lightClass: 'light',
-      // Override the default dark theme
-      dark: { ...themes.dark, ...darkUIStorybook, ...commonTheme },
-      // Override the default light theme
-      light: { ...themes.normal, ...lightUIStorybook, ...commonTheme },
-      // Set the initial theme
-      current: 'dark',
-    },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-    chromatic: {
-      modes: {
-        light: {
-          theme: 'light',
-          className: 'light',
-        },
-        dark: {
-          theme: 'dark',
-          className: 'dark',
-        },
-      },
-    },
-  },
   decorators: [
     withThemeByClassName({
-      themes: {
-        light: 'light',
-        dark: 'dark',
-      },
       defaultTheme: 'light',
+      themes: {
+        dark: 'dark',
+        light: 'light',
+      },
     }),
     (Story) => {
       return (
@@ -71,6 +34,43 @@ const preview: Preview = {
       );
     },
   ],
+  parameters: {
+    chromatic: {
+      modes: {
+        dark: {
+          className: 'dark',
+          theme: 'dark',
+        },
+        light: {
+          className: 'light',
+          theme: 'light',
+        },
+      },
+    },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+    darkMode: {
+      classTarget: 'html',
+      // Set the initial theme
+      current: 'dark',
+      // Override the default dark theme
+      dark: { ...themes.dark, ...darkUIStorybook, ...commonTheme },
+      darkClass: 'dark',
+      // Override the default light theme
+      light: { ...themes.normal, ...lightUIStorybook, ...commonTheme },
+      lightClass: 'light',
+      stylePreview: true,
+    },
+    options: {
+      storySort: {
+        order: ['App-Layout', 'ui'],
+      },
+    },
+  },
 };
 
 export default preview;

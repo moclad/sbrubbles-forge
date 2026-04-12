@@ -8,4 +8,4 @@ import { keys } from './keys';
 const pool = new Pool({ connectionString: keys().DATABASE_URL });
 
 export const database = drizzle({ client: pool, schema });
-export { asc, desc } from 'drizzle-orm';
+export { asc, desc, eq } from 'drizzle-orm';

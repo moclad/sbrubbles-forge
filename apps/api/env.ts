@@ -8,6 +8,7 @@ import { keys as payments } from '@repo/payments/keys';
 import { createEnv } from '@t3-oss/env-nextjs';
 
 export const env = createEnv({
+  client: {},
   extends: [
     auth(),
     analytics(),
@@ -17,7 +18,6 @@ export const env = createEnv({
     observability(),
     payments(),
   ],
-  server: {},
-  client: {},
   runtimeEnv: {},
+  server: {},
 });

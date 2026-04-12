@@ -56,21 +56,21 @@ const months = [
 const multiSelectVariants = cva(
   'flex items-center justify-center whitespace-nowrap rounded-md font-medium text-foreground text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
+    defaultVariants: {
+      variant: 'default',
+    },
     variants: {
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        ghost: 'text-background hover:bg-accent hover:text-accent-foreground',
+        link: 'text-background text-primary underline-offset-4 hover:underline',
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'text-background hover:bg-accent hover:text-accent-foreground',
-        link: 'text-background text-primary underline-offset-4 hover:underline',
       },
-    },
-    defaultVariants: {
-      variant: 'default',
     },
   }
 );
@@ -268,38 +268,38 @@ export const CalendarDatePicker = forwardRef<
     );
 
     const dateRanges = [
-      { label: 'Heute', start: today, end: today },
-      { label: 'Gestern', start: subDays(today, 1), end: subDays(today, 1) },
+      { end: today, label: 'Heute', start: today },
+      { end: subDays(today, 1), label: 'Gestern', start: subDays(today, 1) },
       {
+        end: endOfWeek(today, { weekStartsOn: 1 }),
         label: 'Diese Woche',
         start: startOfWeek(today, { weekStartsOn: 1 }),
-        end: endOfWeek(today, { weekStartsOn: 1 }),
       },
       {
+        end: subDays(endOfWeek(today, { weekStartsOn: 1 }), 7),
         label: 'Letzte Woche',
         start: subDays(startOfWeek(today, { weekStartsOn: 1 }), 7),
-        end: subDays(endOfWeek(today, { weekStartsOn: 1 }), 7),
       },
-      { label: 'Letzte 7 Tage', start: subDays(today, 6), end: today },
+      { end: today, label: 'Letzte 7 Tage', start: subDays(today, 6) },
       {
+        end: endOfMonth(today),
         label: 'Dieser Monat',
         start: startOfMonth(today),
-        end: endOfMonth(today),
       },
       {
+        end: endOfMonth(subDays(today, today.getDate())),
         label: 'Letzter Monat',
         start: startOfMonth(subDays(today, today.getDate())),
-        end: endOfMonth(subDays(today, today.getDate())),
       },
       {
+        end: endOfYear(today),
         label: 'Dieses Jahr',
         start: startOfYear(today),
-        end: endOfYear(today),
       },
       {
+        end: endOfYear(subDays(today, 365)),
         label: 'Letztes Jahr',
         start: startOfYear(subDays(today, 365)),
-        end: endOfYear(subDays(today, 365)),
       },
     ];
 
@@ -469,7 +469,7 @@ export const CalendarDatePicker = forwardRef<
             {...props}
             className={cn(
               'w-auto',
-              multiSelectVariants({ variant, className })
+              multiSelectVariants({ className, variant })
             )}
             onClick={handleTogglePopover}
           >

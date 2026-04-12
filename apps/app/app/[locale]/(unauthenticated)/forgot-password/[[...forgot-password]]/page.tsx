@@ -10,7 +10,7 @@ const ForgotPassword = dynamic(() =>
 );
 const title = 'Forgot password';
 const description = 'Enter your email to reset your password.';
-export const metadata: Metadata = createMetadata({ title, description });
+export const metadata: Metadata = createMetadata({ description, title });
 
 const ForgotPasswordPage = async () => {
   const t = await getI18n();

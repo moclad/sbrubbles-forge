@@ -12,24 +12,22 @@ import { Plus } from 'lucide-react';
  * receives keyboard focus, the mouse hovers over it or touch display is in use.
  */
 const meta: Meta<typeof HybridTooltipContent> = {
-  title: 'ui/Hybrid-Tooltip',
-  component: HybridTooltipContent,
-  tags: ['autodocs'],
+  args: {
+    children: 'Hybrid tooltip',
+    side: 'top',
+  },
   argTypes: {
-    side: {
-      options: ['top', 'bottom', 'left', 'right'],
-      control: {
-        type: 'radio',
-      },
-    },
     children: {
       control: 'text',
     },
+    side: {
+      control: {
+        type: 'radio',
+      },
+      options: ['top', 'bottom', 'left', 'right'],
+    },
   },
-  args: {
-    side: 'top',
-    children: 'Hybrid tooltip',
-  },
+  component: HybridTooltipContent,
   parameters: {
     layout: 'centered',
   },
@@ -44,6 +42,8 @@ const meta: Meta<typeof HybridTooltipContent> = {
       </HybridTooltip>
     </TouchProvider>
   ),
+  tags: ['autodocs'],
+  title: 'ui/Hybrid-Tooltip',
 } satisfies Meta<typeof HybridTooltipContent>;
 
 export default meta;

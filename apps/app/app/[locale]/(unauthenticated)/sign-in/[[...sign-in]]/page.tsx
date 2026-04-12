@@ -9,7 +9,7 @@ const SignIn = dynamic(() =>
 
 const title = 'Welcome back';
 const description = 'Enter your details to sign in.';
-export const metadata: Metadata = createMetadata({ title, description });
+export const metadata: Metadata = createMetadata({ description, title });
 
 const SignInPage = async () => {
   const t = await getI18n();

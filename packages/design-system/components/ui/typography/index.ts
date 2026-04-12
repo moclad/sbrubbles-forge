@@ -13,20 +13,20 @@ import { Small } from './small';
 import { Subtle } from './subtle';
 
 const Typography = {
+  Blockquote,
   H1,
   H2,
   H3,
   H4,
-  Blockquote,
-  P,
+  InlineCode,
   Large,
-  Small,
-  Subtle,
   List,
   ListItem,
-  InlineCode,
   Muted,
   Overline,
+  P,
+  Small,
+  Subtle,
 };
 
 export { Typography as T, Typography };

@@ -61,7 +61,7 @@ export function getValid12Hour(value: string) {
   if (isValid12Hour(value)) {
     return value;
   }
-  return getValidNumber(value, { min: 1, max: 12 });
+  return getValidNumber(value, { max: 12, min: 1 });
 }
 
 export function getValidMinuteOrSecond(value: string) {
@@ -84,21 +84,21 @@ export function getValidArrowNumber(
   let numericValue = Number.parseInt(value, 10);
   if (!Number.isNaN(numericValue)) {
     numericValue += step;
-    return getValidNumber(String(numericValue), { min, max, loop: true });
+    return getValidNumber(String(numericValue), { loop: true, max, min });
   }
   return '00';
 }
 
 export function getValidArrowHour(value: string, step: number) {
-  return getValidArrowNumber(value, { min: 0, max: 23, step });
+  return getValidArrowNumber(value, { max: 23, min: 0, step });
 }
 
 export function getValidArrow12Hour(value: string, step: number) {
-  return getValidArrowNumber(value, { min: 1, max: 12, step });
+  return getValidArrowNumber(value, { max: 12, min: 1, step });
 }
 
 export function getValidArrowMinuteOrSecond(value: string, step: number) {
-  return getValidArrowNumber(value, { min: 0, max: 59, step });
+  return getValidArrowNumber(value, { max: 59, min: 0, step });
 }
 
 export function setMinutes(date: Date, value: string) {

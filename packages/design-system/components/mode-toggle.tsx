@@ -22,9 +22,9 @@ export const ModeToggle = () => {
   const { setTheme } = useTheme();
 
   const themes = [
-    { label: t('theme.light'), value: 'light', icon: <SunIcon /> },
-    { label: t('theme.dark'), value: 'dark', icon: <MoonIcon /> },
-    { label: t('theme.system'), value: 'system', icon: <SunMoon /> },
+    { icon: <SunIcon />, label: t('theme.light'), value: 'light' },
+    { icon: <MoonIcon />, label: t('theme.dark'), value: 'dark' },
+    { icon: <SunMoon />, label: t('theme.system'), value: 'system' },
   ];
 
   return (

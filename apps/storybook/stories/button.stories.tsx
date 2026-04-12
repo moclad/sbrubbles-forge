@@ -6,22 +6,22 @@ import { Mail } from 'lucide-react';
  * Displays a button or a component that looks like a button.
  */
 const meta = {
-  title: 'ui/Button',
-  component: Button,
-  tags: ['autodocs'],
+  args: {
+    children: 'Button',
+    size: 'default',
+    variant: 'default',
+  },
   argTypes: {
     children: {
       control: 'text',
     },
   },
+  component: Button,
   parameters: {
     layout: 'centered',
   },
-  args: {
-    variant: 'default',
-    size: 'default',
-    children: 'Button',
-  },
+  tags: ['autodocs'],
+  title: 'ui/Button',
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -88,15 +88,15 @@ export const Link: Story = {
  * loading indicator, such as a spinner, to signify an in-progress action.
  */
 export const Loading: Story = {
+  args: {
+    ...Outline.args,
+    disabled: true,
+  },
   render: (args) => (
     <Button loading={true} {...args}>
       Button
     </Button>
   ),
-  args: {
-    ...Outline.args,
-    disabled: true,
-  },
 };
 
 /**
@@ -104,14 +104,14 @@ export const Loading: Story = {
  * providing additional context for the action.
  */
 export const WithIcon: Story = {
+  args: {
+    ...Secondary.args,
+  },
   render: (args) => (
     <Button {...args}>
       <Mail className='mr-2 size-4' /> Login with Email Button
     </Button>
   ),
-  args: {
-    ...Secondary.args,
-  },
 };
 
 /**
@@ -140,8 +140,8 @@ export const Large: Story = {
 export const Icon: Story = {
   args: {
     ...Secondary.args,
-    size: 'icon',
     children: <Mail />,
+    size: 'icon',
   },
 };
 

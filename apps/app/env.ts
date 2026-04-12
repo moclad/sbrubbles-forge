@@ -10,6 +10,7 @@ import { keys as webhooks } from '@repo/webhooks/keys';
 import { createEnv } from '@t3-oss/env-nextjs';
 
 export const env = createEnv({
+  client: {},
   extends: [
     auth(),
     analytics(),
@@ -21,7 +22,6 @@ export const env = createEnv({
     security(),
     webhooks(),
   ],
-  server: {},
-  client: {},
   runtimeEnv: {},
+  server: {},
 });

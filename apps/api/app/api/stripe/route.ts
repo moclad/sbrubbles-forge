@@ -94,7 +94,7 @@ export const POST = async (request: Request): Promise<Response> => {
       }
     }
 
-    return NextResponse.json({ result: event, ok: true });
+    return NextResponse.json({ ok: true, result: event });
   } catch (error) {
     const message = parseError(error);
 

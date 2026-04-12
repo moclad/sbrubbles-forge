@@ -18,7 +18,6 @@ import {
 } from '@repo/design-system/components/ui/sidebar';
 import type { LucideIcon } from 'lucide-react';
 import { Folder, Forward, MoreHorizontal, Trash2 } from 'lucide-react';
-
 export function NavProjects({
   projects,
 }: Readonly<{
@@ -32,7 +31,7 @@ export function NavProjects({
 
   return (
     <SidebarGroup className='group-data-[collapsible=icon]:hidden'>
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Trips</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>

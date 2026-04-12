@@ -32,7 +32,7 @@ type ResetProps = {
 };
 const title = 'Reset Password';
 const description = 'Update your password.';
-export const metadata: Metadata = createMetadata({ title, description });
+export const metadata: Metadata = createMetadata({ description, title });
 
 const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
   const token = (await searchParams).token;

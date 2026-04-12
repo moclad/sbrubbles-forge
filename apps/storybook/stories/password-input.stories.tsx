@@ -5,19 +5,19 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: 'ui/PasswordInput',
-  component: PasswordInput,
-  tags: ['autodocs'],
-  argTypes: {},
   args: {
     className: 'w-96',
-    placeholder: 'Type your password',
-    disabled: false,
     defaultValue: 'password',
+    disabled: false,
+    placeholder: 'Type your password',
   },
+  argTypes: {},
+  component: PasswordInput,
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
+  title: 'ui/PasswordInput',
 } satisfies Meta<typeof PasswordInput>;
 
 export default meta;

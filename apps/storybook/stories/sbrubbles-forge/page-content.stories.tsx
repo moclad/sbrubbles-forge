@@ -3,27 +3,27 @@ import { Button } from '@repo/design-system/components/ui/button';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta = {
-  title: 'App-Layout/PageContent',
-  component: PageContent,
-  tags: ['autodocs'],
-  argTypes: {},
   args: {
-    header: 'Page content header',
-    subTitle: 'Page content subtitle',
     actions: (
       <div>
         <Button variant={'default'}>Action</Button>
       </div>
     ),
+    header: 'Page content header',
+    subTitle: 'Page content subtitle',
+  },
+  argTypes: {},
+  component: PageContent,
+  parameters: {
+    layout: 'fullscreen',
   },
   render: (args) => (
     <PageContent {...args}>
       <div>Content</div>
     </PageContent>
   ),
-  parameters: {
-    layout: 'fullscreen',
-  },
+  tags: ['autodocs'],
+  title: 'App-Layout/PageContent',
 } satisfies Meta<typeof PageContent>;
 
 export default meta;

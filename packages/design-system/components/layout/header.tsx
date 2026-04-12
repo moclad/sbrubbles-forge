@@ -30,7 +30,7 @@ export default function Header() {
         <NotificationsMenu />
         <LanguageToggle />
         <ModeToggle />
-        <UserMenu user={{ name, email, image }} />
+        <UserMenu user={{ email, image, name }} />
       </div>
     </header>
   );

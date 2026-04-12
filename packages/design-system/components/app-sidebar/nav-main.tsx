@@ -17,7 +17,6 @@ import {
 } from '@repo/design-system/components/ui/sidebar';
 import type { LucideIcon } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
-
 export function NavMain({
   items,
 }: Readonly<{
@@ -34,7 +33,7 @@ export function NavMain({
 }>) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Sbrubbles Travel</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

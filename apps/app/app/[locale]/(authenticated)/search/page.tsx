@@ -12,8 +12,8 @@ export const generateMetadata = async ({
   const { q } = await searchParams;
 
   return {
-    title: `${q} - Search results`,
     description: `Search results for ${q}`,
+    title: `${q} - Search results`,
   };
 };
 
