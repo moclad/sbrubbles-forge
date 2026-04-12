@@ -366,6 +366,8 @@ export default {
         startDateRequired: 'Start date is required',
       },
       locationLabel: 'Location',
+      locationMarkerHint:
+        'Click on the map or drag the pin to adjust the exact position.',
       locationNotFound: 'No location found. Try a different search.',
       locationPlaceholder: 'e.g. Rome, Italy',
       nameLabel: 'Name',

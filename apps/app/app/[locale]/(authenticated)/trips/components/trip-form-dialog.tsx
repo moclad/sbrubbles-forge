@@ -288,11 +288,19 @@ export function TripFormDialog({
             />
 
             {location && (
-              <LocationMap
-                lat={location.lat}
-                lng={location.lng}
-                locationName={location.name}
-              />
+              <>
+                <LocationMap
+                  lat={location.lat}
+                  lng={location.lng}
+                  locationName={location.name}
+                  onPositionChange={(lat, lng) =>
+                    setLocation((prev) => (prev ? { ...prev, lat, lng } : null))
+                  }
+                />
+                <p className='text-muted-foreground text-xs'>
+                  {t('trips.form.locationMarkerHint')}
+                </p>
+              </>
             )}
 
             {/* People */}

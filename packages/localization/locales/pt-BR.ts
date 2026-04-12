@@ -104,6 +104,8 @@ export default {
         startDateRequired: 'Data de in\u00edcio \u00e9 obrigat\u00f3ria',
       },
       locationLabel: 'Local',
+      locationMarkerHint:
+        'Clique no mapa ou arraste o marcador para ajustar a posição exata.',
       locationNotFound:
         'Nenhum local encontrado. Tente uma pesquisa diferente.',
       locationPlaceholder: 'ex. Roma, It\u00e1lia',

@@ -103,6 +103,8 @@ export default {
         startDateRequired: 'Startdatum ist erforderlich',
       },
       locationLabel: 'Ort',
+      locationMarkerHint:
+        'Auf die Karte klicken oder den Pin ziehen, um die genaue Position festzulegen.',
       locationNotFound: 'Kein Ort gefunden. Versuche eine andere Suche.',
       locationPlaceholder: 'z.B. Rom, Italien',
       nameLabel: 'Name',
