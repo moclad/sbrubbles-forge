@@ -37,6 +37,7 @@ import {
   Plus,
   Trash2,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 import type { TripData, TripWithPeople } from '@/lib/trips-actions';
 import {
@@ -73,12 +74,13 @@ function getInitials(name: string): string {
 }
 
 type TripCardProps = {
+  onOpen: (id: string) => void;
   trip: TripWithPeople;
   onEdit: (trip: TripWithPeople) => void;
   onDelete: (id: string) => void;
 };
 
-function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
+function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
   const t = useI18n();
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -115,7 +117,18 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
   };
 
   return (
-    <Card className='flex flex-col overflow-hidden'>
+    <Card
+      className='flex cursor-pointer flex-col overflow-hidden'
+      onClick={() => onOpen(trip.id)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onOpen(trip.id);
+        }
+      }}
+      role='button'
+      tabIndex={0}
+    >
       {/* Cover photo */}
       <div className='relative aspect-video bg-muted'>
         {photoUrl ? (
@@ -135,7 +148,10 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
             aria-label={t('trips.uploadPhoto')}
             className='h-7 w-7 bg-background/80 backdrop-blur-sm hover:bg-background'
             disabled={uploading}
-            onClick={() => fileRef.current?.click()}
+            onClick={(event) => {
+              event.stopPropagation();
+              fileRef.current?.click();
+            }}
             size='icon'
             variant='outline'
           >
@@ -150,7 +166,10 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
           accept='image/*'
           aria-hidden
           className='sr-only'
-          onChange={handlePhotoChange}
+          onChange={(event) => {
+            event.stopPropagation();
+            void handlePhotoChange(event);
+          }}
           ref={fileRef}
           tabIndex={-1}
           type='file'
@@ -163,7 +182,10 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
           <div className='flex shrink-0 gap-1'>
             <Button
               className='h-7 w-7'
-              onClick={() => onEdit(trip)}
+              onClick={(event) => {
+                event.stopPropagation();
+                onEdit(trip);
+              }}
               size='icon'
               variant='ghost'
             >
@@ -171,7 +193,10 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
             </Button>
             <Button
               className='h-7 w-7 text-destructive hover:text-destructive'
-              onClick={() => onDelete(trip.id)}
+              onClick={(event) => {
+                event.stopPropagation();
+                onDelete(trip.id);
+              }}
               size='icon'
               variant='ghost'
             >
@@ -216,6 +241,7 @@ function TripCard({ trip, onEdit, onDelete }: Readonly<TripCardProps>) {
 
 export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
   const t = useI18n();
+  const router = useRouter();
   const [formOpen, setFormOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [editing, setEditing] = useState<TripWithPeople | null>(null);
@@ -264,6 +290,13 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
     setFormOpen(true);
   }, []);
 
+  const openTripDetails = useCallback(
+    (tripId: string) => {
+      router.push(`/trips/${tripId}`);
+    },
+    [router]
+  );
+
   const openCreate = () => {
     setEditing(null);
     setCreateKey((k) => k + 1);
@@ -290,6 +323,7 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
               key={trip.id}
               onDelete={setDeleteId}
               onEdit={openEdit}
+              onOpen={openTripDetails}
               trip={trip}
             />
           ))}

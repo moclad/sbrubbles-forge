@@ -92,6 +92,35 @@ export async function getTrips(): Promise<TripWithPeople[]> {
   }));
 }
 
+export async function getTripById(id: string): Promise<TripWithPeople | null> {
+  await requireSession();
+
+  const [tripRow] = await database.select().from(trip).where(eq(trip.id, id));
+
+  if (!tripRow) {
+    return null;
+  }
+
+  const rows = await database
+    .select({
+      avatarUrl: person.avatarUrl,
+      personId: person.id,
+      personName: person.name,
+    })
+    .from(tripPerson)
+    .innerJoin(person, eq(tripPerson.personId, person.id))
+    .where(eq(tripPerson.tripId, id));
+
+  return {
+    ...tripRow,
+    people: rows.map((row) => ({
+      avatarUrl: row.avatarUrl,
+      id: row.personId,
+      name: row.personName,
+    })),
+  };
+}
+
 export async function createTrip(data: TripData) {
   await requireSession();
 
