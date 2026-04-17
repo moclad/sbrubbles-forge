@@ -113,6 +113,13 @@
       "when": 1776368875025,
       "tag": "0015_legal_madripoor",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1776457767358,
+      "tag": "0016_nullable_expense_description",
+      "breakpoints": true
     }
   ]
 }

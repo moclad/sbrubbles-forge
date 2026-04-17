@@ -22,7 +22,7 @@ export const expense = pgTable('expense', {
   categoryId: text('category_id')
     .notNull()
     .references(() => category.id),
-  description: text('description').notNull(),
+  description: text('description'),
   amount: real('amount').notNull(),
   expenseDate: timestamp('expense_date').notNull(),
   locationName: text('location_name'),

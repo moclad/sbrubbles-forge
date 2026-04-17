@@ -26,7 +26,7 @@ import {
   CardTitle,
 } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
-import { useI18n } from '@repo/localization/i18n/client';
+import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
 import {
   CalendarRange,
   Camera,
@@ -37,6 +37,7 @@ import {
   Plus,
   Trash2,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 import type { TripData, TripWithPeople } from '@/lib/trips-actions';
@@ -133,7 +134,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
       <div className='relative aspect-video bg-muted'>
         {photoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             alt={trip.name}
             className='h-full w-full object-cover'
             src={photoUrl}
@@ -168,7 +169,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
           className='sr-only'
           onChange={(event) => {
             event.stopPropagation();
-            void handlePhotoChange(event);
+            handlePhotoChange(event);
           }}
           ref={fileRef}
           tabIndex={-1}
@@ -241,6 +242,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
 
 export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
   const t = useI18n();
+  const locale = useCurrentLocale();
   const router = useRouter();
   const [formOpen, setFormOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -292,9 +294,9 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
 
   const openTripDetails = useCallback(
     (tripId: string) => {
-      router.push(`/trips/${tripId}`);
+      router.push(`/${locale}/trips/${tripId}`);
     },
-    [router]
+    [locale, router]
   );
 
   const openCreate = () => {

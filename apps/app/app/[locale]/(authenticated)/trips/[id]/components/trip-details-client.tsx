@@ -33,7 +33,7 @@ import {
   CardTitle,
 } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
-import { useI18n } from '@repo/localization/i18n/client';
+import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
 import {
   CalendarRange,
   Copy,
@@ -117,6 +117,7 @@ export function TripDetailsClient({
   trip,
 }: Readonly<TripDetailsClientProps>) {
   const t = useI18n();
+  const locale = useCurrentLocale();
   const router = useRouter();
 
   const [selectedDate, setSelectedDate] = useState<Date>(
@@ -217,14 +218,28 @@ export function TripDetailsClient({
 
   return (
     <div className='space-y-4'>
-      <div className='grid gap-4 lg:grid-cols-[minmax(280px,340px)_1fr]'>
+      <div className='grid gap-4 lg:grid-cols-2'>
         <Card className='h-fit'>
           <CardHeader className='gap-3'>
             <div className='flex items-center justify-between gap-2'>
               <CardTitle className='text-base'>{trip.name}</CardTitle>
-              <Button asChild size='sm' variant='outline'>
-                <Link href='/trips'>{t('trips.details.backToTrips')}</Link>
-              </Button>
+              <div className='flex items-center gap-2'>
+                <Button
+                  onClick={() => {
+                    setDuplicateSource(null);
+                    setCreateOpen(true);
+                  }}
+                  size='sm'
+                >
+                  <Plus size={16} />
+                  {t('trips.expenses.newExpense')}
+                </Button>
+                <Button asChild size='sm' variant='outline'>
+                  <Link href={`/${locale}/trips`}>
+                    {t('trips.details.backToTrips')}
+                  </Link>
+                </Button>
+              </div>
             </div>
             <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
               <CalendarRange size={14} />

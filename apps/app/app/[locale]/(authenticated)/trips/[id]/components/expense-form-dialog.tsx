@@ -5,13 +5,7 @@ import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import {
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@repo/design-system/components/ui/command';
+import { DateTimePicker } from '@repo/design-system/components/ui/date-picker';
 import {
   Dialog,
   DialogContent,
@@ -28,15 +22,10 @@ import {
   FormMessage,
 } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@repo/design-system/components/ui/popover';
 import { useI18n } from '@repo/localization/i18n/client';
-import { Check, ChevronsUpDown, Loader2, Search } from 'lucide-react';
+import { Euro, Loader2, Search } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
@@ -57,7 +46,7 @@ type ExpenseFormValues = {
   amount: string;
   categoryId: string;
   date: string;
-  description: string;
+  description?: string;
   locationQuery?: string;
   personIds: string[];
 };
@@ -124,7 +113,6 @@ export function ExpenseFormDialog({
 }: Readonly<ExpenseFormDialogProps>) {
   const t = useI18n();
   const isEdit = Boolean(initialData);
-  const [categoryOpen, setCategoryOpen] = useState(false);
   const [searching, setSearching] = useState(false);
   const [locationNotFound, setLocationNotFound] = useState(false);
   const [location, setLocation] = useState<LocationState | null>(() =>
@@ -137,10 +125,7 @@ export function ExpenseFormDialog({
       .string()
       .min(1, t('trips.expenses.form.errors.categoryRequired')),
     date: z.string().min(1, t('trips.expenses.form.errors.dateRequired')),
-    description: z
-      .string()
-      .min(1, t('trips.expenses.form.errors.descriptionRequired'))
-      .max(255),
+    description: z.string().max(255).optional(),
     locationQuery: z.string().optional(),
     personIds: z.array(z.string()),
   });
@@ -162,6 +147,12 @@ export function ExpenseFormDialog({
     return categories.find((category) => category.id === categoryId) ?? null;
   }, [categories, form]);
 
+  useEffect(() => {
+    if (open && !initialData) {
+      form.setValue('date', toDateInputValue(selectedDate));
+    }
+  }, [form, initialData, open, selectedDate]);
+
   const resetForm = () => {
     form.reset({
       amount: initialData ? String(initialData.amount) : '',
@@ -173,7 +164,6 @@ export function ExpenseFormDialog({
     });
     setLocation(getDefaultLocation(trip, initialData));
     setLocationNotFound(false);
-    setCategoryOpen(false);
   };
 
   const handleOpenChange = (nextOpen: boolean) => {
@@ -246,7 +236,7 @@ export function ExpenseFormDialog({
       amount: parsedAmount,
       categoryId: values.categoryId,
       date: parsedDate,
-      description: values.description,
+      description: values.description ?? '',
       locationLat: location?.lat ?? null,
       locationLng: location?.lng ?? null,
       locationName: location?.name ?? null,
@@ -276,119 +266,106 @@ export function ExpenseFormDialog({
               control={form.control}
               name='categoryId'
               render={({ field }) => (
-                <FormItem className='flex flex-col'>
+                <FormItem className='flex flex-col gap-2'>
                   <FormLabel>
                     {t('trips.expenses.form.categoryLabel')}
                   </FormLabel>
-                  <Popover onOpenChange={setCategoryOpen} open={categoryOpen}>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          className='justify-between'
-                          role='combobox'
-                          variant='outline'
-                        >
-                          {selectedCategory ? (
+                  {selectedCategory && (
+                    <Badge
+                      className='w-fit text-foreground'
+                      style={{
+                        backgroundColor: `${selectedCategory.color}33`,
+                        borderColor: selectedCategory.color,
+                      }}
+                      variant='outline'
+                    >
+                      {selectedCategory.name}
+                    </Badge>
+                  )}
+                  <FormControl>
+                    <div className='flex flex-wrap gap-2'>
+                      {categories.map((category) => {
+                        const isSelected = field.value === category.id;
+                        return (
+                          <button
+                            className='cursor-pointer border-0 bg-transparent p-0'
+                            key={category.id}
+                            onClick={() => field.onChange(category.id)}
+                            type='button'
+                          >
                             <Badge
-                              className='text-foreground'
+                              className='pointer-events-none text-foreground transition-opacity hover:opacity-90'
                               style={{
-                                backgroundColor: `${selectedCategory.color}22`,
-                                borderColor: selectedCategory.color,
+                                backgroundColor: isSelected
+                                  ? `${category.color}44`
+                                  : `${category.color}18`,
+                                borderColor: category.color,
+                                boxShadow: isSelected
+                                  ? `0 0 0 2px ${category.color}`
+                                  : 'none',
                               }}
                               variant='outline'
                             >
-                              {selectedCategory.name}
+                              {category.name}
                             </Badge>
-                          ) : (
-                            <span className='text-muted-foreground'>
-                              {t('trips.expenses.form.categoryPlaceholder')}
-                            </span>
-                          )}
-                          <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent align='start' className='w-full p-0'>
-                      <Command>
-                        <CommandInput
-                          placeholder={t(
-                            'trips.expenses.form.categorySearchPlaceholder'
-                          )}
-                        />
-                        <CommandList>
-                          <CommandEmpty>
-                            {t('trips.expenses.form.categoryNotFound')}
-                          </CommandEmpty>
-                          {categories.map((category) => (
-                            <CommandItem
-                              key={category.id}
-                              onSelect={() => {
-                                field.onChange(category.id);
-                                setCategoryOpen(false);
-                              }}
-                              value={`${category.name} ${category.id}`}
-                            >
-                              <Badge
-                                className='text-foreground'
-                                style={{
-                                  backgroundColor: `${category.color}22`,
-                                  borderColor: category.color,
-                                }}
-                                variant='outline'
-                              >
-                                {category.name}
-                              </Badge>
-                              {field.value === category.id && (
-                                <Check className='ml-auto h-4 w-4' />
-                              )}
-                            </CommandItem>
-                          ))}
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-              <FormField
-                control={form.control}
-                name='amount'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      {t('trips.expenses.form.amountLabel')}
-                    </FormLabel>
-                    <FormControl>
+            <FormField
+              control={form.control}
+              name='amount'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('trips.expenses.form.amountLabel')}</FormLabel>
+                  <FormControl>
+                    <div className='relative'>
+                      <Euro className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
                       <Input
+                        className='pl-9'
                         min='0'
                         placeholder='0.00'
                         step='0.01'
                         type='number'
                         {...field}
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name='date'
-                render={({ field }) => (
-                  <FormItem>
+            <FormField
+              control={form.control}
+              name='date'
+              render={({ field }) => {
+                return (
+                  <FormItem className='flex flex-col'>
                     <FormLabel>{t('trips.expenses.form.dateLabel')}</FormLabel>
                     <FormControl>
-                      <Input type='date' {...field} />
+                      <DateTimePicker
+                        displayFormat={{ hour24: 'dd MMM yyyy' }}
+                        granularity='day'
+                        onChange={(day) => {
+                          if (day) {
+                            field.onChange(day);
+                          }
+                        }}
+                        value={field.value ? new Date(field.value) : undefined}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                )}
-              />
-            </div>
+                );
+              }}
+            />
 
             <FormField
               control={form.control}
