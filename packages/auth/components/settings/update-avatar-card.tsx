@@ -15,12 +15,7 @@ import type { SettingsCardClassNames } from './shared/settings-card';
 import { SettingsCardFooter } from './shared/settings-card-footer';
 import { SettingsCardHeader } from './shared/settings-card-header';
 
-async function resizeAndCropImage(
-  file: File,
-  name: string,
-  size: number,
-  avatarExtension: string
-): Promise<File> {
+async function resizeAndCropImage(file: File, name: string, size: number, avatarExtension: string): Promise<File> {
   const image = await loadImage(file);
 
   const canvas = document.createElement('canvas');
@@ -37,17 +32,11 @@ async function resizeAndCropImage(
 
   ctx?.drawImage(image, sx, sy, sWidth, sHeight, 0, 0, size, size);
 
-  const resizedImageBlob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, `image/${avatarExtension}`)
-  );
+  const resizedImageBlob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, `image/${avatarExtension}`));
 
-  return new File(
-    [resizedImageBlob as BlobPart],
-    `${name}.${avatarExtension}`,
-    {
-      type: `image/${avatarExtension}`,
-    }
-  );
+  return new File([resizedImageBlob as BlobPart], `${name}.${avatarExtension}`, {
+    type: `image/${avatarExtension}`,
+  });
 }
 
 function loadImage(file: File): Promise<HTMLImageElement> {
@@ -72,11 +61,7 @@ export type UpdateAvatarCardProps = {
   isPending?: boolean;
 };
 
-export function UpdateAvatarCard({
-  className,
-  classNames,
-  isPending: externalIsPending,
-}: Readonly<UpdateAvatarCardProps>) {
+export function UpdateAvatarCard({ className, classNames, isPending: externalIsPending }: Readonly<UpdateAvatarCardProps>) {
   const {
     hooks: { useSession },
     mutators: { updateUser },
@@ -96,12 +81,7 @@ export function UpdateAvatarCard({
     }
 
     setLoading(true);
-    const resizedFile = await resizeAndCropImage(
-      file,
-      sessionData.user.id,
-      avatarSize,
-      avatarExtension
-    );
+    const resizedFile = await resizeAndCropImage(file, sessionData.user.id, avatarSize, avatarExtension);
 
     if (optimistic && !uploadAvatar) {
       setLoading(false);
@@ -132,13 +112,7 @@ export function UpdateAvatarCard({
   const isPending = externalIsPending || sessionPending;
 
   return (
-    <Card
-      className={cn(
-        'w-full pb-0 text-start shadow-lg',
-        className,
-        classNames?.base
-      )}
-    >
+    <Card className={cn('w-full pb-0 text-start shadow-lg', className, classNames?.base)}>
       <input
         accept='image/*'
         disabled={loading}
@@ -164,16 +138,9 @@ export function UpdateAvatarCard({
 
         <button onClick={openFileDialog} type='button'>
           {isPending || loading ? (
-            <Skeleton
-              className={cn('size-20 rounded-full', classNames?.avatar?.base)}
-            />
+            <Skeleton className={cn('size-20 rounded-full', classNames?.avatar?.base)} />
           ) : (
-            <UserAvatar
-              className='m-4 size-10 text-2xl'
-              classNames={classNames?.avatar}
-              key={sessionData?.user.image}
-              user={sessionData?.user}
-            />
+            <UserAvatar className='m-4 size-10 text-2xl' classNames={classNames?.avatar} key={sessionData?.user.image} user={sessionData?.user} />
           )}
         </button>
       </div>

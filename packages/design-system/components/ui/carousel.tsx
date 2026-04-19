@@ -2,9 +2,7 @@
 
 import { Button } from '@repo/design-system/components/ui/button';
 import { cn } from '@repo/design-system/lib/utils';
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import * as React from 'react';
 
@@ -41,15 +39,7 @@ function useCarousel() {
   return context;
 }
 
-function Carousel({
-  orientation = 'horizontal',
-  opts,
-  setApi,
-  plugins,
-  className,
-  children,
-  ...props
-}: React.ComponentProps<'div'> & CarouselProps) {
+function Carousel({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }: React.ComponentProps<'div'> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -117,8 +107,7 @@ function Carousel({
         canScrollPrev,
         carouselRef,
         opts,
-        orientation:
-          orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+        orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollNext,
         scrollPrev,
       }}
@@ -141,19 +130,8 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div
-      className='overflow-hidden'
-      data-slot='carousel-content'
-      ref={carouselRef}
-    >
-      <div
-        className={cn(
-          'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
-          className
-        )}
-        {...props}
-      />
+    <div className='overflow-hidden' data-slot='carousel-content' ref={carouselRef}>
+      <div className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)} {...props} />
     </div>
   );
 }
@@ -164,11 +142,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       aria-roledescription='slide'
-      className={cn(
-        'min-w-0 shrink-0 grow-0 basis-full',
-        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
-        className
-      )}
+      className={cn('min-w-0 shrink-0 grow-0 basis-full', orientation === 'horizontal' ? 'pl-4' : 'pt-4', className)}
       data-slot='carousel-item'
       role='group'
       {...props}
@@ -176,21 +150,14 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CarouselPrevious({
-  className,
-  variant = 'outline',
-  size = 'icon',
-  ...props
-}: React.ComponentProps<typeof Button>) {
+function CarouselPrevious({ className, variant = 'outline', size = 'icon', ...props }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
       className={cn(
         'absolute size-8 rounded-full',
-        orientation === 'horizontal'
-          ? 'top-1/2 -left-12 -translate-y-1/2'
-          : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
+        orientation === 'horizontal' ? 'top-1/2 -left-12 -translate-y-1/2' : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       data-slot='carousel-previous'
@@ -206,21 +173,14 @@ function CarouselPrevious({
   );
 }
 
-function CarouselNext({
-  className,
-  variant = 'outline',
-  size = 'icon',
-  ...props
-}: React.ComponentProps<typeof Button>) {
+function CarouselNext({ className, variant = 'outline', size = 'icon', ...props }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
     <Button
       className={cn(
         'absolute size-8 rounded-full',
-        orientation === 'horizontal'
-          ? 'top-1/2 -right-12 -translate-y-1/2'
-          : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
+        orientation === 'horizontal' ? 'top-1/2 -right-12 -translate-y-1/2' : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
       data-slot='carousel-next'
@@ -236,11 +196,4 @@ function CarouselNext({
   );
 }
 
-export {
-  Carousel,
-  type CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-};
+export { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious };

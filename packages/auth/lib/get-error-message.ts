@@ -5,10 +5,7 @@ import type { FetchError } from '../types/fetch-error';
 export function getErrorMessage(error: unknown): string | undefined {
   if (error as BetterFetchError) {
     console.log('BetterFetchError:', error);
-    return (
-      (error as BetterFetchError).error.message ??
-      (error as BetterFetchError).error.statusText
-    );
+    return (error as BetterFetchError).error.message ?? (error as BetterFetchError).error.statusText;
   }
 
   if (error instanceof Error) {

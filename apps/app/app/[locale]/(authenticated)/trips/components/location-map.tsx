@@ -16,27 +16,15 @@ type LocationMapProps = {
 // 24×36 viewport; offset passed to Draggable = [12, 36].
 function DraggablePin() {
   return (
-    <svg
-      height={36}
-      style={{ cursor: 'grab', display: 'block', userSelect: 'none' }}
-      viewBox='0 0 24 36'
-      width={24}
-    >
+    <svg height={36} style={{ cursor: 'grab', display: 'block', userSelect: 'none' }} viewBox='0 0 24 36' width={24}>
       <title>Location pin</title>
-      <path
-        d='M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24S24 21 24 12C24 5.373 18.627 0 12 0z'
-        fill='#ef4444'
-      />
+      <path d='M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24S24 21 24 12C24 5.373 18.627 0 12 0z' fill='#ef4444' />
       <circle cx='12' cy='12' fill='white' r='5' />
     </svg>
   );
 }
 
-export function LocationMap({
-  lat,
-  lng,
-  onPositionChange,
-}: Readonly<LocationMapProps>) {
+export function LocationMap({ lat, lng, onPositionChange }: Readonly<LocationMapProps>) {
   const [markerPos, setMarkerPos] = useState<Point>([lat, lng]);
   const [center, setCenter] = useState<Point>([lat, lng]);
 
@@ -61,21 +49,13 @@ export function LocationMap({
         height={280}
         metaWheelZoom
         onBoundsChanged={({ center: c }: { center: Point }) => setCenter(c)}
-        onClick={
-          interactive
-            ? ({ latLng }: { latLng: Point }) => handleNewPos(latLng)
-            : undefined
-        }
+        onClick={interactive ? ({ latLng }: { latLng: Point }) => handleNewPos(latLng) : undefined}
         provider={osm}
         width={undefined}
       >
         {interactive ? (
           // offset=[12,36] places the pin's bottom-center at the anchor.
-          <Draggable
-            anchor={markerPos}
-            offset={[12, 36]}
-            onDragEnd={(pos: Point) => handleNewPos(pos)}
-          >
+          <Draggable anchor={markerPos} offset={[12, 36]} onDragEnd={(pos: Point) => handleNewPos(pos)}>
             <DraggablePin />
           </Draggable>
         ) : (

@@ -7,51 +7,18 @@
 
 import { Button } from '@repo/design-system/components/ui/button';
 import { Calendar } from '@repo/design-system/components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@repo/design-system/components/ui/popover';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@repo/design-system/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/design-system/components/ui/select';
 import { cn } from '@repo/design-system/lib/utils';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
-import {
-  endOfDay,
-  endOfMonth,
-  endOfWeek,
-  endOfYear,
-  startOfDay,
-  startOfMonth,
-  startOfWeek,
-  startOfYear,
-  subDays,
-} from 'date-fns';
+import { endOfDay, endOfMonth, endOfWeek, endOfYear, startOfDay, startOfMonth, startOfWeek, startOfYear, subDays } from 'date-fns';
 import { formatInTimeZone, toDate } from 'date-fns-tz';
 import { CalendarIcon } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
 import type { DateRange } from 'react-day-picker';
 
-const months = [
-  'Januar',
-  'Februar',
-  'März',
-  'April',
-  'Mai',
-  'Juni',
-  'Juli',
-  'August',
-  'September',
-  'Oktober',
-  'November',
-  'Dezember',
-];
+const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
 
 const multiSelectVariants = cva(
   'flex items-center justify-center whitespace-nowrap rounded-md font-medium text-foreground text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -62,22 +29,17 @@ const multiSelectVariants = cva(
     variants: {
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         ghost: 'text-background hover:bg-accent hover:text-accent-foreground',
         link: 'text-background text-primary underline-offset-4 hover:underline',
-        outline:
-          'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-        secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       },
     },
   }
 );
 
-interface CalendarDatePickerProps
-  extends React.HTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof multiSelectVariants> {
+interface CalendarDatePickerProps extends React.HTMLAttributes<HTMLButtonElement>, VariantProps<typeof multiSelectVariants> {
   className?: string;
   closeOnSelect?: boolean;
   date: DateRange;
@@ -88,10 +50,7 @@ interface CalendarDatePickerProps
   yearsRange?: number;
 }
 
-export const CalendarDatePicker = forwardRef<
-  HTMLButtonElement,
-  CalendarDatePickerProps
->(
+export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePickerProps>(
   (
     {
       id = 'calendar-date-picker',
@@ -108,19 +67,11 @@ export const CalendarDatePicker = forwardRef<
     ref
   ) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const [selectedRange, setSelectedRange] = useState<string | null>(
-      numberOfMonths === 2 ? 'Dieses Jahr' : 'Heute'
-    );
+    const [selectedRange, setSelectedRange] = useState<string | null>(numberOfMonths === 2 ? 'Dieses Jahr' : 'Heute');
     const [monthFrom, setMonthFrom] = useState<Date | undefined>(date?.from);
-    const [yearFrom, setYearFrom] = useState<number | undefined>(
-      date?.from?.getFullYear()
-    );
-    const [monthTo, setMonthTo] = useState<Date | undefined>(
-      numberOfMonths === 2 ? date?.to : date?.from
-    );
-    const [yearTo, setYearTo] = useState<number | undefined>(
-      numberOfMonths === 2 ? date?.to?.getFullYear() : date?.from?.getFullYear()
-    );
+    const [yearFrom, setYearFrom] = useState<number | undefined>(date?.from?.getFullYear());
+    const [monthTo, setMonthTo] = useState<Date | undefined>(numberOfMonths === 2 ? date?.to : date?.from);
+    const [yearTo, setYearTo] = useState<number | undefined>(numberOfMonths === 2 ? date?.to?.getFullYear() : date?.from?.getFullYear());
     const [highlightedPart, setHighlightedPart] = useState<string | null>(null);
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -131,8 +82,7 @@ export const CalendarDatePicker = forwardRef<
 
     const selectDateRange = (from: Date, to: Date, range: string) => {
       const startDate = startOfDay(toDate(from, { timeZone }));
-      const endDate =
-        numberOfMonths === 2 ? endOfDay(toDate(to, { timeZone })) : startDate;
+      const endDate = numberOfMonths === 2 ? endOfDay(toDate(to, { timeZone })) : startDate;
       onDateSelect({ from: startDate, to: endDate });
       setSelectedRange(range);
       setMonthFrom(from);
@@ -174,18 +124,9 @@ export const CalendarDatePicker = forwardRef<
             numberOfMonths === 2
               ? startOfMonth(toDate(newMonth, { timeZone }))
               : date?.from
-                ? new Date(
-                    date.from.getFullYear(),
-                    newMonth.getMonth(),
-                    date.from.getDate()
-                  )
+                ? new Date(date.from.getFullYear(), newMonth.getMonth(), date.from.getDate())
                 : newMonth;
-          const to =
-            numberOfMonths === 2
-              ? date.to
-                ? endOfDay(toDate(date.to, { timeZone }))
-                : endOfMonth(toDate(newMonth, { timeZone }))
-              : from;
+          const to = numberOfMonths === 2 ? (date.to ? endOfDay(toDate(date.to, { timeZone })) : endOfMonth(toDate(newMonth, { timeZone }))) : from;
           if (from <= to) {
             onDateSelect({ from, to });
             setMonthFrom(newMonth);
@@ -197,13 +138,8 @@ export const CalendarDatePicker = forwardRef<
           return;
         }
         const newMonth = new Date(yearTo, newMonthIndex, 1);
-        const from = date.from
-          ? startOfDay(toDate(date.from, { timeZone }))
-          : startOfMonth(toDate(newMonth, { timeZone }));
-        const to =
-          numberOfMonths === 2
-            ? endOfMonth(toDate(newMonth, { timeZone }))
-            : from;
+        const from = date.from ? startOfDay(toDate(date.from, { timeZone })) : startOfMonth(toDate(newMonth, { timeZone }));
+        const to = numberOfMonths === 2 ? endOfMonth(toDate(newMonth, { timeZone })) : from;
         if (from <= to) {
           onDateSelect({ from, to });
           setMonthTo(newMonth);
@@ -216,21 +152,14 @@ export const CalendarDatePicker = forwardRef<
       setSelectedRange(null);
       if (part === 'from') {
         if (years.includes(newYear)) {
-          const newMonth = monthFrom
-            ? new Date(newYear, monthFrom ? monthFrom.getMonth() : 0, 1)
-            : new Date(newYear, 0, 1);
+          const newMonth = monthFrom ? new Date(newYear, monthFrom ? monthFrom.getMonth() : 0, 1) : new Date(newYear, 0, 1);
           const from =
             numberOfMonths === 2
               ? startOfMonth(toDate(newMonth, { timeZone }))
               : date.from
                 ? new Date(newYear, newMonth.getMonth(), date.from.getDate())
                 : newMonth;
-          const to =
-            numberOfMonths === 2
-              ? date.to
-                ? endOfDay(toDate(date.to, { timeZone }))
-                : endOfMonth(toDate(newMonth, { timeZone }))
-              : from;
+          const to = numberOfMonths === 2 ? (date.to ? endOfDay(toDate(date.to, { timeZone })) : endOfMonth(toDate(newMonth, { timeZone }))) : from;
           if (from <= to) {
             onDateSelect({ from, to });
             setYearFrom(newYear);
@@ -240,16 +169,9 @@ export const CalendarDatePicker = forwardRef<
           }
         }
       } else if (years.includes(newYear)) {
-        const newMonth = monthTo
-          ? new Date(newYear, monthTo.getMonth(), 1)
-          : new Date(newYear, 0, 1);
-        const from = date.from
-          ? startOfDay(toDate(date.from, { timeZone }))
-          : startOfMonth(toDate(newMonth, { timeZone }));
-        const to =
-          numberOfMonths === 2
-            ? endOfMonth(toDate(newMonth, { timeZone }))
-            : from;
+        const newMonth = monthTo ? new Date(newYear, monthTo.getMonth(), 1) : new Date(newYear, 0, 1);
+        const from = date.from ? startOfDay(toDate(date.from, { timeZone })) : startOfMonth(toDate(newMonth, { timeZone }));
+        const to = numberOfMonths === 2 ? endOfMonth(toDate(newMonth, { timeZone })) : from;
         if (from <= to) {
           onDateSelect({ from, to });
           setYearTo(newYear);
@@ -262,10 +184,7 @@ export const CalendarDatePicker = forwardRef<
 
     const today = new Date();
 
-    const years = Array.from(
-      { length: yearsRange + 1 },
-      (_, i) => today.getFullYear() - yearsRange / 2 + i
-    );
+    const years = Array.from({ length: yearsRange + 1 }, (_, i) => today.getFullYear() - yearsRange / 2 + i);
 
     const dateRanges = [
       { end: today, label: 'Heute', start: today },
@@ -362,10 +281,7 @@ export const CalendarDatePicker = forwardRef<
     };
 
     const handleMonthWheel = (increment: number, part: 'from' | 'to') => {
-      const currentMonth =
-        part === 'from'
-          ? (monthFrom?.getMonth() ?? 0)
-          : (monthTo?.getMonth() ?? 0);
+      const currentMonth = part === 'from' ? (monthFrom?.getMonth() ?? 0) : (monthTo?.getMonth() ?? 0);
       handleMonthChange(currentMonth + increment, part);
     };
 
@@ -418,24 +334,13 @@ export const CalendarDatePicker = forwardRef<
       const secondMonthElement = document.getElementById(`secondMonth-${id}`);
       const secondYearElement = document.getElementById(`secondYear-${id}`);
 
-      const elements = [
-        firstDayElement,
-        firstMonthElement,
-        firstYearElement,
-        secondDayElement,
-        secondMonthElement,
-        secondYearElement,
-      ];
+      const elements = [firstDayElement, firstMonthElement, firstYearElement, secondDayElement, secondMonthElement, secondYearElement];
 
       const addPassiveEventListener = (element: HTMLElement | null) => {
         if (element) {
-          element.addEventListener(
-            'wheel',
-            handleWheel as unknown as EventListener,
-            {
-              passive: false,
-            }
-          );
+          element.addEventListener('wheel', handleWheel as unknown as EventListener, {
+            passive: false,
+          });
         }
       };
 
@@ -444,45 +349,25 @@ export const CalendarDatePicker = forwardRef<
       return () => {
         elements.forEach((element) => {
           if (element) {
-            element.removeEventListener(
-              'wheel',
-              handleWheel as unknown as EventListener
-            );
+            element.removeEventListener('wheel', handleWheel as unknown as EventListener);
           }
         });
       };
     }, [id]);
 
-    const formatWithTz = (date: Date, fmt: string) =>
-      formatInTimeZone(date, timeZone, fmt);
+    const formatWithTz = (date: Date, fmt: string) => formatInTimeZone(date, timeZone, fmt);
 
     return (
-      <Popover
-        modal={true}
-        onOpenChange={setIsPopoverOpen}
-        open={isPopoverOpen}
-      >
+      <Popover modal={true} onOpenChange={setIsPopoverOpen} open={isPopoverOpen}>
         <PopoverTrigger asChild disabled={disabled}>
-          <Button
-            id='date'
-            ref={ref}
-            {...props}
-            className={cn(
-              'w-auto',
-              multiSelectVariants({ className, variant })
-            )}
-            onClick={handleTogglePopover}
-          >
+          <Button id='date' ref={ref} {...props} className={cn('w-auto', multiSelectVariants({ className, variant }))} onClick={handleTogglePopover}>
             <CalendarIcon className='mr-2 h-4 w-4' />
             <span>
               {date?.from ? (
                 date.to ? (
                   <>
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'firstDay' && 'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'firstDay' && 'font-bold underline')}
                       id={`firstDay-${id}`}
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('firstDay')}
@@ -490,11 +375,7 @@ export const CalendarDatePicker = forwardRef<
                       {formatWithTz(date.from, 'dd')}
                     </span>{' '}
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'firstMonth' &&
-                          'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'firstMonth' && 'font-bold underline')}
                       id={`firstMonth-${id}`}
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('firstMonth')}
@@ -503,10 +384,7 @@ export const CalendarDatePicker = forwardRef<
                     </span>
                     ,{' '}
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'firstYear' && 'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'firstYear' && 'font-bold underline')}
                       id={`firstYear-${id}`}
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('firstYear')}
@@ -517,11 +395,7 @@ export const CalendarDatePicker = forwardRef<
                       <>
                         {' - '}
                         <span
-                          className={cn(
-                            'date-part',
-                            highlightedPart === 'secondDay' &&
-                              'font-bold underline'
-                          )}
+                          className={cn('date-part', highlightedPart === 'secondDay' && 'font-bold underline')}
                           id={`secondDay-${id}`}
                           onMouseLeave={handleMouseLeave}
                           onMouseOver={() => handleMouseOver('secondDay')}
@@ -529,11 +403,7 @@ export const CalendarDatePicker = forwardRef<
                           {formatWithTz(date.to, 'dd')}
                         </span>{' '}
                         <span
-                          className={cn(
-                            'date-part',
-                            highlightedPart === 'secondMonth' &&
-                              'font-bold underline'
-                          )}
+                          className={cn('date-part', highlightedPart === 'secondMonth' && 'font-bold underline')}
                           id={`secondMonth-${id}`}
                           onMouseLeave={handleMouseLeave}
                           onMouseOver={() => handleMouseOver('secondMonth')}
@@ -542,11 +412,7 @@ export const CalendarDatePicker = forwardRef<
                         </span>
                         ,{' '}
                         <span
-                          className={cn(
-                            'date-part',
-                            highlightedPart === 'secondYear' &&
-                              'font-bold underline'
-                          )}
+                          className={cn('date-part', highlightedPart === 'secondYear' && 'font-bold underline')}
                           id={`secondYear-${id}`}
                           onMouseLeave={handleMouseLeave}
                           onMouseOver={() => handleMouseOver('secondYear')}
@@ -559,10 +425,7 @@ export const CalendarDatePicker = forwardRef<
                 ) : (
                   <>
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'day' && 'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'day' && 'font-bold underline')}
                       id='day'
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('day')}
@@ -570,10 +433,7 @@ export const CalendarDatePicker = forwardRef<
                       {formatWithTz(date.from, 'dd')}
                     </span>{' '}
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'month' && 'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'month' && 'font-bold underline')}
                       id='month'
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('month')}
@@ -582,10 +442,7 @@ export const CalendarDatePicker = forwardRef<
                     </span>
                     ,{' '}
                     <span
-                      className={cn(
-                        'date-part',
-                        highlightedPart === 'year' && 'font-bold underline'
-                      )}
+                      className={cn('date-part', highlightedPart === 'year' && 'font-bold underline')}
                       id='year'
                       onMouseLeave={handleMouseLeave}
                       onMouseOver={() => handleMouseOver('year')}
@@ -617,8 +474,7 @@ export const CalendarDatePicker = forwardRef<
                   <Button
                     className={cn(
                       'justify-start hover:bg-primary/90 hover:text-background',
-                      selectedRange === label &&
-                        'bg-primary text-background hover:bg-primary/90 hover:text-background'
+                      selectedRange === label && 'bg-primary text-background hover:bg-primary/90 hover:text-background'
                     )}
                     key={label}
                     onClick={() => {

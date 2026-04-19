@@ -1,20 +1,11 @@
 'use client';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
 import { BellIcon } from 'lucide-react';
 
 import { Button } from './ui/button';
-import {
-  HybridTooltip,
-  HybridTooltipContent,
-  HybridTooltipTrigger,
-} from './ui/touch-provider';
+import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from './ui/touch-provider';
 
 export function NotificationsMenu() {
   const t = useI18n();
@@ -23,15 +14,8 @@ export function NotificationsMenu() {
     <DropdownMenu>
       <HybridTooltip delayDuration={100}>
         <HybridTooltipTrigger asChild>
-          <DropdownMenuTrigger
-            asChild
-            className='hover:bg-transparent focus:ring-0 focus:ring-none'
-          >
-            <Button
-              className='shrink-0 text-foreground'
-              size='icon'
-              variant='ghost'
-            >
+          <DropdownMenuTrigger asChild className='hover:bg-transparent focus:ring-0 focus:ring-none'>
+            <Button className='shrink-0 text-foreground' size='icon' variant='ghost'>
               <BellIcon />
             </Button>
           </DropdownMenuTrigger>
@@ -40,9 +24,7 @@ export function NotificationsMenu() {
       </HybridTooltip>
       <DropdownMenuContent>
         <DropdownMenuLabel className='p-0 font-normal'>
-          <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
-            {t('notifications.label')}
-          </div>
+          <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>{t('notifications.label')}</div>
         </DropdownMenuLabel>
       </DropdownMenuContent>
     </DropdownMenu>

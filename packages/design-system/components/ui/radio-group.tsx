@@ -5,23 +5,11 @@ import { CircleIcon } from 'lucide-react';
 import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 import type * as React from 'react';
 
-function RadioGroup({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
-  return (
-    <RadioGroupPrimitive.Root
-      className={cn('grid gap-3', className)}
-      data-slot='radio-group'
-      {...props}
-    />
-  );
+function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
+  return <RadioGroupPrimitive.Root className={cn('grid gap-3', className)} data-slot='radio-group' {...props} />;
 }
 
-function RadioGroupItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+function RadioGroupItem({ className, ...props }: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
   return (
     <RadioGroupPrimitive.Item
       className={cn(
@@ -31,10 +19,7 @@ function RadioGroupItem({
       data-slot='radio-group-item'
       {...props}
     >
-      <RadioGroupPrimitive.Indicator
-        className='relative flex items-center justify-center'
-        data-slot='radio-group-indicator'
-      >
+      <RadioGroupPrimitive.Indicator className='relative flex items-center justify-center' data-slot='radio-group-indicator'>
         <CircleIcon className='absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary' />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>

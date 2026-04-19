@@ -37,5 +37,4 @@ export const config: NextConfig = {
   turbopack: {},
 };
 
-export const withAnalyzer = (sourceConfig: NextConfig): NextConfig =>
-  withBundleAnalyzer()(sourceConfig);
+export const withAnalyzer = (sourceConfig: NextConfig): NextConfig => withBundleAnalyzer()(sourceConfig);

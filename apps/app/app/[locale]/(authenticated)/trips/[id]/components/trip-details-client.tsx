@@ -1,12 +1,8 @@
 'use client';
 
 import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
-import {
-  MiniCalendar,
-  MiniCalendarDay,
-  MiniCalendarDays,
-  MiniCalendarNavigation,
-} from '@repo/design-system/components/kibo-ui/mini-calendar';
+import { MiniCalendar, MiniCalendarDay, MiniCalendarDays, MiniCalendarNavigation } from '@repo/design-system/components/kibo-ui/mini-calendar';
+import { PageContent } from '@repo/design-system/components/page-content';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,40 +13,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@repo/design-system/components/ui/alert-dialog';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarGroupCount,
-  AvatarImage,
-} from '@repo/design-system/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-import {
-  CalendarRange,
-  Copy,
-  MapPin,
-  Pencil,
-  Plus,
-  Trash2,
-} from 'lucide-react';
+import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
-import {
-  createExpense,
-  deleteExpense,
-  updateExpense,
-} from '@/lib/expenses-actions';
+import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
 import type { TripWithPeople } from '@/lib/trips-actions';
 import { ExpenseFormDialog } from './expense-form-dialog';
 import { TripCostSummaryCard } from './trip-cost-summary-card';
@@ -88,11 +62,7 @@ function startOfDayValue(date: Date): Date {
 }
 
 function isSameDayValue(left: Date, right: Date): boolean {
-  return (
-    left.getFullYear() === right.getFullYear() &&
-    left.getMonth() === right.getMonth() &&
-    left.getDate() === right.getDate()
-  );
+  return left.getFullYear() === right.getFullYear() && left.getMonth() === right.getMonth() && left.getDate() === right.getDate();
 }
 
 function getTripDurationDays(startDate: Date, endDate: Date): number {
@@ -110,39 +80,26 @@ function formatSelectedDate(date: Date): string {
   }).format(date);
 }
 
-export function TripDetailsClient({
-  categories,
-  expenses,
-  people,
-  trip,
-}: Readonly<TripDetailsClientProps>) {
+function subtractOneDay(date: Date): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() - 1);
+  return result;
+}
+
+export function TripDetailsClient({ categories, expenses, people, trip }: Readonly<TripDetailsClientProps>) {
   const t = useI18n();
   const locale = useCurrentLocale();
   const router = useRouter();
 
-  const [selectedDate, setSelectedDate] = useState<Date>(
-    startOfDayValue(trip.startDate)
-  );
-  const [calendarStartDate, setCalendarStartDate] = useState<Date>(
-    startOfDayValue(trip.startDate)
-  );
+  const [selectedDate, setSelectedDate] = useState<Date>(startOfDayValue(trip.startDate));
+  const [calendarStartDate, setCalendarStartDate] = useState<Date>(startOfDayValue(subtractOneDay(trip.startDate)));
   const [createOpen, setCreateOpen] = useState(false);
-  const [editingExpense, setEditingExpense] =
-    useState<ExpenseWithDetails | null>(null);
-  const [deleteTarget, setDeleteTarget] = useState<ExpenseWithDetails | null>(
-    null
-  );
-  const [duplicateSource, setDuplicateSource] =
-    useState<ExpenseWithDetails | null>(null);
+  const [editingExpense, setEditingExpense] = useState<ExpenseWithDetails | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<ExpenseWithDetails | null>(null);
+  const [duplicateSource, setDuplicateSource] = useState<ExpenseWithDetails | null>(null);
 
   const filteredExpenses = useMemo(
-    () =>
-      expenses.filter((expense) =>
-        isSameDayValue(
-          startOfDayValue(expense.date),
-          startOfDayValue(selectedDate)
-        )
-      ),
+    () => expenses.filter((expense) => isSameDayValue(startOfDayValue(expense.date), startOfDayValue(selectedDate))),
     [expenses, selectedDate]
   );
 
@@ -217,46 +174,59 @@ export function TripDetailsClient({
   };
 
   return (
-    <div className='space-y-4'>
-      <div className='grid gap-4 lg:grid-cols-2'>
-        <Card className='h-fit'>
-          <CardHeader className='gap-3'>
-            <div className='flex items-center justify-between gap-2'>
-              <CardTitle className='text-base'>{trip.name}</CardTitle>
-              <div className='flex items-center gap-2'>
-                <Button
-                  onClick={() => {
-                    setDuplicateSource(null);
-                    setCreateOpen(true);
-                  }}
-                  size='sm'
-                >
-                  <Plus size={16} />
-                  {t('trips.expenses.newExpense')}
-                </Button>
-                <Button asChild size='sm' variant='outline'>
-                  <Link href={`/${locale}/trips`}>
-                    {t('trips.details.backToTrips')}
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
-              <CalendarRange size={14} />
-              <span>{formatDateRange(trip.startDate, trip.endDate)}</span>
-            </div>
-            {trip.locationName && (
+    <PageContent
+      actions={
+        <div className='flex items-center gap-2'>
+          <Button
+            onClick={() => {
+              setDuplicateSource(null);
+              setCreateOpen(true);
+            }}
+            size='sm'
+          >
+            <Plus size={16} />
+            {t('trips.expenses.newExpense')}
+          </Button>
+          <Button asChild size='sm' variant='outline'>
+            <Link href={`/${locale}/trips`}>{t('trips.details.backToTrips')}</Link>
+          </Button>
+        </div>
+      }
+      header={trip.name}
+      subTitle={formatDateRange(trip.startDate, trip.endDate)}
+    >
+      <div className='space-y-4'>
+        {/* Full-width calendar card */}
+        <Card>
+          <CardHeader className='pb-2'>
+            <div className='flex flex-wrap items-center gap-4'>
               <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
-                <MapPin size={14} />
-                <span className='line-clamp-1'>{trip.locationName}</span>
+                <CalendarRange size={14} />
+                <span>{formatDateRange(trip.startDate, trip.endDate)}</span>
               </div>
-            )}
+              {trip.locationName && (
+                <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
+                  <MapPin size={14} />
+                  <span className='line-clamp-1'>{trip.locationName}</span>
+                </div>
+              )}
+              {trip.people.length > 0 && (
+                <AvatarGroup>
+                  {visiblePeople.map((member) => (
+                    <Avatar key={member.id} size='sm' title={member.name}>
+                      {member.avatarUrl && <AvatarImage alt={member.name} src={member.avatarUrl} />}
+                      <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
+                    </Avatar>
+                  ))}
+                  {overflow > 0 && <AvatarGroupCount>+{overflow}</AvatarGroupCount>}
+                </AvatarGroup>
+              )}
+            </div>
           </CardHeader>
-
-          <CardContent className='space-y-4'>
+          <CardContent>
             <MiniCalendar
               className='w-full items-start justify-between'
-              days={tripDurationDays}
+              days={tripDurationDays + 2}
               onStartDateChange={(date) => {
                 if (date) {
                   setCalendarStartDate(date);
@@ -272,164 +242,102 @@ export function TripDetailsClient({
             >
               <MiniCalendarNavigation direction='prev' />
               <MiniCalendarDays className='flex-1 justify-center'>
-                {(date) => (
-                  <MiniCalendarDay date={date} key={date.toISOString()} />
-                )}
+                {(date) => <MiniCalendarDay date={date} key={date.toISOString()} />}
               </MiniCalendarDays>
               <MiniCalendarNavigation direction='next' />
             </MiniCalendar>
-
-            {trip.people.length > 0 && (
-              <div className='space-y-2'>
-                <p className='font-medium text-sm'>
-                  {t('trips.details.participantsLabel')}
-                </p>
-                <AvatarGroup>
-                  {visiblePeople.map((member) => (
-                    <Avatar key={member.id} size='sm' title={member.name}>
-                      {member.avatarUrl && (
-                        <AvatarImage alt={member.name} src={member.avatarUrl} />
-                      )}
-                      <AvatarFallback>
-                        {getInitials(member.name)}
-                      </AvatarFallback>
-                    </Avatar>
-                  ))}
-                  {overflow > 0 && (
-                    <AvatarGroupCount>+{overflow}</AvatarGroupCount>
-                  )}
-                </AvatarGroup>
-              </div>
-            )}
           </CardContent>
         </Card>
 
-        <TripCostSummaryCard expenses={expenses} />
+        {/* 2 cards side by side */}
+        <div className='grid gap-4 lg:grid-cols-2'>
+          <TripCostSummaryCard expenses={expenses} />
+
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('trips.expenses.title')}</CardTitle>
+              <p className='text-muted-foreground text-sm'>
+                {t('trips.expenses.forDate', {
+                  date: formatSelectedDate(selectedDate),
+                })}
+              </p>
+            </CardHeader>
+            <CardContent>
+              {filteredExpenses.length === 0 ? (
+                <div className='rounded-lg border border-dashed py-10 text-center text-muted-foreground text-sm'>
+                  {t('trips.expenses.emptyForDate')}
+                </div>
+              ) : (
+                <div className='overflow-hidden rounded-lg border'>
+                  <table className='w-full text-sm'>
+                    <thead className='border-b bg-muted/50'>
+                      <tr>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.category')}</th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.description')}</th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.amount')}</th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.people')}</th>
+                        <th className='px-4 py-3 text-right font-medium text-muted-foreground'>{t('trips.expenses.columns.actions')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredExpenses.map((expense) => (
+                        <tr className='border-b last:border-0' key={expense.id}>
+                          <td className='px-4 py-3'>
+                            <Badge
+                              className='text-foreground'
+                              style={{
+                                backgroundColor: `${expense.category.color}22`,
+                                borderColor: expense.category.color,
+                              }}
+                              variant='outline'
+                            >
+                              {expense.category.name}
+                            </Badge>
+                          </td>
+                          <td className='px-4 py-3'>
+                            <div className='space-y-1'>
+                              <p className='font-medium'>{expense.description}</p>
+                              {expense.locationName && <p className='line-clamp-1 text-muted-foreground text-xs'>{expense.locationName}</p>}
+                            </div>
+                          </td>
+                          <td className='px-4 py-3 font-medium'>{expense.amount.toFixed(2)}</td>
+                          <td className='px-4 py-3'>{expense.people.length === 0 ? '-' : expense.people.map((person) => person.name).join(', ')}</td>
+                          <td className='px-4 py-3'>
+                            <div className='flex justify-end gap-1'>
+                              <Button className='h-7 w-7' onClick={() => setEditingExpense(expense)} size='icon' variant='ghost'>
+                                <Pencil size={14} />
+                              </Button>
+                              <Button
+                                className='h-7 w-7'
+                                onClick={() => {
+                                  setDuplicateSource(expense);
+                                  setCreateOpen(true);
+                                }}
+                                size='icon'
+                                variant='ghost'
+                              >
+                                <Copy size={14} />
+                              </Button>
+                              <Button
+                                className='h-7 w-7 text-destructive hover:text-destructive'
+                                onClick={() => setDeleteTarget(expense)}
+                                size='icon'
+                                variant='ghost'
+                              >
+                                <Trash2 size={14} />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </div>
-
-      <Card>
-        <CardHeader className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
-          <div>
-            <CardTitle>{t('trips.expenses.title')}</CardTitle>
-            <p className='mt-1 text-muted-foreground text-sm'>
-              {t('trips.expenses.forDate', {
-                date: formatSelectedDate(selectedDate),
-              })}
-            </p>
-          </div>
-          <Button
-            onClick={() => {
-              setDuplicateSource(null);
-              setCreateOpen(true);
-            }}
-            size='sm'
-          >
-            <Plus size={16} />
-            {t('trips.expenses.newExpense')}
-          </Button>
-        </CardHeader>
-
-        <CardContent>
-          {filteredExpenses.length === 0 ? (
-            <div className='rounded-lg border border-dashed py-10 text-center text-muted-foreground text-sm'>
-              {t('trips.expenses.emptyForDate')}
-            </div>
-          ) : (
-            <div className='overflow-hidden rounded-lg border'>
-              <table className='w-full text-sm'>
-                <thead className='border-b bg-muted/50'>
-                  <tr>
-                    <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
-                      {t('trips.expenses.columns.category')}
-                    </th>
-                    <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
-                      {t('trips.expenses.columns.description')}
-                    </th>
-                    <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
-                      {t('trips.expenses.columns.amount')}
-                    </th>
-                    <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
-                      {t('trips.expenses.columns.people')}
-                    </th>
-                    <th className='px-4 py-3 text-right font-medium text-muted-foreground'>
-                      {t('trips.expenses.columns.actions')}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredExpenses.map((expense) => (
-                    <tr className='border-b last:border-0' key={expense.id}>
-                      <td className='px-4 py-3'>
-                        <Badge
-                          className='text-foreground'
-                          style={{
-                            backgroundColor: `${expense.category.color}22`,
-                            borderColor: expense.category.color,
-                          }}
-                          variant='outline'
-                        >
-                          {expense.category.name}
-                        </Badge>
-                      </td>
-                      <td className='px-4 py-3'>
-                        <div className='space-y-1'>
-                          <p className='font-medium'>{expense.description}</p>
-                          {expense.locationName && (
-                            <p className='line-clamp-1 text-muted-foreground text-xs'>
-                              {expense.locationName}
-                            </p>
-                          )}
-                        </div>
-                      </td>
-                      <td className='px-4 py-3 font-medium'>
-                        {expense.amount.toFixed(2)}
-                      </td>
-                      <td className='px-4 py-3'>
-                        {expense.people.length === 0
-                          ? '-'
-                          : expense.people
-                              .map((person) => person.name)
-                              .join(', ')}
-                      </td>
-                      <td className='px-4 py-3'>
-                        <div className='flex justify-end gap-1'>
-                          <Button
-                            className='h-7 w-7'
-                            onClick={() => setEditingExpense(expense)}
-                            size='icon'
-                            variant='ghost'
-                          >
-                            <Pencil size={14} />
-                          </Button>
-                          <Button
-                            className='h-7 w-7'
-                            onClick={() => {
-                              setDuplicateSource(expense);
-                              setCreateOpen(true);
-                            }}
-                            size='icon'
-                            variant='ghost'
-                          >
-                            <Copy size={14} />
-                          </Button>
-                          <Button
-                            className='h-7 w-7 text-destructive hover:text-destructive'
-                            onClick={() => setDeleteTarget(expense)}
-                            size='icon'
-                            variant='ghost'
-                          >
-                            <Trash2 size={14} />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
       <ExpenseFormDialog
         categories={categories}
@@ -479,26 +387,17 @@ export function TripDetailsClient({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {t('trips.expenses.deleteDialog.title')}
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              {t('trips.expenses.deleteDialog.description')}
-            </AlertDialogDescription>
+            <AlertDialogTitle>{t('trips.expenses.deleteDialog.title')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('trips.expenses.deleteDialog.description')}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>
-              {t('trips.expenses.deleteDialog.cancel')}
-            </AlertDialogCancel>
-            <AlertDialogAction
-              className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
-              onClick={handleDelete}
-            >
+            <AlertDialogCancel>{t('trips.expenses.deleteDialog.cancel')}</AlertDialogCancel>
+            <AlertDialogAction className='bg-destructive text-destructive-foreground hover:bg-destructive/90' onClick={handleDelete}>
               {t('trips.expenses.deleteDialog.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+    </PageContent>
   );
 }

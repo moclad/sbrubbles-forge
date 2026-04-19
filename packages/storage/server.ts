@@ -17,13 +17,7 @@ const STANDARD_BUCKETS = [
 ];
 
 const BUCKET_CONFIG = {
-  allowedMimeTypes: [
-    'image/png',
-    'image/jpeg',
-    'image/gif',
-    'image/webp',
-    'image/svg+xml',
-  ], // 100 MB
+  allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml'], // 100 MB
   fileSizeLimit: 100 * 1024 * 1024,
 };
 
@@ -41,17 +35,11 @@ export async function initializeStandardBuckets() {
 
         if (error) {
           if ((error as StorageApiError)?.status === 404) {
-            const result = await storageClient(token).createBucket(
-              bucket.name,
-              {
-                ...BUCKET_CONFIG,
-                ...bucket.config,
-              }
-            );
-            log.info(
-              `Bucket ${bucket.name} not found, creating..., result:`,
-              result
-            );
+            const result = await storageClient(token).createBucket(bucket.name, {
+              ...BUCKET_CONFIG,
+              ...bucket.config,
+            });
+            log.info(`Bucket ${bucket.name} not found, creating..., result:`, result);
           } else {
             log.error(`Failed to initialize bucket ${bucket.name}:`, error);
             throw error;

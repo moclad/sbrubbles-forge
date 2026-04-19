@@ -15,13 +15,7 @@ const WebhooksPage = async () => {
 
   return (
     <div className='h-full w-full overflow-hidden'>
-      <iframe
-        allow='clipboard-write'
-        className='h-full w-full border-none'
-        loading='lazy'
-        src={response.url}
-        title='Webhooks'
-      />
+      <iframe allow='clipboard-write' className='h-full w-full border-none' loading='lazy' src={response.url} title='Webhooks' />
     </div>
   );
 };

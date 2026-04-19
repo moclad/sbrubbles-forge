@@ -16,21 +16,12 @@ import { Input } from '@repo/design-system/components/ui/input';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import type { ColumnDef } from '@tanstack/react-table';
-import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { Check, Pencil, Plus, Trash2, X } from 'lucide-react';
 import Image from 'next/image';
 import type { Dispatch, SetStateAction } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import {
-  createPerson,
-  deletePerson,
-  updatePerson,
-  uploadPersonAvatar,
-} from '@/lib/people-actions';
+import { createPerson, deletePerson, updatePerson, uploadPersonAvatar } from '@/lib/people-actions';
 
 type PeopleTableMeta = {
   draft: Draft;
@@ -83,15 +74,7 @@ function AvatarDisplay({ avatarUrl, name, size = 32 }: AvatarDisplayProps) {
   const initials = getInitials(name || '?');
   const bg = stringToColor(name || '?');
   if (avatarUrl) {
-    return (
-      <Image
-        alt={name}
-        className='rounded-full object-cover'
-        height={size}
-        src={avatarUrl}
-        width={size}
-      />
-    );
+    return <Image alt={name} className='rounded-full object-cover' height={size} src={avatarUrl} width={size} />;
   }
   return (
     <div
@@ -126,23 +109,12 @@ function AvatarEdit({ draft, setDraft }: AvatarEditProps) {
   const displayUrl = draft.previewUrl ?? draft.avatarUrl;
 
   return (
-    <button
-      className='group relative cursor-pointer rounded-full'
-      onClick={() => fileRef.current?.click()}
-      title='Change avatar'
-      type='button'
-    >
+    <button className='group relative cursor-pointer rounded-full' onClick={() => fileRef.current?.click()} title='Change avatar' type='button'>
       <AvatarDisplay avatarUrl={displayUrl} name={draft.name} size={32} />
       <div className='absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
         <span className='text-white text-xs'>✎</span>
       </div>
-      <input
-        accept='image/*'
-        className='hidden'
-        onChange={handleFileChange}
-        ref={fileRef}
-        type='file'
-      />
+      <input accept='image/*' className='hidden' onChange={handleFileChange} ref={fileRef} type='file' />
     </button>
   );
 }
@@ -205,9 +177,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
       }
       resetEdit();
     } catch {
-      toast.error(
-        editingId === 'new' ? t('people.createError') : t('people.updateError')
-      );
+      toast.error(editingId === 'new' ? t('people.createError') : t('people.updateError'));
     } finally {
       setSaving(false);
     }
@@ -251,13 +221,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
           if (isEditing && meta) {
             return <AvatarEdit draft={meta.draft} setDraft={meta.setDraft} />;
           }
-          return (
-            <AvatarDisplay
-              avatarUrl={row.original.avatarUrl}
-              name={row.original.name}
-              size={32}
-            />
-          );
+          return <AvatarDisplay avatarUrl={row.original.avatarUrl} name={row.original.name} size={32} />;
         },
         header: t('people.columns.avatar'),
         id: 'avatar',
@@ -273,9 +237,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
               <Input
                 autoFocus
                 className='h-8'
-                onChange={(e) =>
-                  meta.setDraft((d) => ({ ...d, name: e.target.value }))
-                }
+                onChange={(e) => meta.setDraft((d) => ({ ...d, name: e.target.value }))}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     meta.handleSave();
@@ -298,22 +260,10 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
           if (isEditing && meta) {
             return (
               <div className='flex justify-end gap-1'>
-                <Button
-                  className='h-7 w-7'
-                  disabled={saving}
-                  onClick={meta.handleSave}
-                  size='icon'
-                  variant='ghost'
-                >
+                <Button className='h-7 w-7' disabled={saving} onClick={meta.handleSave} size='icon' variant='ghost'>
                   <Check size={14} />
                 </Button>
-                <Button
-                  className='h-7 w-7'
-                  disabled={saving}
-                  onClick={meta.handleCancel}
-                  size='icon'
-                  variant='ghost'
-                >
+                <Button className='h-7 w-7' disabled={saving} onClick={meta.handleCancel} size='icon' variant='ghost'>
                   <X size={14} />
                 </Button>
               </div>
@@ -321,12 +271,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
           }
           return (
             <div className='flex justify-end gap-1'>
-              <Button
-                className='h-7 w-7'
-                onClick={() => meta?.startEdit(row.original)}
-                size='icon'
-                variant='ghost'
-              >
+              <Button className='h-7 w-7' onClick={() => meta?.startEdit(row.original)} size='icon' variant='ghost'>
                 <Pencil size={14} />
               </Button>
               <Button
@@ -340,11 +285,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
             </div>
           );
         },
-        header: () => (
-          <span className='flex justify-end'>
-            {t('people.columns.actions')}
-          </span>
-        ),
+        header: () => <span className='flex justify-end'>{t('people.columns.actions')}</span>,
         id: 'actions',
         size: 96,
       },
@@ -377,9 +318,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
       </div>
 
       {people.length === 0 && editingId !== 'new' ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
-          {t('people.empty')}
-        </div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('people.empty')}</div>
       ) : (
         <div className='overflow-hidden rounded-lg border'>
           <table className='w-full text-sm'>
@@ -391,18 +330,10 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
                       className='px-4 py-3 text-left font-medium text-muted-foreground'
                       key={header.id}
                       style={{
-                        width:
-                          header.getSize() === 150
-                            ? undefined
-                            : header.getSize(),
+                        width: header.getSize() === 150 ? undefined : header.getSize(),
                       }}
                     >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </th>
                   ))}
                 </tr>
@@ -418,9 +349,7 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
                     <Input
                       autoFocus
                       className='h-8'
-                      onChange={(e) =>
-                        setDraft((d) => ({ ...d, name: e.target.value }))
-                      }
+                      onChange={(e) => setDraft((d) => ({ ...d, name: e.target.value }))}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           handleSave();
@@ -434,22 +363,10 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
                   </td>
                   <td className='px-4 py-3'>
                     <div className='flex justify-end gap-1'>
-                      <Button
-                        className='h-7 w-7'
-                        disabled={saving}
-                        onClick={handleSave}
-                        size='icon'
-                        variant='ghost'
-                      >
+                      <Button className='h-7 w-7' disabled={saving} onClick={handleSave} size='icon' variant='ghost'>
                         <Check size={14} />
                       </Button>
-                      <Button
-                        className='h-7 w-7'
-                        disabled={saving}
-                        onClick={handleCancel}
-                        size='icon'
-                        variant='ghost'
-                      >
+                      <Button className='h-7 w-7' disabled={saving} onClick={handleCancel} size='icon' variant='ghost'>
                         <X size={14} />
                       </Button>
                     </div>
@@ -457,16 +374,10 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
                 </tr>
               )}
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  className='border-b transition-colors last:border-0 hover:bg-muted/30'
-                  key={row.id}
-                >
+                <tr className='border-b transition-colors last:border-0 hover:bg-muted/30' key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <td className='px-4 py-3' key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
                 </tr>
@@ -476,23 +387,14 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
         </div>
       )}
 
-      <AlertDialog
-        onOpenChange={(open) => !open && setDeleteId(null)}
-        open={Boolean(deleteId)}
-      >
+      <AlertDialog onOpenChange={(open) => !open && setDeleteId(null)} open={Boolean(deleteId)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {t('people.deleteDialog.title')}
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              {t('people.deleteDialog.description')}
-            </AlertDialogDescription>
+            <AlertDialogTitle>{t('people.deleteDialog.title')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('people.deleteDialog.description')}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>
-              {t('people.deleteDialog.cancel')}
-            </AlertDialogCancel>
+            <AlertDialogCancel>{t('people.deleteDialog.cancel')}</AlertDialogCancel>
             <AlertDialogAction
               className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
               onClick={handleDelete}

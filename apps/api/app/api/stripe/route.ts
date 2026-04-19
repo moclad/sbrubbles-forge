@@ -20,15 +20,12 @@ const getUserFromCustomerId = async (customerId: string) => {
   return null;
 };
 
-const handleCheckoutSessionCompleted = async (
-  data: Stripe.Checkout.Session
-) => {
+const handleCheckoutSessionCompleted = async (data: Stripe.Checkout.Session) => {
   if (!data.customer) {
     return;
   }
 
-  const customerId =
-    typeof data.customer === 'string' ? data.customer : data.customer.id;
+  const customerId = typeof data.customer === 'string' ? data.customer : data.customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -36,15 +33,12 @@ const handleCheckoutSessionCompleted = async (
   }
 };
 
-const handleSubscriptionScheduleCanceled = async (
-  data: Stripe.SubscriptionSchedule
-) => {
+const handleSubscriptionScheduleCanceled = async (data: Stripe.SubscriptionSchedule) => {
   if (!data.customer) {
     return;
   }
 
-  const customerId =
-    typeof data.customer === 'string' ? data.customer : data.customer.id;
+  const customerId = typeof data.customer === 'string' ? data.customer : data.customer.id;
   const user = await getUserFromCustomerId(customerId);
 
   if (!user) {
@@ -74,11 +68,7 @@ export const POST = async (request: Request): Promise<Response> => {
       throw new Error('missing stripe-signature header');
     }
 
-    const event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      env.STRIPE_WEBHOOK_SECRET
-    );
+    const event = stripe.webhooks.constructEvent(body, signature, env.STRIPE_WEBHOOK_SECRET);
 
     switch (event.type) {
       case 'checkout.session.completed': {

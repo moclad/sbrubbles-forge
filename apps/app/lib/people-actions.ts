@@ -4,10 +4,7 @@ import { auth } from '@repo/auth/server';
 import { asc, database, eq } from '@repo/database';
 import { person } from '@repo/database/db/schema';
 import { PUBLIC_ASSETS_BUCKET } from '@repo/storage/buckets';
-import {
-  createBucketIfNotExists,
-  s3Client,
-} from '@repo/storage/s3-file-management';
+import { createBucketIfNotExists, s3Client } from '@repo/storage/s3-file-management';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
 
@@ -61,10 +58,7 @@ export async function deletePerson(id: string) {
   revalidatePath('/settings/people');
 }
 
-export async function uploadPersonAvatar(
-  personId: string,
-  formData: FormData
-): Promise<string> {
+export async function uploadPersonAvatar(personId: string, formData: FormData): Promise<string> {
   await requireSession();
 
   const file = formData.get('file') as File | null;
@@ -72,9 +66,7 @@ export async function uploadPersonAvatar(
     throw new Error('No file provided');
   }
 
-  const ext = file.name.includes('.')
-    ? file.name.split('.').pop()?.toLowerCase()
-    : 'jpg';
+  const ext = file.name.includes('.') ? file.name.split('.').pop()?.toLowerCase() : 'jpg';
   const key = `avatar/${personId}/avatar.${ext ?? 'jpg'}`;
 
   const buffer = Buffer.from(await file.arrayBuffer());

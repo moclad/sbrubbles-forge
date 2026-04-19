@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  ColorArea,
-  ColorField,
-  ColorPicker,
-  ColorSlider,
-  ColorSwatch,
-  ColorThumb,
-  SliderTrack,
-} from '@repo/design-system/components/ui/color';
+import { ColorArea, ColorField, ColorPicker, ColorSlider, ColorSwatch, ColorThumb, SliderTrack } from '@repo/design-system/components/ui/color';
 import { Input, Label, parseColor } from 'react-aria-components';
 
 export function randomHex(): string {
@@ -37,15 +29,9 @@ type CategoryColorPickerProps = {
   onChange: (hex: string) => void;
 };
 
-export function CategoryColorPicker({
-  value,
-  onChange,
-}: Readonly<CategoryColorPickerProps>) {
+export function CategoryColorPicker({ value, onChange }: Readonly<CategoryColorPickerProps>) {
   return (
-    <ColorPicker
-      onChange={(color) => onChange(color.toString('hex'))}
-      value={parseColor(value).toFormat('hsb')}
-    >
+    <ColorPicker onChange={(color) => onChange(color.toString('hex'))} value={parseColor(value).toFormat('hsb')}>
       <div className='flex flex-col items-center gap-3'>
         <ColorArea colorSpace='hsb' xChannel='saturation' yChannel='brightness'>
           <ColorThumb />

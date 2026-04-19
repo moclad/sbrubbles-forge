@@ -1,14 +1,7 @@
 'use client';
 
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
 import { Label } from '@repo/design-system/components/ui/label';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -27,11 +20,7 @@ type TwoFactorPasswordDialogProps = {
   open: boolean;
 };
 
-export function TwoFactorPasswordDialog({
-  open,
-  onOpenChange,
-  isTwoFactorEnabled,
-}: Readonly<TwoFactorPasswordDialogProps>) {
+export function TwoFactorPasswordDialog({ open, onOpenChange, isTwoFactorEnabled }: Readonly<TwoFactorPasswordDialogProps>) {
   const { twoFactor } = useContext(AuthUIContext);
   const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
@@ -106,38 +95,23 @@ export function TwoFactorPasswordDialog({
           <DialogHeader>
             <DialogTitle>{t('account.twoFactor')}</DialogTitle>
             <DialogDescription>
-              {isTwoFactorEnabled
-                ? t('account.twoFactorDisableInstructions')
-                : t('account.twoFactorEnableInstructions')}
+              {isTwoFactorEnabled ? t('account.twoFactorDisableInstructions') : t('account.twoFactorEnableInstructions')}
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSubmit}>
             <div className='grid gap-2'>
               <Label htmlFor='password'>{t('account.password')}</Label>
-              <PasswordInput
-                autoComplete='current-password'
-                id='password'
-                name='password'
-                placeholder={t('account.passwordPlaceholder')}
-                required
-              />
+              <PasswordInput autoComplete='current-password' id='password' name='password' placeholder={t('account.passwordPlaceholder')} required />
             </div>
 
             <DialogFooter className='mt-4'>
-              <Button
-                disabled={isLoading}
-                onClick={() => onOpenChange(false)}
-                type='button'
-                variant='secondary'
-              >
+              <Button disabled={isLoading} onClick={() => onOpenChange(false)} type='button' variant='secondary'>
                 {t('account.cancel')}
               </Button>
 
               <Button disabled={isLoading} loading={isLoading} type='submit'>
-                {isTwoFactorEnabled
-                  ? t('account.disable')
-                  : t('account.enable')}
+                {isTwoFactorEnabled ? t('account.disable') : t('account.enable')}
               </Button>
             </DialogFooter>
           </form>

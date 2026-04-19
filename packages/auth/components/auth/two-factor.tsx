@@ -10,14 +10,7 @@ import { cn } from '@repo/design-system//lib/utils';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import { useContext } from 'react';
@@ -31,11 +24,7 @@ export type TwoFactorFormProps = {
   redirectTo?: string;
 };
 
-export function TwoFactorForm({
-  isSubmitting,
-  otpSeparators = 1,
-  redirectTo,
-}: Readonly<TwoFactorFormProps>) {
+export function TwoFactorForm({ isSubmitting, otpSeparators = 1, redirectTo }: Readonly<TwoFactorFormProps>) {
   const isHydrated = useIsHydrated();
   const t = useI18n();
 
@@ -73,8 +62,7 @@ export function TwoFactorForm({
     resolver: zodResolver(formSchema),
   });
 
-  isSubmitting =
-    isSubmitting || form.formState.isSubmitting || transitionPending;
+  isSubmitting = isSubmitting || form.formState.isSubmitting || transitionPending;
 
   async function verifyCode({ code, trustDevice }: z.infer<typeof formSchema>) {
     try {
@@ -102,10 +90,7 @@ export function TwoFactorForm({
     <div className='mx-auto w-full max-w-md'>
       <div className='space-y-4'>
         <Form {...form}>
-          <form
-            className='mt-4 space-y-4'
-            onSubmit={form.handleSubmit(verifyCode)}
-          >
+          <form className='mt-4 space-y-4' onSubmit={form.handleSubmit(verifyCode)}>
             <FormField
               control={form.control}
               name='code'
@@ -114,10 +99,7 @@ export function TwoFactorForm({
                   <div className='flex items-center justify-between'>
                     <FormLabel>{t('account.oneTimePassword')}</FormLabel>
 
-                    <Link
-                      className={cn('text-sm hover:underline')}
-                      href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
-                    >
+                    <Link className={cn('text-sm hover:underline')} href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}>
                       {t('account.forgotAuthenticator')}
                     </Link>
                   </div>
@@ -153,11 +135,7 @@ export function TwoFactorForm({
               render={({ field }) => (
                 <FormItem className='flex'>
                   <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      disabled={isSubmitting}
-                      onCheckedChange={field.onChange}
-                    />
+                    <Checkbox checked={field.value} disabled={isSubmitting} onCheckedChange={field.onChange} />
                   </FormControl>
 
                   <FormLabel>{t('account.trustDevice')}</FormLabel>
@@ -165,23 +143,11 @@ export function TwoFactorForm({
               )}
             />
 
-            <Button
-              className='mt-4 w-full'
-              loading={isSubmitting}
-              type='submit'
-            >
-              {isSubmitting
-                ? t('account.twoFactorVerifying')
-                : t('account.twoFactorVerify')}
+            <Button className='mt-4 w-full' loading={isSubmitting} type='submit'>
+              {isSubmitting ? t('account.twoFactorVerifying') : t('account.twoFactorVerify')}
             </Button>
 
-            <Button
-              className='w-full'
-              disabled={isSubmitting}
-              onClick={() => navigate(`${basePath}/sign-in`)}
-              type='button'
-              variant='secondary'
-            >
+            <Button className='w-full' disabled={isSubmitting} onClick={() => navigate(`${basePath}/sign-in`)} type='button' variant='secondary'>
               {t('account.backToSignIn')}
             </Button>
           </form>

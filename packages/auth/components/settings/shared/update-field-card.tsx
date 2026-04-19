@@ -70,12 +70,7 @@ export function UpdateFieldCard({
 
     try {
       await updateUser({
-        [field]:
-          type === 'number'
-            ? Number.parseFloat(value)
-            : type === 'boolean'
-              ? value === 'on'
-              : value,
+        [field]: type === 'number' ? Number.parseFloat(value) : type === 'boolean' ? value === 'on' : value,
       });
     } catch (error) {
       setDisabled(false);
@@ -100,9 +95,7 @@ export function UpdateFieldCard({
         {type === 'boolean' ? (
           <div className={cn('flex items-center gap-3')}>
             <Checkbox
-              defaultChecked={
-                typeof defaultValue === 'boolean' ? defaultValue : false
-              }
+              defaultChecked={typeof defaultValue === 'boolean' ? defaultValue : false}
               id={field}
               name={field}
               onCheckedChange={() => setDisabled(false)}
@@ -120,9 +113,7 @@ export function UpdateFieldCard({
             key={`${defaultValue}`}
             name={field}
             onChange={(e) => setDisabled(e.target.value === defaultValue)}
-            placeholder={
-              placeholder ?? (typeof label === 'string' ? label : '')
-            }
+            placeholder={placeholder ?? (typeof label === 'string' ? label : '')}
             required={required}
             type={type === 'number' ? 'number' : 'text'}
           />

@@ -6,9 +6,7 @@ type SearchPageProperties = {
   }>;
 };
 
-export const generateMetadata = async ({
-  searchParams,
-}: SearchPageProperties) => {
+export const generateMetadata = async ({ searchParams }: SearchPageProperties) => {
   const { q } = await searchParams;
 
   return {

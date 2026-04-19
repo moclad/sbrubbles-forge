@@ -14,12 +14,8 @@ const RecoverAccountPage = async () => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight'>
-          {t('account.recover')}
-        </h1>
-        <p className='text-muted-foreground text-sm'>
-          {t('account.recoverDescription')}
-        </p>
+        <h1 className='font-semibold text-2xl tracking-tight'>{t('account.recover')}</h1>
+        <p className='text-muted-foreground text-sm'>{t('account.recoverDescription')}</p>
       </div>
 
       <RecoverAccountForm />

@@ -8,10 +8,7 @@ import { useRouter } from 'next/navigation';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import type { ReactNode } from 'react';
-export function Providers({
-  children,
-  locale,
-}: Readonly<{ children: ReactNode; locale: string }>) {
+export function Providers({ children, locale }: Readonly<{ children: ReactNode; locale: string }>) {
   const router = useRouter();
 
   return (

@@ -4,10 +4,7 @@ import { cn } from '@repo/design-system/lib/utils';
 import { Label as LabelPrimitive } from 'radix-ui';
 import type * as React from 'react';
 
-function Label({
-  className,
-  ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+function Label({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
   return (
     <LabelPrimitive.Root
       className={cn(

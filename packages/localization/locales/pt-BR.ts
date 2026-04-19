@@ -11,8 +11,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancelar',
       confirm: 'Excluir',
-      description:
-        'Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita. A categoria ser\u00e1 removida permanentemente.',
+      description: 'Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita. A categoria ser\u00e1 removida permanentemente.',
       title: 'Excluir categoria?',
     },
     deleteError: 'Falha ao excluir categoria',
@@ -38,8 +37,7 @@ export default {
     },
     metaDescription: 'Gerencie categorias de despesas para suas viagens.',
     newCategory: 'Nova Categoria',
-    subTitle:
-      'Gerencie categorias de despesas usadas para classificar custos nas suas viagens.',
+    subTitle: 'Gerencie categorias de despesas usadas para classificar custos nas suas viagens.',
     title: 'Categorias',
     updateError: 'Falha ao atualizar categoria',
     updateSuccess: 'Categoria atualizada',
@@ -55,8 +53,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancelar',
       confirm: 'Excluir',
-      description:
-        'Esta ação não pode ser desfeita. A pessoa será removida permanentemente.',
+      description: 'Esta ação não pode ser desfeita. A pessoa será removida permanentemente.',
       title: 'Excluir pessoa?',
     },
     deleteError: 'Falha ao excluir pessoa',
@@ -83,8 +80,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancelar',
       confirm: 'Excluir',
-      description:
-        'Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita. A viagem ser\u00e1 removida permanentemente.',
+      description: 'Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita. A viagem ser\u00e1 removida permanentemente.',
       title: 'Excluir viagem?',
     },
     deleteError: 'Falha ao excluir viagem',
@@ -110,8 +106,7 @@ export default {
       deleteDialog: {
         cancel: 'Cancelar',
         confirm: 'Excluir',
-        description:
-          'Esta acao nao pode ser desfeita. A despesa sera removida permanentemente.',
+        description: 'Esta acao nao pode ser desfeita. A despesa sera removida permanentemente.',
         title: 'Excluir despesa?',
       },
       deleteError: 'Falha ao excluir despesa',
@@ -141,8 +136,7 @@ export default {
         },
         locationLabel: 'Local',
         locationNotFound: 'Nenhum local encontrado. Tente outra busca.',
-        locationOptionalHint:
-          'Local e opcional. Busque um local para exibir e ajustar no mapa.',
+        locationOptionalHint: 'Local e opcional. Busque um local para exibir e ajustar no mapa.',
         locationPlaceholder: 'ex. Roma, Italia',
         peopleLabel: 'Pessoas (opcional)',
         saveChanges: 'Salvar Alteracoes',
@@ -168,17 +162,14 @@ export default {
       datesLabel: 'Per\u00edodo',
       editTitle: 'Editar Viagem',
       errors: {
-        endBeforeStart:
-          'A data de t\u00e9rmino deve ser ap\u00f3s a data de in\u00edcio',
+        endBeforeStart: 'A data de t\u00e9rmino deve ser ap\u00f3s a data de in\u00edcio',
         endDateRequired: 'Data de t\u00e9rmino \u00e9 obrigat\u00f3ria',
         nameRequired: 'Nome \u00e9 obrigat\u00f3rio',
         startDateRequired: 'Data de in\u00edcio \u00e9 obrigat\u00f3ria',
       },
       locationLabel: 'Local',
-      locationMarkerHint:
-        'Clique no mapa ou arraste o marcador para ajustar a posição exata.',
-      locationNotFound:
-        'Nenhum local encontrado. Tente uma pesquisa diferente.',
+      locationMarkerHint: 'Clique no mapa ou arraste o marcador para ajustar a posição exata.',
+      locationNotFound: 'Nenhum local encontrado. Tente uma pesquisa diferente.',
       locationPlaceholder: 'ex. Roma, It\u00e1lia',
       nameLabel: 'Nome',
       namePlaceholder: 'ex. Ver\u00e3o na It\u00e1lia',

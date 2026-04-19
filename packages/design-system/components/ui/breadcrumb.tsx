@@ -10,10 +10,7 @@ function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
 function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
   return (
     <ol
-      className={cn(
-        'flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5',
-        className
-      )}
+      className={cn('flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5', className)}
       data-slot='breadcrumb-list'
       {...props}
     />
@@ -21,13 +18,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
 }
 
 function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
-  return (
-    <li
-      className={cn('inline-flex items-center gap-1.5', className)}
-      data-slot='breadcrumb-item'
-      {...props}
-    />
-  );
+  return <li className={cn('inline-flex items-center gap-1.5', className)} data-slot='breadcrumb-item' {...props} />;
 }
 
 function BreadcrumbLink({
@@ -39,13 +30,7 @@ function BreadcrumbLink({
 }) {
   const Comp = asChild ? Slot.Root : 'a';
 
-  return (
-    <Comp
-      className={cn('transition-colors hover:text-foreground', className)}
-      data-slot='breadcrumb-link'
-      {...props}
-    />
-  );
+  return <Comp className={cn('transition-colors hover:text-foreground', className)} data-slot='breadcrumb-link' {...props} />;
 }
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
@@ -61,28 +46,15 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
   );
 }
 
-function BreadcrumbSeparator({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<'li'>) {
+function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<'li'>) {
   return (
-    <li
-      aria-hidden='true'
-      className={cn('[&>svg]:size-3.5', className)}
-      data-slot='breadcrumb-separator'
-      role='presentation'
-      {...props}
-    >
+    <li aria-hidden='true' className={cn('[&>svg]:size-3.5', className)} data-slot='breadcrumb-separator' role='presentation' {...props}>
       {children ?? <ChevronRight />}
     </li>
   );
 }
 
-function BreadcrumbEllipsis({
-  className,
-  ...props
-}: React.ComponentProps<'span'>) {
+function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       aria-hidden='true'
@@ -97,12 +69,4 @@ function BreadcrumbEllipsis({
   );
 }
 
-export {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-};
+export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator };

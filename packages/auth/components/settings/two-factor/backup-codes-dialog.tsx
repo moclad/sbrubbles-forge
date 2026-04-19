@@ -1,14 +1,7 @@
 'use client';
 
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -19,11 +12,7 @@ type BackupCodesDialogProps = {
   open: boolean;
 };
 
-export function BackupCodesDialog({
-  open,
-  onOpenChange,
-  backupCodes,
-}: Readonly<BackupCodesDialogProps>) {
+export function BackupCodesDialog({ open, onOpenChange, backupCodes }: Readonly<BackupCodesDialogProps>) {
   const [copied, setCopied] = useState(false);
   const t = useI18n();
 
@@ -39,29 +28,19 @@ export function BackupCodesDialog({
       <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>{t('account.backupCodes')}</DialogTitle>
-          <DialogDescription>
-            {t('account.backupCodesDescription')}
-          </DialogDescription>
+          <DialogDescription>{t('account.backupCodesDescription')}</DialogDescription>
         </DialogHeader>
 
         <div className='grid grid-cols-2 gap-2'>
           {backupCodes.map((code, index) => (
-            <div
-              className='rounded-md bg-muted p-2 text-center font-mono text-sm'
-              key={index}
-            >
+            <div className='rounded-md bg-muted p-2 text-center font-mono text-sm' key={index}>
               {code}
             </div>
           ))}
         </div>
 
         <DialogFooter>
-          <Button
-            disabled={copied}
-            onClick={handleCopy}
-            type='button'
-            variant='outline'
-          >
+          <Button disabled={copied} onClick={handleCopy} type='button' variant='outline'>
             {copied ? (
               <>
                 <CheckIcon />
@@ -75,11 +54,7 @@ export function BackupCodesDialog({
             )}
           </Button>
 
-          <Button
-            onClick={() => onOpenChange(false)}
-            type='button'
-            variant='default'
-          >
+          <Button onClick={() => onOpenChange(false)} type='button' variant='default'>
             {t('common.continue')}
           </Button>
         </DialogFooter>

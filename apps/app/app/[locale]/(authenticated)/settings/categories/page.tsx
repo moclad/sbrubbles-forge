@@ -16,10 +16,7 @@ const Page = async () => {
   const categories = await getCategories();
 
   return (
-    <PageContent
-      header={t('categories.title')}
-      subTitle={t('categories.subTitle')}
-    >
+    <PageContent header={t('categories.title')} subTitle={t('categories.subTitle')}>
       <CategoriesTable categories={categories} />
     </PageContent>
   );

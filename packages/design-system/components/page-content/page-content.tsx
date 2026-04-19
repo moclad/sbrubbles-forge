@@ -8,11 +8,7 @@ type PageContentProps = PageHeadingProps & {
   children?: ReactNode;
 };
 
-export function PageContent({
-  children,
-  header,
-  ...props
-}: Readonly<PageContentProps>) {
+export function PageContent({ children, header, ...props }: Readonly<PageContentProps>) {
   return (
     <div className='m-4 mt-0 flex flex-1 flex-col gap-4 rounded-md'>
       <PageContentHeading header={header} {...props} />

@@ -2,14 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -91,16 +84,9 @@ export const ResetPassword = ({ token }: Props) => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.password')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.password')}</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder={t(
-                        'authentication.fields.passwordPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <PasswordInput placeholder={t('authentication.fields.passwordPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -111,16 +97,9 @@ export const ResetPassword = ({ token }: Props) => {
               name='passwordConfirmation'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.passwordConfirmation')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.passwordConfirmation')}</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder={t(
-                        'authentication.fields.passwordConfirmationPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <PasswordInput placeholder={t('authentication.fields.passwordConfirmationPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

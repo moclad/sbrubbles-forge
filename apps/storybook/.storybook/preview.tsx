@@ -6,11 +6,7 @@ import { ThemeProvider } from '@repo/design-system/providers/theme';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/nextjs';
 import { themes } from 'storybook/theming';
-import {
-  commonTheme,
-  darkUIStorybook,
-  lightUIStorybook,
-} from './themes-storybook-ui';
+import { commonTheme, darkUIStorybook, lightUIStorybook } from './themes-storybook-ui';
 
 const preview: Preview = {
   decorators: [

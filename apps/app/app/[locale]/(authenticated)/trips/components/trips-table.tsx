@@ -11,42 +11,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@repo/design-system/components/ui/alert-dialog';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarGroupCount,
-  AvatarImage,
-} from '@repo/design-system/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-import {
-  CalendarRange,
-  Camera,
-  ImageIcon,
-  Loader2,
-  MapPin,
-  Pencil,
-  Plus,
-  Trash2,
-} from 'lucide-react';
+import { CalendarRange, Camera, ImageIcon, Loader2, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
 import type { TripData, TripWithPeople } from '@/lib/trips-actions';
-import {
-  createTrip,
-  deleteTrip,
-  updateTrip,
-  uploadTripCoverPhoto,
-} from '@/lib/trips-actions';
+import { createTrip, deleteTrip, updateTrip, uploadTripCoverPhoto } from '@/lib/trips-actions';
 import { TripFormDialog } from './trip-form-dialog';
 
 type TripsTableProps = {
@@ -134,11 +109,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
       <div className='relative aspect-video bg-muted'>
         {photoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <Image
-            alt={trip.name}
-            className='h-full w-full object-cover'
-            src={photoUrl}
-          />
+          <Image alt={trip.name} className='h-full w-full object-cover' src={photoUrl} />
         ) : (
           <div className='flex h-full items-center justify-center'>
             <ImageIcon className='text-muted-foreground/30' size={40} />
@@ -156,11 +127,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
             size='icon'
             variant='outline'
           >
-            {uploading ? (
-              <Loader2 className='animate-spin' size={14} />
-            ) : (
-              <Camera size={14} />
-            )}
+            {uploading ? <Loader2 className='animate-spin' size={14} /> : <Camera size={14} />}
           </Button>
         </div>
         <input
@@ -225,9 +192,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
             <AvatarGroup>
               {visiblePeople.map((p) => (
                 <Avatar key={p.id} size='sm' title={p.name}>
-                  {p.avatarUrl && (
-                    <AvatarImage alt={p.name} src={p.avatarUrl} />
-                  )}
+                  {p.avatarUrl && <AvatarImage alt={p.name} src={p.avatarUrl} />}
                   <AvatarFallback>{getInitials(p.name)}</AvatarFallback>
                 </Avatar>
               ))}
@@ -315,19 +280,11 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
       </div>
 
       {trips.length === 0 ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
-          {t('trips.empty')}
-        </div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('trips.empty')}</div>
       ) : (
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {trips.map((trip) => (
-            <TripCard
-              key={trip.id}
-              onDelete={setDeleteId}
-              onEdit={openEdit}
-              onOpen={openTripDetails}
-              trip={trip}
-            />
+            <TripCard key={trip.id} onDelete={setDeleteId} onEdit={openEdit} onOpen={openTripDetails} trip={trip} />
           ))}
         </div>
       )}
@@ -346,25 +303,15 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
         people={people}
       />
 
-      <AlertDialog
-        onOpenChange={(open) => !open && setDeleteId(null)}
-        open={Boolean(deleteId)}
-      >
+      <AlertDialog onOpenChange={(open) => !open && setDeleteId(null)} open={Boolean(deleteId)}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>{t('trips.deleteDialog.title')}</AlertDialogTitle>
-            <AlertDialogDescription>
-              {t('trips.deleteDialog.description')}
-            </AlertDialogDescription>
+            <AlertDialogDescription>{t('trips.deleteDialog.description')}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>
-              {t('trips.deleteDialog.cancel')}
-            </AlertDialogCancel>
-            <AlertDialogAction
-              className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
-              onClick={handleDelete}
-            >
+            <AlertDialogCancel>{t('trips.deleteDialog.cancel')}</AlertDialogCancel>
+            <AlertDialogAction className='bg-destructive text-destructive-foreground hover:bg-destructive/90' onClick={handleDelete}>
               {t('trips.deleteDialog.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>

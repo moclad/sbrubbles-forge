@@ -11,8 +11,7 @@ export default {
     deleteDialog: {
       cancel: 'Abbrechen',
       confirm: 'L\u00f6schen',
-      description:
-        'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Kategorie wird dauerhaft entfernt.',
+      description: 'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Kategorie wird dauerhaft entfernt.',
       title: 'Kategorie l\u00f6schen?',
     },
     deleteError: 'Kategorie konnte nicht gel\u00f6scht werden',
@@ -54,8 +53,7 @@ export default {
     deleteDialog: {
       cancel: 'Abbrechen',
       confirm: 'L\u00f6schen',
-      description:
-        'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Person wird dauerhaft entfernt.',
+      description: 'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Person wird dauerhaft entfernt.',
       title: 'Person l\u00f6schen?',
     },
     deleteError: 'Person konnte nicht gel\u00f6scht werden',
@@ -64,8 +62,7 @@ export default {
     metaDescription: 'Verwalte die Personen in deinen Reisen.',
     nameRequired: 'Name ist erforderlich',
     newPerson: 'Person hinzuf\u00fcgen',
-    subTitle:
-      'Verwalte die Personen, die mit deinen Reisen verkn\u00fcpft sind.',
+    subTitle: 'Verwalte die Personen, die mit deinen Reisen verkn\u00fcpft sind.',
     title: 'Personen',
     updateError: 'Person konnte nicht aktualisiert werden',
     updateSuccess: 'Person aktualisiert',
@@ -83,8 +80,7 @@ export default {
     deleteDialog: {
       cancel: 'Abbrechen',
       confirm: 'L\u00f6schen',
-      description:
-        'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Reise wird dauerhaft entfernt.',
+      description: 'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Reise wird dauerhaft entfernt.',
       title: 'Reise l\u00f6schen?',
     },
     deleteError: 'Reise konnte nicht gel\u00f6scht werden',
@@ -110,8 +106,7 @@ export default {
       deleteDialog: {
         cancel: 'Abbrechen',
         confirm: 'Loschen',
-        description:
-          'Diese Aktion kann nicht ruckgangig gemacht werden. Die Ausgabe wird dauerhaft entfernt.',
+        description: 'Diese Aktion kann nicht ruckgangig gemacht werden. Die Ausgabe wird dauerhaft entfernt.',
         title: 'Ausgabe loschen?',
       },
       deleteError: 'Ausgabe konnte nicht geloscht werden',
@@ -141,8 +136,7 @@ export default {
         },
         locationLabel: 'Ort',
         locationNotFound: 'Kein Ort gefunden. Versuche eine andere Suche.',
-        locationOptionalHint:
-          'Der Ort ist optional. Suche einen Ort, um ihn auf der Karte anzuzeigen und zu verschieben.',
+        locationOptionalHint: 'Der Ort ist optional. Suche einen Ort, um ihn auf der Karte anzuzeigen und zu verschieben.',
         locationPlaceholder: 'z.B. Rom, Italien',
         peopleLabel: 'Personen (optional)',
         saveChanges: 'Anderungen speichern',
@@ -174,8 +168,7 @@ export default {
         startDateRequired: 'Startdatum ist erforderlich',
       },
       locationLabel: 'Ort',
-      locationMarkerHint:
-        'Auf die Karte klicken oder den Pin ziehen, um die genaue Position festzulegen.',
+      locationMarkerHint: 'Auf die Karte klicken oder den Pin ziehen, um die genaue Position festzulegen.',
       locationNotFound: 'Kein Ort gefunden. Versuche eine andere Suche.',
       locationPlaceholder: 'z.B. Rom, Italien',
       nameLabel: 'Name',

@@ -3,12 +3,7 @@
 import { Button } from '@repo/design-system/components/ui/button';
 import { Label } from '@repo/design-system/components/ui/label';
 import { Switch } from '@repo/design-system/components/ui/switch';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@repo/design-system/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Bell, Lock, User } from 'lucide-react';
 import { useState } from 'react';
@@ -27,13 +22,7 @@ export const UserAccount = () => {
   const [activeTab, setActiveTab] = useState('account');
 
   return (
-    <Tabs
-      className='space-y-2'
-      defaultValue='account'
-      onValueChange={setActiveTab}
-      orientation='vertical'
-      value={activeTab}
-    >
+    <Tabs className='space-y-2' defaultValue='account' onValueChange={setActiveTab} orientation='vertical' value={activeTab}>
       <TabsList>
         <TabsTrigger className='flex items-center gap-2' value='account'>
           <User className='size-4' />
@@ -68,9 +57,7 @@ export const UserAccount = () => {
             <div className='flex items-center justify-between'>
               <div className='space-y-0.5'>
                 <Label htmlFor='email-updates'>Account Updates</Label>
-                <p className='text-muted-foreground text-sm'>
-                  Receive emails about your account activity and security.
-                </p>
+                <p className='text-muted-foreground text-sm'>Receive emails about your account activity and security.</p>
               </div>
               <Switch defaultChecked id='email-updates' />
             </div>
@@ -81,18 +68,14 @@ export const UserAccount = () => {
             <div className='flex items-center justify-between'>
               <div className='space-y-0.5'>
                 <Label htmlFor='push-everything'>All Notifications</Label>
-                <p className='text-muted-foreground text-sm'>
-                  Get notified about all activity.
-                </p>
+                <p className='text-muted-foreground text-sm'>Get notified about all activity.</p>
               </div>
               <Switch id='push-everything' />
             </div>
           </div>
         </div>
 
-        <Button className='w-full sm:w-auto'>
-          Save Notification Preferences
-        </Button>
+        <Button className='w-full sm:w-auto'>Save Notification Preferences</Button>
       </TabsContent>
     </Tabs>
   );

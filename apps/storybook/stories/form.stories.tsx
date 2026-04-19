@@ -1,13 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useForm } from 'react-hook-form';
 import { action } from 'storybook/actions';
@@ -54,23 +46,14 @@ const ProfileForm = (args: Story['args']) => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <input
-                  className='w-full rounded-md border border-input bg-background px-3 py-2'
-                  placeholder='username'
-                  {...field}
-                />
+                <input className='w-full rounded-md border border-input bg-background px-3 py-2' placeholder='username' {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <button
-          className='rounded bg-primary px-4 py-2 text-primary-foreground'
-          type='submit'
-        >
+        <button className='rounded bg-primary px-4 py-2 text-primary-foreground' type='submit'>
           Submit
         </button>
       </form>

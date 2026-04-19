@@ -5,14 +5,7 @@ import { signIn } from '@repo/auth/client';
 import { signInFormSchema } from '@repo/auth/lib/auth-schema';
 import { AuthUIContext } from '@repo/auth/lib/auth-ui-provider';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
@@ -63,9 +56,7 @@ export const SignIn = () => {
           setLoading(false);
         },
         onRequest: () => {
-          toastIdRef.current = toast.loading(
-            t('authentication.actions.signingIn')
-          );
+          toastIdRef.current = toast.loading(t('authentication.actions.signingIn'));
           setLoading(true);
         },
         onSuccess: (context) => {
@@ -94,15 +85,9 @@ export const SignIn = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.email')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.email')}</FormLabel>
                   <FormControl>
-                    <Input
-                      autoComplete='email'
-                      placeholder={t('authentication.fields.emailPlaceholder')}
-                      {...field}
-                    />
+                    <Input autoComplete='email' placeholder={t('authentication.fields.emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -117,30 +102,16 @@ export const SignIn = () => {
                     <FormLabel>{t('authentication.fields.password')}</FormLabel>
                   </div>
                   <FormControl>
-                    <PasswordInput
-                      placeholder={t(
-                        'authentication.fields.passwordPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <PasswordInput placeholder={t('authentication.fields.passwordPlaceholder')} {...field} />
                   </FormControl>
-                  <Link
-                    className='ml-auto inline-block text-muted-foreground text-sm hover:underline'
-                    href='/forgot-password'
-                  >
+                  <Link className='ml-auto inline-block text-muted-foreground text-sm hover:underline' href='/forgot-password'>
                     {t('authentication.fields.forgotPassword')}
                   </Link>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button
-              className='w-full'
-              data-testid='sign-in-btn'
-              disabled={loadingPasskey}
-              loading={loading}
-              type='submit'
-            >
+            <Button className='w-full' data-testid='sign-in-btn' disabled={loadingPasskey} loading={loading} type='submit'>
               <LogIn />
               {t('authentication.actions.signIn')}
             </Button>
@@ -149,28 +120,19 @@ export const SignIn = () => {
         <div className='flex items-center gap-2 py-4'>
           <Separator className={'!w-auto grow'} />
 
-          <span className='flex-shrink-0 text-muted-foreground text-sm'>
-            {t('authentication.orContinueWith')}
-          </span>
+          <span className='flex-shrink-0 text-muted-foreground text-sm'>{t('authentication.orContinueWith')}</span>
 
           <Separator className={'!w-auto grow'} />
         </div>
 
-        <PasskeyButton
-          disabled={loading}
-          isSubmitting={loadingPasskey}
-          setIsSubmitting={setLoadingPasskey}
-        />
+        <PasskeyButton disabled={loading} isSubmitting={loadingPasskey} setIsSubmitting={setLoadingPasskey} />
 
         <Separator className='mt-4 mb-4' />
 
         <div className='mt-4 flex justify-center'>
           <p className='text-muted-foreground text-sm'>
             {t('authentication.noAccountQuestion')}{' '}
-            <Link
-              className='underline underline-offset-4 hover:text-primary'
-              href='/sign-up'
-            >
+            <Link className='underline underline-offset-4 hover:text-primary' href='/sign-up'>
               {t('authentication.actions.signUp')}
             </Link>
           </p>

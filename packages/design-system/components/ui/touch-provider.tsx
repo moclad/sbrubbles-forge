@@ -1,15 +1,7 @@
 'use client';
 
-import type {
-  PopoverContentProps,
-  PopoverProps,
-  PopoverTriggerProps,
-} from '@radix-ui/react-popover';
-import type {
-  TooltipContentProps,
-  TooltipProps,
-  TooltipTriggerProps,
-} from '@radix-ui/react-tooltip';
+import type { PopoverContentProps, PopoverProps, PopoverTriggerProps } from '@radix-ui/react-popover';
+import type { TooltipContentProps, TooltipProps, TooltipTriggerProps } from '@radix-ui/react-tooltip';
 import { cn } from '@repo/design-system//lib/utils';
 import type { PropsWithChildren } from 'react';
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -36,21 +28,13 @@ export const HybridTooltip = (props: TooltipProps & PopoverProps) => {
   return isTouch ? <Popover {...props} /> : <Tooltip {...props} />;
 };
 
-export const HybridTooltipTrigger = (
-  props: TooltipTriggerProps & PopoverTriggerProps
-) => {
+export const HybridTooltipTrigger = (props: TooltipTriggerProps & PopoverTriggerProps) => {
   const isTouch = useTouch();
 
-  return isTouch ? (
-    <PopoverTrigger {...props} />
-  ) : (
-    <TooltipTrigger {...props} />
-  );
+  return isTouch ? <PopoverTrigger {...props} /> : <TooltipTrigger {...props} />;
 };
 
-export const HybridTooltipContent = (
-  props: TooltipContentProps & PopoverContentProps
-) => {
+export const HybridTooltipContent = (props: TooltipContentProps & PopoverContentProps) => {
   const isTouch = useTouch();
 
   return isTouch ? (

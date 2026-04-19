@@ -19,14 +19,7 @@ export type SessionsCardProps = {
   skipHook?: boolean;
 };
 
-export function SessionsCard({
-  className,
-  classNames,
-  isPending,
-  sessions,
-  skipHook,
-  refetch,
-}: Readonly<SessionsCardProps>) {
+export function SessionsCard({ className, classNames, isPending, sessions, skipHook, refetch }: Readonly<SessionsCardProps>) {
   const t = useI18n();
   const {
     hooks: { useListSessions },
@@ -51,14 +44,7 @@ export function SessionsCard({
         {isPending ? (
           <SettingsCellSkeleton classNames={classNames} />
         ) : (
-          sessions?.map((session) => (
-            <SessionCell
-              classNames={classNames}
-              key={session.id}
-              refetch={refetch}
-              session={session}
-            />
-          ))
+          sessions?.map((session) => <SessionCell classNames={classNames} key={session.id} refetch={refetch} session={session} />)
         )}
       </CardContent>
     </SettingsCard>

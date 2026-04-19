@@ -14,12 +14,7 @@ type TimePickerProps = {
   required?: boolean;
 };
 
-export function TimePicker({
-  required,
-  date,
-  setDate,
-  showSeconds,
-}: TimePickerProps) {
+export function TimePicker({ required, date, setDate, showSeconds }: TimePickerProps) {
   const minuteRef = React.useRef<HTMLInputElement>(null);
   const hourRef = React.useRef<HTMLInputElement>(null);
   const secondRef = React.useRef<HTMLInputElement>(null);

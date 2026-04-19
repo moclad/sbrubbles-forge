@@ -1,36 +1,12 @@
 import { copyFile, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import {
-  cancel,
-  intro,
-  isCancel,
-  log,
-  outro,
-  select,
-  spinner,
-  text,
-} from '@clack/prompts';
+import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
 
-import {
-  exec,
-  execSyncOpts,
-  internalContentDirs,
-  internalContentFiles,
-  supportedPackageManagers,
-  url,
-} from './utils.js';
+import { exec, execSyncOpts, internalContentDirs, internalContentFiles, supportedPackageManagers, url } from './utils.js';
 
 const cloneNextForge = async (name: string, packageManager: string) => {
-  const command = [
-    'npx create-next-app@latest',
-    name,
-    '--example',
-    url,
-    '--disable-git',
-    '--skip-install',
-    `--use-${packageManager}`,
-  ];
+  const command = ['npx create-next-app@latest', name, '--example', url, '--disable-git', '--skip-install', `--use-${packageManager}`];
 
   await exec(command.join(' '), execSyncOpts);
 };
@@ -75,21 +51,12 @@ const setupEnvironmentVariables = async () => {
 const setupOrm = async (packageManager: string) => {
   const filterCommand = packageManager === 'npm' ? '--workspace' : '--filter';
 
-  const command = [
-    packageManager,
-    'run',
-    'build',
-    filterCommand,
-    '@repo/database',
-  ].join(' ');
+  const command = [packageManager, 'run', 'build', filterCommand, '@repo/database'].join(' ');
 
   await exec(command, execSyncOpts);
 };
 
-const updatePackageManagerConfiguration = async (
-  projectDir: string,
-  packageManager: string
-) => {
+const updatePackageManagerConfiguration = async (projectDir: string, packageManager: string) => {
   const packageJsonPath = join(projectDir, 'package.json');
   const packageJsonFile = await readFile(packageJsonPath, 'utf8');
   const packageJson = JSON.parse(packageJsonFile);
@@ -107,10 +74,7 @@ const updatePackageManagerConfiguration = async (
   await writeFile(packageJsonPath, `${newPackageJson}\n`);
 };
 
-const updateWorkspaceConfiguration = async (
-  projectDir: string,
-  packageManager: string
-) => {
+const updateWorkspaceConfiguration = async (projectDir: string, packageManager: string) => {
   const packageJsonPath = join(projectDir, 'package.json');
   const packageJsonFile = await readFile(packageJsonPath, 'utf8');
   const packageJson = JSON.parse(packageJsonFile);
@@ -213,18 +177,13 @@ const getPackageManager = async () => {
   return value.toString() as (typeof supportedPackageManagers)[number];
 };
 
-export const initialize = async (options: {
-  name?: string;
-  packageManager?: string;
-  disableGit?: boolean;
-}) => {
+export const initialize = async (options: { name?: string; packageManager?: string; disableGit?: boolean }) => {
   try {
     intro("Let's start a next-forge project!");
 
     const cwd = process.cwd();
     const name = options.name || (await getName());
-    const packageManager =
-      options.packageManager || (await getPackageManager());
+    const packageManager = options.packageManager || (await getPackageManager());
 
     if (!supportedPackageManagers.includes(packageManager)) {
       throw new Error('Invalid package manager');
@@ -271,14 +230,9 @@ export const initialize = async (options: {
 
     s.stop('Project initialized successfully!');
 
-    outro(
-      'Please make sure you install the Mintlify CLI and Stripe CLI before starting the project.'
-    );
+    outro('Please make sure you install the Mintlify CLI and Stripe CLI before starting the project.');
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : `Failed to initialize project: ${error}`;
+    const message = error instanceof Error ? error.message : `Failed to initialize project: ${error}`;
 
     log.error(message);
     process.exit(1);

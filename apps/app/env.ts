@@ -11,17 +11,7 @@ import { createEnv } from '@t3-oss/env-nextjs';
 
 export const env = createEnv({
   client: {},
-  extends: [
-    auth(),
-    analytics(),
-    core(),
-    database(),
-    email(),
-    notifications(),
-    observability(),
-    security(),
-    webhooks(),
-  ],
+  extends: [auth(), analytics(), core(), database(), email(), notifications(), observability(), security(), webhooks()],
   runtimeEnv: {},
   server: {},
 });

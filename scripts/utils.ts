@@ -6,8 +6,7 @@ import { promisify } from 'node:util';
 
 export const url = 'https://github.com/vercel/next-forge';
 
-export const cleanFileName = (file: string) =>
-  file.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\\/g, '/');
+export const cleanFileName = (file: string) => file.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\\/g, '/');
 
 export const execSyncOpts: ExecSyncOptions = { stdio: 'ignore' };
 
@@ -22,10 +21,7 @@ export const internalContentFiles = [
   'license.md',
 ];
 
-export const allInternalContent = [
-  ...internalContentDirs,
-  ...internalContentFiles,
-];
+export const allInternalContent = [...internalContentDirs, ...internalContentFiles];
 
 export const semver = /^\d+\.\d+\.\d+$/;
 

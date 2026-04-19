@@ -9,10 +9,4 @@ const i18nClient: CreateI18nClientReturn = createI18nClient({
   'pt-BR': () => import('../locales/pt-BR'),
 });
 
-export const {
-  useI18n,
-  useScopedI18n,
-  I18nProviderClient,
-  useChangeLocale,
-  useCurrentLocale,
-} = i18nClient;
+export const { useI18n, useScopedI18n, I18nProviderClient, useChangeLocale, useCurrentLocale } = i18nClient;

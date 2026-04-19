@@ -4,10 +4,7 @@ import { auth } from '@repo/auth/server';
 import { database, desc, eq, inArray } from '@repo/database';
 import { person, trip, tripPerson } from '@repo/database/db/schema';
 import { PUBLIC_ASSETS_BUCKET } from '@repo/storage/buckets';
-import {
-  createBucketIfNotExists,
-  s3Client,
-} from '@repo/storage/s3-file-management';
+import { createBucketIfNotExists, s3Client } from '@repo/storage/s3-file-management';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
 
@@ -46,10 +43,7 @@ export type TripWithPeople = {
 export async function getTrips(): Promise<TripWithPeople[]> {
   await requireSession();
 
-  const trips = await database
-    .select()
-    .from(trip)
-    .orderBy(desc(trip.startDate));
+  const trips = await database.select().from(trip).orderBy(desc(trip.startDate));
 
   if (trips.length === 0) {
     return [];
@@ -66,16 +60,9 @@ export async function getTrips(): Promise<TripWithPeople[]> {
     })
     .from(tripPerson)
     .innerJoin(person, eq(tripPerson.personId, person.id))
-    .where(
-      tripIds.length === 1
-        ? eq(tripPerson.tripId, tripIds[0])
-        : inArray(tripPerson.tripId, tripIds)
-    );
+    .where(tripIds.length === 1 ? eq(tripPerson.tripId, tripIds[0]) : inArray(tripPerson.tripId, tripIds));
 
-  const peopleByTrip = new Map<
-    string,
-    { id: string; name: string; avatarUrl: string | null }[]
-  >();
+  const peopleByTrip = new Map<string, { id: string; name: string; avatarUrl: string | null }[]>();
   for (const row of rows) {
     const list = peopleByTrip.get(row.tripId) ?? [];
     list.push({
@@ -137,11 +124,7 @@ export async function createTrip(data: TripData) {
     .returning();
 
   if (data.personIds.length > 0) {
-    await database
-      .insert(tripPerson)
-      .values(
-        data.personIds.map((personId) => ({ personId, tripId: created.id }))
-      );
+    await database.insert(tripPerson).values(data.personIds.map((personId) => ({ personId, tripId: created.id })));
   }
 
   revalidatePath('/trips');
@@ -167,9 +150,7 @@ export async function updateTrip(id: string, data: TripData) {
   await database.delete(tripPerson).where(eq(tripPerson.tripId, id));
 
   if (data.personIds.length > 0) {
-    await database
-      .insert(tripPerson)
-      .values(data.personIds.map((personId) => ({ personId, tripId: id })));
+    await database.insert(tripPerson).values(data.personIds.map((personId) => ({ personId, tripId: id })));
   }
 
   revalidatePath('/trips');
@@ -181,10 +162,7 @@ export async function deleteTrip(id: string) {
   revalidatePath('/trips');
 }
 
-export async function uploadTripCoverPhoto(
-  tripId: string,
-  formData: FormData
-): Promise<string> {
+export async function uploadTripCoverPhoto(tripId: string, formData: FormData): Promise<string> {
   await requireSession();
 
   const file = formData.get('file') as File | null;
@@ -192,9 +170,7 @@ export async function uploadTripCoverPhoto(
     throw new Error('No file provided');
   }
 
-  const ext = file.name.includes('.')
-    ? file.name.split('.').pop()?.toLowerCase()
-    : 'jpg';
+  const ext = file.name.includes('.') ? file.name.split('.').pop()?.toLowerCase() : 'jpg';
   const key = `trip/${tripId}/cover.${ext ?? 'jpg'}`;
 
   const buffer = Buffer.from(await file.arrayBuffer());
@@ -206,10 +182,7 @@ export async function uploadTripCoverPhoto(
   const storageUrl = process.env.S3_STORAGE_URL ?? 'http://localhost';
   const url = `${storageUrl.replace(/\/$/, '')}/${PUBLIC_ASSETS_BUCKET}/${key}`;
 
-  await database
-    .update(trip)
-    .set({ coverPhotoUrl: url, updatedAt: new Date() })
-    .where(eq(trip.id, tripId));
+  await database.update(trip).set({ coverPhotoUrl: url, updatedAt: new Date() }).where(eq(trip.id, tripId));
 
   revalidatePath('/trips');
   return url;

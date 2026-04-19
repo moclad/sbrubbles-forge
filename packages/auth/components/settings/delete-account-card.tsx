@@ -13,13 +13,7 @@ export type DeleteAccountCardProps = {
   skipHook?: boolean;
 };
 
-export function DeleteAccountCard({
-  className,
-  classNames,
-  accounts,
-  isPending,
-  skipHook,
-}: Readonly<DeleteAccountCardProps>) {
+export function DeleteAccountCard({ className, classNames, accounts, isPending, skipHook }: Readonly<DeleteAccountCardProps>) {
   const t = useI18n();
   const {
     hooks: { useListAccounts },
@@ -46,12 +40,7 @@ export function DeleteAccountCard({
         variant='destructive'
       />
 
-      <DeleteAccountDialog
-        accounts={accounts}
-        classNames={classNames}
-        onOpenChange={setShowDialog}
-        open={showDialog}
-      />
+      <DeleteAccountDialog accounts={accounts} classNames={classNames} onOpenChange={setShowDialog} open={showDialog} />
     </>
   );
 }

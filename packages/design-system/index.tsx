@@ -9,10 +9,7 @@ import { ThemeProvider } from './providers/theme';
 
 type DesignSystemProviderProperties = ThemeProviderProps;
 
-export const DesignSystemProvider = ({
-  children,
-  ...properties
-}: DesignSystemProviderProperties) => {
+export const DesignSystemProvider = ({ children, ...properties }: DesignSystemProviderProperties) => {
   const theme = useTheme();
   const currentTheme = theme.theme === 'light' ? 'light' : 'dark';
   return (

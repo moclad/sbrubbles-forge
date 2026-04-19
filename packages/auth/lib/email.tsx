@@ -11,11 +11,7 @@ export async function sendResetEmail(name: string, email: string, url: string) {
   });
 }
 
-export async function sendWelcomeEmail(
-  name: string,
-  email: string,
-  url: string
-) {
+export async function sendWelcomeEmail(name: string, email: string, url: string) {
   await resend.emails.send({
     from: 'noreply@sbrubbles.work',
     react: <WelcomeTemplate confirmationUrl={url} email={email} name={name} />,

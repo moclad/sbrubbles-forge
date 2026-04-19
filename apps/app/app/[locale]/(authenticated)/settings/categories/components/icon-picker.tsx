@@ -94,27 +94,22 @@ export function IconPicker({ value, onChange }: Readonly<IconPickerProps>) {
     <div className='max-h-52 overflow-y-auto rounded-md border p-2'>
       {groups.map((group) => (
         <div className='mb-2 last:mb-0' key={group}>
-          <p className='mb-1 px-1 font-medium text-muted-foreground text-xs'>
-            {group}
-          </p>
+          <p className='mb-1 px-1 font-medium text-muted-foreground text-xs'>{group}</p>
           <div className='flex flex-wrap gap-1'>
-            {CATEGORY_ICONS.filter((i) => i.group === group).map(
-              ({ name, icon: Icon }) => (
-                <button
-                  className={cn(
-                    'flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted',
-                    value === name &&
-                      'border-primary bg-primary/10 text-primary'
-                  )}
-                  key={name}
-                  onClick={() => onChange(name)}
-                  title={name}
-                  type='button'
-                >
-                  <Icon size={16} />
-                </button>
-              )
-            )}
+            {CATEGORY_ICONS.filter((i) => i.group === group).map(({ name, icon: Icon }) => (
+              <button
+                className={cn(
+                  'flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted',
+                  value === name && 'border-primary bg-primary/10 text-primary'
+                )}
+                key={name}
+                onClick={() => onChange(name)}
+                title={name}
+                type='button'
+              >
+                <Icon size={16} />
+              </button>
+            ))}
           </div>
         </div>
       ))}

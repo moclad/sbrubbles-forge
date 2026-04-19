@@ -39,6 +39,7 @@
     "react-aria-components": "catalog:",
     "react-dom": "catalog:react19",
     "react-hook-form": "catalog:",
+    "recharts": "^3.8.1",
     "require-in-the-middle": "^8.0.1",
     "tailwindcss": "catalog:tailwind",
     "zod": "catalog:"

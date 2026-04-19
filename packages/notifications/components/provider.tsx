@@ -14,11 +14,7 @@ type NotificationsProviderProps = {
   theme: ColorMode;
 };
 
-export const NotificationsProvider = ({
-  children,
-  theme,
-  userId,
-}: NotificationsProviderProps) => {
+export const NotificationsProvider = ({ children, theme, userId }: NotificationsProviderProps) => {
   if (!(knockApiKey && knockFeedChannelId)) {
     return children;
   }

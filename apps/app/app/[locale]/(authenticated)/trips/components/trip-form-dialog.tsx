@@ -5,21 +5,8 @@ import type { SelectPerson } from '@repo/database/db/schema';
 import { Button } from '@repo/design-system/components/ui/button';
 import { CalendarDatePicker } from '@repo/design-system/components/ui/calendar-date-picker';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Loader2, Search } from 'lucide-react';
@@ -29,10 +16,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import type { TripData } from '@/lib/trips-actions';
 
-const LocationMap = dynamic(
-  () => import('./location-map').then((m) => m.LocationMap),
-  { ssr: false }
-);
+const LocationMap = dynamic(() => import('./location-map').then((m) => m.LocationMap), { ssr: false });
 
 type TripFormValues = {
   name: string;
@@ -63,13 +47,7 @@ type TripFormDialogProps = {
   onSubmit: (data: TripData) => Promise<void>;
 };
 
-export function TripFormDialog({
-  open,
-  onOpenChange,
-  initialData,
-  people,
-  onSubmit,
-}: Readonly<TripFormDialogProps>) {
+export function TripFormDialog({ open, onOpenChange, initialData, people, onSubmit }: Readonly<TripFormDialogProps>) {
   const t = useI18n();
   const isEdit = Boolean(initialData);
 
@@ -86,9 +64,7 @@ export function TripFormDialog({
   const [locationNotFound, setLocationNotFound] = useState(false);
   const [dateError, setDateError] = useState<string | null>(null);
   const [dateRange, setDateRange] = useState<{ from: Date; to: Date } | null>(
-    initialData
-      ? { from: initialData.startDate, to: initialData.endDate }
-      : null
+    initialData ? { from: initialData.startDate, to: initialData.endDate } : null
   );
 
   const schema = z.object({
@@ -114,10 +90,9 @@ export function TripFormDialog({
     setSearching(true);
     setLocationNotFound(false);
     try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`,
-        { headers: { 'Accept-Language': 'en' } }
-      );
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
+        headers: { 'Accept-Language': 'en' },
+      });
       const data = (await res.json()) as {
         lat: string;
         lon: string;
@@ -171,11 +146,7 @@ export function TripFormDialog({
   const handleOpenChange = (next: boolean) => {
     if (!next) {
       form.reset();
-      setDateRange(
-        initialData
-          ? { from: initialData.startDate, to: initialData.endDate }
-          : null
-      );
+      setDateRange(initialData ? { from: initialData.startDate, to: initialData.endDate } : null);
       setDateError(null);
       setLocation(
         initialData?.locationLat != null && initialData?.locationLng != null
@@ -195,16 +166,11 @@ export function TripFormDialog({
     <Dialog onOpenChange={handleOpenChange} open={open}>
       <DialogContent className='max-h-[90vh] overflow-y-auto sm:max-w-lg lg:max-w-xl'>
         <DialogHeader>
-          <DialogTitle>
-            {isEdit ? t('trips.form.editTitle') : t('trips.form.createTitle')}
-          </DialogTitle>
+          <DialogTitle>{isEdit ? t('trips.form.editTitle') : t('trips.form.createTitle')}</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
-          <form
-            className='flex flex-col gap-4'
-            onSubmit={form.handleSubmit(handleSubmit)}
-          >
+          <form className='flex flex-col gap-4' onSubmit={form.handleSubmit(handleSubmit)}>
             {/* Name */}
             <FormField
               control={form.control}
@@ -213,10 +179,7 @@ export function TripFormDialog({
                 <FormItem>
                   <FormLabel>{t('trips.form.nameLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('trips.form.namePlaceholder')}
-                      {...field}
-                    />
+                    <Input placeholder={t('trips.form.namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -237,9 +200,7 @@ export function TripFormDialog({
                 onDateSelect={handleDateSelect}
                 variant='outline'
               />
-              {dateError && (
-                <p className='text-destructive text-sm'>{dateError}</p>
-              )}
+              {dateError && <p className='text-destructive text-sm'>{dateError}</p>}
             </FormItem>
 
             {/* Location */}
@@ -262,26 +223,12 @@ export function TripFormDialog({
                         {...field}
                       />
                     </FormControl>
-                    <Button
-                      disabled={searching}
-                      onClick={handleSearch}
-                      size='default'
-                      type='button'
-                      variant='outline'
-                    >
-                      {searching ? (
-                        <Loader2 className='animate-spin' size={14} />
-                      ) : (
-                        <Search size={14} />
-                      )}
+                    <Button disabled={searching} onClick={handleSearch} size='default' type='button' variant='outline'>
+                      {searching ? <Loader2 className='animate-spin' size={14} /> : <Search size={14} />}
                       {t('trips.form.searchButton')}
                     </Button>
                   </div>
-                  {locationNotFound && (
-                    <p className='text-destructive text-sm'>
-                      {t('trips.form.locationNotFound')}
-                    </p>
-                  )}
+                  {locationNotFound && <p className='text-destructive text-sm'>{t('trips.form.locationNotFound')}</p>}
                   <FormMessage />
                 </FormItem>
               )}
@@ -293,13 +240,9 @@ export function TripFormDialog({
                   lat={location.lat}
                   lng={location.lng}
                   locationName={location.name}
-                  onPositionChange={(lat, lng) =>
-                    setLocation((prev) => (prev ? { ...prev, lat, lng } : null))
-                  }
+                  onPositionChange={(lat, lng) => setLocation((prev) => (prev ? { ...prev, lat, lng } : null))}
                 />
-                <p className='text-muted-foreground text-xs'>
-                  {t('trips.form.locationMarkerHint')}
-                </p>
+                <p className='text-muted-foreground text-xs'>{t('trips.form.locationMarkerHint')}</p>
               </>
             )}
 
@@ -323,16 +266,12 @@ export function TripFormDialog({
                                 <Checkbox
                                   checked={field.value.includes(p.id)}
                                   onCheckedChange={(checked) => {
-                                    const next = checked
-                                      ? [...field.value, p.id]
-                                      : field.value.filter((v) => v !== p.id);
+                                    const next = checked ? [...field.value, p.id] : field.value.filter((v) => v !== p.id);
                                     field.onChange(next);
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className='cursor-pointer font-normal'>
-                                {p.name}
-                              </FormLabel>
+                              <FormLabel className='cursor-pointer font-normal'>{p.name}</FormLabel>
                             </FormItem>
                           )}
                         />
@@ -345,16 +284,10 @@ export function TripFormDialog({
             )}
 
             <DialogFooter>
-              <Button
-                onClick={() => handleOpenChange(false)}
-                type='button'
-                variant='outline'
-              >
+              <Button onClick={() => handleOpenChange(false)} type='button' variant='outline'>
                 {t('trips.form.cancel')}
               </Button>
-              <Button type='submit'>
-                {isEdit ? t('trips.form.saveChanges') : t('trips.form.create')}
-              </Button>
+              <Button type='submit'>{isEdit ? t('trips.form.saveChanges') : t('trips.form.create')}</Button>
             </DialogFooter>
           </form>
         </Form>

@@ -5,9 +5,7 @@ import dynamic from 'next/dynamic';
 
 const title = 'Create an account';
 const description = 'Enter your details to get started.';
-const SignUp = dynamic(() =>
-  import('@repo/auth/components/auth/sign-up').then((mod) => mod.SignUp)
-);
+const SignUp = dynamic(() => import('@repo/auth/components/auth/sign-up').then((mod) => mod.SignUp));
 
 export const metadata: Metadata = createMetadata({ description, title });
 
@@ -17,12 +15,8 @@ const SignUpPage = async () => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight'>
-          {t('authentication.createAccount')}
-        </h1>
-        <p className='text-muted-foreground text-sm'>
-          {t('authentication.createSubTitle')}
-        </p>
+        <h1 className='font-semibold text-2xl tracking-tight'>{t('authentication.createAccount')}</h1>
+        <p className='text-muted-foreground text-sm'>{t('authentication.createSubTitle')}</p>
       </div>
       <SignUp />
     </>

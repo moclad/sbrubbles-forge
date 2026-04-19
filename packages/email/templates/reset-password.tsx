@@ -1,14 +1,4 @@
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Html,
-  Preview,
-  Section,
-  Tailwind,
-  Text,
-} from '@react-email/components';
+import { Body, Button, Container, Head, Html, Preview, Section, Tailwind, Text } from '@react-email/components';
 
 type Props = {
   readonly email: string;
@@ -26,20 +16,14 @@ export function ResetPasswordTemplate({ name, resetUrl }: Props) {
           <Container style={container}>
             <Section>
               <Text style={text}>Hello {name},</Text>
-              <Text style={text}>
-                We received a request to reset the password for your account:
-              </Text>
+              <Text style={text}>We received a request to reset the password for your account:</Text>
               <Button href={resetUrl} style={button}>
                 Reset password
               </Button>
               <Text style={text}>
-                If you don&apos;t want to change your password or didn&apos;t
-                request this, just ignore and delete this message.
+                If you don&apos;t want to change your password or didn&apos;t request this, just ignore and delete this message.
               </Text>
-              <Text style={text}>
-                To keep your account secure, please don&apos;t forward this
-                email to anyone.
-              </Text>
+              <Text style={text}>To keep your account secure, please don&apos;t forward this email to anyone.</Text>
               <Text style={text}>Happy Sbrubbling!</Text>
             </Section>
           </Container>
@@ -64,8 +48,7 @@ const container = {
 
 const text = {
   color: '#404040',
-  fontFamily:
-    "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontFamily: "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
   fontSize: '16px',
   fontWeight: '300',
   lineHeight: '26px',

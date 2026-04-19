@@ -1,13 +1,6 @@
 /** biome-ignore-all assist/source/useSortedKeys: Tables keys should not be sorted */
 import type { InferSelectModel } from 'drizzle-orm';
-import {
-  boolean,
-  integer,
-  pgEnum,
-  pgTable,
-  text,
-  timestamp,
-} from 'drizzle-orm/pg-core';
+import { boolean, integer, pgEnum, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const userRoleEnums = pgEnum('Role', ['user', 'admin', 'superAdmin']);
 
@@ -70,12 +63,8 @@ export const verification = pgTable('verification', {
   id: text('id').primaryKey(),
   identifier: text('identifier').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
-  createdAt: timestamp('created_at').$defaultFn(
-    () => /* @__PURE__ */ new Date()
-  ),
-  updatedAt: timestamp('updated_at').$defaultFn(
-    () => /* @__PURE__ */ new Date()
-  ),
+  createdAt: timestamp('created_at').$defaultFn(() => /* @__PURE__ */ new Date()),
+  updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date()),
   value: text('value').notNull(),
 });
 

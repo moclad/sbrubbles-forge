@@ -233,9 +233,7 @@ type AuthUIProviderProps = {
   mutators?: Partial<AuthMutators>;
 } & Partial<Omit<AuthUIContextType, 'mutators' | 'hooks'>>;
 
-export const AuthUIContext = createContext<AuthUIContextType>(
-  {} as unknown as AuthUIContextType
-);
+export const AuthUIContext = createContext<AuthUIContextType>({} as unknown as AuthUIContextType);
 
 export const AuthUIProvider = ({
   children,
@@ -375,9 +373,5 @@ export const AuthUIProvider = ({
     ]
   );
 
-  return (
-    <AuthUIContext.Provider value={contextValue}>
-      {children}
-    </AuthUIContext.Provider>
-  );
+  return <AuthUIContext.Provider value={contextValue}>{children}</AuthUIContext.Provider>;
 };

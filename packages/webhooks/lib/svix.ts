@@ -6,11 +6,7 @@ import { keys } from '../keys';
 
 const svixToken = keys().SVIX_TOKEN;
 
-export const send = async (
-  orgId: string,
-  eventType: string,
-  payload: object
-) => {
+export const send = async (orgId: string, eventType: string, payload: object) => {
   if (!svixToken) {
     throw new Error('SVIX_TOKEN is not set');
   }

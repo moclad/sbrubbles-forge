@@ -2,28 +2,11 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputOTP } from '@repo/design-system/components//ui/input-otp';
-import {
-  Alert,
-  AlertDescription,
-} from '@repo/design-system/components/ui/alert';
+import { Alert, AlertDescription } from '@repo/design-system/components/ui/alert';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Smartphone } from 'lucide-react';
@@ -45,14 +28,9 @@ type QrCodeTwoFactorProps = {
   totpURI?: string | null;
 };
 
-export function QrCodeTwoFactorDialog({
-  open,
-  onOpenChange,
-  totpURI,
-}: Readonly<QrCodeTwoFactorProps>) {
+export function QrCodeTwoFactorDialog({ open, onOpenChange, totpURI }: Readonly<QrCodeTwoFactorProps>) {
   const isHydrated = useIsHydrated();
-  const effectiveTotpURI =
-    totpURI ?? (isHydrated ? getSearchParam('totpURI') : null);
+  const effectiveTotpURI = totpURI ?? (isHydrated ? getSearchParam('totpURI') : null);
   const t = useI18n();
 
   const {
@@ -111,24 +89,16 @@ export function QrCodeTwoFactorDialog({
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
       <Form {...form}>
-        <form
-          className={'grid w-full gap-6'}
-          onSubmit={form.handleSubmit(verifyCode)}
-        >
+        <form className={'grid w-full gap-6'} onSubmit={form.handleSubmit(verifyCode)}>
           <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
             <DialogHeader>
               <DialogTitle>{t('account.scanQrCode')}</DialogTitle>
-              <DialogDescription>
-                {t('account.scanQrCodeDescription')}
-              </DialogDescription>
+              <DialogDescription>{t('account.scanQrCodeDescription')}</DialogDescription>
             </DialogHeader>
             <div className='space-y-2'>
               {twoFactor?.includes('totp') && effectiveTotpURI && (
                 <div className='flex items-center justify-center'>
-                  <QRCode
-                    className={'border shadow-xs'}
-                    value={effectiveTotpURI}
-                  />
+                  <QRCode className={'border shadow-xs'} value={effectiveTotpURI} />
                 </div>
               )}
 
@@ -169,11 +139,7 @@ export function QrCodeTwoFactorDialog({
                 render={({ field }) => (
                   <FormItem className='flex'>
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        disabled={isSubmitting}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} disabled={isSubmitting} onCheckedChange={field.onChange} />
                     </FormControl>
 
                     <FormLabel>{t('account.trustDevice')}</FormLabel>
@@ -183,9 +149,7 @@ export function QrCodeTwoFactorDialog({
 
               <Alert variant='default'>
                 <Smartphone />
-                <AlertDescription>
-                  {t('account.twoFactorAdvice')}
-                </AlertDescription>
+                <AlertDescription>{t('account.twoFactorAdvice')}</AlertDescription>
               </Alert>
             </div>
             <DialogFooter>

@@ -1,4 +1,3 @@
-import { PageContent } from '@repo/design-system/components/page-content';
 import { getI18n } from '@repo/localization/i18n/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -22,32 +21,14 @@ type TripDetailsPageProps = {
 
 const Page = async ({ params }: TripDetailsPageProps) => {
   const { id } = await params;
-  const t = await getI18n();
 
-  const [trip, categories, people, expenses] = await Promise.all([
-    getTripById(id),
-    getCategories(),
-    getPeople(),
-    getExpensesByTrip(id),
-  ]);
+  const [trip, categories, people, expenses] = await Promise.all([getTripById(id), getCategories(), getPeople(), getExpensesByTrip(id)]);
 
   if (!trip) {
     notFound();
   }
 
-  return (
-    <PageContent
-      header={t('trips.details.title')}
-      subTitle={t('trips.details.subTitle')}
-    >
-      <TripDetailsClient
-        categories={categories}
-        expenses={expenses}
-        people={people}
-        trip={trip}
-      />
-    </PageContent>
-  );
+  return <TripDetailsClient categories={categories} expenses={expenses} people={people} trip={trip} />;
 };
 
 export default Page;

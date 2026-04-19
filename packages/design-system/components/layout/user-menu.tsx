@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@repo/design-system/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,22 +11,11 @@ import {
   DropdownMenuTrigger,
 } from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
-import {
-  BadgeCheck,
-  Bell,
-  CreditCard,
-  LogOut,
-  Sparkles,
-  User,
-} from 'lucide-react';
+import { BadgeCheck, Bell, CreditCard, LogOut, Sparkles, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '../ui/button';
-import {
-  HybridTooltip,
-  HybridTooltipContent,
-  HybridTooltipTrigger,
-} from '../ui/touch-provider';
+import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger } from '../ui/touch-provider';
 
 export function UserMenu({
   user,
@@ -56,15 +41,8 @@ export function UserMenu({
     <DropdownMenu>
       <HybridTooltip delayDuration={100}>
         <HybridTooltipTrigger asChild>
-          <DropdownMenuTrigger
-            asChild
-            className='hover:bg-transparent focus:ring-0 focus:ring-none'
-          >
-            <Button
-              className='shrink-0 text-foreground'
-              size='icon'
-              variant='ghost'
-            >
+          <DropdownMenuTrigger asChild className='hover:bg-transparent focus:ring-0 focus:ring-none'>
+            <Button className='shrink-0 text-foreground' size='icon' variant='ghost'>
               <Avatar className='h-8 w-8 rounded-lg'>
                 {user.image && <AvatarImage alt={user.name} src={user.image} />}
                 <AvatarFallback className='rounded-lg'>
@@ -100,10 +78,7 @@ export function UserMenu({
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            className='cursor-pointer'
-            onClick={() => openAccount()}
-          >
+          <DropdownMenuItem className='cursor-pointer' onClick={() => openAccount()}>
             <BadgeCheck />
             {t('userMenu.title')}
           </DropdownMenuItem>

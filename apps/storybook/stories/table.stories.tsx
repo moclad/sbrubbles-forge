@@ -1,12 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@repo/design-system/components/ui/table';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@repo/design-system/components/ui/table';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const invoices = [

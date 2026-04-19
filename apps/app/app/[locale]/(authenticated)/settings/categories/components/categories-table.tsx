@@ -15,18 +15,10 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useI18n } from '@repo/localization/i18n/client';
 import type { ColumnDef } from '@tanstack/react-table';
-import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { Pencil, Plus, Trash2 } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
-import {
-  createCategory,
-  deleteCategory,
-  updateCategory,
-} from '@/lib/categories-actions';
+import { createCategory, deleteCategory, updateCategory } from '@/lib/categories-actions';
 import { CategoryFormDialog } from './category-form-dialog';
 import { getIconComponent } from './icon-picker';
 
@@ -41,9 +33,7 @@ type CategoryFormData = {
   color: string;
 };
 
-export function CategoriesTable({
-  categories,
-}: Readonly<CategoriesTableProps>) {
+export function CategoriesTable({ categories }: Readonly<CategoriesTableProps>) {
   const t = useI18n();
   const [formOpen, setFormOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -120,29 +110,18 @@ export function CategoriesTable({
       },
       {
         accessorKey: 'name',
-        cell: ({ getValue }) => (
-          <span className='font-medium'>{getValue<string>()}</span>
-        ),
+        cell: ({ getValue }) => <span className='font-medium'>{getValue<string>()}</span>,
         header: t('categories.columns.name'),
       },
       {
         accessorKey: 'description',
-        cell: ({ getValue }) => (
-          <span className='text-muted-foreground'>
-            {getValue<string | null>() ?? '—'}
-          </span>
-        ),
+        cell: ({ getValue }) => <span className='text-muted-foreground'>{getValue<string | null>() ?? '—'}</span>,
         header: t('categories.columns.description'),
       },
       {
         cell: ({ row }) => (
           <div className='flex justify-end gap-1'>
-            <Button
-              className='h-7 w-7'
-              onClick={() => openEdit(row.original)}
-              size='icon'
-              variant='ghost'
-            >
+            <Button className='h-7 w-7' onClick={() => openEdit(row.original)} size='icon' variant='ghost'>
               <Pencil size={14} />
             </Button>
             <Button
@@ -155,11 +134,7 @@ export function CategoriesTable({
             </Button>
           </div>
         ),
-        header: () => (
-          <span className='flex justify-end'>
-            {t('categories.columns.actions')}
-          </span>
-        ),
+        header: () => <span className='flex justify-end'>{t('categories.columns.actions')}</span>,
         id: 'actions',
         size: 96,
       },
@@ -183,9 +158,7 @@ export function CategoriesTable({
       </div>
 
       {table.getRowCount() === 0 ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
-          {t('categories.empty')}
-        </div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('categories.empty')}</div>
       ) : (
         <div className='overflow-hidden rounded-lg border'>
           <table className='w-full text-sm'>
@@ -197,18 +170,10 @@ export function CategoriesTable({
                       className='px-4 py-3 text-left font-medium text-muted-foreground'
                       key={header.id}
                       style={{
-                        width:
-                          header.getSize() === 150
-                            ? undefined
-                            : header.getSize(),
+                        width: header.getSize() === 150 ? undefined : header.getSize(),
                       }}
                     >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </th>
                   ))}
                 </tr>
@@ -216,16 +181,10 @@ export function CategoriesTable({
             </thead>
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  className='border-b transition-colors last:border-0 hover:bg-muted/30'
-                  key={row.id}
-                >
+                <tr className='border-b transition-colors last:border-0 hover:bg-muted/30' key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <td className='px-4 py-3' key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
                 </tr>
@@ -248,23 +207,14 @@ export function CategoriesTable({
         open={formOpen}
       />
 
-      <AlertDialog
-        onOpenChange={(open) => !open && setDeleteId(null)}
-        open={Boolean(deleteId)}
-      >
+      <AlertDialog onOpenChange={(open) => !open && setDeleteId(null)} open={Boolean(deleteId)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {t('categories.deleteDialog.title')}
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              {t('categories.deleteDialog.description')}
-            </AlertDialogDescription>
+            <AlertDialogTitle>{t('categories.deleteDialog.title')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('categories.deleteDialog.description')}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>
-              {t('categories.deleteDialog.cancel')}
-            </AlertDialogCancel>
+            <AlertDialogCancel>{t('categories.deleteDialog.cancel')}</AlertDialogCancel>
             <AlertDialogAction
               className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
               onClick={handleDelete}

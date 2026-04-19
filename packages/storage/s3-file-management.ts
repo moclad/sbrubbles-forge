@@ -25,15 +25,7 @@ export async function createBucketIfNotExists(bucketName: string) {
   }
 }
 
-export async function saveFileInBucket({
-  bucketName,
-  fileName,
-  file,
-}: {
-  bucketName: string;
-  fileName: string;
-  file: Buffer | internal.Readable;
-}) {
+export async function saveFileInBucket({ bucketName, fileName, file }: { bucketName: string; fileName: string; file: Buffer | internal.Readable }) {
   // Create bucket if it doesn't exist
   await createBucketIfNotExists(bucketName);
 
@@ -51,13 +43,7 @@ export async function saveFileInBucket({
   await s3Client.putObject(bucketName, fileName, file);
 }
 
-export async function checkFileExistsInBucket({
-  bucketName,
-  fileName,
-}: {
-  bucketName: string;
-  fileName: string;
-}) {
+export async function checkFileExistsInBucket({ bucketName, fileName }: { bucketName: string; fileName: string }) {
   try {
     await s3Client.statObject(bucketName, fileName);
   } catch {
@@ -66,13 +52,7 @@ export async function checkFileExistsInBucket({
   return true;
 }
 
-export async function getFileFromBucket({
-  bucketName,
-  fileName,
-}: {
-  bucketName: string;
-  fileName: string;
-}) {
+export async function getFileFromBucket({ bucketName, fileName }: { bucketName: string; fileName: string }) {
   try {
     await s3Client.statObject(bucketName, fileName);
   } catch (error) {
@@ -86,13 +66,7 @@ export async function getFileFromBucket({
   return await s3Client.getObject(bucketName, fileName);
 }
 
-export async function deleteFileFromBucket({
-  bucketName,
-  fileName,
-}: {
-  bucketName: string;
-  fileName: string;
-}) {
+export async function deleteFileFromBucket({ bucketName, fileName }: { bucketName: string; fileName: string }) {
   try {
     await s3Client.removeObject(bucketName, fileName);
   } catch (error) {

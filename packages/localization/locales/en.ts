@@ -8,8 +8,7 @@ export default {
     addPasskey: 'Add Passkey',
     alreadyHaveAnAccount: 'Already have an account?',
     avatar: 'Avatar',
-    avatarDescription:
-      'Click on the avatar to upload a custom one from your files.',
+    avatarDescription: 'Click on the avatar to upload a custom one from your files.',
     avatarInstructions: 'An avatar is optional but strongly recommended.',
     backToSignIn: 'Back to Sign In',
     backupCode: 'Backup Code',
@@ -21,8 +20,7 @@ export default {
       'Save these backup codes in a secure place. You can use them to access your account if you lose your two-factor authentication method.',
     cancel: 'Cancel',
     changePassword: 'Change Password',
-    changePasswordDescription:
-      'Enter your current password and a new password.',
+    changePasswordDescription: 'Enter your current password and a new password.',
     changePasswordInstructions: 'Please use 8 characters at minimum.',
     changePasswordSuccess: 'Your password has been changed.',
     confirmPassword: 'Confirm Password',
@@ -37,16 +35,12 @@ export default {
     deleteAccount: 'Delete Account',
     deleteAccountDescription:
       'Permanently remove your account and all of its contents. This action is not reversible, so please continue with caution.',
-    deleteAccountEmail:
-      'Please check your email to verify the deletion of your account.',
-    deleteAccountInstructions:
-      'Please confirm the deletion of your account. This action is not reversible, so please continue with caution.',
-    deleteAccountNotFresh:
-      'You must be recently logged in to delete your account.',
+    deleteAccountEmail: 'Please check your email to verify the deletion of your account.',
+    deleteAccountInstructions: 'Please confirm the deletion of your account. This action is not reversible, so please continue with caution.',
+    deleteAccountNotFresh: 'You must be recently logged in to delete your account.',
     deleteAccountSuccess: 'Your account has been deleted.',
     disable: 'Disable',
-    disabledCredentialsDescription:
-      'Choose a provider to login to your account',
+    disabledCredentialsDescription: 'Choose a provider to login to your account',
     dontHaveAnAccount: "Don't have an account?",
     email: 'Email',
     emailDescription: 'Enter the email address you want to use to log in.',
@@ -109,15 +103,13 @@ export default {
     sessions: 'Sessions',
     sessionsDescription: 'Manage your active sessions and revoke access.',
     setPassword: 'Set Password',
-    setPasswordDescription:
-      'You registered with a third-party service. Click the button below to set a password for your account.',
+    setPasswordDescription: 'You registered with a third-party service. Click the button below to set a password for your account.',
     setPasswordEmailSent: 'Check your email to set your password.',
     signedInAs: 'Signed in as:',
     signIn: 'Sign In',
     signInAction: 'Login',
     signInDescription: 'Enter your email below to login to your account',
-    signInUsernameDescription:
-      'Enter your username below to login to your account',
+    signInUsernameDescription: 'Enter your username below to login to your account',
     signOut: 'Sign Out',
     signUp: 'Sign Up',
     signUpAction: 'Create an account',
@@ -128,20 +120,16 @@ export default {
     title: 'Account settings',
     trustDevice: 'Trust this device',
     twoFactor: 'Two-Factor Authentication',
-    twoFactorAdvice:
-      'Popular authenticator apps: Google Authenticator, Authy, Microsoft Authenticator, or 1Password.',
-    twoFactorCardDescription:
-      'Add an extra layer of security to your account by enabling 2FA',
-    twoFactorCodeSuccess:
-      'Two-factor authentication code verified successfully',
+    twoFactorAdvice: 'Popular authenticator apps: Google Authenticator, Authy, Microsoft Authenticator, or 1Password.',
+    twoFactorCardDescription: 'Add an extra layer of security to your account by enabling 2FA',
+    twoFactorCodeSuccess: 'Two-factor authentication code verified successfully',
     twoFactorDescription: 'Please enter your one-time password to continue',
     twoFactorDisabled: 'Two-Factor Authentication disabled',
     twoFactorDisableInstructions: 'Please enter your password to disable 2FA.',
     twoFactorEnabled: 'Two-factor authentication enabled',
     twoFactorEnableInstructions: 'Please enter your password to enable 2FA.',
     twoFactorPrompt: 'Two-Factor Authentication',
-    twoFactorSetupDescription:
-      'Enter the 6-digit code from your authenticator app',
+    twoFactorSetupDescription: 'Enter the 6-digit code from your authenticator app',
     twoFactorTotpLabel: 'Scan the QR Code with your Authenticator',
     twoFactorVerify: 'Verify code',
     twoFactorVerifying: 'Verifying code...',
@@ -164,8 +152,7 @@ export default {
       resetPassword: 'Reset password',
       sendResetLink: 'Send reset link',
       signedIn: 'Signed in successfully',
-      signedUp:
-        'Registration successful, please check your email for verification instructions.',
+      signedUp: 'Registration successful, please check your email for verification instructions.',
       signIn: 'Sign in',
       signInWith: 'Sign in with {provider}',
       signingIn: 'Signing in...',
@@ -210,10 +197,8 @@ export default {
     privacy: 'Privacy Policy',
     resetPassword: 'Reset password',
     resetPwAccessDenied: 'Access Denied',
-    resetPwAccessDeniedDescription:
-      "Your session may have expired or you haven't logged in yet.",
-    resetPwAccessDeniedDescription2:
-      'To access this resource, you need to authenticate with a valid token. Please log in.',
+    resetPwAccessDeniedDescription: "Your session may have expired or you haven't logged in yet.",
+    resetPwAccessDeniedDescription2: 'To access this resource, you need to authenticate with a valid token. Please log in.',
     resetSubTitle: 'Update your password.',
     sendVerificationCode: 'Send verification code',
     terms: 'Terms of service',
@@ -229,8 +214,7 @@ export default {
     twoFactorEnabled: 'Two-factor authentication enabled',
     twoFactorEnableInstructions: 'Please enter your password to enable 2FA.',
     twoFactorPrompt: 'Two-Factor Authentication',
-    twoFactorRequired:
-      'You must first log in to authenticate with two-factor authentication.',
+    twoFactorRequired: 'You must first log in to authenticate with two-factor authentication.',
     twoFactorTotpLabel: 'Scan the QR Code with your Authenticator',
     welcome: 'Welcome back',
     welcomeSubTitle: 'Enter your details to sign in.',
@@ -248,8 +232,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancel',
       confirm: 'Delete',
-      description:
-        'This action cannot be undone. The category will be permanently removed.',
+      description: 'This action cannot be undone. The category will be permanently removed.',
       title: 'Delete category?',
     },
     deleteError: 'Failed to delete category',
@@ -295,8 +278,7 @@ export default {
     back: 'Go back',
     header: "Something's missing",
     home: 'Back to dashboard',
-    message:
-      "Sorry, the page you are looking for doesn't exist or has been moved.",
+    message: "Sorry, the page you are looking for doesn't exist or has been moved.",
   },
   notifications: {
     label: 'Notifications',
@@ -312,8 +294,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancel',
       confirm: 'Delete',
-      description:
-        'This action cannot be undone. The person will be permanently removed.',
+      description: 'This action cannot be undone. The person will be permanently removed.',
       title: 'Delete person?',
     },
     deleteError: 'Failed to delete person',
@@ -346,8 +327,7 @@ export default {
     deleteDialog: {
       cancel: 'Cancel',
       confirm: 'Delete',
-      description:
-        'This action cannot be undone. The trip will be permanently removed.',
+      description: 'This action cannot be undone. The trip will be permanently removed.',
       title: 'Delete trip?',
     },
     deleteError: 'Failed to delete trip',
@@ -373,8 +353,7 @@ export default {
       deleteDialog: {
         cancel: 'Cancel',
         confirm: 'Delete',
-        description:
-          'This action cannot be undone. The expense will be permanently removed.',
+        description: 'This action cannot be undone. The expense will be permanently removed.',
         title: 'Delete expense?',
       },
       deleteError: 'Failed to delete expense',
@@ -404,8 +383,7 @@ export default {
         },
         locationLabel: 'Location',
         locationNotFound: 'No location found. Try a different search.',
-        locationOptionalHint:
-          'Location is optional. Search a place to show and adjust it on the map.',
+        locationOptionalHint: 'Location is optional. Search a place to show and adjust it on the map.',
         locationPlaceholder: 'e.g. Rome, Italy',
         peopleLabel: 'People (optional)',
         saveChanges: 'Save Changes',
@@ -437,8 +415,7 @@ export default {
         startDateRequired: 'Start date is required',
       },
       locationLabel: 'Location',
-      locationMarkerHint:
-        'Click on the map or drag the pin to adjust the exact position.',
+      locationMarkerHint: 'Click on the map or drag the pin to adjust the exact position.',
       locationNotFound: 'No location found. Try a different search.',
       locationPlaceholder: 'e.g. Rome, Italy',
       nameLabel: 'Name',

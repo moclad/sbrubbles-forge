@@ -4,13 +4,7 @@ import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { addDays, format, isSameDay, isToday } from 'date-fns';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { Slot } from 'radix-ui';
-import type {
-  ButtonHTMLAttributes,
-  ComponentProps,
-  HTMLAttributes,
-  MouseEventHandler,
-  ReactNode,
-} from 'react';
+import type { ButtonHTMLAttributes, ComponentProps, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 
 import { cn } from '../../../lib/utils';
@@ -76,9 +70,7 @@ export const MiniCalendar = ({
   children,
   ...props
 }: MiniCalendarProps) => {
-  const [selectedDate, setSelectedDate] = useControllableState<
-    Date | undefined
-  >({
+  const [selectedDate, setSelectedDate] = useControllableState<Date | undefined>({
     defaultProp: defaultValue,
     onChange: onValueChange,
     prop: value,
@@ -95,10 +87,7 @@ export const MiniCalendar = ({
   };
 
   const handleNavigate = (direction: 'prev' | 'next') => {
-    const newStartDate = addDays(
-      currentStartDate || new Date(),
-      direction === 'next' ? days : -days
-    );
+    const newStartDate = addDays(currentStartDate || new Date(), direction === 'next' ? days : -days);
     setCurrentStartDate(newStartDate);
   };
 
@@ -112,32 +101,19 @@ export const MiniCalendar = ({
 
   return (
     <MiniCalendarContext.Provider value={contextValue}>
-      <div
-        className={cn(
-          'flex items-center gap-2 rounded-lg border bg-background p-2',
-          className
-        )}
-        {...props}
-      >
+      <div className={cn('flex items-center gap-2 rounded-lg border bg-background p-2', className)} {...props}>
         {children}
       </div>
     </MiniCalendarContext.Provider>
   );
 };
 
-export type MiniCalendarNavigationProps =
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    direction: 'prev' | 'next';
-    asChild?: boolean;
-  };
+export type MiniCalendarNavigationProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  direction: 'prev' | 'next';
+  asChild?: boolean;
+};
 
-export const MiniCalendarNavigation = ({
-  direction,
-  asChild = false,
-  children,
-  onClick,
-  ...props
-}: MiniCalendarNavigationProps) => {
+export const MiniCalendarNavigation = ({ direction, asChild = false, children, onClick, ...props }: MiniCalendarNavigationProps) => {
   const { onNavigate } = useMiniCalendar();
   const Icon = direction === 'prev' ? ChevronLeftIcon : ChevronRightIcon;
 
@@ -155,30 +131,17 @@ export const MiniCalendarNavigation = ({
   }
 
   return (
-    <Button
-      onClick={handleClick}
-      size={asChild ? undefined : 'icon'}
-      type='button'
-      variant={asChild ? undefined : 'ghost'}
-      {...props}
-    >
+    <Button onClick={handleClick} size={asChild ? undefined : 'icon'} type='button' variant={asChild ? undefined : 'ghost'} {...props}>
       {children ?? <Icon className='size-4' />}
     </Button>
   );
 };
 
-export type MiniCalendarDaysProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'children'
-> & {
+export type MiniCalendarDaysProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   children: (date: Date) => ReactNode;
 };
 
-export const MiniCalendarDays = ({
-  className,
-  children,
-  ...props
-}: MiniCalendarDaysProps) => {
+export const MiniCalendarDays = ({ className, children, ...props }: MiniCalendarDaysProps) => {
   const { startDate, days: dayCount } = useMiniCalendar();
   const days = getDays(startDate, dayCount);
 
@@ -193,11 +156,7 @@ export type MiniCalendarDayProps = ComponentProps<typeof Button> & {
   date: Date;
 };
 
-export const MiniCalendarDay = ({
-  date,
-  className,
-  ...props
-}: MiniCalendarDayProps) => {
+export const MiniCalendarDay = ({ date, className, ...props }: MiniCalendarDayProps) => {
   const { selectedDate, onDateSelect } = useMiniCalendar();
   const { month, day } = formatDate(date);
   const isSelected = selectedDate && isSameDay(date, selectedDate);
@@ -205,25 +164,14 @@ export const MiniCalendarDay = ({
 
   return (
     <Button
-      className={cn(
-        'h-auto min-w-12 flex-col gap-0 p-2 text-xs',
-        isTodayDate && !isSelected && 'bg-accent',
-        className
-      )}
+      className={cn('h-auto min-w-12 flex-col gap-0 p-2 text-xs', isTodayDate && !isSelected && 'bg-accent', className)}
       onClick={() => onDateSelect(date)}
       size='sm'
       type='button'
       variant={isSelected ? 'default' : 'ghost'}
       {...props}
     >
-      <span
-        className={cn(
-          'font-medium text-[10px] text-muted-foreground',
-          isSelected && 'text-primary-foreground/70'
-        )}
-      >
-        {month}
-      </span>
+      <span className={cn('font-medium text-[10px] text-muted-foreground', isSelected && 'text-primary-foreground/70')}>{month}</span>
       <span className='font-semibold text-sm'>{day}</span>
     </Button>
   );

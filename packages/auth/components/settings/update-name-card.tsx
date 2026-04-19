@@ -12,11 +12,7 @@ export type UpdateNameCardProps = {
   isPending?: boolean;
 };
 
-export function UpdateNameCard({
-  className,
-  classNames,
-  isPending,
-}: Readonly<UpdateNameCardProps>) {
+export function UpdateNameCard({ className, classNames, isPending }: Readonly<UpdateNameCardProps>) {
   const {
     hooks: { useSession },
     nameRequired,

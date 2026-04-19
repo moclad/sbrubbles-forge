@@ -10,20 +10,13 @@ function getAbsolutePath(value: string): string {
 }
 
 const config: StorybookConfig = {
-  addons: [
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-themes'),
-    getAbsolutePath('storybook-dark-mode'),
-  ],
+  addons: [getAbsolutePath('@storybook/addon-docs'), getAbsolutePath('@storybook/addon-themes'), getAbsolutePath('storybook-dark-mode')],
   core: {
     disableTelemetry: true,
   },
   framework: getAbsolutePath('@storybook/nextjs'),
   staticDirs: ['../public'],
-  stories: [
-    '../stories/**/*.mdx',
-    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 };
 
 export default config;

@@ -20,14 +20,7 @@ export type PasskeysCardProps = {
   skipHook?: boolean;
 };
 
-export function PasskeysCard({
-  className,
-  classNames,
-  isPending,
-  passkeys,
-  skipHook,
-  refetch,
-}: Readonly<PasskeysCardProps>) {
+export function PasskeysCard({ className, classNames, isPending, passkeys, skipHook, refetch }: Readonly<PasskeysCardProps>) {
   const t = useI18n();
   const {
     authClient,
@@ -61,14 +54,7 @@ export function PasskeysCard({
         {isPending ? (
           <SettingsCellSkeleton classNames={classNames} />
         ) : (
-          passkeys?.map((passkey) => (
-            <PasskeyCell
-              classNames={classNames}
-              key={passkey.id}
-              passkey={passkey}
-              refetch={refetch}
-            />
-          ))
+          passkeys?.map((passkey) => <PasskeyCell classNames={classNames} key={passkey.id} passkey={passkey} refetch={refetch} />)
         )}
       </CardContent>
     </SettingsCard>

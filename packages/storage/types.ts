@@ -16,9 +16,7 @@ export type FileProps = ShortFileProp & {
 export type FilesListProps = {
   files: FileProps[];
   fetchFiles: () => Promise<void>;
-  setFiles: (
-    files: FileProps[] | ((files: FileProps[]) => FileProps[])
-  ) => void;
+  setFiles: (files: FileProps[] | ((files: FileProps[]) => FileProps[])) => void;
   downloadUsingPresignedUrl: boolean;
 };
 

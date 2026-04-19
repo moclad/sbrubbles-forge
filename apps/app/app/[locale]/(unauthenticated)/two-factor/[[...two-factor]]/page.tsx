@@ -14,12 +14,8 @@ const TwoFactorPage = async () => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight'>
-          {t('authentication.twoFactor')}
-        </h1>
-        <p className='text-muted-foreground text-sm'>
-          {t('authentication.twoFactorDescription')}
-        </p>
+        <h1 className='font-semibold text-2xl tracking-tight'>{t('authentication.twoFactor')}</h1>
+        <p className='text-muted-foreground text-sm'>{t('authentication.twoFactorDescription')}</p>
       </div>
 
       <TwoFactorForm />

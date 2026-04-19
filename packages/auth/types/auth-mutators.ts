@@ -1,6 +1,4 @@
-type MutateFn<T = Record<string, unknown>> = (
-  params: T
-) => Promise<unknown> | Promise<void>;
+type MutateFn<T = Record<string, unknown>> = (params: T) => Promise<unknown> | Promise<void>;
 
 export type AuthMutators = {
   deletePasskey: MutateFn<{ id: string }>;

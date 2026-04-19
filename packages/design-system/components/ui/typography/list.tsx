@@ -7,11 +7,7 @@ export function List({ className, ...rest }: ComponentProps<'ul'>) {
   return <ul className={classNames} {...rest} />;
 }
 
-export const ListItem = ({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<'li'>) => (
+export const ListItem = ({ className, children, ...props }: React.ComponentProps<'li'>) => (
   <li className={cn('', className)} {...props}>
     {children}
   </li>

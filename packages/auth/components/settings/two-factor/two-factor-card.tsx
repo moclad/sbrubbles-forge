@@ -12,10 +12,7 @@ export type TwoFactorCardProps = {
   classNames?: SettingsCardClassNames;
 };
 
-export function TwoFactorCard({
-  className,
-  classNames,
-}: Readonly<TwoFactorCardProps>) {
+export function TwoFactorCard({ className, classNames }: Readonly<TwoFactorCardProps>) {
   const t = useI18n();
   const {
     hooks: { useSession },
@@ -29,28 +26,18 @@ export function TwoFactorCard({
   return (
     <div>
       <SettingsCard
-        actionLabel={
-          isTwoFactorEnabled ? t('account.disable') : t('account.enable')
-        }
+        actionLabel={isTwoFactorEnabled ? t('account.disable') : t('account.enable')}
         className={className}
         classNames={classNames}
         description={t('account.twoFactorCardDescription')}
         formAction={() => setShowPasswordDialog(true)}
-        instructions={
-          isTwoFactorEnabled
-            ? t('account.twoFactorDisableInstructions')
-            : t('account.twoFactorEnableInstructions')
-        }
+        instructions={isTwoFactorEnabled ? t('account.twoFactorDisableInstructions') : t('account.twoFactorEnableInstructions')}
         isPending={isPending}
         showToast={false}
         title={t('account.twoFactor')}
       />
 
-      <TwoFactorPasswordDialog
-        isTwoFactorEnabled={!!isTwoFactorEnabled}
-        onOpenChange={setShowPasswordDialog}
-        open={showPasswordDialog}
-      />
+      <TwoFactorPasswordDialog isTwoFactorEnabled={!!isTwoFactorEnabled} onOpenChange={setShowPasswordDialog} open={showPasswordDialog} />
     </div>
   );
 }

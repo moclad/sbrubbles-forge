@@ -18,12 +18,7 @@ const twitterHandle = '@BenoDresch';
 const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
 const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
-export const createMetadata = ({
-  title,
-  description,
-  image,
-  ...properties
-}: MetadataGenerator): Metadata => {
+export const createMetadata = ({ title, description, image, ...properties }: MetadataGenerator): Metadata => {
   const parsedTitle = `${title} | ${applicationName}`;
   const defaultMetadata: Metadata = {
     appleWebApp: {
@@ -38,9 +33,7 @@ export const createMetadata = ({
     formatDetection: {
       telephone: false,
     },
-    metadataBase: productionUrl
-      ? new URL(`${protocol}://${productionUrl}`)
-      : undefined,
+    metadataBase: productionUrl ? new URL(`${protocol}://${productionUrl}`) : undefined,
     openGraph: {
       description,
       locale: 'en_US',

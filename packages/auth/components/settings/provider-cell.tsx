@@ -23,14 +23,7 @@ export type ProviderCellProps = {
   refetch?: () => void;
 };
 
-export function ProviderCell({
-  className,
-  classNames,
-  accounts,
-  other,
-  provider,
-  refetch,
-}: Readonly<ProviderCellProps>) {
+export function ProviderCell({ className, classNames, accounts, other, provider, refetch }: Readonly<ProviderCellProps>) {
   const t = useI18n();
   const {
     authClient,
@@ -89,13 +82,7 @@ export function ProviderCell({
   };
 
   return (
-    <Card
-      className={cn(
-        'flex-row items-center gap-3 px-4 py-3',
-        className,
-        classNames?.cell
-      )}
-    >
+    <Card className={cn('flex-row items-center gap-3 px-4 py-3', className, classNames?.cell)}>
       {provider.icon &&
         (() => {
           if (colorIcons) {

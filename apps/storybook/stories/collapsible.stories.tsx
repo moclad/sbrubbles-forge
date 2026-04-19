@@ -1,8 +1,4 @@
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@repo/design-system/components/ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@repo/design-system/components/ui/collapsible';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Info } from 'lucide-react';
 
@@ -25,10 +21,7 @@ const meta = {
         <h3 className='font-semibold'>Can I use this in my project?</h3>
         <Info className='size-6' />
       </CollapsibleTrigger>
-      <CollapsibleContent>
-        Yes. Free to use for personal and commercial projects. No attribution
-        required.
-      </CollapsibleContent>
+      <CollapsibleContent>Yes. Free to use for personal and commercial projects. No attribution required.</CollapsibleContent>
     </Collapsible>
   ),
   tags: ['autodocs'],

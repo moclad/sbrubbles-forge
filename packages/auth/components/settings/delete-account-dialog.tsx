@@ -1,12 +1,5 @@
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Label } from '@repo/design-system/components/ui/label';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -25,12 +18,7 @@ export type DeleteAccountDialogProps = {
   open: boolean;
 };
 
-export function DeleteAccountDialog({
-  open,
-  onOpenChange,
-  accounts,
-  classNames,
-}: Readonly<DeleteAccountDialogProps>) {
+export function DeleteAccountDialog({ open, onOpenChange, accounts, classNames }: Readonly<DeleteAccountDialogProps>) {
   const {
     authClient,
     basePath,
@@ -44,12 +32,8 @@ export function DeleteAccountDialog({
   const { data: sessionData } = useSession();
   const session = sessionData?.session;
 
-  const isFresh = session
-    ? Date.now() / 1000 - session?.createdAt.getTime() / 1000 < freshAge
-    : false;
-  const credentialsLinked = accounts?.some(
-    (acc) => acc.provider === 'credential'
-  );
+  const isFresh = session ? Date.now() / 1000 - session?.createdAt.getTime() / 1000 < freshAge : false;
+  const credentialsLinked = accounts?.some((acc) => acc.provider === 'credential');
 
   const formAction = async (_: unknown, formData: FormData) => {
     const params = {} as Record<string, string>;
@@ -87,18 +71,10 @@ export function DeleteAccountDialog({
       <form action={action}>
         <DialogContent className='sm:max-w-md'>
           <DialogHeader>
-            <DialogTitle
-              className={cn('text-lg md:text-xl', classNames?.title)}
-            >
-              {t('account.deleteAccount')}
-            </DialogTitle>
+            <DialogTitle className={cn('text-lg md:text-xl', classNames?.title)}>{t('account.deleteAccount')}</DialogTitle>
 
-            <DialogDescription
-              className={cn('text-xs md:text-sm', classNames?.description)}
-            >
-              {isFresh
-                ? t('account.deleteAccountInstructions')
-                : t('account.deleteAccountNotFresh')}
+            <DialogDescription className={cn('text-xs md:text-sm', classNames?.description)}>
+              {isFresh ? t('account.deleteAccountInstructions') : t('account.deleteAccountNotFresh')}
             </DialogDescription>
           </DialogHeader>
 
@@ -118,23 +94,12 @@ export function DeleteAccountDialog({
           )}
 
           <DialogFooter>
-            <Button
-              onClick={() => onOpenChange(false)}
-              type='button'
-              variant='secondary'
-            >
+            <Button onClick={() => onOpenChange(false)} type='button' variant='secondary'>
               {t('account.cancel')}
             </Button>
 
-            <Button
-              className={classNames?.button}
-              disabled={isSubmitting}
-              loading={isSubmitting}
-              variant='destructive'
-            >
-              <span className={cn(isSubmitting && 'opacity-0')}>
-                {isFresh ? t('account.deleteAccount') : t('account.signOut')}
-              </span>
+            <Button className={classNames?.button} disabled={isSubmitting} loading={isSubmitting} variant='destructive'>
+              <span className={cn(isSubmitting && 'opacity-0')}>{isFresh ? t('account.deleteAccount') : t('account.signOut')}</span>
             </Button>
           </DialogFooter>
         </DialogContent>

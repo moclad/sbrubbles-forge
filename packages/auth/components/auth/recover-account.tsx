@@ -1,14 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components//ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components//ui/form';
 import { Input } from '@repo/design-system/components//ui/input';
 import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -30,12 +23,7 @@ export type RecoverAccountFormProps = {
   setIsSubmitting?: (value: boolean) => void;
 };
 
-export function RecoverAccountForm({
-  className,
-  isSubmitting,
-  redirectTo,
-  setIsSubmitting,
-}: RecoverAccountFormProps) {
+export function RecoverAccountForm({ className, isSubmitting, redirectTo, setIsSubmitting }: RecoverAccountFormProps) {
   const { authClient, basePath, navigate } = useContext(AuthUIContext);
   const t = useI18n();
 
@@ -54,8 +42,7 @@ export function RecoverAccountForm({
     resolver: zodResolver(formSchema),
   });
 
-  isSubmitting =
-    isSubmitting || form.formState.isSubmitting || transitionPending;
+  isSubmitting = isSubmitting || form.formState.isSubmitting || transitionPending;
 
   useEffect(() => {
     setIsSubmitting?.(form.formState.isSubmitting || transitionPending);
@@ -78,10 +65,7 @@ export function RecoverAccountForm({
 
   return (
     <Form {...form}>
-      <form
-        className={cn('mt-4 space-y-4', className)}
-        onSubmit={form.handleSubmit(verifyBackupCode)}
-      >
+      <form className={cn('mt-4 space-y-4', className)} onSubmit={form.handleSubmit(verifyBackupCode)}>
         <FormField
           control={form.control}
           name='code'
@@ -90,12 +74,7 @@ export function RecoverAccountForm({
               <FormLabel>{t('account.backupCode')}</FormLabel>
 
               <FormControl>
-                <Input
-                  autoComplete='off'
-                  disabled={isSubmitting}
-                  placeholder={t('account.backupCodePlaceholder')}
-                  {...field}
-                />
+                <Input autoComplete='off' disabled={isSubmitting} placeholder={t('account.backupCodePlaceholder')} {...field} />
               </FormControl>
 
               <FormMessage />
@@ -103,22 +82,11 @@ export function RecoverAccountForm({
           )}
         />
 
-        <Button
-          className='mt-4 w-full'
-          disabled={isSubmitting}
-          loading={isSubmitting}
-          type='submit'
-        >
+        <Button className='mt-4 w-full' disabled={isSubmitting} loading={isSubmitting} type='submit'>
           {t('account.recoverAction')}
         </Button>
 
-        <Button
-          className='w-full'
-          disabled={isSubmitting}
-          onClick={() => navigate(`${basePath}/sign-in`)}
-          type='button'
-          variant='secondary'
-        >
+        <Button className='w-full' disabled={isSubmitting} onClick={() => navigate(`${basePath}/sign-in`)} type='button' variant='secondary'>
           {t('account.backToSignIn')}
         </Button>
       </form>

@@ -2,13 +2,7 @@
 
 import { auth } from '@repo/auth/server';
 import { database, desc, eq, inArray } from '@repo/database';
-import {
-  category,
-  expense,
-  expensePerson,
-  person,
-  tripPerson,
-} from '@repo/database/db/schema';
+import { category, expense, expensePerson, person, tripPerson } from '@repo/database/db/schema';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
 
@@ -68,18 +62,11 @@ async function assertPeopleBelongToTrip(tripId: string, personIds: string[]) {
     return;
   }
 
-  const rows = await database
-    .select({ personId: tripPerson.personId })
-    .from(tripPerson)
-    .where(eq(tripPerson.tripId, tripId));
+  const rows = await database.select({ personId: tripPerson.personId }).from(tripPerson).where(eq(tripPerson.tripId, tripId));
 
-  const validPeopleForTrip = new Set(
-    rows.filter((row) => row.personId).map((row) => row.personId)
-  );
+  const validPeopleForTrip = new Set(rows.filter((row) => row.personId).map((row) => row.personId));
 
-  const hasInvalidPerson = personIds.some(
-    (personId) => !validPeopleForTrip.has(personId)
-  );
+  const hasInvalidPerson = personIds.some((personId) => !validPeopleForTrip.has(personId));
 
   if (hasInvalidPerson) {
     throw new Error('Invalid people selection for this trip');
@@ -104,9 +91,7 @@ function validateExpenseInput(data: ExpenseData) {
   }
 }
 
-export async function getExpensesByTrip(
-  tripId: string
-): Promise<ExpenseWithDetails[]> {
+export async function getExpensesByTrip(tripId: string): Promise<ExpenseWithDetails[]> {
   await requireSession();
 
   const expenseRows = await database
@@ -145,16 +130,9 @@ export async function getExpensesByTrip(
     })
     .from(expensePerson)
     .innerJoin(person, eq(expensePerson.personId, person.id))
-    .where(
-      expenseIds.length === 1
-        ? eq(expensePerson.expenseId, expenseIds[0])
-        : inArray(expensePerson.expenseId, expenseIds)
-    );
+    .where(expenseIds.length === 1 ? eq(expensePerson.expenseId, expenseIds[0]) : inArray(expensePerson.expenseId, expenseIds));
 
-  const peopleByExpense = new Map<
-    string,
-    { avatarUrl: string | null; id: string; name: string }[]
-  >();
+  const peopleByExpense = new Map<string, { avatarUrl: string | null; id: string; name: string }[]>();
 
   for (const row of peopleRows) {
     const list = peopleByExpense.get(row.expenseId) ?? [];
@@ -209,11 +187,7 @@ export async function createExpense(data: ExpenseData) {
     .returning();
 
   if (personIds.length > 0) {
-    await database
-      .insert(expensePerson)
-      .values(
-        personIds.map((personId) => ({ expenseId: created.id, personId }))
-      );
+    await database.insert(expensePerson).values(personIds.map((personId) => ({ expenseId: created.id, personId })));
   }
 
   revalidatePath('/trips');
@@ -246,9 +220,7 @@ export async function updateExpense(id: string, data: ExpenseData) {
   await database.delete(expensePerson).where(eq(expensePerson.expenseId, id));
 
   if (personIds.length > 0) {
-    await database
-      .insert(expensePerson)
-      .values(personIds.map((personId) => ({ expenseId: id, personId })));
+    await database.insert(expensePerson).values(personIds.map((personId) => ({ expenseId: id, personId })));
   }
 
   revalidatePath('/trips');

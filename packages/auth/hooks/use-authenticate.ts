@@ -22,8 +22,6 @@ export function useAuthenticate(options?: AuthenticateOptions) {
       return;
     }
 
-    replace(
-      `${basePath}/sign-in}?redirectTo=${window.location.href.replace(window.location.origin, '')}`
-    );
+    replace(`${basePath}/sign-in}?redirectTo=${window.location.href.replace(window.location.origin, '')}`);
   }, [isPending, sessionData, basePath, replace, enabled]);
 }

@@ -1,12 +1,6 @@
 /** biome-ignore-all assist/source/useSortedKeys: Tables keys should not be sorted */
 import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import {
-  pgTable,
-  primaryKey,
-  real,
-  text,
-  timestamp,
-} from 'drizzle-orm/pg-core';
+import { pgTable, primaryKey, real, text, timestamp } from 'drizzle-orm/pg-core';
 
 import { category } from './categories';
 import { person } from './people';

@@ -10,17 +10,11 @@ type NotificationsProviderProperties = {
   userId: string;
 };
 
-export const NotificationsProvider = ({
-  children,
-  userId,
-}: NotificationsProviderProperties) => {
+export const NotificationsProvider = ({ children, userId }: NotificationsProviderProperties) => {
   const { resolvedTheme } = useTheme();
 
   return (
-    <RawNotificationsProvider
-      theme={resolvedTheme as 'light' | 'dark'}
-      userId={userId}
-    >
+    <RawNotificationsProvider theme={resolvedTheme as 'light' | 'dark'} userId={userId}>
       {children}
     </RawNotificationsProvider>
   );

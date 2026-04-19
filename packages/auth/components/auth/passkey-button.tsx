@@ -14,11 +14,7 @@ type PasskeyButtonProps = {
   setIsSubmitting?: (isSubmitting: boolean) => void;
 };
 
-export function PasskeyButton({
-  isSubmitting,
-  setIsSubmitting,
-  disabled,
-}: Readonly<PasskeyButtonProps>) {
+export function PasskeyButton({ isSubmitting, setIsSubmitting, disabled }: Readonly<PasskeyButtonProps>) {
   const t = useI18n();
   const { onSuccess } = useOnSuccessTransition({ redirectTo: '/dashboard' });
 

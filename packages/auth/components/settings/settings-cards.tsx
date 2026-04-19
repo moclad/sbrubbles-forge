@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@repo/design-system/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/design-system/components/ui/tabs';
 import { cn } from '@repo/design-system/lib/utils';
 import type { Session, User } from 'better-auth';
 import { KeyIcon, UserIcon } from 'lucide-react';
@@ -42,10 +37,7 @@ export type SettingsCardsProps = {
   classNames?: SettingsCardsClassNames;
 };
 
-export function SettingsCards({
-  className,
-  classNames,
-}: Readonly<SettingsCardsProps>) {
+export function SettingsCards({ className, classNames }: Readonly<SettingsCardsProps>) {
   useAuthenticate();
 
   const {
@@ -66,30 +58,14 @@ export function SettingsCards({
   } = useContext(AuthUIContext);
 
   const t = useI18n();
-  const {
-    useListAccounts,
-    useListDeviceSessions,
-    useListPasskeys,
-    useListSessions,
-    useSession,
-  } = hooks;
+  const { useListAccounts, useListDeviceSessions, useListPasskeys, useListSessions, useSession } = hooks;
   const { data: sessionData, isPending: sessionPending } = useSession();
 
-  const {
-    data: accounts,
-    isPending: accountsPending,
-    refetch: refetchAccounts,
-  } = useListAccounts();
+  const { data: accounts, isPending: accountsPending, refetch: refetchAccounts } = useListAccounts();
 
-  const credentialsLinked = accounts?.some(
-    (acc) => acc.provider === 'credential'
-  );
+  const credentialsLinked = accounts?.some((acc) => acc.provider === 'credential');
 
-  const {
-    data: sessions,
-    isPending: sessionsPending,
-    refetch: refetchSessions,
-  } = useListSessions();
+  const { data: sessions, isPending: sessionsPending, refetch: refetchSessions } = useListSessions();
 
   let passkeys: { id: string; createdAt: Date }[] | undefined | null;
   let passkeysPending: boolean | undefined;
@@ -114,20 +90,9 @@ export function SettingsCards({
   }
 
   return (
-    <div
-      className={cn(
-        'flex w-full max-w-xl grow flex-col items-center gap-4 bg-green-100',
-        className,
-        classNames?.base
-      )}
-    >
-      <Tabs
-        className={cn('flex w-full flex-col gap-4', classNames?.tabs?.base)}
-        defaultValue='account'
-      >
-        <TabsList
-          className={cn('grid w-full grid-cols-2', classNames?.tabs?.list)}
-        >
+    <div className={cn('flex w-full max-w-xl grow flex-col items-center gap-4 bg-green-100', className, classNames?.base)}>
+      <Tabs className={cn('flex w-full flex-col gap-4', classNames?.tabs?.base)} defaultValue='account'>
+        <TabsList className={cn('grid w-full grid-cols-2', classNames?.tabs?.list)}>
           <TabsTrigger className={classNames?.tabs?.trigger} value='account'>
             <UserIcon />
 
@@ -141,37 +106,14 @@ export function SettingsCards({
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent
-          className={cn('flex flex-col gap-4', classNames?.tabs?.content)}
-          value='account'
-        >
-          {avatar && (
-            <UpdateAvatarCard
-              classNames={classNames?.card}
-              isPending={sessionPending}
-            />
-          )}
+        <TabsContent className={cn('flex flex-col gap-4', classNames?.tabs?.content)} value='account'>
+          {avatar && <UpdateAvatarCard classNames={classNames?.card} isPending={sessionPending} />}
 
-          {username && (
-            <UpdateUsernameCard
-              classNames={classNames?.card}
-              isPending={sessionPending}
-            />
-          )}
+          {username && <UpdateUsernameCard classNames={classNames?.card} isPending={sessionPending} />}
 
-          {(settingsFields?.includes('name') || nameRequired) && (
-            <UpdateNameCard
-              classNames={classNames?.card}
-              isPending={sessionPending}
-            />
-          )}
+          {(settingsFields?.includes('name') || nameRequired) && <UpdateNameCard classNames={classNames?.card} isPending={sessionPending} />}
 
-          {changeEmail && (
-            <ChangeEmailCard
-              classNames={classNames?.card}
-              isPending={sessionPending}
-            />
-          )}
+          {changeEmail && <ChangeEmailCard classNames={classNames?.card} isPending={sessionPending} />}
 
           {settingsFields?.map((field) => {
             const additionalField = additionalFields?.[field];
@@ -179,15 +121,7 @@ export function SettingsCards({
               return null;
             }
 
-            const {
-              label,
-              description,
-              instructions,
-              placeholder,
-              required,
-              type,
-              validate,
-            } = additionalField;
+            const { label, description, instructions, placeholder, required, type, validate } = additionalField;
 
             // @ts-expect-error Custom fields are not typed
             const defaultValue = sessionData?.user[field] as unknown;
@@ -221,59 +155,22 @@ export function SettingsCards({
           )}
         </TabsContent>
 
-        <TabsContent
-          className={cn('flex flex-col gap-4', classNames?.tabs?.content)}
-          value='security'
-        >
-          {credentials && (
-            <ChangePasswordCard
-              accounts={accounts}
-              classNames={classNames?.card}
-              isPending={sessionPending}
-              skipHook
-            />
-          )}
+        <TabsContent className={cn('flex flex-col gap-4', classNames?.tabs?.content)} value='security'>
+          {credentials && <ChangePasswordCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />}
 
           {(providers?.length || otherProviders?.length) && (
-            <ProvidersCard
-              accounts={accounts}
-              classNames={classNames?.card}
-              isPending={accountsPending}
-              refetch={refetchAccounts}
-              skipHook
-            />
+            <ProvidersCard accounts={accounts} classNames={classNames?.card} isPending={accountsPending} refetch={refetchAccounts} skipHook />
           )}
 
           {passkey && (
-            <PasskeysCard
-              classNames={classNames?.card}
-              isPending={passkeysPending}
-              passkeys={passkeys}
-              refetch={refetchPasskeys}
-              skipHook
-            />
+            <PasskeysCard classNames={classNames?.card} isPending={passkeysPending} passkeys={passkeys} refetch={refetchPasskeys} skipHook />
           )}
 
-          {twoFactor && credentialsLinked && (
-            <TwoFactorCard classNames={classNames?.card} />
-          )}
+          {twoFactor && credentialsLinked && <TwoFactorCard classNames={classNames?.card} />}
 
-          <SessionsCard
-            classNames={classNames?.card}
-            isPending={sessionsPending}
-            refetch={refetchSessions}
-            sessions={sessions}
-            skipHook
-          />
+          <SessionsCard classNames={classNames?.card} isPending={sessionsPending} refetch={refetchSessions} sessions={sessions} skipHook />
 
-          {deleteUser && (
-            <DeleteAccountCard
-              accounts={accounts}
-              classNames={classNames?.card}
-              isPending={sessionPending}
-              skipHook
-            />
-          )}
+          {deleteUser && <DeleteAccountCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />}
         </TabsContent>
       </Tabs>
     </div>

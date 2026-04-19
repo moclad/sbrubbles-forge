@@ -20,12 +20,7 @@ export type PasskeyCellProps = {
   refetch?: () => Promise<void>;
 };
 
-export function PasskeyCell({
-  className,
-  classNames,
-  passkey,
-  refetch,
-}: Readonly<PasskeyCellProps>) {
+export function PasskeyCell({ className, classNames, passkey, refetch }: Readonly<PasskeyCellProps>) {
   const {
     mutators: { deletePasskey },
   } = useContext(AuthUIContext);
@@ -46,9 +41,7 @@ export function PasskeyCell({
   };
 
   return (
-    <Card
-      className={cn('flex-row items-center p-4', className, classNames?.cell)}
-    >
+    <Card className={cn('flex-row items-center p-4', className, classNames?.cell)}>
       <div className='flex items-center gap-3'>
         <FingerprintIcon className='size-4' />
         <span className='text-sm'>{passkey.createdAt.toLocaleString()}</span>

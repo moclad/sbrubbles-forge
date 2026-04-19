@@ -2,21 +2,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Textarea } from '@repo/design-system/components/ui/textarea';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -48,19 +35,12 @@ type CategoryFormDialogProps = {
   onSubmit: (data: CategoryFormValues) => Promise<void>;
 };
 
-export function CategoryFormDialog({
-  open,
-  onOpenChange,
-  initialData,
-  onSubmit,
-}: Readonly<CategoryFormDialogProps>) {
+export function CategoryFormDialog({ open, onOpenChange, initialData, onSubmit }: Readonly<CategoryFormDialogProps>) {
   const t = useI18n();
   const isEdit = Boolean(initialData);
 
   const categorySchema = z.object({
-    color: z
-      .string()
-      .regex(HEX_COLOR_REGEX, t('categories.form.errors.invalidColor')),
+    color: z.string().regex(HEX_COLOR_REGEX, t('categories.form.errors.invalidColor')),
     description: z.string().max(500).optional(),
     icon: z.string().min(1, t('categories.form.errors.iconRequired')),
     name: z.string().min(1, t('categories.form.errors.nameRequired')).max(255),
@@ -93,17 +73,10 @@ export function CategoryFormDialog({
     <Dialog onOpenChange={handleOpenChange} open={open}>
       <DialogContent className='sm:max-w-md'>
         <DialogHeader>
-          <DialogTitle>
-            {isEdit
-              ? t('categories.form.editTitle')
-              : t('categories.form.createTitle')}
-          </DialogTitle>
+          <DialogTitle>{isEdit ? t('categories.form.editTitle') : t('categories.form.createTitle')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form
-            className='flex flex-col gap-4'
-            onSubmit={form.handleSubmit(handleSubmit)}
-          >
+          <form className='flex flex-col gap-4' onSubmit={form.handleSubmit(handleSubmit)}>
             <FormField
               control={form.control}
               name='name'
@@ -111,10 +84,7 @@ export function CategoryFormDialog({
                 <FormItem>
                   <FormLabel>{t('categories.form.nameLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('categories.form.namePlaceholder')}
-                      {...field}
-                    />
+                    <Input placeholder={t('categories.form.namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -127,12 +97,7 @@ export function CategoryFormDialog({
                 <FormItem>
                   <FormLabel>{t('categories.form.descriptionLabel')}</FormLabel>
                   <FormControl>
-                    <Textarea
-                      className='resize-none'
-                      placeholder={t('categories.form.descriptionPlaceholder')}
-                      rows={2}
-                      {...field}
-                    />
+                    <Textarea className='resize-none' placeholder={t('categories.form.descriptionPlaceholder')} rows={2} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -158,27 +123,18 @@ export function CategoryFormDialog({
                 <FormItem>
                   <FormLabel>{t('categories.form.colorLabel')}</FormLabel>
                   <FormControl>
-                    <CategoryColorPicker
-                      onChange={field.onChange}
-                      value={field.value}
-                    />
+                    <CategoryColorPicker onChange={field.onChange} value={field.value} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <DialogFooter>
-              <Button
-                onClick={() => handleOpenChange(false)}
-                type='button'
-                variant='outline'
-              >
+              <Button onClick={() => handleOpenChange(false)} type='button' variant='outline'>
                 {t('categories.form.cancel')}
               </Button>
               <Button loading={form.formState.isSubmitting} type='submit'>
-                {isEdit
-                  ? t('categories.form.saveChanges')
-                  : t('categories.form.create')}
+                {isEdit ? t('categories.form.saveChanges') : t('categories.form.create')}
               </Button>
             </DialogFooter>
           </form>

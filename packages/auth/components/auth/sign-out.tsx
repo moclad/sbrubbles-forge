@@ -4,13 +4,7 @@ import { authClient } from '@repo/auth/client';
 import { useOnSuccessTransition } from '@repo/auth/hooks/on-success-transition';
 import { AuthUIContext } from '@repo/auth/lib/auth-ui-provider';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -40,18 +34,11 @@ export default function SignOut() {
       <Card className='w-[350px]'>
         <CardHeader>
           <CardTitle>{t('authentication.actions.signingOut')}</CardTitle>
-          <CardDescription>
-            {t('authentication.actions.signingOutWait')}
-          </CardDescription>
+          <CardDescription>{t('authentication.actions.signingOutWait')}</CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col items-center space-y-4'>
           <Loader2 className='h-8 w-8 animate-spin text-primary' />
-          <Button
-            className='w-full'
-            disabled
-            onClick={() => router.push('/sign-in')}
-            variant='outline'
-          >
+          <Button className='w-full' disabled onClick={() => router.push('/sign-in')} variant='outline'>
             {t('authentication.actions.redirectToLogin')}
           </Button>
         </CardContent>

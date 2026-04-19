@@ -8,5 +8,4 @@ const i18nServer: CreateI18nServerReturn = createI18nServer({
   'pt-BR': () => import('../locales/pt-BR'),
 });
 
-export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } =
-  i18nServer;
+export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } = i18nServer;

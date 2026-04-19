@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from '@repo/design-system/components/ui/input-otp';
+import { InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@repo/design-system/components/ui/input-otp';
 
 export function OTPInputGroup({
   otpSeparators = 0,

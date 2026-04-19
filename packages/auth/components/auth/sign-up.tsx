@@ -4,14 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signUp } from '@repo/auth//client';
 import { signUpFormSchema } from '@repo/auth//lib/auth-schema';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { PasswordInput } from '@repo/design-system/components/ui/password-input';
 import { Separator } from '@repo/design-system/components/ui/separator';
@@ -66,9 +59,7 @@ export const SignUp = () => {
           setLoading(false);
         },
         onRequest: () => {
-          toastIdRef.current = toast.loading(
-            t('authentication.actions.signingUp')
-          );
+          toastIdRef.current = toast.loading(t('authentication.actions.signingUp'));
           setLoading(true);
         },
         onSuccess: () => {
@@ -92,14 +83,9 @@ export const SignUp = () => {
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.name')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.name')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('authentication.fields.namePlaceholder')}
-                      {...field}
-                    />
+                    <Input placeholder={t('authentication.fields.namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -110,15 +96,9 @@ export const SignUp = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.email')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.email')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('authentication.fields.emailPlaceholder')}
-                      type='email'
-                      {...field}
-                    />
+                    <Input placeholder={t('authentication.fields.emailPlaceholder')} type='email' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,16 +109,9 @@ export const SignUp = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.password')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.password')}</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder={t(
-                        'authentication.fields.passwordPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <PasswordInput placeholder={t('authentication.fields.passwordPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -149,16 +122,9 @@ export const SignUp = () => {
               name='passwordConfirmation'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.passwordConfirmation')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.passwordConfirmation')}</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder={t(
-                        'authentication.fields.passwordConfirmationPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <PasswordInput placeholder={t('authentication.fields.passwordConfirmationPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -174,10 +140,7 @@ export const SignUp = () => {
       <div className='mt-4 flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           {t('authentication.withAccountQuestion')}{' '}
-          <Link
-            className='underline underline-offset-4 hover:text-primary'
-            href='/sign-in'
-          >
+          <Link className='underline underline-offset-4 hover:text-primary' href='/sign-in'>
             {t('authentication.actions.signIn')}
           </Link>
         </p>

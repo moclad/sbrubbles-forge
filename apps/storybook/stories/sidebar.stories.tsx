@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@repo/design-system/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,11 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@repo/design-system/components/ui/breadcrumb';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@repo/design-system/components/ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@repo/design-system/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -226,20 +218,13 @@ export const Base: Story = {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton
-                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
-                      size='lg'
-                    >
+                    <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground' size='lg'>
                       <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
                         <activeTeam.logo className='size-4' />
                       </div>
                       <div className='grid flex-1 text-left text-sm leading-tight'>
-                        <span className='truncate font-semibold'>
-                          {activeTeam.name}
-                        </span>
-                        <span className='truncate text-xs'>
-                          {activeTeam.plan}
-                        </span>
+                        <span className='truncate font-semibold'>{activeTeam.name}</span>
+                        <span className='truncate text-xs'>{activeTeam.plan}</span>
                       </div>
                       <ChevronsUpDown className='ml-auto' />
                     </SidebarMenuButton>
@@ -250,22 +235,14 @@ export const Base: Story = {
                     side='bottom'
                     sideOffset={4}
                   >
-                    <DropdownMenuLabel className='text-muted-foreground text-xs'>
-                      Teams
-                    </DropdownMenuLabel>
+                    <DropdownMenuLabel className='text-muted-foreground text-xs'>Teams</DropdownMenuLabel>
                     {data.teams.map((team, index) => (
-                      <DropdownMenuItem
-                        className='gap-2 p-2'
-                        key={team.name}
-                        onClick={() => setActiveTeam(team)}
-                      >
+                      <DropdownMenuItem className='gap-2 p-2' key={team.name} onClick={() => setActiveTeam(team)}>
                         <div className='flex size-6 items-center justify-center rounded-sm border'>
                           <team.logo className='size-4 shrink-0' />
                         </div>
                         {team.name}
-                        <DropdownMenuShortcut>
-                          ⌘{index + 1}
-                        </DropdownMenuShortcut>
+                        <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                       </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator />
@@ -273,9 +250,7 @@ export const Base: Story = {
                       <div className='flex size-6 items-center justify-center rounded-md border bg-background'>
                         <Plus className='size-4' />
                       </div>
-                      <div className='font-medium text-muted-foreground'>
-                        Add team
-                      </div>
+                      <div className='font-medium text-muted-foreground'>Add team</div>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -287,12 +262,7 @@ export const Base: Story = {
               <SidebarGroupLabel>Platform</SidebarGroupLabel>
               <SidebarMenu>
                 {data.navMain.map((item) => (
-                  <Collapsible
-                    asChild
-                    className='group/collapsible'
-                    defaultOpen={item.isActive}
-                    key={item.title}
-                  >
+                  <Collapsible asChild className='group/collapsible' defaultOpen={item.isActive} key={item.title}>
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton tooltip={item.title}>
@@ -337,11 +307,7 @@ export const Base: Story = {
                           <span className='sr-only'>More</span>
                         </SidebarMenuAction>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align='end'
-                        className='w-48 rounded-lg'
-                        side='bottom'
-                      >
+                      <DropdownMenuContent align='end' className='w-48 rounded-lg' side='bottom'>
                         <DropdownMenuItem>
                           <Folder className='text-muted-foreground' />
                           <span>View Project</span>
@@ -373,26 +339,14 @@ export const Base: Story = {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton
-                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
-                      size='lg'
-                    >
+                    <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground' size='lg'>
                       <Avatar className='h-8 w-8 rounded-lg'>
-                        <AvatarImage
-                          alt={data.user.name}
-                          src={data.user.avatar}
-                        />
-                        <AvatarFallback className='rounded-lg'>
-                          CN
-                        </AvatarFallback>
+                        <AvatarImage alt={data.user.name} src={data.user.avatar} />
+                        <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                       </Avatar>
                       <div className='grid flex-1 text-left text-sm leading-tight'>
-                        <span className='truncate font-semibold'>
-                          {data.user.name}
-                        </span>
-                        <span className='truncate text-xs'>
-                          {data.user.email}
-                        </span>
+                        <span className='truncate font-semibold'>{data.user.name}</span>
+                        <span className='truncate text-xs'>{data.user.email}</span>
                       </div>
                       <ChevronsUpDown className='ml-auto size-4' />
                     </SidebarMenuButton>
@@ -406,21 +360,12 @@ export const Base: Story = {
                     <DropdownMenuLabel className='p-0 font-normal'>
                       <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                         <Avatar className='h-8 w-8 rounded-lg'>
-                          <AvatarImage
-                            alt={data.user.name}
-                            src={data.user.avatar}
-                          />
-                          <AvatarFallback className='rounded-lg'>
-                            CN
-                          </AvatarFallback>
+                          <AvatarImage alt={data.user.name} src={data.user.avatar} />
+                          <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                         </Avatar>
                         <div className='grid flex-1 text-left text-sm leading-tight'>
-                          <span className='truncate font-semibold'>
-                            {data.user.name}
-                          </span>
-                          <span className='truncate text-xs'>
-                            {data.user.email}
-                          </span>
+                          <span className='truncate font-semibold'>{data.user.name}</span>
+                          <span className='truncate text-xs'>{data.user.email}</span>
                         </div>
                       </div>
                     </DropdownMenuLabel>
@@ -466,9 +411,7 @@ export const Base: Story = {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem className='hidden md:block'>
-                    <BreadcrumbLink href='#'>
-                      Building Your Application
-                    </BreadcrumbLink>
+                    <BreadcrumbLink href='#'>Building Your Application</BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className='hidden md:block' />
                   <BreadcrumbItem>

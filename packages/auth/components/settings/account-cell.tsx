@@ -2,12 +2,7 @@
 
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card } from '@repo/design-system/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/design-system/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@repo/design-system/components/ui/dropdown-menu';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -26,13 +21,7 @@ export type AccountCellProps = {
   refetch?: () => Promise<void>;
 };
 
-export function AccountCell({
-  className,
-  classNames,
-  deviceSession,
-  activeSessionId,
-  refetch,
-}: Readonly<AccountCellProps>) {
+export function AccountCell({ className, classNames, deviceSession, activeSessionId, refetch }: Readonly<AccountCellProps>) {
   const {
     basePath,
     mutators: { revokeDeviceSession, setActiveSession },

@@ -17,11 +17,7 @@ export type ChangeEmailCardProps = {
   isPending?: boolean;
 };
 
-export function ChangeEmailCard({
-  className,
-  classNames,
-  isPending,
-}: Readonly<ChangeEmailCardProps>) {
+export function ChangeEmailCard({ className, classNames, isPending }: Readonly<ChangeEmailCardProps>) {
   const shownVerifyEmailToast = useRef(false);
 
   const {
@@ -30,11 +26,7 @@ export function ChangeEmailCard({
     hooks: { useSession },
   } = useContext(AuthUIContext);
   const t = useI18n();
-  const {
-    data: sessionData,
-    isPending: sessionPending,
-    refetch,
-  } = useSession();
+  const { data: sessionData, isPending: sessionPending, refetch } = useSession();
   const [resendDisabled, setResendDisabled] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
@@ -113,9 +105,7 @@ export function ChangeEmailCard({
               defaultValue={sessionData?.user.email}
               key={sessionData?.user.email}
               name='email'
-              onChange={(e) =>
-                setDisabled(e.target.value === sessionData?.user.email)
-              }
+              onChange={(e) => setDisabled(e.target.value === sessionData?.user.email)}
               placeholder={t('account.emailPlaceholder')}
               required
               type='email'
@@ -124,19 +114,17 @@ export function ChangeEmailCard({
         </CardContent>
       </SettingsCard>
 
-      {emailVerification &&
-        sessionData?.user &&
-        !sessionData?.user.emailVerified && (
-          <SettingsCard
-            actionLabel={t('account.resendVerificationEmail')}
-            className={className}
-            classNames={classNames}
-            description={t('account.verifyYourEmailDescription')}
-            disabled={resendDisabled}
-            formAction={resendVerification}
-            title={t('account.verifyYourEmail')}
-          />
-        )}
+      {emailVerification && sessionData?.user && !sessionData?.user.emailVerified && (
+        <SettingsCard
+          actionLabel={t('account.resendVerificationEmail')}
+          className={className}
+          classNames={classNames}
+          description={t('account.verifyYourEmailDescription')}
+          disabled={resendDisabled}
+          formAction={resendVerification}
+          title={t('account.verifyYourEmail')}
+        />
+      )}
     </>
   );
 }

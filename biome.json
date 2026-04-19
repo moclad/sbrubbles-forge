@@ -63,7 +63,8 @@
       "jsxQuoteStyle": "single",
       "enabled": true,
       "indentWidth": 2,
-      "indentStyle": "space"
+      "indentStyle": "space",
+      "lineWidth": 150
     }
   },
   "extends": [

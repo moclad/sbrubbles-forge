@@ -20,12 +20,7 @@ export type SessionCellProps = {
   session: Session;
 };
 
-export function SessionCell({
-  className,
-  classNames,
-  session,
-  refetch,
-}: Readonly<SessionCellProps>) {
+export function SessionCell({ className, classNames, session, refetch }: Readonly<SessionCellProps>) {
   const t = useI18n();
   const {
     hooks: { useSession },
@@ -61,36 +56,18 @@ export function SessionCell({
   const isMobile = parser.device.type === 'mobile';
 
   return (
-    <Card
-      className={cn(
-        'flex-row items-center gap-3 px-4 py-3',
-        className,
-        classNames?.cell
-      )}
-    >
-      {isMobile ? (
-        <SmartphoneIcon className='size-4' />
-      ) : (
-        <LaptopIcon className='size-4' />
-      )}
+    <Card className={cn('flex-row items-center gap-3 px-4 py-3', className, classNames?.cell)}>
+      {isMobile ? <SmartphoneIcon className='size-4' /> : <LaptopIcon className='size-4' />}
 
       <div className='flex flex-col'>
-        <span className='font-semibold text-sm'>
-          {isCurrentSession ? t('account.currentSession') : session?.ipAddress}
-        </span>
+        <span className='font-semibold text-sm'>{isCurrentSession ? t('account.currentSession') : session?.ipAddress}</span>
 
         <span className='text-muted-foreground text-xs'>
           {parser.os.name}, {parser.browser.name}
         </span>
       </div>
 
-      <Button
-        className={cn('relative ms-auto', classNames?.button)}
-        loading={isLoading}
-        onClick={handleRevoke}
-        size='sm'
-        variant='outline'
-      >
+      <Button className={cn('relative ms-auto', classNames?.button)} loading={isLoading} onClick={handleRevoke} size='sm' variant='outline'>
         {isCurrentSession ? t('account.signOut') : t('account.revoke')}
       </Button>
     </Card>

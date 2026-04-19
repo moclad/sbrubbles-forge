@@ -4,14 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { authClient } from '@repo/auth/client';
 import { forgetPwFormSchema } from '@repo/auth/lib/auth-schema';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Separator } from '@repo/design-system/components/ui/separator';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -44,12 +37,9 @@ export const ForgotPassword = () => {
       },
       {
         onError: (ctx) => {
-          toast.error(
-            t('authentication.error.resetFailed', { error: ctx.error.message }),
-            {
-              id: toastIdRef.current ?? undefined,
-            }
-          );
+          toast.error(t('authentication.error.resetFailed', { error: ctx.error.message }), {
+            id: toastIdRef.current ?? undefined,
+          });
           setLoading(false);
         },
         onRequest: () => {
@@ -78,14 +68,9 @@ export const ForgotPassword = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>
-                    {t('authentication.fields.email')}
-                  </FormLabel>
+                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.email')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('authentication.fields.emailPlaceholder')}
-                      {...field}
-                    />
+                    <Input placeholder={t('authentication.fields.emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,10 +87,7 @@ export const ForgotPassword = () => {
       <div className='mt-4 flex justify-center'>
         <p className='text-muted-foreground text-sm'>
           {t('authentication.withAccountQuestion')}{' '}
-          <Link
-            className='underline underline-offset-4 hover:text-primary'
-            href='/sign-in'
-          >
+          <Link className='underline underline-offset-4 hover:text-primary' href='/sign-in'>
             {t('authentication.actions.signIn')}
           </Link>
         </p>

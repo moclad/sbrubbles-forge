@@ -4,13 +4,8 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import type { Period, TimePickerType } from './time-picker-utils';
-import {
-  getArrowByType,
-  getDateByType,
-  setDateByType,
-} from './time-picker-utils';
-export interface TimePickerInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+import { getArrowByType, getDateByType, setDateByType } from './time-picker-utils';
+export interface TimePickerInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   date: Date | undefined;
   onLeftFocus?: () => void;
   onRightFocus?: () => void;
@@ -19,10 +14,7 @@ export interface TimePickerInputProps
   setDate: (date: Date | undefined) => void;
 }
 
-const TimePickerInput = React.forwardRef<
-  HTMLInputElement,
-  TimePickerInputProps
->(
+const TimePickerInput = React.forwardRef<HTMLInputElement, TimePickerInputProps>(
   (
     {
       className,
@@ -68,12 +60,7 @@ const TimePickerInput = React.forwardRef<
        * If picker is '12hours' and the first digit is 0, then the second digit is automatically set to 1.
        * The second entered digit will break the condition and the value will be set to 10-12.
        */
-      if (
-        picker === '12hours' &&
-        flag &&
-        calculatedValue.slice(1, 2) === '1' &&
-        prevIntKey === '0'
-      ) {
+      if (picker === '12hours' && flag && calculatedValue.slice(1, 2) === '1' && prevIntKey === '0') {
         return '0' + key;
       }
 

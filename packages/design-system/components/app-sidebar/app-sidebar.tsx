@@ -1,23 +1,8 @@
 'use client';
 
 import { useSession } from '@repo/auth/client';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@repo/design-system/components/ui/sidebar';
-import {
-  AudioWaveform,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  MapIcon,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from 'lucide-react';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@repo/design-system/components/ui/sidebar';
+import { AudioWaveform, Command, Frame, GalleryVerticalEnd, MapIcon, PieChart, Settings2, SquareTerminal } from 'lucide-react';
 import type { ComponentProps } from 'react';
 import { NavMain } from './nav-main';
 import { NavProjects } from './nav-projects';

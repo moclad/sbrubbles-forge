@@ -21,13 +21,7 @@ export type ChangePasswordCardProps = {
   skipHook?: boolean;
 };
 
-export function ChangePasswordCard({
-  className,
-  classNames,
-  accounts,
-  isPending,
-  skipHook,
-}: Readonly<ChangePasswordCardProps>) {
+export function ChangePasswordCard({ className, classNames, accounts, isPending, skipHook }: Readonly<ChangePasswordCardProps>) {
   const {
     authClient,
     basePath,
@@ -82,9 +76,7 @@ export function ChangePasswordCard({
     toast.error(t('account.changePasswordSuccess'));
   };
 
-  const credentialsLinked = accounts?.some(
-    (acc) => acc.provider === 'credential'
-  );
+  const credentialsLinked = accounts?.some((acc) => acc.provider === 'credential');
 
   if (!(isPending || credentialsLinked)) {
     return (
@@ -118,9 +110,7 @@ export function ChangePasswordCard({
             <InputFieldSkeleton classNames={classNames} />
             <InputFieldSkeleton classNames={classNames} />
 
-            {confirmPasswordEnabled && (
-              <InputFieldSkeleton classNames={classNames} />
-            )}
+            {confirmPasswordEnabled && <InputFieldSkeleton classNames={classNames} />}
           </>
         ) : (
           <>
@@ -149,20 +139,14 @@ export function ChangePasswordCard({
                 className={classNames?.input}
                 id='newPassword'
                 name='newPassword'
-                onChange={(e) =>
-                  !confirmPasswordEnabled && setDisabled(e.target.value === '')
-                }
+                onChange={(e) => !confirmPasswordEnabled && setDisabled(e.target.value === '')}
                 placeholder={t('account.newPasswordPlaceholder')}
                 required
               />
             </div>
 
             {confirmPasswordEnabled && (
-              <ConfirmPasswordInput
-                autoComplete='current-password'
-                classNames={classNames}
-                onChange={() => setDisabled(false)}
-              />
+              <ConfirmPasswordInput autoComplete='current-password' classNames={classNames} onChange={() => setDisabled(false)} />
             )}
           </>
         )}

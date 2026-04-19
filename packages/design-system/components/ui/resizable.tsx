@@ -4,16 +4,10 @@ import { cn } from '@repo/design-system/lib/utils';
 import { GripVerticalIcon } from 'lucide-react';
 import * as ResizablePrimitive from 'react-resizable-panels';
 
-function ResizablePanelGroup({
-  className,
-  ...props
-}: ResizablePrimitive.GroupProps) {
+function ResizablePanelGroup({ className, ...props }: ResizablePrimitive.GroupProps) {
   return (
     <ResizablePrimitive.Group
-      className={cn(
-        'flex h-full w-full aria-[orientation=vertical]:flex-col',
-        className
-      )}
+      className={cn('flex h-full w-full aria-[orientation=vertical]:flex-col', className)}
       data-slot='resizable-panel-group'
       {...props}
     />

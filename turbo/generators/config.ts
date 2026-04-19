@@ -4,11 +4,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
   plop.setGenerator('init', {
     actions: [
       (answers) => {
-        if (
-          'name' in answers &&
-          typeof answers.name === 'string' &&
-          answers.name.startsWith('@repo/')
-        ) {
+        if ('name' in answers && typeof answers.name === 'string' && answers.name.startsWith('@repo/')) {
           answers.name = answers.name.replace('@repo/', '');
         }
         return 'Config sanitized';
@@ -27,8 +23,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     description: 'Generate a new package for the Monorepo',
     prompts: [
       {
-        message:
-          'What is the name of the package? (You can skip the `@repo/` prefix)',
+        message: 'What is the name of the package? (You can skip the `@repo/` prefix)',
         name: 'name',
         type: 'input',
       },

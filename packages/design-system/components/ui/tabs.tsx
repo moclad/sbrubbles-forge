@@ -6,17 +6,10 @@ import { cva } from 'class-variance-authority';
 import { Tabs as TabsPrimitive } from 'radix-ui';
 import type * as React from 'react';
 
-function Tabs({
-  className,
-  orientation = 'horizontal',
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+function Tabs({ className, orientation = 'horizontal', ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
   return (
     <TabsPrimitive.Root
-      className={cn(
-        'group/tabs flex gap-2 data-[orientation=horizontal]:flex-col',
-        className
-      )}
+      className={cn('group/tabs flex gap-2 data-[orientation=horizontal]:flex-col', className)}
       data-orientation={orientation}
       data-slot='tabs'
       orientation={orientation}
@@ -44,22 +37,11 @@ function TabsList({
   className,
   variant = 'default',
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.List> &
-  VariantProps<typeof tabsListVariants>) {
-  return (
-    <TabsPrimitive.List
-      className={cn(tabsListVariants({ variant }), className)}
-      data-slot='tabs-list'
-      data-variant={variant}
-      {...props}
-    />
-  );
+}: React.ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) {
+  return <TabsPrimitive.List className={cn(tabsListVariants({ variant }), className)} data-slot='tabs-list' data-variant={variant} {...props} />;
 }
 
-function TabsTrigger({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
       className={cn(
@@ -75,17 +57,8 @@ function TabsTrigger({
   );
 }
 
-function TabsContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content>) {
-  return (
-    <TabsPrimitive.Content
-      className={cn('flex-1 outline-none', className)}
-      data-slot='tabs-content'
-      {...props}
-    />
-  );
+function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return <TabsPrimitive.Content className={cn('flex-1 outline-none', className)} data-slot='tabs-content' {...props} />;
 }
 
 export { Tabs, TabsContent, TabsList, TabsTrigger, tabsListVariants };

@@ -6,21 +6,8 @@ import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import { DateTimePicker } from '@repo/design-system/components/ui/date-picker';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@repo/design-system/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@repo/design-system/components/ui/form';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
 import { Euro, Loader2, Search } from 'lucide-react';
@@ -31,10 +18,7 @@ import { z } from 'zod';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 import type { TripWithPeople } from '@/lib/trips-actions';
 
-const LocationMap = dynamic(
-  () => import('../../components/location-map').then((m) => m.LocationMap),
-  { ssr: false }
-);
+const LocationMap = dynamic(() => import('../../components/location-map').then((m) => m.LocationMap), { ssr: false });
 
 type LocationState = {
   lat: number;
@@ -78,10 +62,7 @@ function toDateInputValue(value: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-function getDefaultLocation(
-  trip: TripWithPeople,
-  initialData?: ExpenseWithDetails
-): LocationState | null {
+function getDefaultLocation(trip: TripWithPeople, initialData?: ExpenseWithDetails): LocationState | null {
   if (initialData?.locationLat != null && initialData.locationLng != null) {
     return {
       lat: initialData.locationLat,
@@ -115,15 +96,11 @@ export function ExpenseFormDialog({
   const isEdit = Boolean(initialData);
   const [searching, setSearching] = useState(false);
   const [locationNotFound, setLocationNotFound] = useState(false);
-  const [location, setLocation] = useState<LocationState | null>(() =>
-    getDefaultLocation(trip, initialData)
-  );
+  const [location, setLocation] = useState<LocationState | null>(() => getDefaultLocation(trip, initialData));
 
   const schema = z.object({
     amount: z.string().min(1, t('trips.expenses.form.errors.amountRequired')),
-    categoryId: z
-      .string()
-      .min(1, t('trips.expenses.form.errors.categoryRequired')),
+    categoryId: z.string().min(1, t('trips.expenses.form.errors.categoryRequired')),
     date: z.string().min(1, t('trips.expenses.form.errors.dateRequired')),
     description: z.string().max(255).optional(),
     locationQuery: z.string().optional(),
@@ -183,10 +160,9 @@ export function ExpenseFormDialog({
     setLocationNotFound(false);
 
     try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`,
-        { headers: { 'Accept-Language': 'en' } }
-      );
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
+        headers: { 'Accept-Language': 'en' },
+      });
       const data = (await response.json()) as {
         display_name: string;
         lat: string;
@@ -250,26 +226,17 @@ export function ExpenseFormDialog({
     <Dialog onOpenChange={handleOpenChange} open={open}>
       <DialogContent className='max-h-[90vh] overflow-y-auto sm:max-w-lg lg:max-w-xl'>
         <DialogHeader>
-          <DialogTitle>
-            {isEdit
-              ? t('trips.expenses.form.editTitle')
-              : t('trips.expenses.form.createTitle')}
-          </DialogTitle>
+          <DialogTitle>{isEdit ? t('trips.expenses.form.editTitle') : t('trips.expenses.form.createTitle')}</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
-          <form
-            className='flex flex-col gap-4'
-            onSubmit={form.handleSubmit(handleSubmit)}
-          >
+          <form className='flex flex-col gap-4' onSubmit={form.handleSubmit(handleSubmit)}>
             <FormField
               control={form.control}
               name='categoryId'
               render={({ field }) => (
                 <FormItem className='flex flex-col gap-2'>
-                  <FormLabel>
-                    {t('trips.expenses.form.categoryLabel')}
-                  </FormLabel>
+                  <FormLabel>{t('trips.expenses.form.categoryLabel')}</FormLabel>
                   {selectedCategory && (
                     <Badge
                       className='w-fit text-foreground'
@@ -296,13 +263,9 @@ export function ExpenseFormDialog({
                             <Badge
                               className='pointer-events-none text-foreground transition-opacity hover:opacity-90'
                               style={{
-                                backgroundColor: isSelected
-                                  ? `${category.color}44`
-                                  : `${category.color}18`,
+                                backgroundColor: isSelected ? `${category.color}44` : `${category.color}18`,
                                 borderColor: category.color,
-                                boxShadow: isSelected
-                                  ? `0 0 0 2px ${category.color}`
-                                  : 'none',
+                                boxShadow: isSelected ? `0 0 0 2px ${category.color}` : 'none',
                               }}
                               variant='outline'
                             >
@@ -327,14 +290,7 @@ export function ExpenseFormDialog({
                   <FormControl>
                     <div className='relative'>
                       <Euro className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input
-                        className='pl-9'
-                        min='0'
-                        placeholder='0.00'
-                        step='0.01'
-                        type='number'
-                        {...field}
-                      />
+                      <Input className='pl-9' min='0' placeholder='0.00' step='0.01' type='number' {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -372,16 +328,9 @@ export function ExpenseFormDialog({
               name='description'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {t('trips.expenses.form.descriptionLabel')}
-                  </FormLabel>
+                  <FormLabel>{t('trips.expenses.form.descriptionLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t(
-                        'trips.expenses.form.descriptionPlaceholder'
-                      )}
-                      {...field}
-                    />
+                    <Input placeholder={t('trips.expenses.form.descriptionPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -393,9 +342,7 @@ export function ExpenseFormDialog({
               name='locationQuery'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {t('trips.expenses.form.locationLabel')}
-                  </FormLabel>
+                  <FormLabel>{t('trips.expenses.form.locationLabel')}</FormLabel>
                   <div className='flex gap-2'>
                     <FormControl>
                       <Input
@@ -405,31 +352,16 @@ export function ExpenseFormDialog({
                             handleSearch();
                           }
                         }}
-                        placeholder={t(
-                          'trips.expenses.form.locationPlaceholder'
-                        )}
+                        placeholder={t('trips.expenses.form.locationPlaceholder')}
                         {...field}
                       />
                     </FormControl>
-                    <Button
-                      disabled={searching}
-                      onClick={handleSearch}
-                      type='button'
-                      variant='outline'
-                    >
-                      {searching ? (
-                        <Loader2 className='animate-spin' size={14} />
-                      ) : (
-                        <Search size={14} />
-                      )}
+                    <Button disabled={searching} onClick={handleSearch} type='button' variant='outline'>
+                      {searching ? <Loader2 className='animate-spin' size={14} /> : <Search size={14} />}
                       {t('trips.expenses.form.searchButton')}
                     </Button>
                   </div>
-                  {locationNotFound && (
-                    <p className='text-destructive text-sm'>
-                      {t('trips.expenses.form.locationNotFound')}
-                    </p>
-                  )}
+                  {locationNotFound && <p className='text-destructive text-sm'>{t('trips.expenses.form.locationNotFound')}</p>}
                   <FormMessage />
                 </FormItem>
               )}
@@ -442,19 +374,13 @@ export function ExpenseFormDialog({
                   lng={location.lng}
                   locationName={location.name}
                   onPositionChange={(lat, lng) => {
-                    setLocation((previous) =>
-                      previous ? { ...previous, lat, lng } : null
-                    );
+                    setLocation((previous) => (previous ? { ...previous, lat, lng } : null));
                   }}
                 />
-                <p className='text-muted-foreground text-xs'>
-                  {t('trips.form.locationMarkerHint')}
-                </p>
+                <p className='text-muted-foreground text-xs'>{t('trips.form.locationMarkerHint')}</p>
               </>
             ) : (
-              <p className='text-muted-foreground text-xs'>
-                {t('trips.expenses.form.locationOptionalHint')}
-              </p>
+              <p className='text-muted-foreground text-xs'>{t('trips.expenses.form.locationOptionalHint')}</p>
             )}
 
             {people.length > 0 && (
@@ -463,9 +389,7 @@ export function ExpenseFormDialog({
                 name='personIds'
                 render={() => (
                   <FormItem>
-                    <FormLabel>
-                      {t('trips.expenses.form.peopleLabel')}
-                    </FormLabel>
+                    <FormLabel>{t('trips.expenses.form.peopleLabel')}</FormLabel>
                     <div className='flex flex-col gap-2'>
                       {people.map((item) => (
                         <FormField
@@ -478,18 +402,12 @@ export function ExpenseFormDialog({
                                 <Checkbox
                                   checked={field.value.includes(item.id)}
                                   onCheckedChange={(checked) => {
-                                    const next = checked
-                                      ? [...field.value, item.id]
-                                      : field.value.filter(
-                                          (value) => value !== item.id
-                                        );
+                                    const next = checked ? [...field.value, item.id] : field.value.filter((value) => value !== item.id);
                                     field.onChange(next);
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className='cursor-pointer font-normal'>
-                                {item.name}
-                              </FormLabel>
+                              <FormLabel className='cursor-pointer font-normal'>{item.name}</FormLabel>
                             </FormItem>
                           )}
                         />
@@ -505,11 +423,7 @@ export function ExpenseFormDialog({
               <Button onClick={() => handleOpenChange(false)} variant='outline'>
                 {t('trips.expenses.form.cancel')}
               </Button>
-              <Button type='submit'>
-                {isEdit
-                  ? t('trips.expenses.form.saveChanges')
-                  : t('trips.expenses.form.create')}
-              </Button>
+              <Button type='submit'>{isEdit ? t('trips.expenses.form.saveChanges') : t('trips.expenses.form.create')}</Button>
             </DialogFooter>
           </form>
         </Form>

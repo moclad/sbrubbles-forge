@@ -20,14 +20,7 @@ export type ProvidersCardProps = {
   skipHook?: boolean;
 };
 
-export function ProvidersCard({
-  className,
-  classNames,
-  accounts,
-  isPending,
-  skipHook,
-  refetch,
-}: Readonly<ProvidersCardProps>) {
+export function ProvidersCard({ className, classNames, accounts, isPending, skipHook, refetch }: Readonly<ProvidersCardProps>) {
   const t = useI18n();
   const {
     hooks: { useListAccounts },
@@ -75,32 +68,17 @@ export function ProvidersCard({
         ) : (
           <>
             {providers?.map((provider) => {
-              const socialProvider = socialProviders.find(
-                (socialProvider) => socialProvider.provider === provider
-              );
+              const socialProvider = socialProviders.find((socialProvider) => socialProvider.provider === provider);
 
               if (!socialProvider) {
                 return null;
               }
 
-              return (
-                <ProviderCell
-                  accounts={accounts}
-                  classNames={classNames}
-                  key={provider}
-                  provider={socialProvider}
-                />
-              );
+              return <ProviderCell accounts={accounts} classNames={classNames} key={provider} provider={socialProvider} />;
             })}
 
             {otherProviders?.map((provider) => (
-              <ProviderCell
-                accounts={accounts}
-                classNames={classNames}
-                key={provider.provider}
-                other
-                provider={provider}
-              />
+              <ProviderCell accounts={accounts} classNames={classNames} key={provider.provider} other provider={provider} />
             ))}
           </>
         )}

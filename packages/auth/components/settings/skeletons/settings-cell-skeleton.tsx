@@ -6,9 +6,7 @@ import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 
 import type { SettingsCardClassNames } from '../shared/settings-card';
 
-export function SettingsCellSkeleton({
-  classNames,
-}: Readonly<{ classNames?: SettingsCardClassNames }>) {
+export function SettingsCellSkeleton({ classNames }: Readonly<{ classNames?: SettingsCardClassNames }>) {
   return (
     <Card className={cn('flex-row p-4', classNames?.cell)}>
       <div className='flex items-center gap-2'>

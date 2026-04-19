@@ -5,10 +5,7 @@ import { CheckIcon } from 'lucide-react';
 import { Checkbox as CheckboxPrimitive } from 'radix-ui';
 import type * as React from 'react';
 
-function Checkbox({
-  className,
-  ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
     <CheckboxPrimitive.Root
       className={cn(
@@ -18,10 +15,7 @@ function Checkbox({
       data-slot='checkbox'
       {...props}
     >
-      <CheckboxPrimitive.Indicator
-        className='grid place-content-center text-current transition-none'
-        data-slot='checkbox-indicator'
-      >
+      <CheckboxPrimitive.Indicator className='grid place-content-center text-current transition-none' data-slot='checkbox-indicator'>
         <CheckIcon className='size-3.5' />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

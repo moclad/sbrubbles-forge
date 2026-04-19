@@ -10,8 +10,7 @@ export const keys = () =>
     runtimeEnv: {
       KNOCK_SECRET_API_KEY: process.env.KNOCK_SECRET_API_KEY,
       NEXT_PUBLIC_KNOCK_API_KEY: process.env.NEXT_PUBLIC_KNOCK_API_KEY,
-      NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID:
-        process.env.NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID,
+      NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID: process.env.NEXT_PUBLIC_KNOCK_FEED_CHANNEL_ID,
     },
     server: {
       KNOCK_SECRET_API_KEY: z.string().optional(),

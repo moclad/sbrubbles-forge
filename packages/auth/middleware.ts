@@ -16,15 +16,12 @@ export const authMiddleware = async (request: NextRequest) => {
   const isPasswordRoute = passwordRoutes.includes(pathName);
   const isAppRoute = appRoutes.includes(pathName);
 
-  const { data: session } = await betterFetch<Session>(
-    '/api/auth/get-session',
-    {
-      baseURL: keys().BETTER_AUTH_URL,
-      headers: {
-        cookie: request.headers.get('cookie') ?? '', // Forward the cookies from the request
-      },
-    }
-  );
+  const { data: session } = await betterFetch<Session>('/api/auth/get-session', {
+    baseURL: keys().BETTER_AUTH_URL,
+    headers: {
+      cookie: request.headers.get('cookie') ?? '', // Forward the cookies from the request
+    },
+  });
 
   if (!session) {
     if (isAuthRoute || isPasswordRoute) {

@@ -1,17 +1,6 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from '@repo/design-system/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@repo/design-system/components/ui/alert';
 import { Button } from '@repo/design-system/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@repo/design-system/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
 import { AlertCircle } from 'lucide-react';
@@ -19,11 +8,7 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-const ResetPassword = dynamic(() =>
-  import('@repo/auth/components/auth/reset-password').then(
-    (mod) => mod.ResetPassword
-  )
-);
+const ResetPassword = dynamic(() => import('@repo/auth/components/auth/reset-password').then((mod) => mod.ResetPassword));
 
 type ResetProps = {
   searchParams: Promise<{
@@ -42,24 +27,16 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
     return (
       <Card className='mx-auto max-w-md shadow-lg'>
         <CardHeader>
-          <CardTitle className='text-2xl'>
-            {t('authentication.tokenRequired')}
-          </CardTitle>
-          <CardDescription>
-            {t('authentication.tokenRequiredDescription')}
-          </CardDescription>
+          <CardTitle className='text-2xl'>{t('authentication.tokenRequired')}</CardTitle>
+          <CardDescription>{t('authentication.tokenRequiredDescription')}</CardDescription>
         </CardHeader>
         <CardContent className='space-y-4'>
           <Alert variant='destructive'>
             <AlertCircle className='size-4' />
             <AlertTitle>{t('authentication.resetPwAccessDenied')}</AlertTitle>
-            <AlertDescription>
-              {t('authentication.resetPwAccessDeniedDescription')}
-            </AlertDescription>
+            <AlertDescription>{t('authentication.resetPwAccessDeniedDescription')}</AlertDescription>
           </Alert>
-          <p className='text-muted-foreground text-sm'>
-            {t('authentication.resetPwAccessDeniedDescription2')}
-          </p>
+          <p className='text-muted-foreground text-sm'>{t('authentication.resetPwAccessDeniedDescription2')}</p>
         </CardContent>
         <CardFooter className='flex justify-between'>
           <Button asChild className='w-full'>
@@ -73,12 +50,8 @@ const ResetPasswordPage = async ({ searchParams }: ResetProps) => {
   return (
     <>
       <div className='flex flex-col space-y-2 text-center'>
-        <h1 className='font-semibold text-2xl tracking-tight'>
-          {t('authentication.resetPassword')}
-        </h1>
-        <p className='text-muted-foreground text-sm'>
-          {t('authentication.resetSubTitle')}
-        </p>
+        <h1 className='font-semibold text-2xl tracking-tight'>{t('authentication.resetPassword')}</h1>
+        <p className='text-muted-foreground text-sm'>{t('authentication.resetSubTitle')}</p>
       </div>
       <ResetPassword token={token} />
     </>

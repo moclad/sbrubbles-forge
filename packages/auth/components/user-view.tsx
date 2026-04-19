@@ -26,52 +26,23 @@ export type UserProps = {
  * - Falls back to generic "User" text when neither name nor email is available
  * - Supports customization through classNames prop
  */
-export function UserView({
-  user,
-  className,
-  classNames,
-  isPending,
-}: Readonly<UserProps>) {
+export function UserView({ user, className, classNames, isPending }: Readonly<UserProps>) {
   return (
-    <div
-      className={cn(
-        'flex items-center gap-2 truncate',
-        className,
-        classNames?.base
-      )}
-    >
-      <UserAvatar
-        className='my-0.5'
-        classNames={classNames?.avatar}
-        isPending={isPending}
-        user={user}
-      />
+    <div className={cn('flex items-center gap-2 truncate', className, classNames?.base)}>
+      <UserAvatar className='my-0.5' classNames={classNames?.avatar} isPending={isPending} user={user} />
 
       <div className='flex flex-col truncate text-left'>
         {isPending ? (
           <>
-            <Skeleton
-              className={cn('my-0.5 h-4 w-24 max-w-full', classNames?.p)}
-            />
-            <Skeleton
-              className={cn('my-0.5 h-3 w-32 max-w-full', classNames?.small)}
-            />
+            <Skeleton className={cn('my-0.5 h-4 w-24 max-w-full', classNames?.p)} />
+            <Skeleton className={cn('my-0.5 h-3 w-32 max-w-full', classNames?.small)} />
           </>
         ) : (
           <>
-            <span className={cn('truncate font-medium text-sm', classNames?.p)}>
-              {user?.name ?? user?.email ?? 'User'}
-            </span>
+            <span className={cn('truncate font-medium text-sm', classNames?.p)}>{user?.name ?? user?.email ?? 'User'}</span>
 
             {user?.name && user?.email && (
-              <span
-                className={cn(
-                  '!font-light truncate text-muted-foreground text-xs',
-                  classNames?.small
-                )}
-              >
-                {user.email}
-              </span>
+              <span className={cn('!font-light truncate text-muted-foreground text-xs', classNames?.small)}>{user.email}</span>
             )}
           </>
         )}

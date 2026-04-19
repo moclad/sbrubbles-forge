@@ -2,10 +2,7 @@
 
 import { AppSidebar } from '@repo/design-system/components/app-sidebar/app-sidebar';
 import Header from '@repo/design-system/components/layout/header';
-import {
-  SidebarInset,
-  SidebarProvider,
-} from '@repo/design-system/components/ui/sidebar';
+import { SidebarInset, SidebarProvider } from '@repo/design-system/components/ui/sidebar';
 
 import type { ReactNode } from 'react';
 

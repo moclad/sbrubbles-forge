@@ -12,18 +12,13 @@ export type UpdateUsernameCardProps = {
   isPending?: boolean;
 };
 
-export function UpdateUsernameCard({
-  className,
-  classNames,
-  isPending,
-}: Readonly<UpdateUsernameCardProps>) {
+export function UpdateUsernameCard({ className, classNames, isPending }: Readonly<UpdateUsernameCardProps>) {
   const t = useI18n();
   const { hooks } = useContext(AuthUIContext);
   const { useSession } = hooks;
 
   const { data: sessionData } = useSession();
-  const defaultValue =
-    sessionData?.user.displayUsername ?? sessionData?.user.username;
+  const defaultValue = sessionData?.user.displayUsername ?? sessionData?.user.username;
 
   return (
     <UpdateFieldCard
