@@ -84,10 +84,7 @@ const renderActiveShape = ({
         textAnchor={textAnchor}
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
-      >{`${payload.label} ${formatAmount(value)}`}</text>
-      <text dy={18} fill='#999' textAnchor={textAnchor} x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey}>
-        {`(Rate ${((percent ?? 1) * 100).toFixed(1)}%)`}
-      </text>
+      >{`${payload.label} ${formatAmount(value)} (${((percent ?? 1) * 100).toFixed(1)}%)`}</text>
     </g>
   );
 };

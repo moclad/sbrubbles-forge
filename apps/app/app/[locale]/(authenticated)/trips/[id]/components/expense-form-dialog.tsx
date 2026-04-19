@@ -35,7 +35,7 @@ type LocationState = {
 type ExpenseFormValues = {
   amount: string;
   categoryId: string;
-  date: string;
+  date: Date;
   description?: string;
   locationQuery?: string;
   personIds: string[];
@@ -60,13 +60,6 @@ type ExpenseFormDialogProps = {
   selectedDate: Date;
   trip: TripWithPeople;
 };
-
-function toDateInputValue(value: Date): string {
-  const year = value.getFullYear();
-  const month = `${value.getMonth() + 1}`.padStart(2, '0');
-  const day = `${value.getDate()}`.padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
 
 function getDefaultLocation(trip: TripWithPeople, initialData?: ExpenseWithDetails): LocationState | null {
   if (initialData?.locationLat != null && initialData.locationLng != null) {
@@ -107,7 +100,7 @@ export function ExpenseFormDialog({
   const schema = z.object({
     amount: z.string().min(1, t('trips.expenses.form.errors.amountRequired')),
     categoryId: z.string().min(1, t('trips.expenses.form.errors.categoryRequired')),
-    date: z.string().min(1, t('trips.expenses.form.errors.dateRequired')),
+    date: z.date().min(1, t('trips.expenses.form.errors.dateRequired')),
     description: z.string().max(255).optional(),
     locationQuery: z.string().optional(),
     personIds: z.array(z.string()),
@@ -117,7 +110,7 @@ export function ExpenseFormDialog({
     defaultValues: {
       amount: initialData ? String(initialData.amount) : '',
       categoryId: initialData?.category.id ?? '',
-      date: toDateInputValue(initialData?.date ?? selectedDate),
+      date: initialData?.date ?? selectedDate,
       description: initialData?.description ?? '',
       locationQuery: initialData?.locationName ?? trip.locationName ?? '',
       personIds: initialData?.people.map((item) => item.id) ?? [],
@@ -139,14 +132,14 @@ export function ExpenseFormDialog({
       form.reset({
         amount: String(initialData.amount),
         categoryId: initialData.category.id,
-        date: toDateInputValue(initialData.date),
+        date: initialData.date,
         description: initialData.description ?? '',
         locationQuery: initialData.locationName ?? trip.locationName ?? '',
         personIds: initialData.people.map((item) => item.id),
       });
       setLocation(getDefaultLocation(trip, initialData));
     } else {
-      form.setValue('date', toDateInputValue(selectedDate));
+      form.setValue('date', selectedDate);
     }
   }, [form, initialData, open, selectedDate, trip]);
 
@@ -154,7 +147,7 @@ export function ExpenseFormDialog({
     form.reset({
       amount: initialData ? String(initialData.amount) : '',
       categoryId: initialData?.category.id ?? '',
-      date: toDateInputValue(initialData?.date ?? selectedDate),
+      date: initialData?.date ?? selectedDate,
       description: initialData?.description ?? '',
       locationQuery: initialData?.locationName ?? trip.locationName ?? '',
       personIds: initialData?.people.map((item) => item.id) ?? [],
@@ -222,19 +215,10 @@ export function ExpenseFormDialog({
       return;
     }
 
-    const parsedDate = new Date(`${values.date}T00:00:00`);
-    if (Number.isNaN(parsedDate.getTime())) {
-      form.setError('date', {
-        message: t('trips.expenses.form.errors.invalidDate'),
-        type: 'validate',
-      });
-      return;
-    }
-
     await onSubmit({
       amount: parsedAmount,
       categoryId: values.categoryId,
-      date: parsedDate,
+      date: values.date,
       description: values.description ?? '',
       locationLat: location?.lat ?? null,
       locationLng: location?.lng ?? null,

@@ -83,9 +83,6 @@ function validateExpenseInput(data: ExpenseData) {
   if (!data.categoryId.trim()) {
     throw new Error('Category is required');
   }
-  if (!data.description.trim()) {
-    throw new Error('Description is required');
-  }
   if (!Number.isFinite(data.amount) || data.amount <= 0) {
     throw new Error('Amount must be greater than zero');
   }
