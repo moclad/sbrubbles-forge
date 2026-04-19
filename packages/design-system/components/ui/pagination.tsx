@@ -49,7 +49,12 @@ function PaginationLink({ className, isActive, size = 'icon', ...props }: Pagina
 
 function PaginationPrevious({ className, ...props }: React.ComponentProps<typeof PaginationLink>) {
   return (
-    <PaginationLink aria-label='Go to previous page' className={cn('gap-1 px-2.5 sm:pl-2.5', className)} size='default' {...props}>
+    <PaginationLink
+      aria-label='Go to previous page'
+      className={cn('gap-1 px-2.5 sm:pl-2.5', className)}
+      size='default'
+      {...props}
+    >
       <ChevronLeftIcon />
       <span className='hidden sm:block'>Previous</span>
     </PaginationLink>
@@ -58,7 +63,12 @@ function PaginationPrevious({ className, ...props }: React.ComponentProps<typeof
 
 function PaginationNext({ className, ...props }: React.ComponentProps<typeof PaginationLink>) {
   return (
-    <PaginationLink aria-label='Go to next page' className={cn('gap-1 px-2.5 sm:pr-2.5', className)} size='default' {...props}>
+    <PaginationLink
+      aria-label='Go to next page'
+      className={cn('gap-1 px-2.5 sm:pr-2.5', className)}
+      size='default'
+      {...props}
+    >
       <span className='hidden sm:block'>Next</span>
       <ChevronRightIcon />
     </PaginationLink>
@@ -67,11 +77,24 @@ function PaginationNext({ className, ...props }: React.ComponentProps<typeof Pag
 
 function PaginationEllipsis({ className, ...props }: React.ComponentProps<'span'>) {
   return (
-    <span aria-hidden className={cn('flex size-9 items-center justify-center', className)} data-slot='pagination-ellipsis' {...props}>
+    <span
+      aria-hidden
+      className={cn('flex size-9 items-center justify-center', className)}
+      data-slot='pagination-ellipsis'
+      {...props}
+    >
       <MoreHorizontalIcon className='size-4' />
       <span className='sr-only'>More pages</span>
     </span>
   );
 }
 
-export { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious };
+export {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+};

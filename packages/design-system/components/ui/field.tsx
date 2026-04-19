@@ -11,14 +11,22 @@ import { useMemo } from 'react';
 function FieldSet({ className, ...props }: React.ComponentProps<'fieldset'>) {
   return (
     <fieldset
-      className={cn('flex flex-col gap-6', 'has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3', className)}
+      className={cn(
+        'flex flex-col gap-6',
+        'has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3',
+        className
+      )}
       data-slot='field-set'
       {...props}
     />
   );
 }
 
-function FieldLegend({ className, variant = 'legend', ...props }: React.ComponentProps<'legend'> & { variant?: 'legend' | 'label' }) {
+function FieldLegend({
+  className,
+  variant = 'legend',
+  ...props
+}: React.ComponentProps<'legend'> & { variant?: 'legend' | 'label' }) {
   return (
     <legend
       className={cn('mb-3 font-medium', 'data-[variant=legend]:text-base', 'data-[variant=label]:text-sm', className)}
@@ -63,12 +71,30 @@ const fieldVariants = cva('group/field flex w-full gap-3 data-[invalid=true]:tex
   },
 });
 
-function Field({ className, orientation = 'vertical', ...props }: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
-  return <div className={cn(fieldVariants({ orientation }), className)} data-orientation={orientation} data-slot='field' role='group' {...props} />;
+function Field({
+  className,
+  orientation = 'vertical',
+  ...props
+}: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
+  return (
+    <div
+      className={cn(fieldVariants({ orientation }), className)}
+      data-orientation={orientation}
+      data-slot='field'
+      role='group'
+      {...props}
+    />
+  );
 }
 
 function FieldContent({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn('group/field-content flex flex-1 flex-col gap-1.5 leading-snug', className)} data-slot='field-content' {...props} />;
+  return (
+    <div
+      className={cn('group/field-content flex flex-1 flex-col gap-1.5 leading-snug', className)}
+      data-slot='field-content'
+      {...props}
+    />
+  );
 }
 
 function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
@@ -89,7 +115,10 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
 function FieldTitle({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('flex w-fit items-center gap-2 font-medium text-sm leading-snug group-data-[disabled=true]/field:opacity-50', className)}
+      className={cn(
+        'flex w-fit items-center gap-2 font-medium text-sm leading-snug group-data-[disabled=true]/field:opacity-50',
+        className
+      )}
       data-slot='field-label'
       {...props}
     />
@@ -127,7 +156,10 @@ function FieldSeparator({
     >
       <Separator className='absolute inset-0 top-1/2' />
       {children && (
-        <span className='relative mx-auto block w-fit bg-background px-2 text-muted-foreground' data-slot='field-separator-content'>
+        <span
+          className='relative mx-auto block w-fit bg-background px-2 text-muted-foreground'
+          data-slot='field-separator-content'
+        >
           {children}
         </span>
       )}
@@ -170,10 +202,26 @@ function FieldError({
   }
 
   return (
-    <div className={cn('font-normal text-destructive text-sm', className)} data-slot='field-error' role='alert' {...props}>
+    <div
+      className={cn('font-normal text-destructive text-sm', className)}
+      data-slot='field-error'
+      role='alert'
+      {...props}
+    >
       {content}
     </div>
   );
 }
 
-export { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle };
+export {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+};

@@ -97,9 +97,14 @@ export const ResetPassword = ({ token }: Props) => {
               name='passwordConfirmation'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-muted-foreground'>{t('authentication.fields.passwordConfirmation')}</FormLabel>
+                  <FormLabel className='text-muted-foreground'>
+                    {t('authentication.fields.passwordConfirmation')}
+                  </FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder={t('authentication.fields.passwordConfirmationPlaceholder')} {...field} />
+                    <PasswordInput
+                      placeholder={t('authentication.fields.passwordConfirmationPlaceholder')}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -1,5 +1,12 @@
 import { Button } from '@repo/design-system/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Label } from '@repo/design-system/components/ui/label';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -71,7 +78,9 @@ export function DeleteAccountDialog({ open, onOpenChange, accounts, classNames }
       <form action={action}>
         <DialogContent className='sm:max-w-md'>
           <DialogHeader>
-            <DialogTitle className={cn('text-lg md:text-xl', classNames?.title)}>{t('account.deleteAccount')}</DialogTitle>
+            <DialogTitle className={cn('text-lg md:text-xl', classNames?.title)}>
+              {t('account.deleteAccount')}
+            </DialogTitle>
 
             <DialogDescription className={cn('text-xs md:text-sm', classNames?.description)}>
               {isFresh ? t('account.deleteAccountInstructions') : t('account.deleteAccountNotFresh')}
@@ -99,7 +108,9 @@ export function DeleteAccountDialog({ open, onOpenChange, accounts, classNames }
             </Button>
 
             <Button className={classNames?.button} disabled={isSubmitting} loading={isSubmitting} variant='destructive'>
-              <span className={cn(isSubmitting && 'opacity-0')}>{isFresh ? t('account.deleteAccount') : t('account.signOut')}</span>
+              <span className={cn(isSubmitting && 'opacity-0')}>
+                {isFresh ? t('account.deleteAccount') : t('account.signOut')}
+              </span>
             </Button>
           </DialogFooter>
         </DialogContent>

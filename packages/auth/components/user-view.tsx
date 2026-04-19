@@ -39,10 +39,14 @@ export function UserView({ user, className, classNames, isPending }: Readonly<Us
           </>
         ) : (
           <>
-            <span className={cn('truncate font-medium text-sm', classNames?.p)}>{user?.name ?? user?.email ?? 'User'}</span>
+            <span className={cn('truncate font-medium text-sm', classNames?.p)}>
+              {user?.name ?? user?.email ?? 'User'}
+            </span>
 
             {user?.name && user?.email && (
-              <span className={cn('!font-light truncate text-muted-foreground text-xs', classNames?.small)}>{user.email}</span>
+              <span className={cn('!font-light truncate text-muted-foreground text-xs', classNames?.small)}>
+                {user.email}
+              </span>
             )}
           </>
         )}

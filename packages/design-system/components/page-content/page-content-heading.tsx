@@ -23,7 +23,9 @@ export function PageContentHeading({
   subTitleClassName,
   isPending,
 }: Readonly<PageHeadingProps>) {
-  const titleElement = <T.H3 className={cn('', titleClassName, isPending ? 'text-muted-foreground' : '')}>{header}</T.H3>;
+  const titleElement = (
+    <T.H3 className={cn('', titleClassName, isPending ? 'text-muted-foreground' : '')}>{header}</T.H3>
+  );
   const subTitleElement = <T.P className={cn('text-muted-foreground leading-6', subTitleClassName)}>{subTitle}</T.P>;
   const wrappedTitleElement = titleHref ? (
     <Link href={titleHref}>{titleElement}</Link>
@@ -34,7 +36,12 @@ export function PageContentHeading({
     </div>
   );
   return (
-    <div className={cn('flex border-b p-2 md:items-start md:justify-between', isPending ? 'pointer-events-none animate-pulse' : '')}>
+    <div
+      className={cn(
+        'flex border-b p-2 md:items-start md:justify-between',
+        isPending ? 'pointer-events-none animate-pulse' : ''
+      )}
+    >
       <div className='min-w-0 flex-1'>{wrappedTitleElement}</div>
       <div>{actions}</div>
     </div>

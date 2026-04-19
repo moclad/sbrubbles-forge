@@ -158,7 +158,9 @@ export function CategoriesTable({ categories }: Readonly<CategoriesTableProps>) 
       </div>
 
       {table.getRowCount() === 0 ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('categories.empty')}</div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
+          {t('categories.empty')}
+        </div>
       ) : (
         <div className='overflow-hidden rounded-lg border'>
           <table className='w-full text-sm'>

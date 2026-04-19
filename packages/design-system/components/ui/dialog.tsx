@@ -70,7 +70,13 @@ function DialogContent({
 }
 
 function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn('flex flex-col gap-2 text-center sm:text-left', className)} data-slot='dialog-header' {...props} />;
+  return (
+    <div
+      className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
+      data-slot='dialog-header'
+      {...props}
+    />
+  );
 }
 
 function DialogFooter({
@@ -82,7 +88,11 @@ function DialogFooter({
   showCloseButton?: boolean;
 }) {
   return (
-    <div className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)} data-slot='dialog-footer' {...props}>
+    <div
+      className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
+      data-slot='dialog-footer'
+      {...props}
+    >
       {children}
       {showCloseButton && (
         <DialogPrimitive.Close asChild>
@@ -94,11 +104,34 @@ function DialogFooter({
 }
 
 function DialogTitle({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Title>) {
-  return <DialogPrimitive.Title className={cn('font-semibold text-lg leading-none', className)} data-slot='dialog-title' {...props} />;
+  return (
+    <DialogPrimitive.Title
+      className={cn('font-semibold text-lg leading-none', className)}
+      data-slot='dialog-title'
+      {...props}
+    />
+  );
 }
 
 function DialogDescription({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Description>) {
-  return <DialogPrimitive.Description className={cn('text-muted-foreground text-sm', className)} data-slot='dialog-description' {...props} />;
+  return (
+    <DialogPrimitive.Description
+      className={cn('text-muted-foreground text-sm', className)}
+      data-slot='dialog-description'
+      {...props}
+    />
+  );
 }
 
-export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger };
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+};

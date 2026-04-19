@@ -21,7 +21,8 @@ export function ResetPasswordTemplate({ name, resetUrl }: Props) {
                 Reset password
               </Button>
               <Text style={text}>
-                If you don&apos;t want to change your password or didn&apos;t request this, just ignore and delete this message.
+                If you don&apos;t want to change your password or didn&apos;t request this, just ignore and delete this
+                message.
               </Text>
               <Text style={text}>To keep your account secure, please don&apos;t forward this email to anyone.</Text>
               <Text style={text}>Happy Sbrubbling!</Text>
@@ -48,7 +49,8 @@ const container = {
 
 const text = {
   color: '#404040',
-  fontFamily: "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontFamily:
+    "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
   fontSize: '16px',
   fontWeight: '300',
   lineHeight: '26px',

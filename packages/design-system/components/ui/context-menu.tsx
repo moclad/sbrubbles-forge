@@ -104,7 +104,12 @@ function ContextMenuItem({
   );
 }
 
-function ContextMenuCheckboxItem({ className, children, checked, ...props }: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem>) {
+function ContextMenuCheckboxItem({
+  className,
+  children,
+  checked,
+  ...props
+}: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem>) {
   return (
     <ContextMenuPrimitive.CheckboxItem
       checked={checked}
@@ -125,7 +130,11 @@ function ContextMenuCheckboxItem({ className, children, checked, ...props }: Rea
   );
 }
 
-function ContextMenuRadioItem({ className, children, ...props }: React.ComponentProps<typeof ContextMenuPrimitive.RadioItem>) {
+function ContextMenuRadioItem({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof ContextMenuPrimitive.RadioItem>) {
   return (
     <ContextMenuPrimitive.RadioItem
       className={cn(
@@ -163,11 +172,23 @@ function ContextMenuLabel({
 }
 
 function ContextMenuSeparator({ className, ...props }: React.ComponentProps<typeof ContextMenuPrimitive.Separator>) {
-  return <ContextMenuPrimitive.Separator className={cn('-mx-1 my-1 h-px bg-border', className)} data-slot='context-menu-separator' {...props} />;
+  return (
+    <ContextMenuPrimitive.Separator
+      className={cn('-mx-1 my-1 h-px bg-border', className)}
+      data-slot='context-menu-separator'
+      {...props}
+    />
+  );
 }
 
 function ContextMenuShortcut({ className, ...props }: React.ComponentProps<'span'>) {
-  return <span className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)} data-slot='context-menu-shortcut' {...props} />;
+  return (
+    <span
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
+      data-slot='context-menu-shortcut'
+      {...props}
+    />
+  );
 }
 
 export {

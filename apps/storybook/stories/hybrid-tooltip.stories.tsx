@@ -1,4 +1,9 @@
-import { HybridTooltip, HybridTooltipContent, HybridTooltipTrigger, TouchProvider } from '@repo/design-system/components/ui/touch-provider';
+import {
+  HybridTooltip,
+  HybridTooltipContent,
+  HybridTooltipTrigger,
+  TouchProvider,
+} from '@repo/design-system/components/ui/touch-provider';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Plus } from 'lucide-react';
 

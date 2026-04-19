@@ -1,7 +1,12 @@
 import { z } from 'zod';
 
 export const formSchema = z.object({
-  email: z.string().nonempty({ message: 'Email is required' }).email({ message: 'Please enter a valid email address' }).min(2).max(50),
+  email: z
+    .string()
+    .nonempty({ message: 'Email is required' })
+    .email({ message: 'Please enter a valid email address' })
+    .min(2)
+    .max(50),
   name: z
     .string()
     .nonempty({ message: 'Name is required' })

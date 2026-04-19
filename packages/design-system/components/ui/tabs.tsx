@@ -38,7 +38,14 @@ function TabsList({
   variant = 'default',
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) {
-  return <TabsPrimitive.List className={cn(tabsListVariants({ variant }), className)} data-slot='tabs-list' data-variant={variant} {...props} />;
+  return (
+    <TabsPrimitive.List
+      className={cn(tabsListVariants({ variant }), className)}
+      data-slot='tabs-list'
+      data-variant={variant}
+      {...props}
+    />
+  );
 }
 
 function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {

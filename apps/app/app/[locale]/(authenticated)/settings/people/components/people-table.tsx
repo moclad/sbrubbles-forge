@@ -109,7 +109,12 @@ function AvatarEdit({ draft, setDraft }: AvatarEditProps) {
   const displayUrl = draft.previewUrl ?? draft.avatarUrl;
 
   return (
-    <button className='group relative cursor-pointer rounded-full' onClick={() => fileRef.current?.click()} title='Change avatar' type='button'>
+    <button
+      className='group relative cursor-pointer rounded-full'
+      onClick={() => fileRef.current?.click()}
+      title='Change avatar'
+      type='button'
+    >
       <AvatarDisplay avatarUrl={displayUrl} name={draft.name} size={32} />
       <div className='absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
         <span className='text-white text-xs'>✎</span>
@@ -318,7 +323,9 @@ export function PeopleTable({ people }: Readonly<PeopleTableProps>) {
       </div>
 
       {people.length === 0 && editingId !== 'new' ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('people.empty')}</div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
+          {t('people.empty')}
+        </div>
       ) : (
         <div className='overflow-hidden rounded-lg border'>
           <table className='w-full text-sm'>

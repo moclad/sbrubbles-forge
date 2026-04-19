@@ -11,7 +11,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@repo/design-system/components/ui/alert-dialog';
-import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from '@repo/design-system/components/ui/avatar';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -280,7 +286,9 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
       </div>
 
       {trips.length === 0 ? (
-        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>{t('trips.empty')}</div>
+        <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
+          {t('trips.empty')}
+        </div>
       ) : (
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {trips.map((trip) => (
@@ -311,7 +319,10 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>{t('trips.deleteDialog.cancel')}</AlertDialogCancel>
-            <AlertDialogAction className='bg-destructive text-destructive-foreground hover:bg-destructive/90' onClick={handleDelete}>
+            <AlertDialogAction
+              className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
+              onClick={handleDelete}
+            >
               {t('trips.deleteDialog.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>

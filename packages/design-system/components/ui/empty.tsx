@@ -16,23 +16,43 @@ function Empty({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function EmptyHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn('flex max-w-sm flex-col items-center gap-2 text-center', className)} data-slot='empty-header' {...props} />;
+  return (
+    <div
+      className={cn('flex max-w-sm flex-col items-center gap-2 text-center', className)}
+      data-slot='empty-header'
+      {...props}
+    />
+  );
 }
 
-const emptyMediaVariants = cva('mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0', {
-  defaultVariants: {
-    variant: 'default',
-  },
-  variants: {
-    variant: {
-      default: 'bg-transparent',
-      icon: "flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6",
+const emptyMediaVariants = cva(
+  'mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0',
+  {
+    defaultVariants: {
+      variant: 'default',
     },
-  },
-});
+    variants: {
+      variant: {
+        default: 'bg-transparent',
+        icon: "flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6",
+      },
+    },
+  }
+);
 
-function EmptyMedia({ className, variant = 'default', ...props }: React.ComponentProps<'div'> & VariantProps<typeof emptyMediaVariants>) {
-  return <div className={cn(emptyMediaVariants({ className, variant }))} data-slot='empty-icon' data-variant={variant} {...props} />;
+function EmptyMedia({
+  className,
+  variant = 'default',
+  ...props
+}: React.ComponentProps<'div'> & VariantProps<typeof emptyMediaVariants>) {
+  return (
+    <div
+      className={cn(emptyMediaVariants({ className, variant }))}
+      data-slot='empty-icon'
+      data-variant={variant}
+      {...props}
+    />
+  );
 }
 
 function EmptyTitle({ className, ...props }: React.ComponentProps<'div'>) {
@@ -42,7 +62,10 @@ function EmptyTitle({ className, ...props }: React.ComponentProps<'div'>) {
 function EmptyDescription({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <div
-      className={cn('text-muted-foreground text-sm/relaxed [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4', className)}
+      className={cn(
+        'text-muted-foreground text-sm/relaxed [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4',
+        className
+      )}
       data-slot='empty-description'
       {...props}
     />

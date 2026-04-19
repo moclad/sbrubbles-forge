@@ -91,7 +91,12 @@ function MenubarItem({
   );
 }
 
-function MenubarCheckboxItem({ className, children, checked, ...props }: React.ComponentProps<typeof MenubarPrimitive.CheckboxItem>) {
+function MenubarCheckboxItem({
+  className,
+  children,
+  checked,
+  ...props
+}: React.ComponentProps<typeof MenubarPrimitive.CheckboxItem>) {
   return (
     <MenubarPrimitive.CheckboxItem
       checked={checked}
@@ -150,11 +155,23 @@ function MenubarLabel({
 }
 
 function MenubarSeparator({ className, ...props }: React.ComponentProps<typeof MenubarPrimitive.Separator>) {
-  return <MenubarPrimitive.Separator className={cn('-mx-1 my-1 h-px bg-border', className)} data-slot='menubar-separator' {...props} />;
+  return (
+    <MenubarPrimitive.Separator
+      className={cn('-mx-1 my-1 h-px bg-border', className)}
+      data-slot='menubar-separator'
+      {...props}
+    />
+  );
 }
 
 function MenubarShortcut({ className, ...props }: React.ComponentProps<'span'>) {
-  return <span className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)} data-slot='menubar-shortcut' {...props} />;
+  return (
+    <span
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
+      data-slot='menubar-shortcut'
+      {...props}
+    />
+  );
 }
 
 function MenubarSub({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Sub>) {

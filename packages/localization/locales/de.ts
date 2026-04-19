@@ -11,7 +11,8 @@ export default {
     deleteDialog: {
       cancel: 'Abbrechen',
       confirm: 'L\u00f6schen',
-      description: 'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Kategorie wird dauerhaft entfernt.',
+      description:
+        'Diese Aktion kann nicht r\u00fcckg\u00e4ngig gemacht werden. Die Kategorie wird dauerhaft entfernt.',
       title: 'Kategorie l\u00f6schen?',
     },
     deleteError: 'Kategorie konnte nicht gel\u00f6scht werden',
@@ -136,7 +137,8 @@ export default {
         },
         locationLabel: 'Ort',
         locationNotFound: 'Kein Ort gefunden. Versuche eine andere Suche.',
-        locationOptionalHint: 'Der Ort ist optional. Suche einen Ort, um ihn auf der Karte anzuzeigen und zu verschieben.',
+        locationOptionalHint:
+          'Der Ort ist optional. Suche einen Ort, um ihn auf der Karte anzuzeigen und zu verschieben.',
         locationPlaceholder: 'z.B. Rom, Italien',
         peopleLabel: 'Personen (optional)',
         saveChanges: 'Anderungen speichern',

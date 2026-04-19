@@ -88,7 +88,13 @@ const getDiff = async (from: { version: string; files: string[] }, to: { version
 
     const hasChanged =
       !from.files.includes(file) ||
-      (await exec(`git diff ${from.version} ${to.version} -- "${cleanFileName(file)}"`, { maxBuffer: 1024 * 1024 * 1024 })).toString().trim() !== '';
+      (
+        await exec(`git diff ${from.version} ${to.version} -- "${cleanFileName(file)}"`, {
+          maxBuffer: 1024 * 1024 * 1024,
+        })
+      )
+        .toString()
+        .trim() !== '';
 
     if (hasChanged) {
       filesToUpdate.push(file);

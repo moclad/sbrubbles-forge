@@ -31,13 +31,19 @@ export function TwoFactorCard({ className, classNames }: Readonly<TwoFactorCardP
         classNames={classNames}
         description={t('account.twoFactorCardDescription')}
         formAction={() => setShowPasswordDialog(true)}
-        instructions={isTwoFactorEnabled ? t('account.twoFactorDisableInstructions') : t('account.twoFactorEnableInstructions')}
+        instructions={
+          isTwoFactorEnabled ? t('account.twoFactorDisableInstructions') : t('account.twoFactorEnableInstructions')
+        }
         isPending={isPending}
         showToast={false}
         title={t('account.twoFactor')}
       />
 
-      <TwoFactorPasswordDialog isTwoFactorEnabled={!!isTwoFactorEnabled} onOpenChange={setShowPasswordDialog} open={showPasswordDialog} />
+      <TwoFactorPasswordDialog
+        isTwoFactorEnabled={!!isTwoFactorEnabled}
+        onOpenChange={setShowPasswordDialog}
+        open={showPasswordDialog}
+      />
     </div>
   );
 }

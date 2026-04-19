@@ -19,7 +19,14 @@ export type AccountsCardProps = {
   skipHook?: boolean;
 };
 
-export function AccountsCard({ className, classNames, deviceSessions, isPending, skipHook, refetch }: Readonly<AccountsCardProps>) {
+export function AccountsCard({
+  className,
+  classNames,
+  deviceSessions,
+  isPending,
+  skipHook,
+  refetch,
+}: Readonly<AccountsCardProps>) {
   const t = useI18n();
   const {
     basePath,

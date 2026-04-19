@@ -26,8 +26,8 @@ const AuthLayout = async ({ children }: AuthLayoutProps) => {
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
             <p className='text-lg'>
-              &ldquo;This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
+              &ldquo;This library has saved me countless hours of work and helped me deliver stunning designs to my
+              clients faster than ever before.&rdquo;
             </p>
             <footer className='text-sm'>Sofia Davis</footer>
           </blockquote>
@@ -38,11 +38,17 @@ const AuthLayout = async ({ children }: AuthLayoutProps) => {
           {children}
           <p className='px-8 text-center text-muted-foreground text-sm'>
             {t('authentication.agreement')}{' '}
-            <Link className='underline underline-offset-4 hover:text-primary' href={new URL('/legal/terms', env.NEXT_PUBLIC_APP_URL).toString()}>
+            <Link
+              className='underline underline-offset-4 hover:text-primary'
+              href={new URL('/legal/terms', env.NEXT_PUBLIC_APP_URL).toString()}
+            >
               {t('authentication.terms')}
             </Link>{' '}
             {t('authentication.and')}{' '}
-            <Link className='underline underline-offset-4 hover:text-primary' href={new URL('/legal/privacy', env.NEXT_PUBLIC_APP_URL).toString()}>
+            <Link
+              className='underline underline-offset-4 hover:text-primary'
+              href={new URL('/legal/privacy', env.NEXT_PUBLIC_APP_URL).toString()}
+            >
               {t('authentication.privacy')}
             </Link>
             .

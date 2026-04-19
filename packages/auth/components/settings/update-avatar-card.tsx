@@ -32,7 +32,9 @@ async function resizeAndCropImage(file: File, name: string, size: number, avatar
 
   ctx?.drawImage(image, sx, sy, sWidth, sHeight, 0, 0, size, size);
 
-  const resizedImageBlob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, `image/${avatarExtension}`));
+  const resizedImageBlob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob(resolve, `image/${avatarExtension}`)
+  );
 
   return new File([resizedImageBlob as BlobPart], `${name}.${avatarExtension}`, {
     type: `image/${avatarExtension}`,
@@ -61,7 +63,11 @@ export type UpdateAvatarCardProps = {
   isPending?: boolean;
 };
 
-export function UpdateAvatarCard({ className, classNames, isPending: externalIsPending }: Readonly<UpdateAvatarCardProps>) {
+export function UpdateAvatarCard({
+  className,
+  classNames,
+  isPending: externalIsPending,
+}: Readonly<UpdateAvatarCardProps>) {
   const {
     hooks: { useSession },
     mutators: { updateUser },
@@ -140,7 +146,12 @@ export function UpdateAvatarCard({ className, classNames, isPending: externalIsP
           {isPending || loading ? (
             <Skeleton className={cn('size-20 rounded-full', classNames?.avatar?.base)} />
           ) : (
-            <UserAvatar className='m-4 size-10 text-2xl' classNames={classNames?.avatar} key={sessionData?.user.image} user={sessionData?.user} />
+            <UserAvatar
+              className='m-4 size-10 text-2xl'
+              classNames={classNames?.avatar}
+              key={sessionData?.user.image}
+              user={sessionData?.user}
+            />
           )}
         </button>
       </div>

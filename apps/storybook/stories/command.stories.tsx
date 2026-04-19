@@ -1,4 +1,11 @@
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@repo/design-system/components/ui/command';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@repo/design-system/components/ui/command';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { CommandSeparator } from 'cmdk';
 

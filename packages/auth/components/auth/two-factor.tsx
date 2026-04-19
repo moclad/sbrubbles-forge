@@ -99,7 +99,10 @@ export function TwoFactorForm({ isSubmitting, otpSeparators = 1, redirectTo }: R
                   <div className='flex items-center justify-between'>
                     <FormLabel>{t('account.oneTimePassword')}</FormLabel>
 
-                    <Link className={cn('text-sm hover:underline')} href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}>
+                    <Link
+                      className={cn('text-sm hover:underline')}
+                      href={`${basePath}/recover-account${isHydrated ? window.location.search : ''}`}
+                    >
                       {t('account.forgotAuthenticator')}
                     </Link>
                   </div>
@@ -147,7 +150,13 @@ export function TwoFactorForm({ isSubmitting, otpSeparators = 1, redirectTo }: R
               {isSubmitting ? t('account.twoFactorVerifying') : t('account.twoFactorVerify')}
             </Button>
 
-            <Button className='w-full' disabled={isSubmitting} onClick={() => navigate(`${basePath}/sign-in`)} type='button' variant='secondary'>
+            <Button
+              className='w-full'
+              disabled={isSubmitting}
+              onClick={() => navigate(`${basePath}/sign-in`)}
+              type='button'
+              variant='secondary'
+            >
               {t('account.backToSignIn')}
             </Button>
           </form>

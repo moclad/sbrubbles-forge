@@ -267,7 +267,10 @@ function Calendar({
     return genMonths(locale);
   }, [props.locale]);
 
-  const YEARS = React.useMemo(() => genYears(startMonth?.getFullYear(), endMonth?.getFullYear(), yearRange), [startMonth, endMonth, yearRange]);
+  const YEARS = React.useMemo(
+    () => genYears(startMonth?.getFullYear(), endMonth?.getFullYear(), yearRange),
+    [startMonth, endMonth, yearRange]
+  );
   const date = (props as PropsSingleRequired)?.selected ?? new Date();
 
   let selected = new Date();
@@ -279,11 +282,20 @@ function Calendar({
     <DayPicker
       className={cn('p-3', className)}
       classNames={{
-        button_next: cn(buttonVariants({ variant: 'outline' }), 'absolute top-5 right-5 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'),
-        button_previous: cn(buttonVariants({ variant: 'outline' }), 'absolute top-5 left-5 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'),
+        button_next: cn(
+          buttonVariants({ variant: 'outline' }),
+          'absolute top-5 right-5 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
+        ),
+        button_previous: cn(
+          buttonVariants({ variant: 'outline' }),
+          'absolute top-5 left-5 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
+        ),
         caption_label: 'text-sm font-medium',
         day: 'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 rounded-1',
-        day_button: cn(buttonVariants({ variant: 'ghost' }), 'h-9 w-9 rounded-r-md rounded-l-md p-0 font-normal aria-selected:opacity-100'),
+        day_button: cn(
+          buttonVariants({ variant: 'ghost' }),
+          'h-9 w-9 rounded-r-md rounded-l-md p-0 font-normal aria-selected:opacity-100'
+        ),
         disabled: 'text-muted-foreground opacity-50',
         hidden: 'invisible',
         month: 'flex flex-col items-center space-y-4',
@@ -404,7 +416,11 @@ const TimePeriodSelect = React.forwardRef<HTMLButtonElement, PeriodSelectorProps
     return (
       <div className='flex h-10 items-center'>
         <Select defaultValue={period} onValueChange={(value: Period) => handleValueChange(value)}>
-          <SelectTrigger className='w-[65px] focus:bg-accent focus:text-accent-foreground' onKeyDown={handleKeyDown} ref={ref}>
+          <SelectTrigger
+            className='w-[65px] focus:bg-accent focus:text-accent-foreground'
+            onKeyDown={handleKeyDown}
+            ref={ref}
+          >
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -563,86 +579,88 @@ type TimePickerRef = {
   secondRef: HTMLInputElement | null;
 };
 
-const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(({ date, onChange, hourCycle = 24, granularity = 'second' }, ref) => {
-  const minuteRef = React.useRef<HTMLInputElement>(null);
-  const hourRef = React.useRef<HTMLInputElement>(null);
-  const secondRef = React.useRef<HTMLInputElement>(null);
-  const periodRef = React.useRef<HTMLButtonElement>(null);
-  const [period, setPeriod] = React.useState<Period>(date && date.getHours() >= 12 ? 'PM' : 'AM');
+const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
+  ({ date, onChange, hourCycle = 24, granularity = 'second' }, ref) => {
+    const minuteRef = React.useRef<HTMLInputElement>(null);
+    const hourRef = React.useRef<HTMLInputElement>(null);
+    const secondRef = React.useRef<HTMLInputElement>(null);
+    const periodRef = React.useRef<HTMLButtonElement>(null);
+    const [period, setPeriod] = React.useState<Period>(date && date.getHours() >= 12 ? 'PM' : 'AM');
 
-  React.useImperativeHandle(
-    ref,
-    () => ({
-      hourRef: hourRef.current,
-      minuteRef: minuteRef.current,
-      periodRef: periodRef.current,
-      secondRef: secondRef.current,
-    }),
-    []
-  );
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        hourRef: hourRef.current,
+        minuteRef: minuteRef.current,
+        periodRef: periodRef.current,
+        secondRef: secondRef.current,
+      }),
+      []
+    );
 
-  return (
-    <div className='flex items-center justify-center gap-2'>
-      <label className='cursor-pointer' htmlFor='datetime-picker-hour-input'>
-        <Clock className='mr-2 h-4 w-4' />
-      </label>
-      <TimePickerInput
-        date={date}
-        id='datetime-picker-hour-input'
-        onDateChange={onChange}
-        onRightFocus={() => minuteRef?.current?.focus()}
-        period={period}
-        picker={hourCycle === 24 ? 'hours' : '12hours'}
-        ref={hourRef}
-      />
-      {(granularity === 'minute' || granularity === 'second') && (
-        <>
-          :
-          <TimePickerInput
-            date={date}
-            onDateChange={onChange}
-            onLeftFocus={() => hourRef?.current?.focus()}
-            onRightFocus={() => secondRef?.current?.focus()}
-            picker='minutes'
-            ref={minuteRef}
-          />
-        </>
-      )}
-      {granularity === 'second' && (
-        <>
-          :
-          <TimePickerInput
-            date={date}
-            onDateChange={onChange}
-            onLeftFocus={() => minuteRef?.current?.focus()}
-            onRightFocus={() => periodRef?.current?.focus()}
-            picker='seconds'
-            ref={secondRef}
-          />
-        </>
-      )}
-      {hourCycle === 12 && (
-        <div className='grid gap-1 text-center'>
-          <TimePeriodSelect
-            date={date}
-            onDateChange={(date) => {
-              onChange?.(date);
-              if (date && date?.getHours() >= 12) {
-                setPeriod('PM');
-              } else {
-                setPeriod('AM');
-              }
-            }}
-            onLeftFocus={() => secondRef?.current?.focus()}
-            period={period}
-            ref={periodRef}
-            setPeriod={setPeriod}
-          />
-        </div>
-      )}
-    </div>
-  );
-});
+    return (
+      <div className='flex items-center justify-center gap-2'>
+        <label className='cursor-pointer' htmlFor='datetime-picker-hour-input'>
+          <Clock className='mr-2 h-4 w-4' />
+        </label>
+        <TimePickerInput
+          date={date}
+          id='datetime-picker-hour-input'
+          onDateChange={onChange}
+          onRightFocus={() => minuteRef?.current?.focus()}
+          period={period}
+          picker={hourCycle === 24 ? 'hours' : '12hours'}
+          ref={hourRef}
+        />
+        {(granularity === 'minute' || granularity === 'second') && (
+          <>
+            :
+            <TimePickerInput
+              date={date}
+              onDateChange={onChange}
+              onLeftFocus={() => hourRef?.current?.focus()}
+              onRightFocus={() => secondRef?.current?.focus()}
+              picker='minutes'
+              ref={minuteRef}
+            />
+          </>
+        )}
+        {granularity === 'second' && (
+          <>
+            :
+            <TimePickerInput
+              date={date}
+              onDateChange={onChange}
+              onLeftFocus={() => minuteRef?.current?.focus()}
+              onRightFocus={() => periodRef?.current?.focus()}
+              picker='seconds'
+              ref={secondRef}
+            />
+          </>
+        )}
+        {hourCycle === 12 && (
+          <div className='grid gap-1 text-center'>
+            <TimePeriodSelect
+              date={date}
+              onDateChange={(date) => {
+                onChange?.(date);
+                if (date && date?.getHours() >= 12) {
+                  setPeriod('PM');
+                } else {
+                  setPeriod('AM');
+                }
+              }}
+              onLeftFocus={() => secondRef?.current?.focus()}
+              period={period}
+              ref={periodRef}
+              setPeriod={setPeriod}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 TimePicker.displayName = 'TimePicker';
 
 type Granularity = 'day' | 'hour' | 'minute' | 'second';
@@ -676,7 +694,10 @@ type DateTimePickerProps = {
   granularity?: Granularity;
   className?: string;
   required?: boolean;
-} & Pick<React.ComponentProps<typeof DayPicker>, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays' | 'mode'>;
+} & Pick<
+  React.ComponentProps<typeof DayPicker>,
+  'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays' | 'mode'
+>;
 
 type DateTimePickerRef = {
   value?: Date;
@@ -748,10 +769,16 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
           return <span>{placeholder}</span>;
         }
 
-        const formattedStartDate = format(dateRange.from, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12);
+        const formattedStartDate = format(
+          dateRange.from,
+          hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12
+        );
 
         if (dateRange.to) {
-          const formattedEndDate = format(dateRange.to, hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12);
+          const formattedEndDate = format(
+            dateRange.to,
+            hourCycle === 24 ? initHourFormat.hour24 : initHourFormat.hour12
+          );
           return (
             <span>
               {formattedStartDate} - {formattedEndDate}

@@ -10,13 +10,19 @@ import { Controller, FormProvider, useFormContext, useFormState } from 'react-ho
 
 const Form = FormProvider;
 
-type FormFieldContextValue<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
+type FormFieldContextValue<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
   name: TName;
 };
 
 const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue);
 
-const FormField = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
+const FormField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
   return (
@@ -96,7 +102,14 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {
 function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
   const { formDescriptionId } = useFormField();
 
-  return <p className={cn('text-muted-foreground text-sm', className)} data-slot='form-description' id={formDescriptionId} {...props} />;
+  return (
+    <p
+      className={cn('text-muted-foreground text-sm', className)}
+      data-slot='form-description'
+      id={formDescriptionId}
+      {...props}
+    />
+  );
 }
 
 function FormMessage({ className, ...props }: React.ComponentProps<'p'>) {

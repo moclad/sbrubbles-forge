@@ -16,7 +16,10 @@ export function WelcomeTemplate({ name, confirmationUrl }: Props) {
           <Container style={container}>
             <Section>
               <Text style={text}>Hello {name},</Text>
-              <Text style={text}>Thank you for registering into our Application. Much Appreciated! Just one last step is laying ahead of you...</Text>
+              <Text style={text}>
+                Thank you for registering into our Application. Much Appreciated! Just one last step is laying ahead of
+                you...
+              </Text>
               <Text style={text}>Confirm your email address by clicking the link below:</Text>
               <Button href={confirmationUrl} style={button}>
                 Activate account
@@ -45,7 +48,8 @@ const container = {
 
 const text = {
   color: '#404040',
-  fontFamily: "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontFamily:
+    "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
   fontSize: '16px',
   fontWeight: '300',
   lineHeight: '26px',

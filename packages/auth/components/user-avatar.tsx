@@ -29,12 +29,20 @@ export type UserAvatarProps = {
  * - Displays first two characters of user's name when no image is available
  * - Falls back to a generic user icon when neither image nor name is available
  */
-export function UserAvatar({ user, classNames, className, isPending, ...props }: UserAvatarProps & ComponentProps<typeof Avatar>) {
+export function UserAvatar({
+  user,
+  classNames,
+  className,
+  isPending,
+  ...props
+}: UserAvatarProps & ComponentProps<typeof Avatar>) {
   const name = user?.name ?? user?.fullName ?? user?.firstName ?? user?.email;
   const src = user?.image ?? user?.avatar ?? user?.avatarUrl;
 
   if (isPending) {
-    return <Skeleton className={cn('size-8 shrink-0 rounded-full', className, classNames?.base, classNames?.skeleton)} />;
+    return (
+      <Skeleton className={cn('size-8 shrink-0 rounded-full', className, classNames?.base, classNames?.skeleton)} />
+    );
   }
 
   return (

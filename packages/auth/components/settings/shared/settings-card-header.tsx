@@ -16,7 +16,13 @@ export type SettingsCardHeaderProps = {
   title: ReactNode;
 };
 
-export function SettingsCardHeader({ title, description, isPending, classNames, className }: Readonly<SettingsCardHeaderProps>) {
+export function SettingsCardHeader({
+  title,
+  description,
+  isPending,
+  classNames,
+  className,
+}: Readonly<SettingsCardHeaderProps>) {
   return (
     <CardHeader className={cn(classNames?.header, className)}>
       {isPending ? (
@@ -29,7 +35,11 @@ export function SettingsCardHeader({ title, description, isPending, classNames, 
         <>
           <CardTitle className={cn('text-lg md:text-xl', classNames?.title)}>{title}</CardTitle>
 
-          {description && <CardDescription className={cn('text-xs md:text-sm', classNames?.description)}>{description}</CardDescription>}
+          {description && (
+            <CardDescription className={cn('text-xs md:text-sm', classNames?.description)}>
+              {description}
+            </CardDescription>
+          )}
         </>
       )}
     </CardHeader>

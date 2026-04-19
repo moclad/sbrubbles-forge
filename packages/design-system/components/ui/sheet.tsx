@@ -54,8 +54,10 @@ function SheetContent({
             'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm',
           side === 'left' &&
             'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
-          side === 'top' && 'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
-          side === 'bottom' && 'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
+          side === 'top' &&
+            'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
+          side === 'bottom' &&
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
           className
         )}
         data-slot='sheet-content'
@@ -82,11 +84,23 @@ function SheetFooter({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function SheetTitle({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Title>) {
-  return <SheetPrimitive.Title className={cn('font-semibold text-foreground', className)} data-slot='sheet-title' {...props} />;
+  return (
+    <SheetPrimitive.Title
+      className={cn('font-semibold text-foreground', className)}
+      data-slot='sheet-title'
+      {...props}
+    />
+  );
 }
 
 function SheetDescription({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Description>) {
-  return <SheetPrimitive.Description className={cn('text-muted-foreground text-sm', className)} data-slot='sheet-description' {...props} />;
+  return (
+    <SheetPrimitive.Description
+      className={cn('text-muted-foreground text-sm', className)}
+      data-slot='sheet-description'
+      {...props}
+    />
+  );
 }
 
 export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger };

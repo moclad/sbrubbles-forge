@@ -3,10 +3,25 @@ import { join } from 'node:path';
 
 import { cancel, intro, isCancel, log, outro, select, spinner, text } from '@clack/prompts';
 
-import { exec, execSyncOpts, internalContentDirs, internalContentFiles, supportedPackageManagers, url } from './utils.js';
+import {
+  exec,
+  execSyncOpts,
+  internalContentDirs,
+  internalContentFiles,
+  supportedPackageManagers,
+  url,
+} from './utils.js';
 
 const cloneNextForge = async (name: string, packageManager: string) => {
-  const command = ['npx create-next-app@latest', name, '--example', url, '--disable-git', '--skip-install', `--use-${packageManager}`];
+  const command = [
+    'npx create-next-app@latest',
+    name,
+    '--example',
+    url,
+    '--disable-git',
+    '--skip-install',
+    `--use-${packageManager}`,
+  ];
 
   await exec(command.join(' '), execSyncOpts);
 };

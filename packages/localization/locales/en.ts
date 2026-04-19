@@ -36,7 +36,8 @@ export default {
     deleteAccountDescription:
       'Permanently remove your account and all of its contents. This action is not reversible, so please continue with caution.',
     deleteAccountEmail: 'Please check your email to verify the deletion of your account.',
-    deleteAccountInstructions: 'Please confirm the deletion of your account. This action is not reversible, so please continue with caution.',
+    deleteAccountInstructions:
+      'Please confirm the deletion of your account. This action is not reversible, so please continue with caution.',
     deleteAccountNotFresh: 'You must be recently logged in to delete your account.',
     deleteAccountSuccess: 'Your account has been deleted.',
     disable: 'Disable',
@@ -103,7 +104,8 @@ export default {
     sessions: 'Sessions',
     sessionsDescription: 'Manage your active sessions and revoke access.',
     setPassword: 'Set Password',
-    setPasswordDescription: 'You registered with a third-party service. Click the button below to set a password for your account.',
+    setPasswordDescription:
+      'You registered with a third-party service. Click the button below to set a password for your account.',
     setPasswordEmailSent: 'Check your email to set your password.',
     signedInAs: 'Signed in as:',
     signIn: 'Sign In',
@@ -198,7 +200,8 @@ export default {
     resetPassword: 'Reset password',
     resetPwAccessDenied: 'Access Denied',
     resetPwAccessDeniedDescription: "Your session may have expired or you haven't logged in yet.",
-    resetPwAccessDeniedDescription2: 'To access this resource, you need to authenticate with a valid token. Please log in.',
+    resetPwAccessDeniedDescription2:
+      'To access this resource, you need to authenticate with a valid token. Please log in.',
     resetSubTitle: 'Update your password.',
     sendVerificationCode: 'Send verification code',
     terms: 'Terms of service',

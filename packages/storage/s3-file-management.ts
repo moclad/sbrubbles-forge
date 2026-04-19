@@ -25,7 +25,15 @@ export async function createBucketIfNotExists(bucketName: string) {
   }
 }
 
-export async function saveFileInBucket({ bucketName, fileName, file }: { bucketName: string; fileName: string; file: Buffer | internal.Readable }) {
+export async function saveFileInBucket({
+  bucketName,
+  fileName,
+  file,
+}: {
+  bucketName: string;
+  fileName: string;
+  file: Buffer | internal.Readable;
+}) {
   // Create bucket if it doesn't exist
   await createBucketIfNotExists(bucketName);
 

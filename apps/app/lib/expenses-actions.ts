@@ -62,7 +62,10 @@ async function assertPeopleBelongToTrip(tripId: string, personIds: string[]) {
     return;
   }
 
-  const rows = await database.select({ personId: tripPerson.personId }).from(tripPerson).where(eq(tripPerson.tripId, tripId));
+  const rows = await database
+    .select({ personId: tripPerson.personId })
+    .from(tripPerson)
+    .where(eq(tripPerson.tripId, tripId));
 
   const validPeopleForTrip = new Set(rows.filter((row) => row.personId).map((row) => row.personId));
 
@@ -130,7 +133,11 @@ export async function getExpensesByTrip(tripId: string): Promise<ExpenseWithDeta
     })
     .from(expensePerson)
     .innerJoin(person, eq(expensePerson.personId, person.id))
-    .where(expenseIds.length === 1 ? eq(expensePerson.expenseId, expenseIds[0]) : inArray(expensePerson.expenseId, expenseIds));
+    .where(
+      expenseIds.length === 1
+        ? eq(expensePerson.expenseId, expenseIds[0])
+        : inArray(expensePerson.expenseId, expenseIds)
+    );
 
   const peopleByExpense = new Map<string, { avatarUrl: string | null; id: string; name: string }[]>();
 

@@ -79,7 +79,14 @@ export function SettingsCard({
 
   return (
     <form action={internalAction}>
-      <Card className={cn('w-full pb-0 text-start shadow-lg', variant === 'destructive' && 'border-destructive/40', className, classNames?.base)}>
+      <Card
+        className={cn(
+          'w-full pb-0 text-start shadow-lg',
+          variant === 'destructive' && 'border-destructive/40',
+          className,
+          classNames?.base
+        )}
+      >
         <SettingsCardHeader classNames={classNames} description={description} isPending={isPending} title={title} />
 
         {children}

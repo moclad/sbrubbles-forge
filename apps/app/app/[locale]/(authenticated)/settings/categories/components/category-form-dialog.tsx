@@ -2,7 +2,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/design-system/components/ui/button';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { Textarea } from '@repo/design-system/components/ui/textarea';
@@ -97,7 +103,12 @@ export function CategoryFormDialog({ open, onOpenChange, initialData, onSubmit }
                 <FormItem>
                   <FormLabel>{t('categories.form.descriptionLabel')}</FormLabel>
                   <FormControl>
-                    <Textarea className='resize-none' placeholder={t('categories.form.descriptionPlaceholder')} rows={2} {...field} />
+                    <Textarea
+                      className='resize-none'
+                      placeholder={t('categories.form.descriptionPlaceholder')}
+                      rows={2}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

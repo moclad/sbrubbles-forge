@@ -3,7 +3,9 @@ import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
-const ForgotPassword = dynamic(() => import('@repo/auth/components/auth/forgot-password').then((mod) => mod.ForgotPassword));
+const ForgotPassword = dynamic(() =>
+  import('@repo/auth/components/auth/forgot-password').then((mod) => mod.ForgotPassword)
+);
 const title = 'Forgot password';
 const description = 'Enter your email to reset your password.';
 export const metadata: Metadata = createMetadata({ description, title });

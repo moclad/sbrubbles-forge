@@ -1,7 +1,12 @@
 'use client';
 
 import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
-import { MiniCalendar, MiniCalendarDay, MiniCalendarDays, MiniCalendarNavigation } from '@repo/design-system/components/kibo-ui/mini-calendar';
+import {
+  MiniCalendar,
+  MiniCalendarDay,
+  MiniCalendarDays,
+  MiniCalendarNavigation,
+} from '@repo/design-system/components/kibo-ui/mini-calendar';
 import { PageContent } from '@repo/design-system/components/page-content';
 import {
   AlertDialog,
@@ -13,11 +18,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@repo/design-system/components/ui/alert-dialog';
-import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from '@repo/design-system/components/ui/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@repo/design-system/components/ui/tooltip';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
 import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
@@ -39,8 +51,11 @@ type TripDetailsClientProps = {
 const MAX_VISIBLE_AVATARS = 5;
 
 function getInitials(name: string): string {
-  return name
-    .split(' ')
+  const parts = name.trim().split(' ').filter(Boolean);
+  if (parts.length === 1) {
+    return parts[0].slice(0, 2).toUpperCase();
+  }
+  return parts
     .map((part) => part[0])
     .join('')
     .slice(0, 2)
@@ -62,7 +77,11 @@ function startOfDayValue(date: Date): Date {
 }
 
 function isSameDayValue(left: Date, right: Date): boolean {
-  return left.getFullYear() === right.getFullYear() && left.getMonth() === right.getMonth() && left.getDate() === right.getDate();
+  return (
+    left.getFullYear() === right.getFullYear() &&
+    left.getMonth() === right.getMonth() &&
+    left.getDate() === right.getDate()
+  );
 }
 
 function getTripDurationDays(startDate: Date, endDate: Date): number {
@@ -211,21 +230,27 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                 </div>
               )}
               {trip.people.length > 0 && (
-                <AvatarGroup>
-                  {visiblePeople.map((member) => (
-                    <Avatar key={member.id} size='sm' title={member.name}>
-                      {member.avatarUrl && <AvatarImage alt={member.name} src={member.avatarUrl} />}
-                      <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
-                    </Avatar>
-                  ))}
-                  {overflow > 0 && <AvatarGroupCount>+{overflow}</AvatarGroupCount>}
-                </AvatarGroup>
+                <TooltipProvider>
+                  <AvatarGroup>
+                    {visiblePeople.map((member) => (
+                      <Tooltip key={member.id}>
+                        <TooltipTrigger asChild>
+                          <Avatar size='sm'>
+                            {member.avatarUrl && <AvatarImage alt={member.name} src={member.avatarUrl} />}
+                            <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
+                          </Avatar>
+                        </TooltipTrigger>
+                        <TooltipContent>{member.name}</TooltipContent>
+                      </Tooltip>
+                    ))}
+                    {overflow > 0 && <AvatarGroupCount>+{overflow}</AvatarGroupCount>}
+                  </AvatarGroup>
+                </TooltipProvider>
               )}
             </div>
           </CardHeader>
           <CardContent>
             <MiniCalendar
-              className='w-full items-start justify-between'
               days={tripDurationDays + 2}
               onStartDateChange={(date) => {
                 if (date) {
@@ -272,11 +297,21 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                   <table className='w-full text-sm'>
                     <thead className='border-b bg-muted/50'>
                       <tr>
-                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.category')}</th>
-                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.description')}</th>
-                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.amount')}</th>
-                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>{t('trips.expenses.columns.people')}</th>
-                        <th className='px-4 py-3 text-right font-medium text-muted-foreground'>{t('trips.expenses.columns.actions')}</th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
+                          {t('trips.expenses.columns.category')}
+                        </th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
+                          {t('trips.expenses.columns.description')}
+                        </th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
+                          {t('trips.expenses.columns.amount')}
+                        </th>
+                        <th className='px-4 py-3 text-left font-medium text-muted-foreground'>
+                          {t('trips.expenses.columns.people')}
+                        </th>
+                        <th className='px-4 py-3 text-right font-medium text-muted-foreground'>
+                          {t('trips.expenses.columns.actions')}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -297,14 +332,44 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                           <td className='px-4 py-3'>
                             <div className='space-y-1'>
                               <p className='font-medium'>{expense.description}</p>
-                              {expense.locationName && <p className='line-clamp-1 text-muted-foreground text-xs'>{expense.locationName}</p>}
+                              {expense.locationName && (
+                                <p className='line-clamp-1 text-muted-foreground text-xs'>{expense.locationName}</p>
+                              )}
                             </div>
                           </td>
                           <td className='px-4 py-3 font-medium'>{expense.amount.toFixed(2)}</td>
-                          <td className='px-4 py-3'>{expense.people.length === 0 ? '-' : expense.people.map((person) => person.name).join(', ')}</td>
+                          <td className='px-4 py-3'>
+                            {expense.people.length === 0 ? (
+                              <span className='text-muted-foreground'>-</span>
+                            ) : (
+                              <TooltipProvider>
+                                <AvatarGroup>
+                                  {expense.people.slice(0, MAX_VISIBLE_AVATARS).map((person) => (
+                                    <Tooltip key={person.id}>
+                                      <TooltipTrigger asChild>
+                                        <Avatar size='sm'>
+                                          <AvatarImage alt={person.name} src={person.avatarUrl ?? undefined} />
+                                          <AvatarFallback>{getInitials(person.name)}</AvatarFallback>
+                                        </Avatar>
+                                      </TooltipTrigger>
+                                      <TooltipContent>{person.name}</TooltipContent>
+                                    </Tooltip>
+                                  ))}
+                                  {expense.people.length > MAX_VISIBLE_AVATARS && (
+                                    <AvatarGroupCount>+{expense.people.length - MAX_VISIBLE_AVATARS}</AvatarGroupCount>
+                                  )}
+                                </AvatarGroup>
+                              </TooltipProvider>
+                            )}
+                          </td>
                           <td className='px-4 py-3'>
                             <div className='flex justify-end gap-1'>
-                              <Button className='h-7 w-7' onClick={() => setEditingExpense(expense)} size='icon' variant='ghost'>
+                              <Button
+                                className='h-7 w-7'
+                                onClick={() => setEditingExpense(expense)}
+                                size='icon'
+                                variant='ghost'
+                              >
                                 <Pencil size={14} />
                               </Button>
                               <Button
@@ -392,7 +457,10 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>{t('trips.expenses.deleteDialog.cancel')}</AlertDialogCancel>
-            <AlertDialogAction className='bg-destructive text-destructive-foreground hover:bg-destructive/90' onClick={handleDelete}>
+            <AlertDialogAction
+              className='bg-destructive text-destructive-foreground hover:bg-destructive/90'
+              onClick={handleDelete}
+            >
               {t('trips.expenses.deleteDialog.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>

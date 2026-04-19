@@ -22,7 +22,13 @@ export const UserAccount = () => {
   const [activeTab, setActiveTab] = useState('account');
 
   return (
-    <Tabs className='space-y-2' defaultValue='account' onValueChange={setActiveTab} orientation='vertical' value={activeTab}>
+    <Tabs
+      className='space-y-2'
+      defaultValue='account'
+      onValueChange={setActiveTab}
+      orientation='vertical'
+      value={activeTab}
+    >
       <TabsList>
         <TabsTrigger className='flex items-center gap-2' value='account'>
           <User className='size-4' />
@@ -57,7 +63,9 @@ export const UserAccount = () => {
             <div className='flex items-center justify-between'>
               <div className='space-y-0.5'>
                 <Label htmlFor='email-updates'>Account Updates</Label>
-                <p className='text-muted-foreground text-sm'>Receive emails about your account activity and security.</p>
+                <p className='text-muted-foreground text-sm'>
+                  Receive emails about your account activity and security.
+                </p>
               </div>
               <Switch defaultChecked id='email-updates' />
             </div>

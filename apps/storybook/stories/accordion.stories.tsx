@@ -1,4 +1,9 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@repo/design-system/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@repo/design-system/components/ui/accordion';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 /**
@@ -25,7 +30,9 @@ const meta = {
       </AccordionItem>
       <AccordionItem value='item-2'>
         <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>Yes. It comes with default styles that matches the other components' aesthetic.</AccordionContent>
+        <AccordionContent>
+          Yes. It comes with default styles that matches the other components' aesthetic.
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value='item-3'>
         <AccordionTrigger>Is it animated?</AccordionTrigger>

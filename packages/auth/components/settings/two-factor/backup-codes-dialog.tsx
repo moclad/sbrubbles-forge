@@ -1,7 +1,14 @@
 'use client';
 
 import { Button } from '@repo/design-system/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { useI18n } from '@repo/localization/i18n/client';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import { useState } from 'react';

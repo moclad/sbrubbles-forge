@@ -74,11 +74,34 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function DrawerTitle({ className, ...props }: React.ComponentProps<typeof DrawerPrimitive.Title>) {
-  return <DrawerPrimitive.Title className={cn('font-semibold text-foreground', className)} data-slot='drawer-title' {...props} />;
+  return (
+    <DrawerPrimitive.Title
+      className={cn('font-semibold text-foreground', className)}
+      data-slot='drawer-title'
+      {...props}
+    />
+  );
 }
 
 function DrawerDescription({ className, ...props }: React.ComponentProps<typeof DrawerPrimitive.Description>) {
-  return <DrawerPrimitive.Description className={cn('text-muted-foreground text-sm', className)} data-slot='drawer-description' {...props} />;
+  return (
+    <DrawerPrimitive.Description
+      className={cn('text-muted-foreground text-sm', className)}
+      data-slot='drawer-description'
+      {...props}
+    />
+  );
 }
 
-export { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerPortal, DrawerTitle, DrawerTrigger };
+export {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
+};

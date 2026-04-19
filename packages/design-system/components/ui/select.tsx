@@ -68,7 +68,8 @@ function SelectContent({
         <SelectPrimitive.Viewport
           className={cn(
             'p-1',
-            position === 'popper' && 'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1'
+            position === 'popper' &&
+              'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1'
           )}
         >
           {children}
@@ -80,7 +81,13 @@ function SelectContent({
 }
 
 function SelectLabel({ className, ...props }: React.ComponentProps<typeof SelectPrimitive.Label>) {
-  return <SelectPrimitive.Label className={cn('px-2 py-1.5 text-muted-foreground text-xs', className)} data-slot='select-label' {...props} />;
+  return (
+    <SelectPrimitive.Label
+      className={cn('px-2 py-1.5 text-muted-foreground text-xs', className)}
+      data-slot='select-label'
+      {...props}
+    />
+  );
 }
 
 function SelectItem({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Item>) {
@@ -105,7 +112,11 @@ function SelectItem({ className, children, ...props }: React.ComponentProps<type
 
 function SelectSeparator({ className, ...props }: React.ComponentProps<typeof SelectPrimitive.Separator>) {
   return (
-    <SelectPrimitive.Separator className={cn('pointer-events-none -mx-1 my-1 h-px bg-border', className)} data-slot='select-separator' {...props} />
+    <SelectPrimitive.Separator
+      className={cn('pointer-events-none -mx-1 my-1 h-px bg-border', className)}
+      data-slot='select-separator'
+      {...props}
+    />
   );
 }
 
@@ -121,7 +132,10 @@ function SelectScrollUpButton({ className, ...props }: React.ComponentProps<type
   );
 }
 
-function SelectScrollDownButton({ className, ...props }: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {
+function SelectScrollDownButton({
+  className,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {
   return (
     <SelectPrimitive.ScrollDownButton
       className={cn('flex cursor-default items-center justify-center py-1', className)}

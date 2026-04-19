@@ -19,7 +19,11 @@ function ScrollArea({ className, children, ...props }: React.ComponentProps<type
   );
 }
 
-function ScrollBar({ className, orientation = 'vertical', ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+function ScrollBar({
+  className,
+  orientation = 'vertical',
+  ...props
+}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
   return (
     <ScrollAreaPrimitive.ScrollAreaScrollbar
       className={cn(
@@ -32,7 +36,10 @@ function ScrollBar({ className, orientation = 'vertical', ...props }: React.Comp
       orientation={orientation}
       {...props}
     >
-      <ScrollAreaPrimitive.ScrollAreaThumb className='relative flex-1 rounded-full bg-border' data-slot='scroll-area-thumb' />
+      <ScrollAreaPrimitive.ScrollAreaThumb
+        className='relative flex-1 rounded-full bg-border'
+        data-slot='scroll-area-thumb'
+      />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
 }

@@ -1,6 +1,11 @@
 'use client';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '@repo/design-system/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@repo/design-system/components/ui/dropdown-menu';
 import { useI18n } from '@repo/localization/i18n/client';
 import { BellIcon } from 'lucide-react';
 

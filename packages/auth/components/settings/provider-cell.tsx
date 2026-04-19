@@ -23,7 +23,14 @@ export type ProviderCellProps = {
   refetch?: () => void;
 };
 
-export function ProviderCell({ className, classNames, accounts, other, provider, refetch }: Readonly<ProviderCellProps>) {
+export function ProviderCell({
+  className,
+  classNames,
+  accounts,
+  other,
+  provider,
+  refetch,
+}: Readonly<ProviderCellProps>) {
   const t = useI18n();
   const {
     authClient,

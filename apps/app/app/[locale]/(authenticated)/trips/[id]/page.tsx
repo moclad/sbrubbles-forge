@@ -6,7 +6,6 @@ import { getExpensesByTrip } from '@/lib/expenses-actions';
 import { getPeople } from '@/lib/people-actions';
 import { getTripById } from '@/lib/trips-actions';
 import { TripDetailsClient } from './components/trip-details-client';
-
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getI18n();
   return {
@@ -22,7 +21,12 @@ type TripDetailsPageProps = {
 const Page = async ({ params }: TripDetailsPageProps) => {
   const { id } = await params;
 
-  const [trip, categories, people, expenses] = await Promise.all([getTripById(id), getCategories(), getPeople(), getExpensesByTrip(id)]);
+  const [trip, categories, people, expenses] = await Promise.all([
+    getTripById(id),
+    getCategories(),
+    getPeople(),
+    getExpensesByTrip(id),
+  ]);
 
   if (!trip) {
     notFound();

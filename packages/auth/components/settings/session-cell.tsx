@@ -60,14 +60,22 @@ export function SessionCell({ className, classNames, session, refetch }: Readonl
       {isMobile ? <SmartphoneIcon className='size-4' /> : <LaptopIcon className='size-4' />}
 
       <div className='flex flex-col'>
-        <span className='font-semibold text-sm'>{isCurrentSession ? t('account.currentSession') : session?.ipAddress}</span>
+        <span className='font-semibold text-sm'>
+          {isCurrentSession ? t('account.currentSession') : session?.ipAddress}
+        </span>
 
         <span className='text-muted-foreground text-xs'>
           {parser.os.name}, {parser.browser.name}
         </span>
       </div>
 
-      <Button className={cn('relative ms-auto', classNames?.button)} loading={isLoading} onClick={handleRevoke} size='sm' variant='outline'>
+      <Button
+        className={cn('relative ms-auto', classNames?.button)}
+        loading={isLoading}
+        onClick={handleRevoke}
+        size='sm'
+        variant='outline'
+      >
         {isCurrentSession ? t('account.signOut') : t('account.revoke')}
       </Button>
     </Card>

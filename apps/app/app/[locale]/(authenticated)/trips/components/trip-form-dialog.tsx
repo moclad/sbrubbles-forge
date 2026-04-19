@@ -5,7 +5,13 @@ import type { SelectPerson } from '@repo/database/db/schema';
 import { Button } from '@repo/design-system/components/ui/button';
 import { CalendarDatePicker } from '@repo/design-system/components/ui/calendar-date-picker';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -90,9 +96,12 @@ export function TripFormDialog({ open, onOpenChange, initialData, people, onSubm
     setSearching(true);
     setLocationNotFound(false);
     try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
-        headers: { 'Accept-Language': 'en' },
-      });
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`,
+        {
+          headers: { 'Accept-Language': 'en' },
+        }
+      );
       const data = (await res.json()) as {
         lat: string;
         lon: string;
@@ -266,7 +275,9 @@ export function TripFormDialog({ open, onOpenChange, initialData, people, onSubm
                                 <Checkbox
                                   checked={field.value.includes(p.id)}
                                   onCheckedChange={(checked) => {
-                                    const next = checked ? [...field.value, p.id] : field.value.filter((v) => v !== p.id);
+                                    const next = checked
+                                      ? [...field.value, p.id]
+                                      : field.value.filter((v) => v !== p.id);
                                     field.onChange(next);
                                   }}
                                 />

@@ -49,7 +49,9 @@ export function SettingsCardFooter({
         </>
       ) : (
         <>
-          <CardDescription className={cn('text-muted-foreground text-xs md:text-sm', classNames?.instructions)}>{instructions}</CardDescription>
+          <CardDescription className={cn('text-muted-foreground text-xs md:text-sm', classNames?.instructions)}>
+            {instructions}
+          </CardDescription>
 
           {actionLabel && (
             <Button

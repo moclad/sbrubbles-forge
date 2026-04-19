@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import type { TooltipValueType } from 'recharts';
 import * as RechartsPrimitive from 'recharts';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { dark: '.dark', light: '' } as const;
@@ -65,7 +65,9 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle config={config} id={chartId} />
-        <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension}>{children}</RechartsPrimitive.ResponsiveContainer>
+        <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension}>
+          {children}
+        </RechartsPrimitive.ResponsiveContainer>
       </div>
     </ChartContext.Provider>
   );
@@ -155,7 +157,10 @@ function ChartTooltipContent({
 
   return (
     <div
-      className={cn('grid min-w-32 items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl', className)}
+      className={cn(
+        'grid min-w-32 items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl',
+        className
+      )}
     >
       {nestLabel ? null : tooltipLabel}
       <div className='grid gap-1.5'>
@@ -198,7 +203,12 @@ function ChartTooltipContent({
                         />
                       )
                     )}
-                    <div className={cn('flex flex-1 justify-between leading-none', nestLabel ? 'items-end' : 'items-center')}>
+                    <div
+                      className={cn(
+                        'flex flex-1 justify-between leading-none',
+                        nestLabel ? 'items-end' : 'items-center'
+                      )}
+                    >
                       <div className='grid gap-1.5'>
                         {nestLabel ? tooltipLabel : null}
                         <span className='text-muted-foreground'>{itemConfig?.label ?? item.name}</span>
@@ -246,7 +256,10 @@ function ChartLegendContent({
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
           return (
-            <div className={cn('flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground')} key={index}>
+            <div
+              className={cn('flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground')}
+              key={index}
+            >
               {itemConfig?.icon && !hideIcon ? (
                 <itemConfig.icon />
               ) : (
@@ -270,13 +283,20 @@ function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key:
     return undefined;
   }
 
-  const payloadPayload = 'payload' in payload && typeof payload.payload === 'object' && payload.payload !== null ? payload.payload : undefined;
+  const payloadPayload =
+    'payload' in payload && typeof payload.payload === 'object' && payload.payload !== null
+      ? payload.payload
+      : undefined;
 
   let configLabelKey: string = key;
 
   if (key in payload && typeof payload[key as keyof typeof payload] === 'string') {
     configLabelKey = payload[key as keyof typeof payload] as string;
-  } else if (payloadPayload && key in payloadPayload && typeof payloadPayload[key as keyof typeof payloadPayload] === 'string') {
+  } else if (
+    payloadPayload &&
+    key in payloadPayload &&
+    typeof payloadPayload[key as keyof typeof payloadPayload] === 'string'
+  ) {
     configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
   }
 

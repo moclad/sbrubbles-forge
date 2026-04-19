@@ -55,7 +55,9 @@ function ColorWheel({ className, outerRadius = 100, innerRadius = 74, ...props }
 function ColorArea({ className, ...props }: AriaColorAreaProps) {
   return (
     <AriaColorArea
-      className={composeRenderProps(className, (className) => cn('size-[192px] shrink-0 rounded-md border border-border shadow-md', className))}
+      className={composeRenderProps(className, (className) =>
+        cn('size-[192px] shrink-0 rounded-md border border-border shadow-md', className)
+      )}
       {...props}
     />
   );
@@ -64,7 +66,9 @@ function ColorArea({ className, ...props }: AriaColorAreaProps) {
 function SliderTrack({ className, ...props }: AriaSliderTrackProps) {
   return (
     <AriaSliderTrack
-      className={composeRenderProps(className, (className) => cn('h-7 w-[192px] rounded-md border border-border', className))}
+      className={composeRenderProps(className, (className) =>
+        cn('h-7 w-[192px] rounded-md border border-border', className)
+      )}
       {...props}
     />
   );
@@ -87,7 +91,12 @@ function ColorThumb({ className, ...props }: AriaColorThumbProps) {
 }
 
 function ColorSwatchPicker({ className, ...props }: AriaColorSwatchPickerProps) {
-  return <AriaColorSwatchPicker className={composeRenderProps(className, (className) => cn('flex flex-wrap gap-2', className))} {...props} />;
+  return (
+    <AriaColorSwatchPicker
+      className={composeRenderProps(className, (className) => cn('flex flex-wrap gap-2', className))}
+      {...props}
+    />
+  );
 }
 
 function ColorSwatchPickerItem({ className, ...props }: AriaColorSwatchPickerItemProps) {
@@ -111,7 +120,9 @@ function ColorSwatchPickerItem({ className, ...props }: AriaColorSwatchPickerIte
 }
 
 function ColorSwatch({ className, ...props }: AriaColorSwatchProps) {
-  return <AriaColorSwatch className={composeRenderProps(className, (className) => cn('size-8', className))} {...props} />;
+  return (
+    <AriaColorSwatch className={composeRenderProps(className, (className) => cn('size-8', className))} {...props} />
+  );
 }
 
 export type { ColorWheelProps };

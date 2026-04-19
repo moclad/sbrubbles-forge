@@ -1,6 +1,12 @@
 'use client';
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { cn } from '@repo/design-system/lib/utils';
 import { Command as CommandPrimitive } from 'cmdk';
 import { SearchIcon } from 'lucide-react';
@@ -9,7 +15,10 @@ import type * as React from 'react';
 function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
     <CommandPrimitive
-      className={cn('flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground', className)}
+      className={cn(
+        'flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground',
+        className
+      )}
       data-slot='command'
       {...props}
     />
@@ -88,7 +97,13 @@ function CommandGroup({ className, ...props }: React.ComponentProps<typeof Comma
 }
 
 function CommandSeparator({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
-  return <CommandPrimitive.Separator className={cn('-mx-1 h-px bg-border', className)} data-slot='command-separator' {...props} />;
+  return (
+    <CommandPrimitive.Separator
+      className={cn('-mx-1 h-px bg-border', className)}
+      data-slot='command-separator'
+      {...props}
+    />
+  );
 }
 
 function CommandItem({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Item>) {
@@ -105,7 +120,23 @@ function CommandItem({ className, ...props }: React.ComponentProps<typeof Comman
 }
 
 function CommandShortcut({ className, ...props }: React.ComponentProps<'span'>) {
-  return <span className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)} data-slot='command-shortcut' {...props} />;
+  return (
+    <span
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
+      data-slot='command-shortcut'
+      {...props}
+    />
+  );
 }
 
-export { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut };
+export {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+};

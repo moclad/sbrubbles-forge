@@ -1,6 +1,14 @@
 'use client';
 
-import { ColorArea, ColorField, ColorPicker, ColorSlider, ColorSwatch, ColorThumb, SliderTrack } from '@repo/design-system/components/ui/color';
+import {
+  ColorArea,
+  ColorField,
+  ColorPicker,
+  ColorSlider,
+  ColorSwatch,
+  ColorThumb,
+  SliderTrack,
+} from '@repo/design-system/components/ui/color';
 import { Input, Label, parseColor } from 'react-aria-components';
 
 export function randomHex(): string {

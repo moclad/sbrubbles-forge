@@ -8,17 +8,46 @@
 import { Button } from '@repo/design-system/components/ui/button';
 import { Calendar } from '@repo/design-system/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@repo/design-system/components/ui/popover';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@repo/design-system/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@repo/design-system/components/ui/select';
 import { cn } from '@repo/design-system/lib/utils';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
-import { endOfDay, endOfMonth, endOfWeek, endOfYear, startOfDay, startOfMonth, startOfWeek, startOfYear, subDays } from 'date-fns';
+import {
+  endOfDay,
+  endOfMonth,
+  endOfWeek,
+  endOfYear,
+  startOfDay,
+  startOfMonth,
+  startOfWeek,
+  startOfYear,
+  subDays,
+} from 'date-fns';
 import { formatInTimeZone, toDate } from 'date-fns-tz';
 import { CalendarIcon } from 'lucide-react';
 import { forwardRef, useEffect, useState } from 'react';
 import type { DateRange } from 'react-day-picker';
 
-const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+const months = [
+  'Januar',
+  'Februar',
+  'März',
+  'April',
+  'Mai',
+  'Juni',
+  'Juli',
+  'August',
+  'September',
+  'Oktober',
+  'November',
+  'Dezember',
+];
 
 const multiSelectVariants = cva(
   'flex items-center justify-center whitespace-nowrap rounded-md font-medium text-foreground text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -39,7 +68,9 @@ const multiSelectVariants = cva(
   }
 );
 
-interface CalendarDatePickerProps extends React.HTMLAttributes<HTMLButtonElement>, VariantProps<typeof multiSelectVariants> {
+interface CalendarDatePickerProps
+  extends React.HTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof multiSelectVariants> {
   className?: string;
   closeOnSelect?: boolean;
   date: DateRange;
@@ -71,7 +102,9 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
     const [monthFrom, setMonthFrom] = useState<Date | undefined>(date?.from);
     const [yearFrom, setYearFrom] = useState<number | undefined>(date?.from?.getFullYear());
     const [monthTo, setMonthTo] = useState<Date | undefined>(numberOfMonths === 2 ? date?.to : date?.from);
-    const [yearTo, setYearTo] = useState<number | undefined>(numberOfMonths === 2 ? date?.to?.getFullYear() : date?.from?.getFullYear());
+    const [yearTo, setYearTo] = useState<number | undefined>(
+      numberOfMonths === 2 ? date?.to?.getFullYear() : date?.from?.getFullYear()
+    );
     const [highlightedPart, setHighlightedPart] = useState<string | null>(null);
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -126,7 +159,12 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
               : date?.from
                 ? new Date(date.from.getFullYear(), newMonth.getMonth(), date.from.getDate())
                 : newMonth;
-          const to = numberOfMonths === 2 ? (date.to ? endOfDay(toDate(date.to, { timeZone })) : endOfMonth(toDate(newMonth, { timeZone }))) : from;
+          const to =
+            numberOfMonths === 2
+              ? date.to
+                ? endOfDay(toDate(date.to, { timeZone }))
+                : endOfMonth(toDate(newMonth, { timeZone }))
+              : from;
           if (from <= to) {
             onDateSelect({ from, to });
             setMonthFrom(newMonth);
@@ -138,7 +176,9 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
           return;
         }
         const newMonth = new Date(yearTo, newMonthIndex, 1);
-        const from = date.from ? startOfDay(toDate(date.from, { timeZone })) : startOfMonth(toDate(newMonth, { timeZone }));
+        const from = date.from
+          ? startOfDay(toDate(date.from, { timeZone }))
+          : startOfMonth(toDate(newMonth, { timeZone }));
         const to = numberOfMonths === 2 ? endOfMonth(toDate(newMonth, { timeZone })) : from;
         if (from <= to) {
           onDateSelect({ from, to });
@@ -152,14 +192,21 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
       setSelectedRange(null);
       if (part === 'from') {
         if (years.includes(newYear)) {
-          const newMonth = monthFrom ? new Date(newYear, monthFrom ? monthFrom.getMonth() : 0, 1) : new Date(newYear, 0, 1);
+          const newMonth = monthFrom
+            ? new Date(newYear, monthFrom ? monthFrom.getMonth() : 0, 1)
+            : new Date(newYear, 0, 1);
           const from =
             numberOfMonths === 2
               ? startOfMonth(toDate(newMonth, { timeZone }))
               : date.from
                 ? new Date(newYear, newMonth.getMonth(), date.from.getDate())
                 : newMonth;
-          const to = numberOfMonths === 2 ? (date.to ? endOfDay(toDate(date.to, { timeZone })) : endOfMonth(toDate(newMonth, { timeZone }))) : from;
+          const to =
+            numberOfMonths === 2
+              ? date.to
+                ? endOfDay(toDate(date.to, { timeZone }))
+                : endOfMonth(toDate(newMonth, { timeZone }))
+              : from;
           if (from <= to) {
             onDateSelect({ from, to });
             setYearFrom(newYear);
@@ -170,7 +217,9 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
         }
       } else if (years.includes(newYear)) {
         const newMonth = monthTo ? new Date(newYear, monthTo.getMonth(), 1) : new Date(newYear, 0, 1);
-        const from = date.from ? startOfDay(toDate(date.from, { timeZone })) : startOfMonth(toDate(newMonth, { timeZone }));
+        const from = date.from
+          ? startOfDay(toDate(date.from, { timeZone }))
+          : startOfMonth(toDate(newMonth, { timeZone }));
         const to = numberOfMonths === 2 ? endOfMonth(toDate(newMonth, { timeZone })) : from;
         if (from <= to) {
           onDateSelect({ from, to });
@@ -334,7 +383,14 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
       const secondMonthElement = document.getElementById(`secondMonth-${id}`);
       const secondYearElement = document.getElementById(`secondYear-${id}`);
 
-      const elements = [firstDayElement, firstMonthElement, firstYearElement, secondDayElement, secondMonthElement, secondYearElement];
+      const elements = [
+        firstDayElement,
+        firstMonthElement,
+        firstYearElement,
+        secondDayElement,
+        secondMonthElement,
+        secondYearElement,
+      ];
 
       const addPassiveEventListener = (element: HTMLElement | null) => {
         if (element) {
@@ -360,7 +416,13 @@ export const CalendarDatePicker = forwardRef<HTMLButtonElement, CalendarDatePick
     return (
       <Popover modal={true} onOpenChange={setIsPopoverOpen} open={isPopoverOpen}>
         <PopoverTrigger asChild disabled={disabled}>
-          <Button id='date' ref={ref} {...props} className={cn('w-auto', multiSelectVariants({ className, variant }))} onClick={handleTogglePopover}>
+          <Button
+            id='date'
+            ref={ref}
+            {...props}
+            className={cn('w-auto', multiSelectVariants({ className, variant }))}
+            onClick={handleTogglePopover}
+          >
             <CalendarIcon className='mr-2 h-4 w-4' />
             <span>
               {date?.from ? (

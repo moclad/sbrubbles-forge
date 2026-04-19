@@ -104,14 +104,23 @@ export const SignIn = () => {
                   <FormControl>
                     <PasswordInput placeholder={t('authentication.fields.passwordPlaceholder')} {...field} />
                   </FormControl>
-                  <Link className='ml-auto inline-block text-muted-foreground text-sm hover:underline' href='/forgot-password'>
+                  <Link
+                    className='ml-auto inline-block text-muted-foreground text-sm hover:underline'
+                    href='/forgot-password'
+                  >
                     {t('authentication.fields.forgotPassword')}
                   </Link>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className='w-full' data-testid='sign-in-btn' disabled={loadingPasskey} loading={loading} type='submit'>
+            <Button
+              className='w-full'
+              data-testid='sign-in-btn'
+              disabled={loadingPasskey}
+              loading={loading}
+              type='submit'
+            >
               <LogIn />
               {t('authentication.actions.signIn')}
             </Button>

@@ -1,7 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components//ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@repo/design-system/components//ui/form';
 import { Input } from '@repo/design-system/components//ui/input';
 import { Button } from '@repo/design-system/components/ui/button';
 import { toast } from '@repo/design-system/components/ui/sonner';
@@ -74,7 +81,12 @@ export function RecoverAccountForm({ className, isSubmitting, redirectTo, setIsS
               <FormLabel>{t('account.backupCode')}</FormLabel>
 
               <FormControl>
-                <Input autoComplete='off' disabled={isSubmitting} placeholder={t('account.backupCodePlaceholder')} {...field} />
+                <Input
+                  autoComplete='off'
+                  disabled={isSubmitting}
+                  placeholder={t('account.backupCodePlaceholder')}
+                  {...field}
+                />
               </FormControl>
 
               <FormMessage />
@@ -86,7 +98,13 @@ export function RecoverAccountForm({ className, isSubmitting, redirectTo, setIsS
           {t('account.recoverAction')}
         </Button>
 
-        <Button className='w-full' disabled={isSubmitting} onClick={() => navigate(`${basePath}/sign-in`)} type='button' variant='secondary'>
+        <Button
+          className='w-full'
+          disabled={isSubmitting}
+          onClick={() => navigate(`${basePath}/sign-in`)}
+          type='button'
+          variant='secondary'
+        >
           {t('account.backToSignIn')}
         </Button>
       </form>

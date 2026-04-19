@@ -48,7 +48,11 @@ export function NavProjects({
                   <span className='sr-only'>More</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align={isMobile ? 'end' : 'start'} className='w-48 rounded-lg' side={isMobile ? 'bottom' : 'right'}>
+              <DropdownMenuContent
+                align={isMobile ? 'end' : 'start'}
+                className='w-48 rounded-lg'
+                side={isMobile ? 'bottom' : 'right'}
+              >
                 <DropdownMenuItem>
                   <Folder className='text-muted-foreground' />
                   <span>View Project</span>

@@ -21,7 +21,13 @@ export type ChangePasswordCardProps = {
   skipHook?: boolean;
 };
 
-export function ChangePasswordCard({ className, classNames, accounts, isPending, skipHook }: Readonly<ChangePasswordCardProps>) {
+export function ChangePasswordCard({
+  className,
+  classNames,
+  accounts,
+  isPending,
+  skipHook,
+}: Readonly<ChangePasswordCardProps>) {
   const {
     authClient,
     basePath,
@@ -146,7 +152,11 @@ export function ChangePasswordCard({ className, classNames, accounts, isPending,
             </div>
 
             {confirmPasswordEnabled && (
-              <ConfirmPasswordInput autoComplete='current-password' classNames={classNames} onChange={() => setDisabled(false)} />
+              <ConfirmPasswordInput
+                autoComplete='current-password'
+                classNames={classNames}
+                onChange={() => setDisabled(false)}
+              />
             )}
           </>
         )}

@@ -61,10 +61,16 @@ function Calendar({
           'relative rounded-md border border-input shadow-xs has-focus:border-ring has-focus:ring-[3px] has-focus:ring-ring/50',
           defaultClassNames.dropdown_root
         ),
-        dropdowns: cn('flex h-(--cell-size) w-full items-center justify-center gap-1.5 font-medium text-sm', defaultClassNames.dropdowns),
+        dropdowns: cn(
+          'flex h-(--cell-size) w-full items-center justify-center gap-1.5 font-medium text-sm',
+          defaultClassNames.dropdowns
+        ),
         hidden: cn('invisible', defaultClassNames.hidden),
         month: cn('flex w-full flex-col gap-4', defaultClassNames.month),
-        month_caption: cn('flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)', defaultClassNames.month_caption),
+        month_caption: cn(
+          'flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)',
+          defaultClassNames.month_caption
+        ),
         months: cn('relative flex flex-col gap-4 md:flex-row', defaultClassNames.months),
         nav: cn('absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1', defaultClassNames.nav),
         outside: cn('text-muted-foreground aria-selected:text-muted-foreground', defaultClassNames.outside),
@@ -73,11 +79,17 @@ function Calendar({
         range_start: cn('rounded-l-md bg-accent', defaultClassNames.range_start),
         root: cn('w-fit', defaultClassNames.root),
         table: 'w-full border-collapse',
-        today: cn('rounded-md bg-accent text-accent-foreground data-[selected=true]:rounded-none', defaultClassNames.today),
+        today: cn(
+          'rounded-md bg-accent text-accent-foreground data-[selected=true]:rounded-none',
+          defaultClassNames.today
+        ),
         week: cn('mt-2 flex w-full', defaultClassNames.week),
         week_number: cn('select-none text-[0.8rem] text-muted-foreground', defaultClassNames.week_number),
         week_number_header: cn('w-(--cell-size) select-none', defaultClassNames.week_number_header),
-        weekday: cn('flex-1 select-none rounded-md font-normal text-[0.8rem] text-muted-foreground', defaultClassNames.weekday),
+        weekday: cn(
+          'flex-1 select-none rounded-md font-normal text-[0.8rem] text-muted-foreground',
+          defaultClassNames.weekday
+        ),
         weekdays: cn('flex', defaultClassNames.weekdays),
         ...classNames,
       }}
@@ -137,7 +149,9 @@ function CalendarDayButton({ className, day, modifiers, ...props }: React.Compon
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       data-range-start={modifiers.range_start}
-      data-selected-single={modifiers.selected && !modifiers.range_start && !modifiers.range_end && !modifiers.range_middle}
+      data-selected-single={
+        modifiers.selected && !modifiers.range_start && !modifiers.range_end && !modifiers.range_middle
+      }
       ref={ref}
       size='icon'
       variant='ghost'

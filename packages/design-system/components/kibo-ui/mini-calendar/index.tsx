@@ -6,7 +6,6 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { Slot } from 'radix-ui';
 import type { ButtonHTMLAttributes, ComponentProps, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { createContext, useContext } from 'react';
-
 import { cn } from '../../../lib/utils';
 import { Button } from '../../ui/button';
 
@@ -44,8 +43,9 @@ const getDays = (startDate: Date, count: number): Date[] => {
 const formatDate = (date: Date) => {
   const month = format(date, 'MMM');
   const day = format(date, 'd');
+  const weekday = format(date, 'EEE');
 
-  return { day, month };
+  return { day, month, weekday };
 };
 
 export type MiniCalendarProps = HTMLAttributes<HTMLDivElement> & {
@@ -113,7 +113,13 @@ export type MiniCalendarNavigationProps = ButtonHTMLAttributes<HTMLButtonElement
   asChild?: boolean;
 };
 
-export const MiniCalendarNavigation = ({ direction, asChild = false, children, onClick, ...props }: MiniCalendarNavigationProps) => {
+export const MiniCalendarNavigation = ({
+  direction,
+  asChild = false,
+  children,
+  onClick,
+  ...props
+}: MiniCalendarNavigationProps) => {
   const { onNavigate } = useMiniCalendar();
   const Icon = direction === 'prev' ? ChevronLeftIcon : ChevronRightIcon;
 
@@ -131,7 +137,13 @@ export const MiniCalendarNavigation = ({ direction, asChild = false, children, o
   }
 
   return (
-    <Button onClick={handleClick} size={asChild ? undefined : 'icon'} type='button' variant={asChild ? undefined : 'ghost'} {...props}>
+    <Button
+      onClick={handleClick}
+      size={asChild ? undefined : 'icon'}
+      type='button'
+      variant={asChild ? undefined : 'outline'}
+      {...props}
+    >
       {children ?? <Icon className='size-4' />}
     </Button>
   );
@@ -158,7 +170,7 @@ export type MiniCalendarDayProps = ComponentProps<typeof Button> & {
 
 export const MiniCalendarDay = ({ date, className, ...props }: MiniCalendarDayProps) => {
   const { selectedDate, onDateSelect } = useMiniCalendar();
-  const { month, day } = formatDate(date);
+  const { month, day, weekday } = formatDate(date);
   const isSelected = selectedDate && isSameDay(date, selectedDate);
   const isTodayDate = isToday(date);
 
@@ -171,8 +183,13 @@ export const MiniCalendarDay = ({ date, className, ...props }: MiniCalendarDayPr
       variant={isSelected ? 'default' : 'ghost'}
       {...props}
     >
-      <span className={cn('font-medium text-[10px] text-muted-foreground', isSelected && 'text-primary-foreground/70')}>{month}</span>
+      <span className={cn('font-medium text-[10px] text-muted-foreground', isSelected && 'text-primary-foreground/70')}>
+        {month}
+      </span>
       <span className='font-semibold text-sm'>{day}</span>
+      <span className={cn('font-medium text-[10px] text-muted-foreground', isSelected && 'text-primary-foreground/70')}>
+        {weekday}
+      </span>
     </Button>
   );
 };

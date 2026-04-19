@@ -90,7 +90,9 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
   }
 
   return (
-    <div className={cn('flex w-full max-w-xl grow flex-col items-center gap-4 bg-green-100', className, classNames?.base)}>
+    <div
+      className={cn('flex w-full max-w-xl grow flex-col items-center gap-4 bg-green-100', className, classNames?.base)}
+    >
       <Tabs className={cn('flex w-full flex-col gap-4', classNames?.tabs?.base)} defaultValue='account'>
         <TabsList className={cn('grid w-full grid-cols-2', classNames?.tabs?.list)}>
           <TabsTrigger className={classNames?.tabs?.trigger} value='account'>
@@ -111,7 +113,9 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
 
           {username && <UpdateUsernameCard classNames={classNames?.card} isPending={sessionPending} />}
 
-          {(settingsFields?.includes('name') || nameRequired) && <UpdateNameCard classNames={classNames?.card} isPending={sessionPending} />}
+          {(settingsFields?.includes('name') || nameRequired) && (
+            <UpdateNameCard classNames={classNames?.card} isPending={sessionPending} />
+          )}
 
           {changeEmail && <ChangeEmailCard classNames={classNames?.card} isPending={sessionPending} />}
 
@@ -156,21 +160,43 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
         </TabsContent>
 
         <TabsContent className={cn('flex flex-col gap-4', classNames?.tabs?.content)} value='security'>
-          {credentials && <ChangePasswordCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />}
+          {credentials && (
+            <ChangePasswordCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />
+          )}
 
           {(providers?.length || otherProviders?.length) && (
-            <ProvidersCard accounts={accounts} classNames={classNames?.card} isPending={accountsPending} refetch={refetchAccounts} skipHook />
+            <ProvidersCard
+              accounts={accounts}
+              classNames={classNames?.card}
+              isPending={accountsPending}
+              refetch={refetchAccounts}
+              skipHook
+            />
           )}
 
           {passkey && (
-            <PasskeysCard classNames={classNames?.card} isPending={passkeysPending} passkeys={passkeys} refetch={refetchPasskeys} skipHook />
+            <PasskeysCard
+              classNames={classNames?.card}
+              isPending={passkeysPending}
+              passkeys={passkeys}
+              refetch={refetchPasskeys}
+              skipHook
+            />
           )}
 
           {twoFactor && credentialsLinked && <TwoFactorCard classNames={classNames?.card} />}
 
-          <SessionsCard classNames={classNames?.card} isPending={sessionsPending} refetch={refetchSessions} sessions={sessions} skipHook />
+          <SessionsCard
+            classNames={classNames?.card}
+            isPending={sessionsPending}
+            refetch={refetchSessions}
+            sessions={sessions}
+            skipHook
+          />
 
-          {deleteUser && <DeleteAccountCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />}
+          {deleteUser && (
+            <DeleteAccountCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />
+          )}
         </TabsContent>
       </Tabs>
     </div>

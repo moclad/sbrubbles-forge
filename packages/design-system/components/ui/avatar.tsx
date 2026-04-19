@@ -25,7 +25,9 @@ function Avatar({
 }
 
 function AvatarImage({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
-  return <AvatarPrimitive.Image className={cn('aspect-square size-full', className)} data-slot='avatar-image' {...props} />;
+  return (
+    <AvatarPrimitive.Image className={cn('aspect-square size-full', className)} data-slot='avatar-image' {...props} />
+  );
 }
 
 function AvatarFallback({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
@@ -60,7 +62,10 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<'span'>) {
 function AvatarGroup({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background', className)}
+      className={cn(
+        'group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background',
+        className
+      )}
       data-slot='avatar-group'
       {...props}
     />

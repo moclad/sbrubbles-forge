@@ -218,7 +218,10 @@ export const Base: Story = {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground' size='lg'>
+                    <SidebarMenuButton
+                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                      size='lg'
+                    >
                       <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
                         <activeTeam.logo className='size-4' />
                       </div>
@@ -339,7 +342,10 @@ export const Base: Story = {
               <SidebarMenuItem>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground' size='lg'>
+                    <SidebarMenuButton
+                      className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                      size='lg'
+                    >
                       <Avatar className='h-8 w-8 rounded-lg'>
                         <AvatarImage alt={data.user.name} src={data.user.avatar} />
                         <AvatarFallback className='rounded-lg'>CN</AvatarFallback>

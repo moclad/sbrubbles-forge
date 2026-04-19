@@ -6,7 +6,13 @@ import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import { DateTimePicker } from '@repo/design-system/components/ui/date-picker';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@repo/design-system/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@repo/design-system/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
@@ -125,10 +131,24 @@ export function ExpenseFormDialog({
   }, [categories, form]);
 
   useEffect(() => {
-    if (open && !initialData) {
+    if (!open) {
+      return;
+    }
+
+    if (initialData) {
+      form.reset({
+        amount: String(initialData.amount),
+        categoryId: initialData.category.id,
+        date: toDateInputValue(initialData.date),
+        description: initialData.description ?? '',
+        locationQuery: initialData.locationName ?? trip.locationName ?? '',
+        personIds: initialData.people.map((item) => item.id),
+      });
+      setLocation(getDefaultLocation(trip, initialData));
+    } else {
       form.setValue('date', toDateInputValue(selectedDate));
     }
-  }, [form, initialData, open, selectedDate]);
+  }, [form, initialData, open, selectedDate, trip]);
 
   const resetForm = () => {
     form.reset({
@@ -160,9 +180,12 @@ export function ExpenseFormDialog({
     setLocationNotFound(false);
 
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
-        headers: { 'Accept-Language': 'en' },
-      });
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`,
+        {
+          headers: { 'Accept-Language': 'en' },
+        }
+      );
       const data = (await response.json()) as {
         display_name: string;
         lat: string;
@@ -226,7 +249,9 @@ export function ExpenseFormDialog({
     <Dialog onOpenChange={handleOpenChange} open={open}>
       <DialogContent className='max-h-[90vh] overflow-y-auto sm:max-w-lg lg:max-w-xl'>
         <DialogHeader>
-          <DialogTitle>{isEdit ? t('trips.expenses.form.editTitle') : t('trips.expenses.form.createTitle')}</DialogTitle>
+          <DialogTitle>
+            {isEdit ? t('trips.expenses.form.editTitle') : t('trips.expenses.form.createTitle')}
+          </DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -361,7 +386,9 @@ export function ExpenseFormDialog({
                       {t('trips.expenses.form.searchButton')}
                     </Button>
                   </div>
-                  {locationNotFound && <p className='text-destructive text-sm'>{t('trips.expenses.form.locationNotFound')}</p>}
+                  {locationNotFound && (
+                    <p className='text-destructive text-sm'>{t('trips.expenses.form.locationNotFound')}</p>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}
@@ -402,7 +429,9 @@ export function ExpenseFormDialog({
                                 <Checkbox
                                   checked={field.value.includes(item.id)}
                                   onCheckedChange={(checked) => {
-                                    const next = checked ? [...field.value, item.id] : field.value.filter((value) => value !== item.id);
+                                    const next = checked
+                                      ? [...field.value, item.id]
+                                      : field.value.filter((value) => value !== item.id);
                                     field.onChange(next);
                                   }}
                                 />
@@ -423,7 +452,9 @@ export function ExpenseFormDialog({
               <Button onClick={() => handleOpenChange(false)} variant='outline'>
                 {t('trips.expenses.form.cancel')}
               </Button>
-              <Button type='submit'>{isEdit ? t('trips.expenses.form.saveChanges') : t('trips.expenses.form.create')}</Button>
+              <Button type='submit'>
+                {isEdit ? t('trips.expenses.form.saveChanges') : t('trips.expenses.form.create')}
+              </Button>
             </DialogFooter>
           </form>
         </Form>

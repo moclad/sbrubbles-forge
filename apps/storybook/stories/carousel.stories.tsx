@@ -1,4 +1,10 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@repo/design-system/components/ui/carousel';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@repo/design-system/components/ui/carousel';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 /**

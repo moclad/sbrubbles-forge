@@ -1,6 +1,13 @@
 import { Alert, AlertDescription, AlertTitle } from '@repo/design-system/components/ui/alert';
 import { Button } from '@repo/design-system/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@repo/design-system/components/ui/card';
 import { getI18n } from '@repo/localization/i18n/server';
 import { createMetadata } from '@repo/seo/metadata';
 import { AlertCircle } from 'lucide-react';
@@ -8,7 +15,9 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-const ResetPassword = dynamic(() => import('@repo/auth/components/auth/reset-password').then((mod) => mod.ResetPassword));
+const ResetPassword = dynamic(() =>
+  import('@repo/auth/components/auth/reset-password').then((mod) => mod.ResetPassword)
+);
 
 type ResetProps = {
   searchParams: Promise<{
