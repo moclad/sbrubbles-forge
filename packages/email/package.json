@@ -11,7 +11,7 @@
     "@t3-oss/env-nextjs": "catalog:",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
-    "resend": "^6.10.0",
+    "resend": "^6.12.2",
     "zod": "catalog:"
   },
   "devDependencies": {
