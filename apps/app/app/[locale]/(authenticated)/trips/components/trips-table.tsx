@@ -197,7 +197,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
           <div className='mt-auto pt-2'>
             <AvatarGroup>
               {visiblePeople.map((p) => (
-                <Avatar key={p.id} size='sm' title={p.name}>
+                <Avatar key={p.id} size='lg' title={p.name}>
                   {p.avatarUrl && <AvatarImage alt={p.name} src={p.avatarUrl} />}
                   <AvatarFallback>{getInitials(p.name)}</AvatarFallback>
                 </Avatar>

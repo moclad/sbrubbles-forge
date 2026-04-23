@@ -1,26 +1,35 @@
 'use client';
 
+import { Euro, Loader2, Search } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
-import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import { DateTimePicker } from '@repo/design-system/components/ui/date-picker';
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@repo/design-system/components/ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
-import { Euro, Loader2, Search } from 'lucide-react';
-import dynamic from 'next/dynamic';
-import { useEffect, useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+
+import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 import type { TripWithPeople } from '@/lib/trips-actions';
 
@@ -79,6 +88,21 @@ function getDefaultLocation(trip: TripWithPeople, initialData?: ExpenseWithDetai
   }
 
   return null;
+}
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(' ').filter(Boolean);
+  if (parts.length === 0) {
+    return '';
+  }
+  if (parts.length === 1) {
+    return parts[0].slice(0, 2).toUpperCase();
+  }
+  return parts
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 export function ExpenseFormDialog({
@@ -290,28 +314,28 @@ export function ExpenseFormDialog({
               )}
             />
 
-            <FormField
-              control={form.control}
-              name='amount'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('trips.expenses.form.amountLabel')}</FormLabel>
-                  <FormControl>
-                    <div className='relative'>
-                      <Euro className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input className='pl-9' min='0' placeholder='0.00' step='0.01' type='number' {...field} />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className='grid gap-4 sm:grid-cols-2'>
+              <FormField
+                control={form.control}
+                name='amount'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('trips.expenses.form.amountLabel')}</FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Euro className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
+                        <Input className='pl-9' min='0' placeholder='0.00' step='0.01' type='number' {...field} />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name='date'
-              render={({ field }) => {
-                return (
+              <FormField
+                control={form.control}
+                name='date'
+                render={({ field }) => (
                   <FormItem className='flex flex-col'>
                     <FormLabel>{t('trips.expenses.form.dateLabel')}</FormLabel>
                     <FormControl>
@@ -328,9 +352,9 @@ export function ExpenseFormDialog({
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                );
-              }}
-            />
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
@@ -398,34 +422,40 @@ export function ExpenseFormDialog({
               <FormField
                 control={form.control}
                 name='personIds'
-                render={() => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('trips.expenses.form.peopleLabel')}</FormLabel>
-                    <div className='flex flex-col gap-2'>
-                      {people.map((item) => (
-                        <FormField
-                          control={form.control}
-                          key={item.id}
-                          name='personIds'
-                          render={({ field }) => (
-                            <FormItem className='flex items-center gap-2 space-y-0'>
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value.includes(item.id)}
-                                  onCheckedChange={(checked) => {
-                                    const next = checked
-                                      ? [...field.value, item.id]
-                                      : field.value.filter((value) => value !== item.id);
-                                    field.onChange(next);
-                                  }}
-                                />
-                              </FormControl>
-                              <FormLabel className='cursor-pointer font-normal'>{item.name}</FormLabel>
-                            </FormItem>
-                          )}
-                        />
-                      ))}
-                    </div>
+                    <FormControl>
+                      <div className='flex flex-wrap gap-2'>
+                        {people.map((item) => {
+                          const isSelected = field.value.includes(item.id);
+                          return (
+                            <button
+                              aria-label={item.name}
+                              className={`cursor-pointer rounded-full border-2 p-0 outline-none ring-offset-background transition-all duration-150 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                                isSelected
+                                  ? 'scale-105 border-ring opacity-100 shadow-[0_0_0_2px_hsl(var(--background))]'
+                                  : 'scale-100 border-transparent opacity-70'
+                              }`}
+                              key={item.id}
+                              onClick={() => {
+                                const next = isSelected
+                                  ? field.value.filter((value) => value !== item.id)
+                                  : [...field.value, item.id];
+                                field.onChange(next);
+                              }}
+                              title={item.name}
+                              type='button'
+                            >
+                              <Avatar size='lg'>
+                                <AvatarImage alt={item.name} src={item.avatarUrl ?? undefined} />
+                                <AvatarFallback>{getInitials(item.name)}</AvatarFallback>
+                              </Avatar>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

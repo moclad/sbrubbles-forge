@@ -17,18 +17,16 @@ const preview: Preview = {
         light: 'light',
       },
     }),
-    (Story) => {
-      return (
-        <div className='bg-background'>
-          <ThemeProvider>
-            <TooltipProvider>
-              <Story />
-            </TooltipProvider>
-            <Toaster />
-          </ThemeProvider>
-        </div>
-      );
-    },
+    (Story) => (
+      <div className='bg-background'>
+        <ThemeProvider>
+          <TooltipProvider>
+            <Story />
+          </TooltipProvider>
+          <Toaster />
+        </ThemeProvider>
+      </div>
+    ),
   ],
   parameters: {
     chromatic: {

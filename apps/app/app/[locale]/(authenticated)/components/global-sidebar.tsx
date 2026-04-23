@@ -10,14 +10,12 @@ type GlobalSidebarProperties = {
   readonly children: ReactNode;
 };
 
-export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <Header />
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
-  );
-};
+export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => (
+  <SidebarProvider>
+    <AppSidebar />
+    <SidebarInset>
+      <Header />
+      {children}
+    </SidebarInset>
+  </SidebarProvider>
+);

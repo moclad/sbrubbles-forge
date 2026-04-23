@@ -317,50 +317,48 @@ function Calendar({
       }}
       components={{
         Chevron: ({ ...props }) => renderChevron(props),
-        MonthCaption: ({ calendarMonth }) => {
-          return (
-            <div className='inline-flex gap-2'>
-              <Select
-                defaultValue={calendarMonth.date.getMonth().toString()}
-                onValueChange={(value) => {
-                  const newDate = new Date(calendarMonth.date);
-                  newDate.setMonth(Number.parseInt(value, 10));
-                  props.onMonthChange?.(newDate);
-                }}
-              >
-                <SelectTrigger className='w-fit gap-1 border-none p-1 focus:bg-accent focus:text-accent-foreground'>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {MONTHS.map((month) => (
-                    <SelectItem key={month.value} value={month.value.toString()}>
-                      {month.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select
-                defaultValue={calendarMonth.date.getFullYear().toString()}
-                onValueChange={(value) => {
-                  const newDate = new Date(calendarMonth.date);
-                  newDate.setFullYear(Number.parseInt(value, 10));
-                  props.onMonthChange?.(newDate);
-                }}
-              >
-                <SelectTrigger className='w-fit gap-1 border-none p-1 focus:bg-accent focus:text-accent-foreground'>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {YEARS.map((year) => (
-                    <SelectItem key={year.value} value={year.value.toString()}>
-                      {year.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          );
-        },
+        MonthCaption: ({ calendarMonth }) => (
+          <div className='inline-flex gap-2'>
+            <Select
+              defaultValue={calendarMonth.date.getMonth().toString()}
+              onValueChange={(value) => {
+                const newDate = new Date(calendarMonth.date);
+                newDate.setMonth(Number.parseInt(value, 10));
+                props.onMonthChange?.(newDate);
+              }}
+            >
+              <SelectTrigger className='w-fit gap-1 border-none p-1 focus:bg-accent focus:text-accent-foreground'>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {MONTHS.map((month) => (
+                  <SelectItem key={month.value} value={month.value.toString()}>
+                    {month.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select
+              defaultValue={calendarMonth.date.getFullYear().toString()}
+              onValueChange={(value) => {
+                const newDate = new Date(calendarMonth.date);
+                newDate.setFullYear(Number.parseInt(value, 10));
+                props.onMonthChange?.(newDate);
+              }}
+            >
+              <SelectTrigger className='w-fit gap-1 border-none p-1 focus:bg-accent focus:text-accent-foreground'>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {YEARS.map((year) => (
+                  <SelectItem key={year.value} value={year.value.toString()}>
+                    {year.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ),
       }}
       defaultMonth={selected}
       showOutsideDays={showOutsideDays}
@@ -483,9 +481,7 @@ const TimePickerInput = React.forwardRef<HTMLInputElement, TimePickerInputProps>
       return;
     }, [flag]);
 
-    const calculatedValue = React.useMemo(() => {
-      return getDateByType(date, picker);
-    }, [date, picker]);
+    const calculatedValue = React.useMemo(() => getDateByType(date, picker), [date, picker]);
 
     const calculateNewValue = (key: string) => {
       /*

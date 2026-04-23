@@ -1,13 +1,14 @@
 'use client';
 
-import { Badge } from '@repo/design-system/components/ui/badge';
+import { useMemo, useState } from 'react';
+import { Pie, PieChart, Sector } from 'recharts';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
-import type { ChartConfig } from '@repo/design-system/components/ui/chart';
 import { ChartContainer } from '@repo/design-system/components/ui/chart';
 import { useI18n } from '@repo/localization/i18n/client';
-import { useMemo, useState } from 'react';
+
+import type { ChartConfig } from '@repo/design-system/components/ui/chart';
 import type { PieSectorDataItem, PieSectorShapeProps } from 'recharts';
-import { Pie, PieChart, Sector } from 'recharts';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 
 type TripCostSummaryCardProps = {
@@ -89,9 +90,7 @@ const renderActiveShape = ({
   );
 };
 
-const PieShape = (props: PieSectorShapeProps) => {
-  return renderActiveShape(props as PieSectorDataItem);
-};
+const PieShape = (props: PieSectorShapeProps) => renderActiveShape(props as PieSectorDataItem);
 
 export function TripCostSummaryCard({ expenses }: Readonly<TripCostSummaryCardProps>) {
   const t = useI18n();
@@ -176,36 +175,6 @@ export function TripCostSummaryCard({ expenses }: Readonly<TripCostSummaryCardPr
                 />
               </PieChart>
             </ChartContainer>
-
-            <div className='space-y-2'>
-              <p className='font-medium text-sm'>{t('trips.expenses.summary.categoriesLabel')}</p>
-              <div className='space-y-2'>
-                {categoryDistribution.map((category) => (
-                  <div
-                    className='flex items-center justify-between gap-3 rounded-md border px-2 py-1.5'
-                    key={category.key}
-                  >
-                    <div className='flex items-center gap-2'>
-                      <Badge
-                        className='text-foreground'
-                        style={{
-                          backgroundColor: category.color,
-                          borderColor: category.color,
-                        }}
-                        variant='outline'
-                      >
-                        &nbsp;
-                      </Badge>
-                      <span className='text-sm'>{category.label}</span>
-                    </div>
-                    <div className='text-right'>
-                      <p className='font-medium text-sm'>{formatAmount(category.amount)}</p>
-                      <p className='text-muted-foreground text-xs'>{category.percentage.toFixed(1)}%</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         )}
       </CardContent>

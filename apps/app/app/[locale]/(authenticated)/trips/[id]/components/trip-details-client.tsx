@@ -1,11 +1,17 @@
 'use client';
 
 import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
+import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
+
+import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
 import {
   MiniCalendar,
   MiniCalendarDay,
   MiniCalendarDays,
-  MiniCalendarNavigation,
+  MiniCalendarNavigation
 } from '@repo/design-system/components/kibo-ui/mini-calendar';
 import { PageContent } from '@repo/design-system/components/page-content';
 import {
@@ -16,31 +22,32 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
+  AlertDialogTitle
 } from '@repo/design-system/components/ui/alert-dialog';
 import {
   Avatar,
   AvatarFallback,
   AvatarGroup,
   AvatarGroupCount,
-  AvatarImage,
+  AvatarImage
 } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@repo/design-system/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@repo/design-system/components/ui/tooltip';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
-import type { ExpenseWithDetails } from '@/lib/expenses-actions';
-import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
-import type { TripWithPeople } from '@/lib/trips-actions';
+
 import { ExpenseFormDialog } from './expense-form-dialog';
 import { TripCostSummaryCard } from './trip-cost-summary-card';
 
+import type { ExpenseWithDetails } from '@/lib/expenses-actions';
+import type { TripWithPeople } from '@/lib/trips-actions';
 type TripDetailsClientProps = {
   categories: SelectCategory[];
   expenses: ExpenseWithDetails[];
@@ -120,6 +127,10 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
   const filteredExpenses = useMemo(
     () => expenses.filter((expense) => isSameDayValue(startOfDayValue(expense.date), startOfDayValue(selectedDate))),
     [expenses, selectedDate]
+  );
+  const selectedDateTotal = useMemo(
+    () => filteredExpenses.reduce((total, expense) => total + expense.amount, 0),
+    [filteredExpenses]
   );
 
   const visiblePeople = trip.people.slice(0, MAX_VISIBLE_AVATARS);
@@ -235,7 +246,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                     {visiblePeople.map((member) => (
                       <Tooltip key={member.id}>
                         <TooltipTrigger asChild>
-                          <Avatar size='sm'>
+                          <Avatar size='lg'>
                             {member.avatarUrl && <AvatarImage alt={member.name} src={member.avatarUrl} />}
                             <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
                           </Avatar>
@@ -280,12 +291,30 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
 
           <Card>
             <CardHeader>
-              <CardTitle>{t('trips.expenses.title')}</CardTitle>
-              <p className='text-muted-foreground text-sm'>
-                {t('trips.expenses.forDate', {
-                  date: formatSelectedDate(selectedDate),
-                })}
-              </p>
+              <div className='flex flex-wrap items-start justify-between gap-3'>
+                <div>
+                  <CardTitle>{t('trips.expenses.title')}</CardTitle>
+                  <div className='flex flex-wrap items-center gap-2'>
+                    <p className='text-muted-foreground text-sm'>
+                      {t('trips.expenses.forDate', {
+                        date: formatSelectedDate(selectedDate),
+                      })}
+                    </p>
+                    <Badge variant='secondary'>{selectedDateTotal.toFixed(2)}</Badge>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => {
+                    setDuplicateSource(null);
+                    setCreateOpen(true);
+                  }}
+                  size='sm'
+                  variant='outline'
+                >
+                  <Plus size={14} />
+                  {t('trips.expenses.newExpense')}
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               {filteredExpenses.length === 0 ? (

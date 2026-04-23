@@ -179,9 +179,7 @@ export const DoughnutChart: Story = {
     config: singleSeriesConfig,
   },
   render: (args) => {
-    const totalVisitors = useMemo(() => {
-      return singleSeriesData.reduce((acc, curr) => acc + curr.visitors, 0);
-    }, []);
+    const totalVisitors = useMemo(() => singleSeriesData.reduce((acc, curr) => acc + curr.visitors, 0), []);
     return (
       <ChartContainer {...args}>
         <PieChart>

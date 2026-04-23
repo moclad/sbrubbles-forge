@@ -13,7 +13,8 @@
     "@react-email/components": "1.0.12",
     "@repo/email": "workspace:*",
     "react": "catalog:react19",
-    "react-email": "6.0.0"
+    "react-email": "6.0.0",
+    "@react-email/ui": "^6.0.0"
   },
   "devDependencies": {
     "@react-email/preview-server": "5.2.10",

@@ -5,11 +5,10 @@ import { log } from '../observability/log';
 import { PRIVATE_ASSETS_BUCKET, PUBLIC_ASSETS_BUCKET } from './buckets';
 import { keys } from './keys';
 
-export const storageClient = (token: string) => {
-  return new StorageClient(keys().STORAGE_URL ?? '', {
+export const storageClient = (token: string) =>
+  new StorageClient(keys().STORAGE_URL ?? '', {
     Authorization: `Bearer ${token}`,
   });
-};
 
 const STANDARD_BUCKETS = [
   { config: { public: true }, name: PUBLIC_ASSETS_BUCKET },
