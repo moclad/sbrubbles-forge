@@ -1,17 +1,11 @@
 'use client';
 
 import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
-import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
-
-import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
 import {
   MiniCalendar,
   MiniCalendarDay,
   MiniCalendarDays,
-  MiniCalendarNavigation
+  MiniCalendarNavigation,
 } from '@repo/design-system/components/kibo-ui/mini-calendar';
 import { PageContent } from '@repo/design-system/components/page-content';
 import {
@@ -22,32 +16,31 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from '@repo/design-system/components/ui/alert-dialog';
 import {
   Avatar,
   AvatarFallback,
   AvatarGroup,
   AvatarGroupCount,
-  AvatarImage
+  AvatarImage,
 } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@repo/design-system/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@repo/design-system/components/ui/tooltip';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-
+import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
+import type { ExpenseWithDetails } from '@/lib/expenses-actions';
+import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
+import type { TripWithPeople } from '@/lib/trips-actions';
 import { ExpenseFormDialog } from './expense-form-dialog';
 import { TripCostSummaryCard } from './trip-cost-summary-card';
 
-import type { ExpenseWithDetails } from '@/lib/expenses-actions';
-import type { TripWithPeople } from '@/lib/trips-actions';
 type TripDetailsClientProps = {
   categories: SelectCategory[];
   expenses: ExpenseWithDetails[];
@@ -125,7 +118,10 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
   const [duplicateSource, setDuplicateSource] = useState<ExpenseWithDetails | null>(null);
 
   const filteredExpenses = useMemo(
-    () => expenses.filter((expense) => isSameDayValue(startOfDayValue(expense.date), startOfDayValue(selectedDate))),
+    () =>
+      expenses
+        .filter((expense) => isSameDayValue(startOfDayValue(expense.date), startOfDayValue(selectedDate)))
+        .sort((a, b) => a.category.name.localeCompare(b.category.name)),
     [expenses, selectedDate]
   );
   const selectedDateTotal = useMemo(
@@ -366,7 +362,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                               )}
                             </div>
                           </td>
-                          <td className='px-4 py-3 font-medium'>{expense.amount.toFixed(2)}</td>
+                          <td className='px-4 py-3 text-right font-medium'>{expense.amount.toFixed(2)}</td>
                           <td className='px-4 py-3'>
                             {expense.people.length === 0 ? (
                               <span className='text-muted-foreground'>-</span>

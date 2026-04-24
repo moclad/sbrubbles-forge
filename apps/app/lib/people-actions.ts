@@ -8,6 +8,8 @@ import { createBucketIfNotExists, s3Client } from '@repo/storage/s3-file-managem
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
 
+const TRAILING_SLASH_RE = /\/$/;
+
 async function requireSession() {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session?.user) {
@@ -76,5 +78,5 @@ export async function uploadPersonAvatar(personId: string, formData: FormData): 
   });
 
   const storageUrl = process.env.S3_STORAGE_URL ?? 'http://localhost';
-  return `${storageUrl.replace(/\/$/, '')}/${PUBLIC_ASSETS_BUCKET}/${key}`;
+  return `${storageUrl.replace(TRAILING_SLASH_RE, '')}/${PUBLIC_ASSETS_BUCKET}/${key}`;
 }

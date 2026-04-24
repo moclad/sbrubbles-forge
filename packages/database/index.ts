@@ -8,4 +8,5 @@ import { keys } from './keys';
 const pool = new Pool({ connectionString: keys().DATABASE_URL });
 
 export const database = drizzle({ client: pool, schema });
-export { asc, desc, eq, inArray } from 'drizzle-orm';
+// biome-ignore lint/performance/noBarrelFile: used in other packages
+export { asc, desc, eq, inArray, sum } from 'drizzle-orm';

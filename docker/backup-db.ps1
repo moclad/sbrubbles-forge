@@ -9,9 +9,9 @@
 
 param(
     [string]$Container = "postgres.sbrubbles",
-    [string]$DbName    = "postgres",
-    [string]$DbUser    = $env:POSTGRES_USER ?? "postgres",
-    [string]$OutDir    = "$PSScriptRoot\backups"
+    [string]$DbName = "postgres",
+    [string]$DbUser = $env:POSTGRES_USER ?? "postgres",
+    [string]$OutDir = "$PSScriptRoot\backups"
 )
 
 Set-StrictMode -Version Latest
@@ -30,7 +30,7 @@ if ($running -ne "true") {
     exit 1
 }
 
-$timestamp  = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+$timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $backupFile = Join-Path $OutDir "backup-${DbName}-${timestamp}.sql"
 
 Write-Host "Backing up database '$DbName' from container '$Container'..."

@@ -1,14 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Pie, PieChart, Sector } from 'recharts';
-
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
+import type { ChartConfig } from '@repo/design-system/components/ui/chart';
 import { ChartContainer } from '@repo/design-system/components/ui/chart';
 import { useI18n } from '@repo/localization/i18n/client';
-
-import type { ChartConfig } from '@repo/design-system/components/ui/chart';
+import { useMemo, useState } from 'react';
 import type { PieSectorDataItem, PieSectorShapeProps } from 'recharts';
+import { Pie, PieChart, Sector } from 'recharts';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 
 type TripCostSummaryCardProps = {

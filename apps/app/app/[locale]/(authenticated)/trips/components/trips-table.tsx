@@ -22,7 +22,7 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-import { CalendarRange, Camera, ImageIcon, Loader2, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Banknote, CalendarRange, Camera, ImageIcon, Loader2, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
@@ -191,6 +191,11 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
         <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
           <CalendarRange className='shrink-0' size={13} />
           <span>{formatDateRange(trip.startDate, trip.endDate)}</span>
+        </div>
+
+        <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
+          <Banknote className='shrink-0' size={13} />
+          <span>{trip.totalCost.toFixed(2)}</span>
         </div>
 
         {trip.people.length > 0 && (

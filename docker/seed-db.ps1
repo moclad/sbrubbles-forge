@@ -13,9 +13,9 @@
 #   .\docker\seed-db.ps1 -BackupFile .\docker\backups\backup-postgres-2026-04-22_10-00-00.sql -DbName postgres
 
 param(
-    [string]$Container  = "postgres.sbrubbles",
-    [string]$DbName     = "postgres",
-    [string]$DbUser     = $env:POSTGRES_USER   ?? "postgres",
+    [string]$Container = "postgres.sbrubbles",
+    [string]$DbName = "postgres",
+    [string]$DbUser = $env:POSTGRES_USER ?? "postgres",
     [string]$DbPassword = $env:POSTGRES_PASSWORD ?? "mypassword",
     [string]$BackupFile = "",
     [switch]$SkipDocker
@@ -38,8 +38,8 @@ if (-not $SkipDocker) {
 
     # Wait until postgres is healthy / accepting connections
     Write-Host "Waiting for PostgreSQL to be ready..."
-    $maxWait   = 30   # seconds
-    $elapsed   = 0
+    $maxWait = 30   # seconds
+    $elapsed = 0
     $sleepStep = 2
 
     while ($elapsed -lt $maxWait) {

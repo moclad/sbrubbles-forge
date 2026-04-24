@@ -1,12 +1,7 @@
 'use client';
 
-import { Euro, Loader2, Search } from 'lucide-react';
-import dynamic from 'next/dynamic';
-import { useEffect, useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import { Badge } from '@repo/design-system/components/ui/badge';
 import { Button } from '@repo/design-system/components/ui/button';
@@ -16,20 +11,16 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from '@repo/design-system/components/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@repo/design-system/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/design-system/components/ui/form';
 import { Input } from '@repo/design-system/components/ui/input';
 import { useI18n } from '@repo/localization/i18n/client';
-
-import type { SelectCategory, SelectPerson } from '@repo/database/db/schema';
+import { Euro, Loader2, Search } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 import type { TripWithPeople } from '@/lib/trips-actions';
 
