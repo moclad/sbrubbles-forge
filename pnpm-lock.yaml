@@ -171,6 +171,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@repo/ai':
+        specifier: workspace:*
+        version: link:../../packages/ai
       '@repo/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics
