@@ -39,6 +39,10 @@ const data = {
           title: 'Trips',
           url: '/trips',
         },
+        {
+          title: 'Failed Slack Messages',
+          url: '/failed-messages',
+        },
       ],
       title: 'Dashboard',
       url: '#',
@@ -53,6 +57,10 @@ const data = {
         {
           title: 'People',
           url: '/settings/people',
+        },
+        {
+          title: 'Configuration',
+          url: '/settings/configuration',
         },
       ],
       title: 'Settings',

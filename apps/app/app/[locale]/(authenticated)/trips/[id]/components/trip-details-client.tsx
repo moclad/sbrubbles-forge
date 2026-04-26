@@ -35,83 +35,38 @@ import { CalendarRange, Copy, MapPin, Pencil, Plus, Trash2 } from 'lucide-react'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
+import { formatCurrency } from '@/lib/currency-utils';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
 import { createExpense, deleteExpense, updateExpense } from '@/lib/expenses-actions';
+import {
+  formatDate,
+  formatDateRange,
+  getDaysBetween,
+  getInitials,
+  isSameDay,
+  MAX_VISIBLE_AVATARS,
+  startOfDay,
+  subtractDays,
+} from '@/lib/format-utils';
 import type { TripWithPeople } from '@/lib/trips-actions';
 import { ExpenseFormDialog } from './expense-form-dialog';
 import { TripCostSummaryCard } from './trip-cost-summary-card';
 
 type TripDetailsClientProps = {
   categories: SelectCategory[];
+  currency: string;
   expenses: ExpenseWithDetails[];
   people: SelectPerson[];
   trip: TripWithPeople;
 };
 
-const MAX_VISIBLE_AVATARS = 5;
-
-function getInitials(name: string): string {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 1) {
-    return parts[0].slice(0, 2).toUpperCase();
-  }
-  return parts
-    .map((part) => part[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-}
-
-function formatDateRange(startDate: Date, endDate: Date): string {
-  const formatter = new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
-
-  return `${formatter.format(startDate)} - ${formatter.format(endDate)}`;
-}
-
-function startOfDayValue(date: Date): Date {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
-
-function isSameDayValue(left: Date, right: Date): boolean {
-  return (
-    left.getFullYear() === right.getFullYear() &&
-    left.getMonth() === right.getMonth() &&
-    left.getDate() === right.getDate()
-  );
-}
-
-function getTripDurationDays(startDate: Date, endDate: Date): number {
-  const start = startOfDayValue(startDate).getTime();
-  const end = startOfDayValue(endDate).getTime();
-  const dayInMs = 1000 * 60 * 60 * 24;
-  return Math.max(1, Math.floor((end - start) / dayInMs) + 1);
-}
-
-function formatSelectedDate(date: Date): string {
-  return new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  }).format(date);
-}
-
-function subtractOneDay(date: Date): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() - 1);
-  return result;
-}
-
-export function TripDetailsClient({ categories, expenses, people, trip }: Readonly<TripDetailsClientProps>) {
+export function TripDetailsClient({ categories, currency, expenses, people, trip }: Readonly<TripDetailsClientProps>) {
   const t = useI18n();
   const locale = useCurrentLocale();
   const router = useRouter();
 
-  const [selectedDate, setSelectedDate] = useState<Date>(startOfDayValue(trip.startDate));
-  const [calendarStartDate, setCalendarStartDate] = useState<Date>(startOfDayValue(subtractOneDay(trip.startDate)));
+  const [selectedDate, setSelectedDate] = useState<Date>(startOfDay(trip.startDate));
+  const [calendarStartDate, setCalendarStartDate] = useState<Date>(startOfDay(subtractDays(trip.startDate)));
   const [createOpen, setCreateOpen] = useState(false);
   const [editingExpense, setEditingExpense] = useState<ExpenseWithDetails | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<ExpenseWithDetails | null>(null);
@@ -120,7 +75,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
   const filteredExpenses = useMemo(
     () =>
       expenses
-        .filter((expense) => isSameDayValue(startOfDayValue(expense.date), startOfDayValue(selectedDate)))
+        .filter((expense) => isSameDay(startOfDay(expense.date), startOfDay(selectedDate)))
         .sort((a, b) => a.category.name.localeCompare(b.category.name)),
     [expenses, selectedDate]
   );
@@ -131,7 +86,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
 
   const visiblePeople = trip.people.slice(0, MAX_VISIBLE_AVATARS);
   const overflow = Math.max(0, trip.people.length - MAX_VISIBLE_AVATARS);
-  const tripDurationDays = getTripDurationDays(trip.startDate, trip.endDate);
+  const tripDurationDays = getDaysBetween(trip.startDate, trip.endDate);
 
   const handleCreate = async (data: {
     amount: number;
@@ -266,7 +221,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
               }}
               onValueChange={(date) => {
                 if (date) {
-                  setSelectedDate(startOfDayValue(date));
+                  setSelectedDate(startOfDay(date));
                 }
               }}
               startDate={calendarStartDate}
@@ -283,7 +238,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
 
         {/* 2 cards side by side */}
         <div className='grid gap-4 lg:grid-cols-2'>
-          <TripCostSummaryCard expenses={expenses} />
+          <TripCostSummaryCard currency={currency} expenses={expenses} />
 
           <Card>
             <CardHeader>
@@ -293,7 +248,7 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                   <div className='flex flex-wrap items-center gap-2'>
                     <p className='text-muted-foreground text-sm'>
                       {t('trips.expenses.forDate', {
-                        date: formatSelectedDate(selectedDate),
+                        date: formatDate(selectedDate),
                       })}
                     </p>
                     <Badge variant='secondary'>{selectedDateTotal.toFixed(2)}</Badge>
@@ -362,7 +317,9 @@ export function TripDetailsClient({ categories, expenses, people, trip }: Readon
                               )}
                             </div>
                           </td>
-                          <td className='px-4 py-3 text-right font-medium'>{expense.amount.toFixed(2)}</td>
+                          <td className='px-4 py-3 text-right font-medium'>
+                            {formatCurrency(expense.amount, currency, locale)}
+                          </td>
                           <td className='px-4 py-3'>
                             {expense.people.length === 0 ? (
                               <span className='text-muted-foreground'>-</span>

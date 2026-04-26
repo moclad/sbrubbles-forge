@@ -26,43 +26,28 @@ import { Banknote, CalendarRange, Camera, ImageIcon, Loader2, MapPin, Pencil, Pl
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useRef, useState } from 'react';
+import { formatCurrency } from '@/lib/currency-utils';
+import { formatDateRange, getInitials, MAX_VISIBLE_AVATARS } from '@/lib/format-utils';
 import type { TripData, TripWithPeople } from '@/lib/trips-actions';
 import { createTrip, deleteTrip, updateTrip, uploadTripCoverPhoto } from '@/lib/trips-actions';
 import { TripFormDialog } from './trip-form-dialog';
 
 type TripsTableProps = {
+  currency: string;
   trips: TripWithPeople[];
   people: SelectPerson[];
 };
 
-const MAX_VISIBLE_AVATARS = 5;
-
-function formatDateRange(startDate: Date, endDate: Date): string {
-  const fmt = new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
-  return `${fmt.format(startDate)} – ${fmt.format(endDate)}`;
-}
-
-function getInitials(name: string): string {
-  return name
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-}
-
 type TripCardProps = {
+  currency: string;
+  locale: string;
   onOpen: (id: string) => void;
   trip: TripWithPeople;
   onEdit: (trip: TripWithPeople) => void;
   onDelete: (id: string) => void;
 };
 
-function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
+function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
   const t = useI18n();
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -114,8 +99,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
       {/* Cover photo */}
       <div className='relative aspect-video bg-muted'>
         {photoUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <Image alt={trip.name} className='h-full w-full object-cover' src={photoUrl} />
+          <Image alt={trip.name} className='object-cover' fill sizes='(max-width: 768px) 100vw, 50vw' src={photoUrl} />
         ) : (
           <div className='flex h-full items-center justify-center'>
             <ImageIcon className='text-muted-foreground/30' size={40} />
@@ -195,7 +179,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
 
         <div className='flex items-center gap-1.5 text-muted-foreground text-sm'>
           <Banknote className='shrink-0' size={13} />
-          <span>{trip.totalCost.toFixed(2)}</span>
+          <span>{formatCurrency(trip.totalCost, currency, locale)}</span>
         </div>
 
         {trip.people.length > 0 && (
@@ -216,7 +200,7 @@ function TripCard({ onOpen, trip, onEdit, onDelete }: Readonly<TripCardProps>) {
   );
 }
 
-export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
+export function TripsTable({ currency, trips, people }: Readonly<TripsTableProps>) {
   const t = useI18n();
   const locale = useCurrentLocale();
   const router = useRouter();
@@ -228,8 +212,8 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
   const handleCreate = async (data: TripData) => {
     try {
       await createTrip(data);
-      toast.success(t('trips.createSuccess'));
       setFormOpen(false);
+      toast.success(t('trips.createSuccess'));
     } catch {
       toast.error(t('trips.createError'));
     }
@@ -242,8 +226,8 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
     try {
       await updateTrip(editing.id, data);
       toast.success(t('trips.updateSuccess'));
-      setEditing(null);
       setFormOpen(false);
+      setEditing(null);
     } catch {
       toast.error(t('trips.updateError'));
     }
@@ -297,7 +281,15 @@ export function TripsTable({ trips, people }: Readonly<TripsTableProps>) {
       ) : (
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {trips.map((trip) => (
-            <TripCard key={trip.id} onDelete={setDeleteId} onEdit={openEdit} onOpen={openTripDetails} trip={trip} />
+            <TripCard
+              currency={currency}
+              key={trip.id}
+              locale={locale}
+              onDelete={setDeleteId}
+              onEdit={openEdit}
+              onOpen={openTripDetails}
+              trip={trip}
+            />
           ))}
         </div>
       )}

@@ -4,11 +4,9 @@ import { auth } from '@repo/auth/server';
 import { asc, database, eq } from '@repo/database';
 import { person } from '@repo/database/db/schema';
 import { PUBLIC_ASSETS_BUCKET } from '@repo/storage/buckets';
-import { createBucketIfNotExists, s3Client } from '@repo/storage/s3-file-management';
+import { deleteFileByPath, uploadFile } from '@repo/storage/s3-file-management';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
-
-const TRAILING_SLASH_RE = /\/$/;
 
 async function requireSession() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -61,22 +59,43 @@ export async function deletePerson(id: string) {
 }
 
 export async function uploadPersonAvatar(personId: string, formData: FormData): Promise<string> {
-  await requireSession();
+  const session = await requireSession();
 
   const file = formData.get('file') as File | null;
   if (!file) {
     throw new Error('No file provided');
   }
 
-  const ext = file.name.includes('.') ? file.name.split('.').pop()?.toLowerCase() : 'jpg';
-  const key = `avatar/${personId}/avatar.${ext ?? 'jpg'}`;
+  // Get current person to check for existing avatar
+  const [currentPerson] = await database.select().from(person).where(eq(person.id, personId));
+
+  // Delete old avatar if it exists
+  if (currentPerson?.avatarUrl) {
+    try {
+      // Extract bucket and filename from URL
+      const url = new URL(currentPerson.avatarUrl);
+      const pathParts = url.pathname.split('/').filter(Boolean);
+      if (pathParts.length >= 2) {
+        const bucket = pathParts[0];
+        const fileName = pathParts.slice(1).join('/');
+        await deleteFileByPath(bucket, fileName);
+      }
+    } catch (error) {
+      // Log but don't fail if old file deletion fails
+      console.error('Failed to delete old avatar:', error);
+    }
+  }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  await createBucketIfNotExists(PUBLIC_ASSETS_BUCKET);
-  await s3Client.putObject(PUBLIC_ASSETS_BUCKET, key, buffer, buffer.length, {
-    'Content-Type': file.type || 'image/jpeg',
+
+  // Upload new file with database tracking
+  const result = await uploadFile({
+    bucket: PUBLIC_ASSETS_BUCKET,
+    file: buffer,
+    originalFileName: file.name,
+    pathPrefix: `avatar/${personId}/`,
+    userId: session.user.id,
   });
 
-  const storageUrl = process.env.S3_STORAGE_URL ?? 'http://localhost';
-  return `${storageUrl.replace(TRAILING_SLASH_RE, '')}/${PUBLIC_ASSETS_BUCKET}/${key}`;
+  return result.url;
 }

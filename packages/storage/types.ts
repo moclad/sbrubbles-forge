@@ -29,3 +29,18 @@ export type FileInDBProp = {
   originalFileName: string;
   fileSize: number;
 };
+
+export type UploadFileParams = {
+  bucket: string;
+  pathPrefix: string;
+  file: Buffer;
+  userId: string;
+  originalFileName: string;
+};
+
+export type UploadFileResult = {
+  fileId: string;
+  fileName: string;
+  url: string;
+  fileSize: number;
+};

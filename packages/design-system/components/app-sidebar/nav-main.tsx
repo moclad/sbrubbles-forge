@@ -32,7 +32,7 @@ export function NavMain({
       <SidebarGroupLabel>Sbrubbles Travel</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible asChild className='group/collapsible' defaultOpen={item.isActive} key={item.title}>
+          <Collapsible asChild className='group/collapsible' defaultOpen={true} key={item.title}>
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>

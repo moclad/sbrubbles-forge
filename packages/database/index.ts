@@ -9,4 +9,4 @@ const pool = new Pool({ connectionString: keys().DATABASE_URL });
 
 export const database = drizzle({ client: pool, schema });
 // biome-ignore lint/performance/noBarrelFile: used in other packages
-export { and, asc, desc, eq, gte, inArray, lte, sum } from 'drizzle-orm';
+export { and, asc, desc, eq, gte, inArray, isNull, lte, sum } from 'drizzle-orm';

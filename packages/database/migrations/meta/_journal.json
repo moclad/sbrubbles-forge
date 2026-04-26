@@ -120,6 +120,20 @@
       "when": 1776457767358,
       "tag": "0016_nullable_expense_description",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1777147197215,
+      "tag": "0017_public_wolfsbane",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1777194468495,
+      "tag": "0018_certain_prowler",
+      "breakpoints": true
     }
   ]
 }

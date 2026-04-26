@@ -10,7 +10,9 @@ export const pageTable = pgTable('Page', {
 export * from './auth';
 export * from './categories';
 export * from './expenses';
+export * from './failed-messages';
 export * from './people';
 export * from './storage';
 export * from './subscriptions';
 export * from './trips';
+export * from './user-preferences';

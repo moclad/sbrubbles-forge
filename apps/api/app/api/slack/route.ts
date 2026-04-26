@@ -1,15 +1,33 @@
-import { after } from 'next/server';
-import { z } from 'zod';
-
-import { env } from '@/env';
-import { generateObject } from '@repo/ai';
+import { generateText, Output } from '@repo/ai';
 import { models } from '@repo/ai/lib/models';
 import { and, database, desc, gte, lte } from '@repo/database';
-import { category, expense, trip } from '@repo/database/db/schema';
+import { category, expense, failedMessage, trip } from '@repo/database/db/schema';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
+import { after } from 'next/server';
+import { z } from 'zod';
+import { env } from '@/env';
 
 const FIVE_MINUTES_MS = 5 * 60 * 1000;
+
+// Track recently processed events to prevent duplicates
+const processedEvents = new Set<string>();
+const MAX_TRACKED_EVENTS = 1000;
+
+function isEventProcessed(eventId: string): boolean {
+  if (processedEvents.has(eventId)) {
+    return true;
+  }
+  processedEvents.add(eventId);
+
+  // Prevent memory leak by limiting size
+  if (processedEvents.size > MAX_TRACKED_EVENTS) {
+    const firstItem = processedEvents.values().next().value as string;
+    processedEvents.delete(firstItem);
+  }
+
+  return false;
+}
 
 async function verifySlackSignature(request: Request, rawBody: string): Promise<boolean> {
   const timestamp = request.headers.get('x-slack-request-timestamp');
@@ -51,7 +69,7 @@ async function verifySlackSignature(request: Request, rawBody: string): Promise<
 }
 
 const parsedExpenseSchema = z.object({
-  amount: z.number().positive().describe('The expense amount as a positive number'),
+  amount: z.number().describe('The expense amount as a positive number'),
   categoryName: z.string().describe('Best matching category name from the provided list'),
   description: z.string().describe('A concise description of the expense'),
   locationName: z.string().nullable().describe('Location or venue name if mentioned, otherwise null'),
@@ -66,13 +84,18 @@ async function parseAndCreateExpense(text: string): Promise<string> {
 
   const categoryNames = categories.map((c) => c.name).join(', ');
 
-  const { object: parsed } = await generateObject({
+  const { output: parsed } = await generateText({
     model: models.chat,
+    output: Output.object({ schema: parsedExpenseSchema }),
     prompt: `Parse the following expense message and extract the amount, description, and best matching category.
 Available categories: ${categoryNames}
 Message: "${text}"`,
-    schema: parsedExpenseSchema,
   });
+  console.log(parsed);
+
+  if (parsed.amount <= 0) {
+    throw new Error('Expense amount must be positive');
+  }
 
   const today = new Date();
   const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -118,6 +141,8 @@ async function postToSlack(channel: string, text: string): Promise<void> {
 export const POST = async (request: Request): Promise<Response> => {
   const rawBody = await request.text();
 
+  console.log('Received Slack request with body:', rawBody);
+
   const isValid = await verifySlackSignature(request, rawBody);
   if (!isValid) {
     return new Response('Unauthorized', { status: 401 });
@@ -128,20 +153,47 @@ export const POST = async (request: Request): Promise<Response> => {
   // Slash command: application/x-www-form-urlencoded
   if (contentType.includes('application/x-www-form-urlencoded')) {
     const params = new URLSearchParams(rawBody);
+    const triggerId = params.get('trigger_id');
+
+    // Prevent duplicate slash command processing
+    if (triggerId && isEventProcessed(triggerId)) {
+      return Response.json({ ok: true });
+    }
+
     const text = params.get('text')?.trim();
 
     if (!text) {
       return Response.json({ response_type: 'ephemeral', text: 'Usage: /expense <amount> <description>' });
     }
 
-    try {
-      const summary = await parseAndCreateExpense(text);
-      return Response.json({ response_type: 'in_channel', text: `✅ ${summary}` });
-    } catch (error) {
-      const message = parseError(error);
-      log.error(message);
-      return Response.json({ response_type: 'ephemeral', text: `❌ Could not log expense: ${message}` });
-    }
+    const channel = params.get('channel_id') ?? '';
+
+    // Respond immediately to Slack to prevent retries
+    after(async () => {
+      try {
+        const summary = await parseAndCreateExpense(text);
+        await postToSlack(channel, `✅ ${summary}`);
+      } catch (error) {
+        const message = parseError(error);
+        log.error(message);
+
+        // Log failed message to database
+        await database.insert(failedMessage).values({
+          errorMessage: message,
+          messageText: text,
+          metadata: JSON.stringify({
+            channelId: params.get('channel_id'),
+            userId: params.get('user_id'),
+            userName: params.get('user_name'),
+          }),
+          source: 'slack_slash_command',
+        });
+
+        await postToSlack(channel, `❌ Could not log expense: ${message}`);
+      }
+    });
+
+    return Response.json({ response_type: 'ephemeral', text: '⏳ Processing your expense...' });
   }
 
   // JSON payload: event callbacks and URL verification
@@ -161,6 +213,12 @@ export const POST = async (request: Request): Promise<Response> => {
     return Response.json({ ok: true });
   }
 
+  // Prevent duplicate event processing
+  const eventId = typeof payload.event_id === 'string' ? payload.event_id : '';
+  if (eventId && isEventProcessed(eventId)) {
+    return Response.json({ ok: true });
+  }
+
   const event = payload.event as Record<string, unknown> | undefined;
 
   if (!event || event.type !== 'message' || event.bot_id || event.subtype || event.channel !== env.SLACK_CHANNEL_ID) {
@@ -170,7 +228,8 @@ export const POST = async (request: Request): Promise<Response> => {
   const messageText = typeof event.text === 'string' ? event.text.trim() : '';
   const channel = typeof event.channel === 'string' ? event.channel : env.SLACK_CHANNEL_ID;
 
-  if (!messageText) {
+  // Ignore empty messages or slash commands (already handled separately)
+  if (!messageText || messageText.startsWith('/')) {
     return Response.json({ ok: true });
   }
 
@@ -181,6 +240,19 @@ export const POST = async (request: Request): Promise<Response> => {
     } catch (error) {
       const message = parseError(error);
       log.error(message);
+
+      // Log failed message to database
+      await database.insert(failedMessage).values({
+        errorMessage: message,
+        messageText,
+        metadata: JSON.stringify({
+          channel,
+          timestamp: event.ts,
+          userId: event.user,
+        }),
+        source: 'slack_message',
+      });
+
       await postToSlack(channel, `❌ Could not log expense: ${message}`);
     }
   });

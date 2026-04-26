@@ -22,6 +22,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import type { ExpenseWithDetails } from '@/lib/expenses-actions';
+import { getInitials } from '@/lib/format-utils';
 import type { TripWithPeople } from '@/lib/trips-actions';
 
 const LocationMap = dynamic(() => import('../../components/location-map').then((m) => m.LocationMap), { ssr: false });
@@ -79,21 +80,6 @@ function getDefaultLocation(trip: TripWithPeople, initialData?: ExpenseWithDetai
   }
 
   return null;
-}
-
-function getInitials(name: string): string {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) {
-    return '';
-  }
-  if (parts.length === 1) {
-    return parts[0].slice(0, 2).toUpperCase();
-  }
-  return parts
-    .map((part) => part[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
 }
 
 export function ExpenseFormDialog({

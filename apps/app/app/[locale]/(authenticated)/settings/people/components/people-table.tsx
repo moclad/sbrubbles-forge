@@ -21,6 +21,7 @@ import { Check, Pencil, Plus, Trash2, X } from 'lucide-react';
 import Image from 'next/image';
 import type { Dispatch, SetStateAction } from 'react';
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { getInitials } from '@/lib/format-utils';
 import { createPerson, deletePerson, updatePerson, uploadPersonAvatar } from '@/lib/people-actions';
 
 type PeopleTableMeta = {
@@ -46,14 +47,6 @@ const INITIAL_DRAFT: Draft = {
   pendingFile: null,
   previewUrl: null,
 };
-
-function getInitials(name: string) {
-  return name
-    .split(' ')
-    .slice(0, 2)
-    .map((w) => w[0]?.toUpperCase() ?? '')
-    .join('');
-}
 
 function stringToColor(str: string) {
   let hash = 0;

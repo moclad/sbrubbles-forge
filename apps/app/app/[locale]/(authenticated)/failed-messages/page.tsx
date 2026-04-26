@@ -1,22 +1,19 @@
 import { PageContent } from '@repo/design-system/components/page-content';
-import { getI18n } from '@repo/localization/i18n/server';
 import { Loader } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { getPeople } from '@/lib/people-actions';
-import { PeopleTable } from './components/people-table';
+import { getFailedMessages } from '@/lib/failed-messages-actions';
+import { FailedMessagesTable } from './components/failed-messages-table';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getI18n();
   return {
-    description: t('people.metaDescription'),
-    title: t('people.title'),
+    description: 'View and retry failed expense messages',
+    title: 'Failed Messages',
   };
 }
 
 const Page = async () => {
-  const t = await getI18n();
-  const people = await getPeople();
+  const messages = await getFailedMessages();
 
   return (
     <Suspense
@@ -26,8 +23,8 @@ const Page = async () => {
         </div>
       }
     >
-      <PageContent header={t('people.title')} subTitle={t('people.subTitle')}>
-        <PeopleTable people={people} />
+      <PageContent header='Failed Messages' subTitle='Review and retry messages that could not be processed'>
+        <FailedMessagesTable initialMessages={messages} />
       </PageContent>
     </Suspense>
   );

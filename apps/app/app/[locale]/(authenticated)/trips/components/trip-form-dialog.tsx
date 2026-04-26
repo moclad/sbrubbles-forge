@@ -2,9 +2,9 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { SelectPerson } from '@repo/database/db/schema';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/design-system/components/ui/avatar';
 import { Button } from '@repo/design-system/components/ui/button';
 import { CalendarDatePicker } from '@repo/design-system/components/ui/calendar-date-picker';
-import { Checkbox } from '@repo/design-system/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -20,6 +20,7 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { getInitials } from '@/lib/format-utils';
 import type { TripData } from '@/lib/trips-actions';
 
 const LocationMap = dynamic(() => import('./location-map').then((m) => m.LocationMap), { ssr: false });
@@ -260,34 +261,40 @@ export function TripFormDialog({ open, onOpenChange, initialData, people, onSubm
               <FormField
                 control={form.control}
                 name='personIds'
-                render={() => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('trips.form.peopleLabel')}</FormLabel>
-                    <div className='flex flex-col gap-2'>
-                      {people.map((p) => (
-                        <FormField
-                          control={form.control}
-                          key={p.id}
-                          name='personIds'
-                          render={({ field }) => (
-                            <FormItem className='flex items-center gap-2 space-y-0'>
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value.includes(p.id)}
-                                  onCheckedChange={(checked) => {
-                                    const next = checked
-                                      ? [...field.value, p.id]
-                                      : field.value.filter((v) => v !== p.id);
-                                    field.onChange(next);
-                                  }}
-                                />
-                              </FormControl>
-                              <FormLabel className='cursor-pointer font-normal'>{p.name}</FormLabel>
-                            </FormItem>
-                          )}
-                        />
-                      ))}
-                    </div>
+                    <FormControl>
+                      <div className='flex flex-wrap gap-2'>
+                        {people.map((item) => {
+                          const isSelected = field.value.includes(item.id);
+                          return (
+                            <button
+                              aria-label={item.name}
+                              className={`cursor-pointer rounded-full border-2 p-0 outline-none ring-offset-background transition-all duration-150 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                                isSelected
+                                  ? 'scale-105 border-ring opacity-100 shadow-[0_0_0_2px_hsl(var(--background))]'
+                                  : 'scale-100 border-transparent opacity-70'
+                              }`}
+                              key={item.id}
+                              onClick={() => {
+                                const next = isSelected
+                                  ? field.value.filter((value) => value !== item.id)
+                                  : [...field.value, item.id];
+                                field.onChange(next);
+                              }}
+                              title={item.name}
+                              type='button'
+                            >
+                              <Avatar size='lg'>
+                                <AvatarImage alt={item.name} src={item.avatarUrl ?? undefined} />
+                                <AvatarFallback>{getInitials(item.name)}</AvatarFallback>
+                              </Avatar>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
