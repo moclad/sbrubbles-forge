@@ -3,10 +3,11 @@
 import { auth } from '@repo/auth/server';
 import { database, desc, eq, inArray, sum } from '@repo/database';
 import { expense, person, trip, tripPerson } from '@repo/database/db/schema';
-import { PUBLIC_ASSETS_BUCKET } from '@repo/storage/buckets';
 import { deleteFileByPath, uploadFile } from '@repo/storage/s3-file-management';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
+
+import { env } from '../env';
 
 async function requireSession() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -216,7 +217,7 @@ export async function uploadTripCoverPhoto(tripId: string, formData: FormData): 
 
   // Upload new file with database tracking
   const result = await uploadFile({
-    bucket: PUBLIC_ASSETS_BUCKET,
+    bucket: env.S3_BUCKET_NAME,
     file: buffer,
     originalFileName: file.name,
     pathPrefix: `trip/${tripId}/`,
@@ -224,7 +225,7 @@ export async function uploadTripCoverPhoto(tripId: string, formData: FormData): 
   });
 
   // Update trip with new cover photo URL
-  await database.update(trip).set({ coverPhotoUrl: result.url, updatedAt: new Date() }).where(eq(trip.id, tripId));
+  await database.update(trip).set({ coverPhotoUrl: result.fileName, updatedAt: new Date() }).where(eq(trip.id, tripId));
 
   revalidatePath('/trips');
   return result.url;

@@ -8,10 +8,15 @@ import { keys as observability } from '@repo/observability/keys';
 import { keys as security } from '@repo/security/keys';
 import { keys as webhooks } from '@repo/webhooks/keys';
 import { createEnv } from '@t3-oss/env-nextjs';
+import z from 'zod';
 
 export const env = createEnv({
   client: {},
   extends: [auth(), analytics(), core(), database(), email(), notifications(), observability(), security(), webhooks()],
-  runtimeEnv: {},
-  server: {},
+  runtimeEnv: {
+    S3_BUCKET_NAME: process.env.S3_BUCKET_NAME ?? 'trip-tracker',
+  },
+  server: {
+    S3_BUCKET_NAME: z.string().min(1),
+  },
 });

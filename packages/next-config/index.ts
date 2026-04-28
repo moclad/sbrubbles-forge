@@ -5,7 +5,14 @@ import type { NextConfig } from 'next';
 export const config: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
-    remotePatterns: [],
+
+    remotePatterns: [
+      {
+        hostname: 'localhost',
+        port: '9000',
+        protocol: 'http',
+      },
+    ],
   },
 
   // This is required to support PostHog trailing slash API requests

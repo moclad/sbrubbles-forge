@@ -3,10 +3,11 @@
 import { auth } from '@repo/auth/server';
 import { asc, database, eq } from '@repo/database';
 import { person } from '@repo/database/db/schema';
-import { PUBLIC_ASSETS_BUCKET } from '@repo/storage/buckets';
 import { deleteFileByPath, uploadFile } from '@repo/storage/s3-file-management';
 import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
+
+import { env } from '../env';
 
 async function requireSession() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -90,7 +91,7 @@ export async function uploadPersonAvatar(personId: string, formData: FormData): 
 
   // Upload new file with database tracking
   const result = await uploadFile({
-    bucket: PUBLIC_ASSETS_BUCKET,
+    bucket: env.S3_BUCKET_NAME,
     file: buffer,
     originalFileName: file.name,
     pathPrefix: `avatar/${personId}/`,

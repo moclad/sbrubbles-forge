@@ -1,10 +1,5 @@
-// Bucket constants
-export { PRIVATE_ASSETS_BUCKET, PUBLIC_ASSETS_BUCKET } from './buckets';
-
-// Environment keys
-export { keys } from './keys';
-
 // S3 file management functions
+// biome-ignore lint/performance/noBarrelFile: package entrypoint intentionally re-exports the public storage API
 export {
   checkFileExistsInBucket,
   createBucketIfNotExists,
@@ -21,7 +16,6 @@ export {
   uploadFile,
 } from './s3-file-management';
 
-// Types
 export type {
   FileInDBProp,
   FileProps,
