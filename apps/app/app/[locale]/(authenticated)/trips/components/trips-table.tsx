@@ -22,20 +22,24 @@ import { Button } from '@repo/design-system/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@repo/design-system/components/ui/card';
 import { toast } from '@repo/design-system/components/ui/sonner';
 import { useCurrentLocale, useI18n } from '@repo/localization/i18n/client';
-import { Banknote, CalendarRange, Camera, ImageIcon, Loader2, MapPin, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Banknote, CalendarRange, Camera, ImageIcon, MapPin, Pencil, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useImperativeHandle, useRef, useState } from 'react';
 import { formatCurrency } from '@/lib/currency-utils';
 import { formatDateRange, getInitials, MAX_VISIBLE_AVATARS } from '@/lib/format-utils';
 import type { TripData, TripWithPeople } from '@/lib/trips-actions';
 import { createTrip, deleteTrip, updateTrip, uploadTripCoverPhoto } from '@/lib/trips-actions';
 import { TripFormDialog } from './trip-form-dialog';
+export type TripsTableHandle = {
+  openCreate: () => void;
+};
 
 type TripsTableProps = {
   currency: string;
-  trips: TripWithPeople[];
   people: SelectPerson[];
+  ref?: React.Ref<TripsTableHandle>;
+  trips: TripWithPeople[];
 };
 
 type TripCardProps = {
@@ -87,12 +91,6 @@ function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly
     <Card
       className='flex cursor-pointer flex-col overflow-hidden'
       onClick={() => onOpen(trip.id)}
-      onKeyDown={(event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          onOpen(trip.id);
-        }
-      }}
       role='button'
       tabIndex={0}
     >
@@ -110,6 +108,7 @@ function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly
             aria-label={t('trips.uploadPhoto')}
             className='h-7 w-7 bg-background/80 backdrop-blur-sm hover:bg-background'
             disabled={uploading}
+            loading={uploading}
             onClick={(event) => {
               event.stopPropagation();
               fileRef.current?.click();
@@ -117,7 +116,7 @@ function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly
             size='icon'
             variant='outline'
           >
-            {uploading ? <Loader2 className='animate-spin' size={14} /> : <Camera size={14} />}
+            <Camera size={14} />
           </Button>
         </div>
         <input
@@ -128,6 +127,7 @@ function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly
             event.stopPropagation();
             handlePhotoChange(event);
           }}
+          onClick={(event) => event.stopPropagation()}
           ref={fileRef}
           tabIndex={-1}
           type='file'
@@ -200,7 +200,7 @@ function TripCard({ currency, locale, onOpen, trip, onEdit, onDelete }: Readonly
   );
 }
 
-export function TripsTable({ currency, trips, people }: Readonly<TripsTableProps>) {
+export function TripsTable({ currency, ref, trips, people }: Readonly<TripsTableProps>) {
   const t = useI18n();
   const locale = useCurrentLocale();
   const router = useRouter();
@@ -265,15 +265,10 @@ export function TripsTable({ currency, trips, people }: Readonly<TripsTableProps
     setFormOpen(true);
   };
 
+  useImperativeHandle(ref, () => ({ openCreate }));
+
   return (
     <div className='flex flex-col gap-4'>
-      <div className='flex justify-end'>
-        <Button onClick={openCreate} size='sm'>
-          <Plus size={16} />
-          {t('trips.newTrip')}
-        </Button>
-      </div>
-
       {trips.length === 0 ? (
         <div className='rounded-lg border border-dashed py-12 text-center text-muted-foreground text-sm'>
           {t('trips.empty')}

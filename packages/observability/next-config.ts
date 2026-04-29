@@ -54,6 +54,17 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
 export const withSentry = (sourceConfig: object): object => {
   const configWithTranspile = {
     ...sourceConfig,
+    images: {
+      formats: ['image/avif', 'image/webp'],
+      remotePatterns: [
+        {
+          hostname: 'localhost',
+          pathname: '/trip-tracker/**',
+          port: '9000',
+          protocol: 'http',
+        },
+      ],
+    },
     transpilePackages: ['@sentry/nextjs'],
   };
 

@@ -15,4 +15,6 @@ if (env.ANALYZE === 'true') {
   nextConfig = withAnalyzer(nextConfig);
 }
 
+console.log(env);
+
 export default nextConfig;

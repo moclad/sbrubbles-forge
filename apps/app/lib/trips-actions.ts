@@ -225,7 +225,7 @@ export async function uploadTripCoverPhoto(tripId: string, formData: FormData): 
   });
 
   // Update trip with new cover photo URL
-  await database.update(trip).set({ coverPhotoUrl: result.fileName, updatedAt: new Date() }).where(eq(trip.id, tripId));
+  await database.update(trip).set({ coverPhotoUrl: result.url, updatedAt: new Date() }).where(eq(trip.id, tripId));
 
   revalidatePath('/trips');
   return result.url;
