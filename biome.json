@@ -54,10 +54,11 @@
       "indentWidth": 2
     },
     "assist": {
-      "enabled": false
+      "enabled": true
     }
   },
   "javascript": {
+    "assist": {"enabled": true},
     "formatter": {
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
@@ -66,6 +67,7 @@
       "indentStyle": "space",
       "lineWidth": 120
     }
+
   },
   "extends": [
     "ultracite/biome/core",

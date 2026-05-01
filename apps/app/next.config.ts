@@ -1,6 +1,6 @@
 import { env } from '@/env';
 import { createNextConfig } from '@repo/next-config';
-import { applyAnalyzer, applyLogging, applySentry } from '@repo/observability/next-config';
+import { applyAnalyzer, applySentry } from '@repo/observability/next-config';
 
 import type { NextConfig } from 'next';
 /**
@@ -14,7 +14,6 @@ import type { NextConfig } from 'next';
  * 5. Override transpilePackages with app-specific packages
  */
 const nextConfig: NextConfig = createNextConfig()
-  .extend(applyLogging)
   .extendIf(env.SENTRY === 'true', applySentry)
   .extendIf(env.ANALYZE === 'true', applyAnalyzer)
   .transpile(['@repo/design-system', '@repo/auth'])

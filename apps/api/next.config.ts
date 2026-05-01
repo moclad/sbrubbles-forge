@@ -1,6 +1,6 @@
 import { env } from '@/env';
 import { createNextConfig } from '@repo/next-config';
-import { applyAnalyzer, applyLogging, applySentry } from '@repo/observability/next-config';
+import { applyAnalyzer, applySentry } from '@repo/observability/next-config';
 
 import type { NextConfig } from 'next';
 /**
@@ -13,7 +13,6 @@ import type { NextConfig } from 'next';
  * 4. Conditionally apply analyzer (when env.ANALYZE is 'true')
  */
 const nextConfig: NextConfig = createNextConfig()
-  .extend(applyLogging)
   .extendIf(env.SENTRY === 'true', applySentry)
   .extendIf(env.ANALYZE === 'true', applyAnalyzer)
   .build();
