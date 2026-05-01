@@ -46,7 +46,7 @@
     "@types/node": "catalog:",
     "import-in-the-middle": "^3.0.1",
     "prettier": "^3.8.3",
-    "release-it": "^20.0.0",
+    "release-it": "^20.0.1",
     "release-it-pnpm": "^4.6.6",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
