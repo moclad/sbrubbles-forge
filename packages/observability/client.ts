@@ -13,6 +13,7 @@ export const initializeSentry = (): ReturnType<typeof init> =>
     // Setting this option to true will print useful information to the console while you're setting up Sentry.
     debug: false,
     dsn: keys().NEXT_PUBLIC_SENTRY_DSN,
+    enableLogs: true,
 
     // You can remove this option if you're not planning to use the Sentry Session Replay feature:
     integrations: [
