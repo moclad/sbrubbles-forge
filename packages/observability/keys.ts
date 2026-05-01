@@ -9,11 +9,12 @@ export const keys = () =>
     },
     runtimeEnv: {
       NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+      SENTRY: process.env.SENTRY,
       SENTRY_ORG: process.env.SENTRY_ORG,
       SENTRY_PROJECT: process.env.SENTRY_PROJECT,
     },
     server: {
-      // Added by Sentry Integration, Vercel Marketplace
+      SENTRY: z.string().optional(),
       SENTRY_ORG: z.string().optional(),
       SENTRY_PROJECT: z.string().optional(),
     },

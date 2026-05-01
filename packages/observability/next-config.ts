@@ -1,8 +1,15 @@
 import { withLogtail } from '@logtail/next';
+import type { NextConfigBuilder } from '@repo/next-config';
 import { withSentryConfig } from '@sentry/nextjs';
-
 import { keys } from './keys';
 
+// biome-ignore lint/suspicious/noExplicitAny: Avoid dependency on 'next' package
+type NextConfig = any;
+
+/**
+ * Sentry configuration for Next.js
+ * Applied when Sentry observability is enabled
+ */
 export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
   /*
    * Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
@@ -12,8 +19,6 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
    */
   automaticVercelMonitors: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
   org: keys().SENTRY_ORG,
   project: keys().SENTRY_PROJECT,
 
@@ -28,20 +33,6 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
    */
   tunnelRoute: '/monitoring',
 
-  webpack: {
-    /*
-     * Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-     * See the following for more information:
-     * https://docs.sentry.io/product/crons/
-     * https://vercel.com/docs/cron-jobs
-     */
-    automaticVercelMonitors: true,
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    treeshake: {
-      removeDebugLogging: true,
-    },
-  },
-
   /*
    * For all available options, see:
    * https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
@@ -51,24 +42,63 @@ export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
   widenClientFileUpload: true,
 };
 
-export const withSentry = (sourceConfig: object): object => {
+/**
+ * Apply Sentry configuration to Next.js config
+ * Adds Sentry transpilation and wraps config with Sentry instrumentation
+ */
+export const applySentry = (sourceConfig: NextConfig): NextConfig => {
   const configWithTranspile = {
     ...sourceConfig,
-    images: {
-      formats: ['image/avif', 'image/webp'],
-      remotePatterns: [
-        {
-          hostname: 'localhost',
-          pathname: '/trip-tracker/**',
-          port: '9000',
-          protocol: 'http',
-        },
-      ],
-    },
-    transpilePackages: ['@sentry/nextjs'],
+    transpilePackages: [...(sourceConfig.transpilePackages || []), '@sentry/nextjs'],
   };
 
   return withSentryConfig(configWithTranspile, sentryConfig);
 };
 
-export const withLogging = (config: object): object => withLogtail(config);
+/**
+ * Apply Logtail logging to Next.js config
+ * Enables structured logging and log forwarding
+ */
+export const applyLogging = (config: NextConfig): NextConfig => withLogtail(config);
+
+/**
+ * Apply bundle analyzer to Next.js config
+ * Enables webpack bundle analysis when ANALYZE=true
+ */
+export const applyAnalyzer = (config: NextConfig): NextConfig => {
+  // Placeholder for analyzer - implement when needed
+  return config;
+};
+
+// Legacy exports for backwards compatibility
+export const withSentry = applySentry;
+export const withLogging = applyLogging;
+
+/**
+ * Builder extension methods for observability features
+ * Use these with createNextConfig() for a fluent API
+ */
+export const observabilityExtensions = {
+  /**
+   * Enable webpack bundle analyzer
+   * @param condition - Whether to enable analyzer (typically based on ANALYZE env var)
+   */
+  withAnalyzer(this: NextConfigBuilder, condition = true): NextConfigBuilder {
+    return this.extendIf(condition, applyAnalyzer);
+  },
+
+  /**
+   * Enable Logtail structured logging
+   * @param condition - Whether to enable logging (typically always true)
+   */
+  withLogging(this: NextConfigBuilder, condition = true): NextConfigBuilder {
+    return this.extendIf(condition, applyLogging);
+  },
+  /**
+   * Enable Sentry error tracking and performance monitoring
+   * @param condition - Whether to enable Sentry (typically based on env var)
+   */
+  withSentry(this: NextConfigBuilder, condition = true): NextConfigBuilder {
+    return this.extendIf(condition, applySentry);
+  },
+};

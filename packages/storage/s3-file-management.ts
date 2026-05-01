@@ -1,10 +1,8 @@
-// biome-ignore lint/performance/noNamespaceImport: minio package does not provide a default export
-
 import type internal from 'node:stream';
 import { database, eq } from '@repo/database';
 import { s3_objects } from '@repo/database/db/storage';
 import { log } from '@repo/observability/log';
-import * as Minio from 'minio';
+import { Client } from 'minio';
 import { nanoid } from 'nanoid';
 
 import { keys } from './keys';
@@ -13,7 +11,7 @@ const TRAILING_SLASH_RE = /\/$/;
 
 const storageUrl = new URL(keys().S3_STORAGE_URL ?? 'http://localhost');
 
-export const s3Client = new Minio.Client({
+export const s3Client = new Client({
   accessKey: keys().S3_ACCESS_KEY ?? '',
   endPoint: storageUrl.hostname,
   port: storageUrl.port ? Number(storageUrl.port) : undefined,
