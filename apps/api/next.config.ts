@@ -1,8 +1,8 @@
+import { env } from '@/env';
 import { createNextConfig } from '@repo/next-config';
 import { applyAnalyzer, applyLogging, applySentry } from '@repo/observability/next-config';
-import type { NextConfig } from 'next';
-import { env } from '@/env';
 
+import type { NextConfig } from 'next';
 /**
  * Next.js configuration for the API app
  *
@@ -14,7 +14,7 @@ import { env } from '@/env';
  */
 const nextConfig: NextConfig = createNextConfig()
   .extend(applyLogging)
-  .extendIf(env.VERCEL, applySentry)
+  .extendIf(env.SENTRY === 'true', applySentry)
   .extendIf(env.ANALYZE === 'true', applyAnalyzer)
   .build();
 
