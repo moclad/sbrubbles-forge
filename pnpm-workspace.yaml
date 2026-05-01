@@ -6,7 +6,7 @@ packages:
 catalog:
   '@formatjs/intl-localematcher': ^0.8.4
   '@hookform/resolvers': ^5.2.2
-  '@sentry/nextjs': ^10.49.0
+  '@sentry/nextjs': ^10.51.0
   '@tanstack/react-table': ^8.21.3
   '@t3-oss/env-core': ^0.13.11
   '@t3-oss/env-nextjs': ^0.13.11
