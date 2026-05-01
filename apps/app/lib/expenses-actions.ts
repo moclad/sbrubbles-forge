@@ -1,10 +1,11 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
+
 import { auth } from '@repo/auth/server';
 import { database, desc, eq, inArray } from '@repo/database';
 import { category, expense, expensePerson, person, tripPerson } from '@repo/database/db/schema';
-import { revalidatePath } from 'next/cache';
-import { headers } from 'next/headers';
 
 async function requireSession() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -36,7 +37,7 @@ export type ExpenseWithDetails = {
   };
   createdAt: Date;
   date: Date;
-  description: string;
+  description: string | null;
   id: string;
   locationLat: number | null;
   locationLng: number | null;
