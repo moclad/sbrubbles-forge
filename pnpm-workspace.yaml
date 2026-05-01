@@ -22,7 +22,7 @@ catalog:
   react-aria-components: ^1.17.0
   react-hook-form: ^7.73.1
   server-only: ^0.0.1
-  svix: ^1.91.1
+  svix: ^1.92.2
   typescript: ^6.0.3
   zod: ^4.3.6
 
