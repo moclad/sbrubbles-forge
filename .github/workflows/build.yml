@@ -63,6 +63,13 @@ jobs:
           echo "KNOCK_API_KEY=test" >> apps/app/.env.local
           echo "KNOCK_FEED_CHANNEL_ID=test" >> apps/app/.env.local
 
+          echo "SLACK_SIGNING_SECRET=secret" >> apps/app/.env.local
+          echo "SLACK_BOT_TOKEN=xoxb-" >> apps/app/.env.local
+          echo "SLACK_CHANNEL_ID=channel" >> apps/app/.env.local
+
+          echo "OPENAI_API_KEY=sk-" >> apps/app/.env.local
+          echo "ANTHROPIC_API_KEY=sk-ant-" >> apps/app/.env.local
+
           echo "NEXT_PUBLIC_BETTER_AUTH_URL=/" >> apps/app/.env.local
           echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-test" >> apps/app/.env.local
           echo "NEXT_PUBLIC_UMAMI_WEBSITE_ID=phc_test" >> apps/app/.env.local

@@ -7,14 +7,14 @@ settings:
 catalogs:
   default:
     '@formatjs/intl-localematcher':
-      specifier: ^0.8.4
+      specifier: ^0.8.5
       version: 0.8.5
     '@hookform/resolvers':
       specifier: ^5.2.2
       version: 5.2.2
     '@sentry/nextjs':
-      specifier: ^10.49.0
-      version: 10.49.0
+      specifier: ^10.51.0
+      version: 10.51.0
     '@t3-oss/env-core':
       specifier: ^0.13.11
       version: 0.13.11
@@ -34,8 +34,8 @@ catalogs:
       specifier: ^0.8.1
       version: 0.8.1
     lucide-react:
-      specifier: ^1.8.0
-      version: 1.8.0
+      specifier: ^1.14.00
+      version: 1.14.0
     negotiator:
       specifier: ^1.0.0
       version: 1.0.0
@@ -55,20 +55,20 @@ catalogs:
       specifier: ^1.17.0
       version: 1.17.0
     react-hook-form:
-      specifier: ^7.73.1
-      version: 7.73.1
+      specifier: ^7.74.0
+      version: 7.75.0
     server-only:
       specifier: ^0.0.1
       version: 0.0.1
     svix:
-      specifier: ^1.91.1
-      version: 1.91.1
+      specifier: ^1.92.2
+      version: 1.92.2
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
     zod:
-      specifier: ^4.3.6
-      version: 4.3.6
+      specifier: ^4.4.2
+      version: 4.4.2
   react19:
     '@types/react':
       specifier: ^19.2.14
@@ -90,8 +90,8 @@ catalogs:
       specifier: ^0.5.19
       version: 0.5.19
     postcss:
-      specifier: ^8.5.10
-      version: 8.5.10
+      specifier: ^8.5.13
+      version: 8.5.13
     tailwind-merge:
       specifier: ^3.5.0
       version: 3.5.0
@@ -155,7 +155,7 @@ importers:
         version: 10.9.2(@swc/core@1.3.101(@swc/helpers@0.5.15))(@types/node@25.6.0)(typescript@6.0.3)
       tsup:
         specifier: ^8.5.1
-        version: 8.5.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(jiti@2.6.1)(postcss@8.5.10)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.3)
+        version: 8.5.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(jiti@2.6.1)(postcss@8.5.13)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.3)
       turbo:
         specifier: ^2.9.7
         version: 2.9.7
@@ -203,10 +203,10 @@ importers:
         version: link:../../packages/testing
       '@sentry/nextjs':
         specifier: 'catalog:'
-        version: 10.49.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
+        version: 10.51.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       import-in-the-middle:
         specifier: ^3.0.1
         version: 3.0.1
@@ -227,10 +227,10 @@ importers:
         version: 8.0.1
       svix:
         specifier: 'catalog:'
-        version: 1.91.1
+        version: 1.92.2
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -264,7 +264,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: 'catalog:'
-        version: 5.2.2(react-hook-form@7.73.1(react@19.2.5))
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.5))
       '@repo/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics
@@ -303,10 +303,10 @@ importers:
         version: link:../../packages/webhooks
       '@sentry/nextjs':
         specifier: 'catalog:'
-        version: 10.49.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
+        version: 10.51.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       '@tanstack/react-table':
         specifier: 'catalog:'
         version: 8.21.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -318,7 +318,7 @@ importers:
         version: 3.0.1
       lucide-react:
         specifier: 'catalog:'
-        version: 1.8.0(react@19.2.5)
+        version: 1.14.0(react@19.2.5)
       next:
         specifier: 'catalog:'
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -345,7 +345,7 @@ importers:
         version: 19.2.5(react@19.2.5)
       react-hook-form:
         specifier: 'catalog:'
-        version: 7.73.1(react@19.2.5)
+        version: 7.75.0(react@19.2.5)
       recharts:
         specifier: ^3.8.1
         version: 3.8.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react-is@18.3.1)(react@19.2.5)(redux@5.0.1)
@@ -357,7 +357,7 @@ importers:
         version: 4.2.4
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/testing':
         specifier: workspace:*
@@ -446,7 +446,7 @@ importers:
         version: 1.4.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       lucide-react:
         specifier: 'catalog:'
-        version: 1.8.0(react@19.2.5)
+        version: 1.14.0(react@19.2.5)
       next:
         specifier: 'catalog:'
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -458,7 +458,7 @@ importers:
         version: 19.2.5(react@19.2.5)
       react-hook-form:
         specifier: 'catalog:'
-        version: 7.73.1(react@19.2.5)
+        version: 7.75.0(react@19.2.5)
       recharts:
         specifier: ^3.8.1
         version: 3.8.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react-is@18.3.1)(react@19.2.5)(redux@5.0.1)
@@ -467,7 +467,7 @@ importers:
         version: 2.0.7(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^5.1.2
@@ -507,7 +507,7 @@ importers:
         version: 16.5.0
       postcss:
         specifier: catalog:tailwind
-        version: 8.5.10
+        version: 8.5.13
       storybook:
         specifier: ^10.3.5
         version: 10.3.5(@testing-library/dom@10.4.1)(bufferutil@4.1.0)(prettier@3.8.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -525,7 +525,7 @@ importers:
     dependencies:
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))
@@ -540,7 +540,7 @@ importers:
         version: 8.20.0(bufferutil@4.1.0)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -589,16 +589,16 @@ importers:
     dependencies:
       '@ai-sdk/anthropic':
         specifier: ^3.0.71
-        version: 3.0.71(zod@4.3.6)
+        version: 3.0.71(zod@4.4.2)
       '@ai-sdk/openai':
         specifier: ^3.0.52
-        version: 3.0.52(zod@4.3.6)
+        version: 3.0.52(zod@4.4.2)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       ai:
         specifier: ^6.0.168
-        version: 6.0.168(zod@4.3.6)
+        version: 6.0.168(zod@4.4.2)
       react:
         specifier: catalog:react19
         version: 19.2.5
@@ -610,7 +610,7 @@ importers:
         version: 3.5.0
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -632,7 +632,7 @@ importers:
         version: 16.2.4(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       next:
         specifier: 'catalog:'
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -644,7 +644,7 @@ importers:
         version: 0.0.1
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -663,13 +663,13 @@ importers:
     dependencies:
       '@better-auth/passkey':
         specifier: ^1.6.7
-        version: 1.6.7(1660e8983bde1f75c1780042d68d1ba8)
+        version: 1.6.7(391bf34d4d65eb6a6d8cc84022890a5a)
       '@better-fetch/fetch':
         specifier: ^1.1.21
         version: 1.1.21
       '@hookform/resolvers':
         specifier: 'catalog:'
-        version: 5.2.2(react-hook-form@7.73.1(react@19.2.5))
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.5))
       '@repo/database':
         specifier: workspace:*
         version: link:../database
@@ -687,7 +687,7 @@ importers:
         version: link:../storage
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       better-auth:
         specifier: ^1.6.7
         version: 1.6.7(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))(mongodb@7.1.0(socks@2.8.6))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vitest@4.1.5(@opentelemetry/api@1.9.1)(@types/node@25.6.0)(jsdom@29.0.2(@noble/hashes@2.0.1))(vite@7.0.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.2)(tsx@4.21.0)(yaml@2.8.3)))
@@ -696,7 +696,7 @@ importers:
         version: 1.3.2(better-auth@1.6.7(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))(mongodb@7.1.0(socks@2.8.6))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vitest@4.1.5(@opentelemetry/api@1.9.1)(@types/node@25.6.0)(jsdom@29.0.2(@noble/hashes@2.0.1))(vite@7.0.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.2)(tsx@4.21.0)(yaml@2.8.3))))
       lucide-react:
         specifier: 'catalog:'
-        version: 1.8.0(react@19.2.5)
+        version: 1.14.0(react@19.2.5)
       next:
         specifier: 'catalog:'
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -708,7 +708,7 @@ importers:
         version: 19.2.5
       react-hook-form:
         specifier: 'catalog:'
-        version: 7.73.1(react@19.2.5)
+        version: 7.75.0(react@19.2.5)
       react-qr-code:
         specifier: ^2.0.18
         version: 2.0.18(react@19.2.5)
@@ -729,7 +729,7 @@ importers:
         version: 2.0.9
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -748,7 +748,7 @@ importers:
         version: 19.2.14
       postcss:
         specifier: catalog:tailwind
-        version: 8.5.10
+        version: 8.5.13
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -757,7 +757,7 @@ importers:
     dependencies:
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))
@@ -772,7 +772,7 @@ importers:
         version: 8.20.0(bufferutil@4.1.0)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -806,7 +806,7 @@ importers:
         version: 1.4.1(@date-fns/tz@1.4.1)(@types/react@19.2.14)(date-fns@4.1.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@hookform/resolvers':
         specifier: 'catalog:'
-        version: 5.2.2(react-hook-form@7.73.1(react@19.2.5))
+        version: 5.2.2(react-hook-form@7.75.0(react@19.2.5))
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -926,7 +926,7 @@ importers:
         version: 1.4.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       lucide-react:
         specifier: 'catalog:'
-        version: 1.8.0(react@19.2.5)
+        version: 1.14.0(react@19.2.5)
       next:
         specifier: 'catalog:'
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -947,7 +947,7 @@ importers:
         version: 9.14.0(react@19.2.5)
       react-hook-form:
         specifier: 'catalog:'
-        version: 7.73.1(react@19.2.5)
+        version: 7.75.0(react@19.2.5)
       react-moveable:
         specifier: ^0.56.0
         version: 0.56.0
@@ -977,7 +977,7 @@ importers:
         version: 1.1.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -996,7 +996,7 @@ importers:
         version: 19.2.14
       postcss:
         specifier: catalog:tailwind
-        version: 8.5.10
+        version: 8.5.13
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -1008,7 +1008,7 @@ importers:
         version: 1.0.12(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       react:
         specifier: catalog:react19
         version: 19.2.5
@@ -1020,7 +1020,7 @@ importers:
         version: 6.12.2(@react-email/render@2.0.7(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1073,13 +1073,13 @@ importers:
         version: 16.2.4(bufferutil@4.1.0)
       '@t3-oss/env-core':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1098,13 +1098,13 @@ importers:
         version: 0.11.20(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       react:
         specifier: catalog:react19
         version: 19.2.5
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1129,10 +1129,10 @@ importers:
         version: 0.3.1(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
       '@sentry/nextjs':
         specifier: 'catalog:'
-        version: 10.49.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
+        version: 10.51.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       react:
         specifier: catalog:react19
         version: 19.2.5
@@ -1141,7 +1141,7 @@ importers:
         version: 0.0.1
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1163,10 +1163,10 @@ importers:
     dependencies:
       '@stripe/agent-toolkit':
         specifier: ^0.9.0
-        version: 0.9.0(@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6)))(agents@0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.2.5))(ai@6.0.168(zod@4.3.6))(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6))
+        version: 0.9.0(@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2)))(agents@0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.2.5))(ai@6.0.168(zod@4.4.2))(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       server-only:
         specifier: 'catalog:'
         version: 0.0.1
@@ -1175,7 +1175,7 @@ importers:
         version: 22.0.2(@types/node@25.6.0)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1188,7 +1188,7 @@ importers:
     dependencies:
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       '@upstash/ratelimit':
         specifier: ^2.0.8
         version: 2.0.8(@upstash/redis@1.37.0)
@@ -1197,7 +1197,7 @@ importers:
         version: 1.37.0
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1216,10 +1216,10 @@ importers:
         version: 1.4.0(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -1266,7 +1266,7 @@ importers:
         version: link:../database
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       minio:
         specifier: ^8.0.7
         version: 8.0.7
@@ -1278,7 +1278,7 @@ importers:
         version: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/observability':
         specifier: workspace:*
@@ -1305,16 +1305,16 @@ importers:
         version: link:../auth
       '@t3-oss/env-nextjs':
         specifier: 'catalog:'
-        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+        version: 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
       server-only:
         specifier: 'catalog:'
         version: 0.0.1
       svix:
         specifier: 'catalog:'
-        version: 1.91.1
+        version: 1.92.2
       zod:
         specifier: 'catalog:'
-        version: 4.3.6
+        version: 4.4.2
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -4018,12 +4018,6 @@ packages:
     peerDependencies:
       '@opentelemetry/api': ^1.3.0
 
-  '@opentelemetry/instrumentation-undici@0.24.0':
-    resolution: {integrity: sha512-oKzZ3uvqP17sV0EsoQcJgjEfIp0kiZRbYu/eD8p13Cbahumf8lb/xpYeNr/hfAJ4owzEtIDcGIjprfLcYbIKBQ==}
-    engines: {node: ^18.19.0 || >=20.6.0}
-    peerDependencies:
-      '@opentelemetry/api': ^1.7.0
-
   '@opentelemetry/instrumentation@0.207.0':
     resolution: {integrity: sha512-y6eeli9+TLKnznrR8AZlQMSJT7wILpXH+6EYq5Vf/4Ao+huI7EedxQHwRgVUOMLFbe7VFDvHJrX9/f4lcwnJsA==}
     engines: {node: ^18.19.0 || >=20.6.0}
@@ -5487,28 +5481,28 @@ packages:
   '@selderee/plugin-htmlparser2@0.11.0':
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
 
-  '@sentry-internal/browser-utils@10.49.0':
-    resolution: {integrity: sha512-n0QRx0Ysx6mPfIydTkz7VP0FmwM+/EqMZiRqdsU3aTYsngE9GmEDV0OL1bAy6a8N/C1xf9vntkuAtj6N/8Z51w==}
+  '@sentry-internal/browser-utils@10.51.0':
+    resolution: {integrity: sha512-lNKBS4P7RUvf1niojXQWe9bU3gnBUCbST4Dj0pSiyat1N96cXVyHkeE+uGxowD0RrVWhs+kGHiVX3FcmRWF6sA==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/feedback@10.49.0':
-    resolution: {integrity: sha512-JNsUBGv0faCFE7MeZUH99Y9lU9qq3LBALbLxpE1x7ngNrQnVYRlcFgdqaD/btNBKr8awjYL8gmcSkHBWskGqLQ==}
+  '@sentry-internal/feedback@10.51.0':
+    resolution: {integrity: sha512-bCM95bcpphx28e6aU0bwRLxOgwosYsdNzezM1sM0pVOkb0TB3hDFRamramVDK+/Hp1o8qmRxS4c5w/A7YBZGkA==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay-canvas@10.49.0':
-    resolution: {integrity: sha512-7D/NrgH1Qwx5trDYaaTSSJmCb1yVQQLqFG4G/S9x2ltzl9876lSGJL8UeW8ReNQgF3CDAcwbmm/9aXaVSBUNZA==}
+  '@sentry-internal/replay-canvas@10.51.0':
+    resolution: {integrity: sha512-8PW1Pp+Yl3lPwYqhBCr5SgkuhDanu9ZLzUqD2bPKL/ElqbM2eDVIWxq4z4ZzePrmZa6IcCjTv6sVQJ7Z4dLyLA==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay@10.49.0':
-    resolution: {integrity: sha512-IEy4lwHVMiRE3JAcn+kFKjsTgalDOCSTf20SoFd+nkt6rN/k1RDyr4xpdfF//Kj3UdeTmbuibYjK5H/FLhhnGg==}
+  '@sentry-internal/replay@10.51.0':
+    resolution: {integrity: sha512-jCpI5HXSwK6ZT2HX70+mDRciAocHzSiDk4DTgvzV69Wvd+Ei5WLgE+d39eaEPsm8lUC0Ydntb5sJIB6uG9D4bw==}
     engines: {node: '>=18'}
 
   '@sentry/babel-plugin-component-annotate@5.2.0':
     resolution: {integrity: sha512-8LbOI5Kzb5F0+7LVQPi2+zGz1iPiRRFhM+7uZ/ZQ33L9BmDOYNIy3xWxCfMw2JCuMXXaxF47XCjGmR22/B0WPg==}
     engines: {node: '>= 18'}
 
-  '@sentry/browser@10.49.0':
-    resolution: {integrity: sha512-bGCHc+wK2Dx67YoSbmtlt04alqWfQ+dasD/GVipVOq50gvw/BBIDHTEWRJEjACl+LrvszeY54V+24p8z4IgysA==}
+  '@sentry/browser@10.51.0':
+    resolution: {integrity: sha512-Zdc0sKfenxUtW/OGhtJ7xHFN44bXR7YqxJ1zBDzlZfW0nTbeTTUZBq9z5NUw6qdS0Vs/i3V4qzAKTbRKWfqSEA==}
     engines: {node: '>=18'}
 
   '@sentry/bundler-plugin-core@5.2.0':
@@ -5567,18 +5561,18 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/core@10.49.0':
-    resolution: {integrity: sha512-UaFeum3LUM1mB0d67jvKnqId1yWQjyqmaDV6kWngG03x+jqXb08tJdGpSoxjXZe13jFBbiBL/wKDDYIK7rCK4g==}
+  '@sentry/core@10.51.0':
+    resolution: {integrity: sha512-Y45V/YXvVLEXmOdkbD1oG1gkRWFi9guCEGg3PlIlIpRjAbZUrvLGgjRJIc1E7XpSzmOnWbs5BbUxMv4PDaPj2w==}
     engines: {node: '>=18'}
 
-  '@sentry/nextjs@10.49.0':
-    resolution: {integrity: sha512-oVSbTbedZUfDFdgrkNpV9tclSAYF/bs+3rxKNH0KXte2dXj4nrvoinzA/3PTjbfjfgDYfInDHSPdlJv6Ev7lmA==}
+  '@sentry/nextjs@10.51.0':
+    resolution: {integrity: sha512-Bh3DeieTnbOOfhFEWbT57vgxlCdoTU7+x5or8QLa8VGCmZEekIdt0rGd8exbG1msI4g6SusCiJzbF/8bucmY/A==}
     engines: {node: '>=18'}
     peerDependencies:
       next: ^13.2.0 || ^14.0 || ^15.0.0-rc.0 || ^16.0.0-0
 
-  '@sentry/node-core@10.49.0':
-    resolution: {integrity: sha512-7WO0KuCDPSq3G54TVUSI1CKFJwB67LasG+n/gDMBqbrarzs/Yh/s34OOMU5gfVQpncxQAmQsy4nEboQms8iNqA==}
+  '@sentry/node-core@10.51.0':
+    resolution: {integrity: sha512-VP9DMEzBEuauABrfDHYz/pRYa74M09uRJLz0ls3yel3sKhYHMyCB29ZxbKcciUhD4d33dwgi8DbaPZV2H/wnfQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -5601,12 +5595,12 @@ packages:
       '@opentelemetry/semantic-conventions':
         optional: true
 
-  '@sentry/node@10.49.0':
-    resolution: {integrity: sha512-xr+HXABCiO5mgAJRQxsXRdNOLO0+Ee6CvXAAIqovL2A1GlhxNWc5ooPWeIrrLDJ/KGyT8zI91O5scpVXdXs0uQ==}
+  '@sentry/node@10.51.0':
+    resolution: {integrity: sha512-2yZLRZwS1dKG8/4eOTpGSo/gO/EgmT9aPj6lAzUkRa7bZCTTdW4BraaHU0leX5T94909Qfhbr3W5AVTfDOCKiQ==}
     engines: {node: '>=18'}
 
-  '@sentry/opentelemetry@10.49.0':
-    resolution: {integrity: sha512-XNLm4dXmtegXQf+EEE2Cs84Ymlo/f5wMx+lg2S2XS4qLbXaPN/HttjhwKftd8D+8iUNfmH+xNMCSshx4s1B/1w==}
+  '@sentry/opentelemetry@10.51.0':
+    resolution: {integrity: sha512-Qc7AlCE4uhB+SvHLqah4RgR1WdY7wmmr/hx9g/prDP9R1ocshmUEMrZK9qjuwaklW7/fmkFCXI8ETxo5L1bHIA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -5614,14 +5608,14 @@ packages:
       '@opentelemetry/sdk-trace-base': ^1.30.1 || ^2.1.0
       '@opentelemetry/semantic-conventions': ^1.39.0
 
-  '@sentry/react@10.49.0':
-    resolution: {integrity: sha512-WdfJve0orTiumr25Ozgs2p2KaJR9xV82Z5V9IYBi0TadsurSWK6xI6SAFjw84tQht9Fp8q4UCn3QYCnApF4BfA==}
+  '@sentry/react@10.51.0':
+    resolution: {integrity: sha512-RRHHqjNvjji6ebIqdlAr453AkST8Vm4cxdu1vWm772IgbzTO7Jx46Cj6Bt2/GjMyH0YLE5euDaAOQhFMmpvAOw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^16.14.0 || 17.x || 18.x || 19.x
 
-  '@sentry/vercel-edge@10.49.0':
-    resolution: {integrity: sha512-CL2Ggl5jFc5q3+tLhapRJMR7Ya9l/OxvnK55OG/FAwvhjfODz4V/Hf5bdOqU9LrsXXg4gWKqag/v5CBDDun8jg==}
+  '@sentry/vercel-edge@10.51.0':
+    resolution: {integrity: sha512-tADUhv+S3gtAj/hSAih6FcYTRZQma+brI4dY6bue2RwgWQvaQoP5CF/PsTb4RhK82etPhqphsdJivY09/L7vWA==}
     engines: {node: '>=18'}
 
   '@sentry/webpack-plugin@5.2.0':
@@ -9083,8 +9077,8 @@ packages:
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  lucide-react@1.8.0:
-    resolution: {integrity: sha512-WuvlsjngSk7TnTBJ1hsCy3ql9V9VOdcPkd3PKcSmM34vJD8KG6molxz7m7zbYFgICwsanQWmJ13JlYs4Zp7Arw==}
+  lucide-react@1.14.0:
+    resolution: {integrity: sha512-+1mdWcfSJVUsaTIjN9zoezmUhfXo5l0vP7ekBMPo3jcS/aIkxHnXqAPsByszMZx/Y8oQBRJxJx5xg+RH3urzxA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -10080,6 +10074,10 @@ packages:
     resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.13:
+    resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
+    engines: {node: ^10 || ^12 || >=14}
+
   postgres-array@2.0.0:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
@@ -10320,8 +10318,8 @@ packages:
     engines: {node: '>=20.0.0'}
     hasBin: true
 
-  react-hook-form@7.73.1:
-    resolution: {integrity: sha512-VAfVYOPcx3piiEVQy95vyFmBwbVUsP/AUIN+mpFG8h11yshDd444nn0VyfaGWSRnhOLVgiDu7HIuBtAIzxn9dA==}
+  react-hook-form@7.75.0:
+    resolution: {integrity: sha512-Ovv94H+0p3sJ7B9B5QxPuCP1u8V/cHuVGyH55cSwodYDtoJwK+fqk3vjfIgSX59I2U/bU4z0nRJ9HMLpNiWEmw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -11021,8 +11019,8 @@ packages:
   svix@1.90.0:
     resolution: {integrity: sha512-ljkZuyy2+IBEoESkIpn8sLM+sxJHQcPxlZFxU+nVDhltNfUMisMBzWX/UR8SjEnzoI28ZjCzMbmYAPwSTucoMw==}
 
-  svix@1.91.1:
-    resolution: {integrity: sha512-Vn8nuer+o3NhGLHJNW3CPxls3te8YLr0xC3ImfcksG7taC/A+o8+PcVAK4sj1LJs4kM9HdmkXBnS3WU4E0YHHA==}
+  svix@1.92.2:
+    resolution: {integrity: sha512-ZmuA3UVvlnF9EgxlzmPtF7CKjQb64Z6OFlyfdDfU0sdcC7dJa+3aOYX5B9mA+RS6ch1AxBa4UP/l6KmqfGtWBQ==}
 
   swr@2.4.0:
     resolution: {integrity: sha512-sUlC20T8EOt1pHmDiqueUWMmRRX03W7w5YxovWX7VR2KHEPCTMly85x05vpkP5i6Bu4h44ePSMD9Tc+G2MItFw==}
@@ -11834,6 +11832,9 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
+  zod@4.4.2:
+    resolution: {integrity: sha512-IynmDyxsEsb9RKzO3J9+4SxXnl2FTFSzNBaKKaMV6tsSk0rw9gYw9gs+JFCq/qk2LCZ78KDwyj+Z289TijSkUw==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -11841,24 +11842,24 @@ snapshots:
 
   '@adobe/css-tools@4.4.1': {}
 
-  '@ai-sdk/anthropic@3.0.71(zod@4.3.6)':
+  '@ai-sdk/anthropic@3.0.71(zod@4.4.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.23(zod@4.3.6)
-      zod: 4.3.6
+      '@ai-sdk/provider-utils': 4.0.23(zod@4.4.2)
+      zod: 4.4.2
 
-  '@ai-sdk/gateway@3.0.104(zod@4.3.6)':
+  '@ai-sdk/gateway@3.0.104(zod@4.4.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.23(zod@4.3.6)
+      '@ai-sdk/provider-utils': 4.0.23(zod@4.4.2)
       '@vercel/oidc': 3.2.0
-      zod: 4.3.6
+      zod: 4.4.2
 
-  '@ai-sdk/openai@3.0.52(zod@4.3.6)':
+  '@ai-sdk/openai@3.0.52(zod@4.4.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.23(zod@4.3.6)
-      zod: 4.3.6
+      '@ai-sdk/provider-utils': 4.0.23(zod@4.4.2)
+      zod: 4.4.2
 
   '@ai-sdk/provider-utils@2.2.8(zod@3.25.76)':
     dependencies:
@@ -11867,12 +11868,12 @@ snapshots:
       secure-json-parse: 2.7.0
       zod: 3.25.76
 
-  '@ai-sdk/provider-utils@4.0.23(zod@4.3.6)':
+  '@ai-sdk/provider-utils@4.0.23(zod@4.4.2)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.6
-      zod: 4.3.6
+      zod: 4.4.2
 
   '@ai-sdk/provider@1.1.3':
     dependencies:
@@ -12780,70 +12781,70 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.14
 
-  '@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)':
+  '@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)':
     dependencies:
       '@better-auth/utils': 0.4.0
       '@better-fetch/fetch': 1.1.21
       '@opentelemetry/semantic-conventions': 1.40.0
       '@standard-schema/spec': 1.1.0
-      better-call: 1.3.5(zod@4.3.6)
+      better-call: 1.3.5(zod@4.4.2)
       jose: 6.1.3
       kysely: 0.28.14
       nanostores: 1.1.1
-      zod: 4.3.6
+      zod: 4.4.2
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250430.0
       '@opentelemetry/api': 1.9.1
 
-  '@better-auth/drizzle-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))':
+  '@better-auth/drizzle-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
     optionalDependencies:
       drizzle-orm: 0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))
 
-  '@better-auth/kysely-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(kysely@0.28.14)':
+  '@better-auth/kysely-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(kysely@0.28.14)':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
     optionalDependencies:
       kysely: 0.28.14
 
-  '@better-auth/memory-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)':
+  '@better-auth/memory-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
 
-  '@better-auth/mongo-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(mongodb@7.1.0(socks@2.8.6))':
+  '@better-auth/mongo-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(mongodb@7.1.0(socks@2.8.6))':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
     optionalDependencies:
       mongodb: 7.1.0(socks@2.8.6)
 
-  '@better-auth/passkey@1.6.7(1660e8983bde1f75c1780042d68d1ba8)':
+  '@better-auth/passkey@1.6.7(391bf34d4d65eb6a6d8cc84022890a5a)':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
       '@better-fetch/fetch': 1.1.21
       '@simplewebauthn/browser': 13.2.2
       '@simplewebauthn/server': 13.2.3
       better-auth: 1.6.7(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))(mongodb@7.1.0(socks@2.8.6))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vitest@4.1.5(@opentelemetry/api@1.9.1)(@types/node@25.6.0)(jsdom@29.0.2(@noble/hashes@2.0.1))(vite@7.0.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.2)(tsx@4.21.0)(yaml@2.8.3)))
-      better-call: 1.3.5(zod@4.3.6)
+      better-call: 1.3.5(zod@4.4.2)
       nanostores: 1.1.1
-      zod: 4.3.6
+      zod: 4.4.2
 
-  '@better-auth/prisma-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(prisma@6.3.1(typescript@6.0.3))':
+  '@better-auth/prisma-adapter@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(prisma@6.3.1(typescript@6.0.3))':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
     optionalDependencies:
       '@prisma/client': 6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3)
       prisma: 6.3.1(typescript@6.0.3)
 
-  '@better-auth/telemetry@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)':
+  '@better-auth/telemetry@1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)':
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
       '@better-auth/utils': 0.4.0
       '@better-fetch/fetch': 1.1.21
 
@@ -13531,10 +13532,10 @@ snapshots:
     dependencies:
       hono: 4.12.8
 
-  '@hookform/resolvers@5.2.2(react-hook-form@7.73.1(react@19.2.5))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.75.0(react@19.2.5))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.73.1(react@19.2.5)
+      react-hook-form: 7.75.0(react@19.2.5)
 
   '@img/colour@1.0.0':
     optional: true
@@ -13992,13 +13993,13 @@ snapshots:
 
   '@knocklabs/types@0.1.5': {}
 
-  '@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6))':
+  '@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2))':
     dependencies:
       ansi-styles: 5.2.0
       camelcase: 6.3.0
       decamelize: 1.2.0
       js-tiktoken: 1.0.20
-      langsmith: 0.2.15(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6))
+      langsmith: 0.2.15(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2))
       mustache: 4.2.0
       p-queue: 6.6.2
       p-retry: 4.6.2
@@ -14443,15 +14444,6 @@ snapshots:
       '@opentelemetry/instrumentation': 0.214.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.40.0
       '@types/tedious': 4.0.14
-    transitivePeerDependencies:
-      - supports-color
-
-  '@opentelemetry/instrumentation-undici@0.24.0(@opentelemetry/api@1.9.1)':
-    dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.6.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.214.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/semantic-conventions': 1.40.0
     transitivePeerDependencies:
       - supports-color
 
@@ -15916,33 +15908,33 @@ snapshots:
       domhandler: 5.0.3
       selderee: 0.11.0
 
-  '@sentry-internal/browser-utils@10.49.0':
+  '@sentry-internal/browser-utils@10.51.0':
     dependencies:
-      '@sentry/core': 10.49.0
+      '@sentry/core': 10.51.0
 
-  '@sentry-internal/feedback@10.49.0':
+  '@sentry-internal/feedback@10.51.0':
     dependencies:
-      '@sentry/core': 10.49.0
+      '@sentry/core': 10.51.0
 
-  '@sentry-internal/replay-canvas@10.49.0':
+  '@sentry-internal/replay-canvas@10.51.0':
     dependencies:
-      '@sentry-internal/replay': 10.49.0
-      '@sentry/core': 10.49.0
+      '@sentry-internal/replay': 10.51.0
+      '@sentry/core': 10.51.0
 
-  '@sentry-internal/replay@10.49.0':
+  '@sentry-internal/replay@10.51.0':
     dependencies:
-      '@sentry-internal/browser-utils': 10.49.0
-      '@sentry/core': 10.49.0
+      '@sentry-internal/browser-utils': 10.51.0
+      '@sentry/core': 10.51.0
 
   '@sentry/babel-plugin-component-annotate@5.2.0': {}
 
-  '@sentry/browser@10.49.0':
+  '@sentry/browser@10.51.0':
     dependencies:
-      '@sentry-internal/browser-utils': 10.49.0
-      '@sentry-internal/feedback': 10.49.0
-      '@sentry-internal/replay': 10.49.0
-      '@sentry-internal/replay-canvas': 10.49.0
-      '@sentry/core': 10.49.0
+      '@sentry-internal/browser-utils': 10.51.0
+      '@sentry-internal/feedback': 10.51.0
+      '@sentry-internal/replay': 10.51.0
+      '@sentry-internal/replay-canvas': 10.51.0
+      '@sentry/core': 10.51.0
 
   '@sentry/bundler-plugin-core@5.2.0':
     dependencies:
@@ -16001,20 +15993,20 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/core@10.49.0': {}
+  '@sentry/core@10.51.0': {}
 
-  '@sentry/nextjs@10.49.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))':
+  '@sentry/nextjs@10.51.0(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/semantic-conventions': 1.40.0
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.45.0)
-      '@sentry-internal/browser-utils': 10.49.0
+      '@sentry-internal/browser-utils': 10.51.0
       '@sentry/bundler-plugin-core': 5.2.0
-      '@sentry/core': 10.49.0
-      '@sentry/node': 10.49.0
-      '@sentry/opentelemetry': 10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
-      '@sentry/react': 10.49.0(react@19.2.5)
-      '@sentry/vercel-edge': 10.49.0
+      '@sentry/core': 10.51.0
+      '@sentry/node': 10.51.0
+      '@sentry/opentelemetry': 10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
+      '@sentry/react': 10.51.0(react@19.2.5)
+      '@sentry/vercel-edge': 10.51.0
       '@sentry/webpack-plugin': 5.2.0(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))
       next: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       rollup: 4.45.0
@@ -16028,10 +16020,10 @@ snapshots:
       - supports-color
       - webpack
 
-  '@sentry/node-core@10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.214.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)':
+  '@sentry/node-core@10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.214.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)':
     dependencies:
-      '@sentry/core': 10.49.0
-      '@sentry/opentelemetry': 10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
+      '@sentry/core': 10.51.0
+      '@sentry/opentelemetry': 10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
       import-in-the-middle: 3.0.1
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
@@ -16040,7 +16032,7 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 2.6.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.40.0
 
-  '@sentry/node@10.49.0':
+  '@sentry/node@10.51.0':
     dependencies:
       '@fastify/otel': 0.18.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/api': 1.9.1
@@ -16066,37 +16058,36 @@ snapshots:
       '@opentelemetry/instrumentation-pg': 0.66.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-redis': 0.62.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-tedious': 0.33.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation-undici': 0.24.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.6.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.40.0
       '@prisma/instrumentation': 7.6.0(@opentelemetry/api@1.9.1)
-      '@sentry/core': 10.49.0
-      '@sentry/node-core': 10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.214.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
-      '@sentry/opentelemetry': 10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
+      '@sentry/core': 10.51.0
+      '@sentry/node-core': 10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.214.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
+      '@sentry/opentelemetry': 10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)
       import-in-the-middle: 3.0.1
     transitivePeerDependencies:
       - '@opentelemetry/exporter-trace-otlp-http'
       - supports-color
 
-  '@sentry/opentelemetry@10.49.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)':
+  '@sentry/opentelemetry@10.51.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.40.0)':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.6.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.6.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.40.0
-      '@sentry/core': 10.49.0
+      '@sentry/core': 10.51.0
 
-  '@sentry/react@10.49.0(react@19.2.5)':
+  '@sentry/react@10.51.0(react@19.2.5)':
     dependencies:
-      '@sentry/browser': 10.49.0
-      '@sentry/core': 10.49.0
+      '@sentry/browser': 10.51.0
+      '@sentry/core': 10.51.0
       react: 19.2.5
 
-  '@sentry/vercel-edge@10.49.0':
+  '@sentry/vercel-edge@10.51.0':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/resources': 2.6.1(@opentelemetry/api@1.9.1)
-      '@sentry/core': 10.49.0
+      '@sentry/core': 10.51.0
 
   '@sentry/webpack-plugin@5.2.0(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.3))':
     dependencies:
@@ -16241,8 +16232,8 @@ snapshots:
       loader-utils: 3.3.1
       next: 16.2.4(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       node-polyfill-webpack-plugin: 2.0.1(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5))
-      postcss: 8.5.10
-      postcss-loader: 8.1.1(postcss@8.5.10)(typescript@6.0.3)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5))
+      postcss: 8.5.13
+      postcss-loader: 8.1.1(postcss@8.5.13)(typescript@6.0.3)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5))
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
       react-refresh: 0.14.2
@@ -16336,14 +16327,14 @@ snapshots:
     dependencies:
       storybook: 10.3.5(@testing-library/dom@10.4.1)(bufferutil@4.1.0)(prettier@3.8.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
 
-  '@stripe/agent-toolkit@0.9.0(@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6)))(agents@0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.2.5))(ai@6.0.168(zod@4.3.6))(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6))':
+  '@stripe/agent-toolkit@0.9.0(@langchain/core@0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2)))(agents@0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.2.5))(ai@6.0.168(zod@4.4.2))(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2))':
     dependencies:
       '@ai-sdk/provider': 2.0.1
-      '@langchain/core': 0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6))
+      '@langchain/core': 0.3.18(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2))
       '@modelcontextprotocol/sdk': 1.27.1(zod@3.25.76)
       agents: 0.0.66(@cloudflare/workers-types@4.20250430.0)(react@19.2.5)
-      ai: 6.0.168(zod@4.3.6)
-      openai: 4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6)
+      ai: 6.0.168(zod@4.4.2)
+      openai: 4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2)
       stripe: 17.7.0
       zod: 3.25.76
       zod-to-json-schema: 3.24.6(zod@3.25.76)
@@ -16411,21 +16402,21 @@ snapshots:
       '@swc/counter': 0.1.3
     optional: true
 
-  '@t3-oss/env-core@0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)':
+  '@t3-oss/env-core@0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)':
     optionalDependencies:
       arktype: 2.1.20
       typescript: 6.0.3
       valibot: 1.0.0-beta.15(typescript@6.0.3)
-      zod: 4.3.6
+      zod: 4.4.2
 
-  '@t3-oss/env-nextjs@0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)':
+  '@t3-oss/env-nextjs@0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)':
     dependencies:
-      '@t3-oss/env-core': 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.3.6)
+      '@t3-oss/env-core': 0.13.11(arktype@2.1.20)(typescript@6.0.3)(valibot@1.0.0-beta.15(typescript@6.0.3))(zod@4.4.2)
     optionalDependencies:
       arktype: 2.1.20
       typescript: 6.0.3
       valibot: 1.0.0-beta.15(typescript@6.0.3)
-      zod: 4.3.6
+      zod: 4.4.2
 
   '@tabby_ai/hijri-converter@1.0.5': {}
 
@@ -17260,13 +17251,13 @@ snapshots:
     optionalDependencies:
       react: 19.2.5
 
-  ai@6.0.168(zod@4.3.6):
+  ai@6.0.168(zod@4.4.2):
     dependencies:
-      '@ai-sdk/gateway': 3.0.104(zod@4.3.6)
+      '@ai-sdk/gateway': 3.0.104(zod@4.4.2)
       '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.23(zod@4.3.6)
+      '@ai-sdk/provider-utils': 4.0.23(zod@4.4.2)
       '@opentelemetry/api': 1.9.0
-      zod: 4.3.6
+      zod: 4.4.2
 
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
@@ -17490,23 +17481,23 @@ snapshots:
 
   better-auth@1.6.7(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))(mongodb@7.1.0(socks@2.8.6))(next@16.2.4(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vitest@4.1.5(@opentelemetry/api@1.9.1)(@types/node@25.6.0)(jsdom@29.0.2(@noble/hashes@2.0.1))(vite@7.0.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.2)(tsx@4.21.0)(yaml@2.8.3))):
     dependencies:
-      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
-      '@better-auth/drizzle-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))
-      '@better-auth/kysely-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(kysely@0.28.14)
-      '@better-auth/memory-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)
-      '@better-auth/mongo-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(mongodb@7.1.0(socks@2.8.6))
-      '@better-auth/prisma-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(prisma@6.3.1(typescript@6.0.3))
-      '@better-auth/telemetry': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.3.6))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)
+      '@better-auth/core': 1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1)
+      '@better-auth/drizzle-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(drizzle-orm@0.45.2(@cloudflare/workers-types@4.20250430.0)(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.1)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(@types/pg@8.20.0)(@upstash/redis@1.37.0)(gel@2.0.1)(kysely@0.28.14)(pg@8.20.0)(prisma@6.3.1(typescript@6.0.3)))
+      '@better-auth/kysely-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(kysely@0.28.14)
+      '@better-auth/memory-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)
+      '@better-auth/mongo-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(mongodb@7.1.0(socks@2.8.6))
+      '@better-auth/prisma-adapter': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@prisma/client@6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3))(prisma@6.3.1(typescript@6.0.3))
+      '@better-auth/telemetry': 1.6.7(@better-auth/core@1.6.7(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20250430.0)(@opentelemetry/api@1.9.1)(better-call@1.3.5(zod@4.4.2))(jose@6.1.3)(kysely@0.28.14)(nanostores@1.1.1))(@better-auth/utils@0.4.0)(@better-fetch/fetch@1.1.21)
       '@better-auth/utils': 0.4.0
       '@better-fetch/fetch': 1.1.21
       '@noble/ciphers': 2.1.1
       '@noble/hashes': 2.0.1
-      better-call: 1.3.5(zod@4.3.6)
+      better-call: 1.3.5(zod@4.4.2)
       defu: 6.1.4
       jose: 6.1.3
       kysely: 0.28.14
       nanostores: 1.1.1
-      zod: 4.3.6
+      zod: 4.4.2
     optionalDependencies:
       '@prisma/client': 6.3.1(prisma@6.3.1(typescript@6.0.3))(typescript@6.0.3)
       drizzle-kit: 0.31.10
@@ -17522,14 +17513,14 @@ snapshots:
       - '@cloudflare/workers-types'
       - '@opentelemetry/api'
 
-  better-call@1.3.5(zod@4.3.6):
+  better-call@1.3.5(zod@4.4.2):
     dependencies:
       '@better-auth/utils': 0.4.0
       '@better-fetch/fetch': 1.1.21
       rou3: 0.7.12
       set-cookie-parser: 3.0.1
     optionalDependencies:
-      zod: 4.3.6
+      zod: 4.4.2
 
   better-path-resolve@1.0.0:
     dependencies:
@@ -18134,12 +18125,12 @@ snapshots:
 
   css-loader@6.11.0(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.10)
-      postcss: 8.5.10
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.10)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.10)
-      postcss-modules-scope: 3.2.1(postcss@8.5.10)
-      postcss-modules-values: 4.0.0(postcss@8.5.10)
+      icss-utils: 5.1.0(postcss@8.5.13)
+      postcss: 8.5.13
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.13)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.13)
+      postcss-modules-scope: 3.2.1(postcss@8.5.13)
+      postcss-modules-values: 4.0.0(postcss@8.5.13)
       postcss-value-parser: 4.2.0
       semver: 7.7.4
     optionalDependencies:
@@ -18147,12 +18138,12 @@ snapshots:
 
   css-loader@7.1.2(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.10)
-      postcss: 8.5.10
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.10)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.10)
-      postcss-modules-scope: 3.2.1(postcss@8.5.10)
-      postcss-modules-values: 4.0.0(postcss@8.5.10)
+      icss-utils: 5.1.0(postcss@8.5.13)
+      postcss: 8.5.13
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.13)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.13)
+      postcss-modules-scope: 3.2.1(postcss@8.5.13)
+      postcss-modules-values: 4.0.0(postcss@8.5.13)
       postcss-value-parser: 4.2.0
       semver: 7.7.4
     optionalDependencies:
@@ -19345,9 +19336,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.10):
+  icss-utils@5.1.0(postcss@8.5.13):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.13
 
   ieee754@1.2.1: {}
 
@@ -19655,7 +19646,7 @@ snapshots:
 
   kysely@0.28.14: {}
 
-  langsmith@0.2.15(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6)):
+  langsmith@0.2.15(openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2)):
     dependencies:
       '@types/uuid': 10.0.0
       commander: 10.0.1
@@ -19664,7 +19655,7 @@ snapshots:
       semver: 7.7.4
       uuid: 10.0.0
     optionalDependencies:
-      openai: 4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6)
+      openai: 4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2)
 
   leac@0.6.0: {}
 
@@ -19801,7 +19792,7 @@ snapshots:
     dependencies:
       react: 19.2.5
 
-  lucide-react@1.8.0(react@19.2.5):
+  lucide-react@1.14.0(react@19.2.5):
     dependencies:
       react: 19.2.5
 
@@ -20477,7 +20468,7 @@ snapshots:
       powershell-utils: 0.1.0
       wsl-utils: 0.3.1
 
-  openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.3.6):
+  openai@4.86.1(ws@8.20.0(bufferutil@4.1.0))(zod@4.4.2):
     dependencies:
       '@types/node': 18.19.118
       '@types/node-fetch': 2.6.12
@@ -20488,7 +20479,7 @@ snapshots:
       node-fetch: 2.7.0
     optionalDependencies:
       ws: 8.20.0(bufferutil@4.1.0)
-      zod: 4.3.6
+      zod: 4.4.2
     transitivePeerDependencies:
       - encoding
 
@@ -20851,46 +20842,46 @@ snapshots:
 
   postal-mime@2.7.4: {}
 
-  postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.10)(tsx@4.21.0)(yaml@2.8.3):
+  postcss-load-config@6.0.1(jiti@2.6.1)(postcss@8.5.13)(tsx@4.21.0)(yaml@2.8.3):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       jiti: 2.6.1
-      postcss: 8.5.10
+      postcss: 8.5.13
       tsx: 4.21.0
       yaml: 2.8.3
 
-  postcss-loader@8.1.1(postcss@8.5.10)(typescript@6.0.3)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5)):
+  postcss-loader@8.1.1(postcss@8.5.13)(typescript@6.0.3)(webpack@5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5)):
     dependencies:
       cosmiconfig: 9.0.0(typescript@6.0.3)
       jiti: 1.21.7
-      postcss: 8.5.10
+      postcss: 8.5.13
       semver: 7.7.4
     optionalDependencies:
       webpack: 5.99.8(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.27.5)
     transitivePeerDependencies:
       - typescript
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.10):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.13):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.13
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.10):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.13):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.10)
-      postcss: 8.5.10
+      icss-utils: 5.1.0(postcss@8.5.13)
+      postcss: 8.5.13
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.10):
+  postcss-modules-scope@3.2.1(postcss@8.5.13):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.13
       postcss-selector-parser: 7.1.0
 
-  postcss-modules-values@4.0.0(postcss@8.5.10):
+  postcss-modules-values@4.0.0(postcss@8.5.13):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.10)
-      postcss: 8.5.10
+      icss-utils: 5.1.0(postcss@8.5.13)
+      postcss: 8.5.13
 
   postcss-selector-parser@6.0.10:
     dependencies:
@@ -20911,6 +20902,12 @@ snapshots:
       source-map-js: 1.2.1
 
   postcss@8.5.10:
+    dependencies:
+      nanoid: 3.3.11
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.13:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -21264,7 +21261,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-hook-form@7.73.1(react@19.2.5):
+  react-hook-form@7.75.0(react@19.2.5):
     dependencies:
       react: 19.2.5
 
@@ -21574,7 +21571,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.10
+      postcss: 8.5.13
       source-map: 0.6.1
 
   resolve@1.22.11:
@@ -22146,10 +22143,9 @@ snapshots:
       standardwebhooks: 1.0.0
       uuid: 10.0.0
 
-  svix@1.91.1:
+  svix@1.92.2:
     dependencies:
       standardwebhooks: 1.0.0
-      uuid: 10.0.0
 
   swr@2.4.0(react@19.2.5):
     dependencies:
@@ -22333,7 +22329,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(jiti@2.6.1)(postcss@8.5.10)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.3):
+  tsup@8.5.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(jiti@2.6.1)(postcss@8.5.13)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.3):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.3)
       cac: 6.7.14
@@ -22344,7 +22340,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(jiti@2.6.1)(postcss@8.5.10)(tsx@4.21.0)(yaml@2.8.3)
+      postcss-load-config: 6.0.1(jiti@2.6.1)(postcss@8.5.13)(tsx@4.21.0)(yaml@2.8.3)
       resolve-from: 5.0.0
       rollup: 4.45.0
       source-map: 0.7.6
@@ -22354,7 +22350,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       '@swc/core': 1.3.101(@swc/helpers@0.5.15)
-      postcss: 8.5.10
+      postcss: 8.5.13
       typescript: 6.0.3
     transitivePeerDependencies:
       - jiti
@@ -22943,5 +22939,7 @@ snapshots:
   zod@3.25.76: {}
 
   zod@4.3.6: {}
+
+  zod@4.4.2: {}
 
   zwitch@2.0.4: {}
