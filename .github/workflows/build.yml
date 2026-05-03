@@ -58,7 +58,7 @@ jobs:
           echo "STRIPE_WEBHOOK_SECRET=whsec_test" >> apps/app/.env.local
           echo "ARCJET_KEY=ajkey_test" >> apps/app/.env.local
           echo "SVIX_TOKEN=testsk_test" >> apps/app/.env.local
-          echo "VERCEL_PROJECT_PRODUCTION_URL=http://localhost:3006" >> apps/app/.env.local
+          echo "VERCEL_PROJECT_PRODUCTION_URL=http://localhost:3005" >> apps/app/.env.local
 
           echo "KNOCK_API_KEY=test" >> apps/app/.env.local
           echo "KNOCK_FEED_CHANNEL_ID=test" >> apps/app/.env.local
@@ -147,7 +147,7 @@ jobs:
           echo "STRIPE_WEBHOOK_SECRET=whsec_test" >> apps/app/.env.local
           echo "ARCJET_KEY=ajkey_test" >> apps/app/.env.local
           echo "SVIX_TOKEN=testsk_test" >> apps/app/.env.local
-          echo "VERCEL_PROJECT_PRODUCTION_URL=http://localhost:3006" >> apps/app/.env.local
+          echo "VERCEL_PROJECT_PRODUCTION_URL=http://localhost:3005" >> apps/app/.env.local
 
           echo "KNOCK_API_KEY=test" >> apps/app/.env.local
           echo "KNOCK_FEED_CHANNEL_ID=test" >> apps/app/.env.local

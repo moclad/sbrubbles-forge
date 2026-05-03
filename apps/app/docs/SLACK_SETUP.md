@@ -112,7 +112,7 @@ OPENAI_API_KEY=sk-your-openai-key
 The Slack platform requires a publicly reachable HTTPS URL. During local development, use [ngrok](https://ngrok.com):
 
 ```bash
-ngrok http 3006
+ngrok http 3005
 ```
 
 Use the generated `https://*.ngrok-free.app` URL as your Request URL in Steps 4 and 5. Note that the URL changes on every ngrok restart — update it in the Slack app settings each time.

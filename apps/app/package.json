@@ -6,8 +6,8 @@
     "build": "next build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "dev": "next dev -p 3005",
-    "start": "node .next/standalone/server.js --port 3000",
-    "stripe": "stripe listen --forward-to localhost:3006/webhooks/stripe",
+    "start": "node .next/standalone/server.js --port 3005",
+    "stripe": "stripe listen --forward-to localhost:3005/webhooks/stripe",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "version": "4.1.20",
