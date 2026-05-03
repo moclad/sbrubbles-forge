@@ -28,7 +28,7 @@ type CategoriesTableProps = {
 
 type CategoryFormData = {
   name: string;
-  description?: string;
+  description?: string | undefined;
   icon: string;
   color: string;
 };
@@ -197,7 +197,17 @@ export function CategoriesTable({ categories }: Readonly<CategoriesTableProps>) 
       )}
 
       <CategoryFormDialog
-        initialData={editing ?? undefined}
+        initialData={
+          editing
+            ? {
+                color: editing.color,
+                description: editing.description,
+                icon: editing.icon,
+                id: editing.id,
+                name: editing.name,
+              }
+            : undefined
+        }
         key={editing ? editing.id : `create-${createKey}`}
         onOpenChange={(next) => {
           setFormOpen(next);

@@ -20,5 +20,10 @@ export const GET = async () => {
     })
     .returning({ insertedId: pageTable.id });
 
-  return new Response(`OK ${newPage[0].insertedId}`, { status: 200 });
+  const insertedPage = newPage[0];
+  if (!insertedPage) {
+    return new Response('Insert failed', { status: 500 });
+  }
+
+  return new Response(`OK ${insertedPage.insertedId}`, { status: 200 });
 };

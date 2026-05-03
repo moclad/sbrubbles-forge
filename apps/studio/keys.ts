@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const keys = () =>
   createEnv({
     runtimeEnv: {
-      DATABASE_URL: process.env.DATABASE_URL,
+      DATABASE_URL: process.env['DATABASE_URL'],
     },
     server: {
       DATABASE_URL: z.string().min(1).url(),

@@ -62,11 +62,38 @@ async function verifySlackSignature(request: Request, rawBody: string): Promise<
   }
   let diff = 0;
   for (let i = 0; i < a.length; i++) {
+    const aVal = a[i];
+    const bVal = b[i];
+    if (aVal === undefined || bVal === undefined) {
+      return false;
+    }
     // biome-ignore lint/suspicious/noBitwiseOperators: required for constant-time comparison to prevent timing attacks
-    diff |= a[i] ^ b[i];
+    diff |= aVal ^ bVal;
   }
   return diff === 0;
 }
+
+// Slack payload types
+type SlackUrlVerification = {
+  challenge: string;
+  type: 'url_verification';
+};
+
+type SlackEventCallback = {
+  event: {
+    type: string;
+    text?: string;
+    channel?: string;
+    bot_id?: string;
+    subtype?: string;
+    ts?: string;
+    user?: string;
+  };
+  event_id: string;
+  type: 'event_callback';
+};
+
+type SlackPayload = SlackUrlVerification | SlackEventCallback | { type: string };
 
 const parsedExpenseSchema = z.object({
   amount: z.number().describe('The expense amount as a positive number'),
@@ -112,8 +139,13 @@ Message: "${text}"`,
     throw new Error('No active trip found for today');
   }
 
+  const defaultCategory = categories[0];
+  if (!defaultCategory) {
+    throw new Error('No categories available');
+  }
+
   const matchedCategory =
-    categories.find((c) => c.name.toLowerCase() === parsed.categoryName.toLowerCase()) ?? categories[0];
+    categories.find((c) => c.name.toLowerCase() === parsed.categoryName.toLowerCase()) ?? defaultCategory;
 
   await database.insert(expense).values({
     amount: parsed.amount,
@@ -197,29 +229,33 @@ export const POST = async (request: Request): Promise<Response> => {
   }
 
   // JSON payload: event callbacks and URL verification
-  let payload: Record<string, unknown>;
+  let payload: SlackPayload;
   try {
-    payload = JSON.parse(rawBody) as Record<string, unknown>;
+    payload = JSON.parse(rawBody) as SlackPayload;
   } catch {
     return new Response('Bad Request', { status: 400 });
   }
 
   // Slack URL verification challenge
   if (payload.type === 'url_verification') {
-    return Response.json({ challenge: payload.challenge });
+    const verification = payload as SlackUrlVerification;
+    return Response.json({ challenge: verification.challenge });
   }
 
   if (payload.type !== 'event_callback') {
     return Response.json({ ok: true });
   }
 
+  // Type narrowing: payload is now SlackEventCallback
+  const eventCallback = payload as SlackEventCallback;
+
   // Prevent duplicate event processing
-  const eventId = typeof payload.event_id === 'string' ? payload.event_id : '';
+  const eventId = eventCallback.event_id;
   if (eventId && isEventProcessed(eventId)) {
     return Response.json({ ok: true });
   }
 
-  const event = payload.event as Record<string, unknown> | undefined;
+  const event = eventCallback.event;
 
   if (!event || event.type !== 'message' || event.bot_id || event.subtype || event.channel !== env.SLACK_CHANNEL_ID) {
     return Response.json({ ok: true });

@@ -14,7 +14,7 @@ export const env = createEnv({
   client: {},
   extends: [auth(), analytics(), core(), database(), email(), notifications(), observability(), security(), webhooks()],
   runtimeEnv: {
-    S3_BUCKET_NAME: process.env.S3_BUCKET_NAME ?? 'trip-tracker',
+    S3_BUCKET_NAME: process.env['S3_BUCKET_NAME'] ?? 'trip-tracker',
   },
   server: {
     S3_BUCKET_NAME: z.string().min(1),
