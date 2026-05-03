@@ -10202,8 +10202,8 @@ packages:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.10:
-    resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
+  postcss@8.5.13:
+    resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.5.13:
@@ -11166,9 +11166,6 @@ packages:
 
   tailwind-merge@3.5.0:
     resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
-
-  tailwindcss@4.2.2:
-    resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==}
 
   tailwindcss@4.2.4:
     resolution: {integrity: sha512-HhKppgO81FQof5m6TEnuBWCZGgfRAWbaeOaGT00KOy/Pf/j6oUihdvBpA7ltCeAvZpFhW3j0PTclkxsd4IXYDA==}
@@ -15957,7 +15954,7 @@ snapshots:
     dependencies:
       '@react-email/text': 0.1.6(react@19.2.5)
       react: 19.2.5
-      tailwindcss: 4.2.2
+      tailwindcss: 4.2.4
     optionalDependencies:
       '@react-email/body': 0.3.0(react@19.2.5)
       '@react-email/button': 0.2.1(react@19.2.5)
@@ -16698,7 +16695,7 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.2.4
       '@tailwindcss/oxide': 4.2.4
-      postcss: 8.5.10
+      postcss: 8.5.13
       tailwindcss: 4.2.4
 
   '@tailwindcss/typography@0.5.19(tailwindcss@4.2.4)':
@@ -16858,7 +16855,7 @@ snapshots:
   '@telegraph/style-engine@0.3.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@telegraph/tokens': 0.2.0(react@19.2.5)
-      postcss: 8.5.10
+      postcss: 8.5.13
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
@@ -21113,7 +21110,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.10:
+  postcss@8.5.13:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -22363,8 +22360,6 @@ snapshots:
 
   tailwind-merge@3.5.0: {}
 
-  tailwindcss@4.2.2: {}
-
   tailwindcss@4.2.4: {}
 
   tapable@2.3.0: {}
@@ -22867,7 +22862,7 @@ snapshots:
       picomatch: 4.0.3
       std-env: 4.0.0
       tinybench: 2.9.0
-      tinyexec: 1.0.2
+      tinyexec: 1.1.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.1.0
       vite: 7.0.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.2)(tsx@4.21.0)(yaml@2.8.3)

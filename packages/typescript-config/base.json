@@ -27,6 +27,8 @@
     "allowUnusedLabels": false,
     "useUnknownInCatchVariables": true,
     "noImplicitOverride": true,
+    "noUncheckedSideEffectImports": true,
+    "allowUnusedLabels": false,
     "skipLibCheck": true,
     "removeComments": true,
     "preserveConstEnums": true,
