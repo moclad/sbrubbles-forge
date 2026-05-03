@@ -10,7 +10,7 @@
     "@t3-oss/env-nextjs": "catalog:",
     "@repo/database": "workspace:*",
     "next": "catalog:",
-    "nanoid": "^5.1.9",
+    "nanoid": "^5.1.11",
     "minio": "^8.0.7",
     "zod": "catalog:"
   },

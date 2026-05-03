@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
@@ -26,18 +25,18 @@
     "@repo/design-system": "workspace:*",
     "@chromatic-com/storybook": "^5.1.2",
     "@repo/typescript-config": "workspace:*",
-    "@storybook/addon-onboarding": "^10.3.5",
+    "@storybook/addon-onboarding": "^10.3.6",
     "storybook-dark-mode": "^5.0.0",
-    "@storybook/addon-themes": "^10.3.5",
-    "@storybook/addon-docs": "^10.3.5",
-    "@storybook/nextjs": "^10.3.5",
+    "@storybook/addon-themes": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/nextjs": "^10.3.6",
     "@storybook/types": "^8.6.14",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
-    "chromatic": "^16.5.0",
+    "chromatic": "^16.6.3",
     "postcss": "catalog:tailwind",
-    "storybook": "^10.3.5",
+    "storybook": "^10.3.6",
     "tailwindcss": "catalog:tailwind",
     "typescript": "catalog:"
   }

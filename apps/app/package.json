@@ -54,7 +54,7 @@
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "cross-env": "^10.1.0",
-    "jsdom": "^29.0.2",
+    "jsdom": "^29.1.1",
     "typescript": "catalog:",
     "vitest": "catalog:test"
   }

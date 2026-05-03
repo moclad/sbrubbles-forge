@@ -9,7 +9,7 @@
   "dependencies": {
     "@stripe/agent-toolkit": "^0.9.0",
     "@t3-oss/env-nextjs": "catalog:",
-    "stripe": "^22.0.2",
+    "stripe": "^22.1.0",
     "server-only": "catalog:",
     "zod": "catalog:"
   },
