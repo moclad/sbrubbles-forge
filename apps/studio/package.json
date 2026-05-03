@@ -1,14 +1,4 @@
 {
-  "name": "drizzle-studio",
-  "version": "4.1.20",
-  "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "scripts": {
-    "dev": "drizzle-kit studio --port 3008",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@t3-oss/env-nextjs": "catalog:",
     "drizzle-orm": "^0.45.2",
@@ -21,5 +11,15 @@
     "drizzle-kit": "^0.31.10",
     "tsx": "^4.21.0",
     "typescript": "catalog:"
-  }
+  },
+  "main": "./index.ts",
+  "name": "drizzle-studio",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "drizzle-kit studio --port 3008",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "types": "./index.ts",
+  "version": "4.1.20"
 }

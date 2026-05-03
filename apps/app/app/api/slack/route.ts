@@ -236,7 +236,9 @@ export const POST = async (request: Request): Promise<Response> => {
   after(async () => {
     try {
       const summary = await parseAndCreateExpense(messageText);
-      await postToSlack(channel, `✅ ${summary}`);
+      if (channel) {
+        await postToSlack(channel, `✅ ${summary}`);
+      }
     } catch (error) {
       const message = parseError(error);
       log.error(message);
@@ -253,7 +255,9 @@ export const POST = async (request: Request): Promise<Response> => {
         source: 'slack_message',
       });
 
-      await postToSlack(channel, `❌ Could not log expense: ${message}`);
+      if (channel) {
+        await postToSlack(channel, `❌ Could not log expense: ${message}`);
+      }
     }
   });
 

@@ -1,12 +1,23 @@
+import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
+
+import { env } from '@/env';
 import { auth } from '@repo/auth/server';
 import { database } from '@repo/database';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
-import type { Stripe } from '@repo/payments';
-import { stripe } from '@repo/payments';
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
-import { env } from '@/env';
+
+// Lazy-load stripe to avoid initialization during build time
+let stripeInstance: Stripe | null = null;
+const getStripe = () => {
+  if (!stripeInstance && env.STRIPE_SECRET_KEY) {
+    stripeInstance = new Stripe(env.STRIPE_SECRET_KEY, {
+      apiVersion: '2026-04-22.dahlia',
+    });
+  }
+  return stripeInstance;
+};
 
 const getUserFromCustomerId = async (customerId: string) => {
   const subscription = await database.query.subscription.findFirst({
@@ -60,6 +71,12 @@ export const POST = async (request: Request): Promise<Response> => {
   }
 
   try {
+    const stripe = getStripe();
+
+    if (!stripe) {
+      return NextResponse.json({ message: 'Stripe not configured', ok: false }, { status: 503 });
+    }
+
     const body = await request.text();
     const headerPayload = await headers();
     const signature = headerPayload.get('stripe-signature');

@@ -1,17 +1,19 @@
 {
   "name": "app",
   "private": true,
-  "version": "4.1.20",
   "scripts": {
-    "dev": "next dev -p 3005",
-    "build": "next build",
-    "start": "node .next/standalone/server.js --port 3000",
     "analyze": "cross-env ANALYZE=true pnpm build",
+    "build": "next build",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "next dev -p 3005",
+    "start": "node .next/standalone/server.js --port 3000",
+    "stripe": "stripe listen --forward-to localhost:3006/webhooks/stripe",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
+  "version": "4.1.20",
   "dependencies": {
     "@hookform/resolvers": "catalog:",
+    "@repo/ai": "workspace:*",
     "@repo/analytics": "workspace:*",
     "@repo/auth": "workspace:*",
     "@repo/database": "workspace:*",
@@ -20,6 +22,7 @@
     "@repo/next-config": "workspace:*",
     "@repo/notifications": "workspace:*",
     "@repo/observability": "workspace:*",
+    "@repo/payments": "workspace:*",
     "@repo/security": "workspace:*",
     "@repo/seo": "workspace:*",
     "@repo/storage": "workspace:*",
@@ -41,6 +44,8 @@
     "react-hook-form": "catalog:",
     "recharts": "^3.8.1",
     "require-in-the-middle": "^8.0.1",
+    "stripe": "^22.1.0",
+    "svix": "catalog:",
     "tailwindcss": "catalog:tailwind",
     "zod": "catalog:"
   },

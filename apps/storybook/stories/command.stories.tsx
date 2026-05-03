@@ -5,9 +5,10 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from '@repo/design-system/components/ui/command';
+
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { CommandSeparator } from 'cmdk';
 
 /**
  * Fast, composable, unstyled command menu for React.

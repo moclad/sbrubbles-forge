@@ -1,16 +1,9 @@
 {
-  "name": "@repo/analytics",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@next/third-parties": "^16.2.4",
     "@t3-oss/env-nextjs": "catalog:",
-    "react": "catalog:react19",
     "next": "catalog:",
+    "react": "catalog:react19",
     "server-only": "catalog:",
     "zod": "catalog:"
   },
@@ -19,5 +12,12 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19"
-  }
+  },
+  "name": "@repo/analytics",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "version": "4.1.20"
 }

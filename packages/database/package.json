@@ -1,15 +1,4 @@
 {
-  "name": "@repo/database",
-  "version": "4.1.20",
-  "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "scripts": {
-    "analyze": "drizzle-kit generate",
-    "build": "drizzle-kit generate",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@t3-oss/env-nextjs": "catalog:",
     "drizzle-orm": "^0.45.2",
@@ -27,5 +16,16 @@
     "drizzle-kit": "^0.31.10",
     "tsx": "^4.21.0",
     "typescript": "catalog:"
-  }
+  },
+  "main": "./index.ts",
+  "name": "@repo/database",
+  "private": true,
+  "scripts": {
+    "analyze": "drizzle-kit generate",
+    "build": "drizzle-kit generate",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "types": "./index.ts",
+  "version": "4.1.20"
 }

@@ -1,5 +1,4 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
@@ -7,6 +6,7 @@
     },
     "strictNullChecks": true
   },
+  "extends": "@repo/typescript-config/nextjs.json",
   "include": [
     "next-env.d.ts",
     "next.config.ts",

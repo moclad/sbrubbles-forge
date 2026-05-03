@@ -1,19 +1,10 @@
 {
-  "name": "email",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "dev": "email dev --port 3009",
-    "export": "email export",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@react-email/components": "1.0.12",
+    "@react-email/ui": "^6.0.5",
     "@repo/email": "workspace:*",
     "react": "catalog:react19",
-    "react-email": "6.0.5",
-    "@react-email/ui": "^6.0.5"
+    "react-email": "6.0.5"
   },
   "devDependencies": {
     "@react-email/preview-server": "5.2.10",
@@ -22,5 +13,14 @@
     "@types/react": "catalog:react19",
     "prettier": "^3.8.3",
     "typescript": "catalog:"
-  }
+  },
+  "name": "email",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "email dev --port 3009",
+    "export": "email export",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "version": "4.1.20"
 }

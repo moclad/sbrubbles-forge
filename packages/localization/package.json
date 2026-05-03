@@ -1,22 +1,22 @@
 {
+  "dependencies": {
+    "@formatjs/intl-localematcher": "catalog:",
+    "international-types": "catalog:",
+    "negotiator": "catalog:",
+    "next": "catalog:",
+    "next-international": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/negotiator": "catalog:",
+    "typescript": "catalog:"
+  },
   "name": "@repo/localization",
-  "version": "4.1.20",
   "private": true,
-  "type": "module",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
-  "dependencies": {
-    "international-types": "catalog:",
-    "@formatjs/intl-localematcher": "catalog:",
-    "next-international": "catalog:",
-    "negotiator": "catalog:",
-    "next": "catalog:"
-  },
-  "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "typescript": "catalog:",
-    "@types/negotiator": "catalog:"
-  }
+  "type": "module",
+  "version": "4.1.20"
 }

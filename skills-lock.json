@@ -1,16 +1,16 @@
 {
-  "version": 1,
   "skills": {
     "caveman": {
-      "source": "JuliusBrussee/caveman",
-      "sourceType": "github",
+      "computedHash": "a818cdc41dcfaa50dd891c5cb5e5705968338de02e7e37949ca56e8c30ad4176",
       "skillPath": "caveman/SKILL.md",
-      "computedHash": "a818cdc41dcfaa50dd891c5cb5e5705968338de02e7e37949ca56e8c30ad4176"
+      "source": "JuliusBrussee/caveman",
+      "sourceType": "github"
     },
     "ultracite": {
+      "computedHash": "2c53f9413e9ddb97f937b529a4919ae30621fc02076be9a24fe7d70ece7a73d8",
       "source": "haydenbleasel/ultracite",
-      "sourceType": "github",
-      "computedHash": "2c53f9413e9ddb97f937b529a4919ae30621fc02076be9a24fe7d70ece7a73d8"
+      "sourceType": "github"
     }
-  }
+  },
+  "version": 1
 }

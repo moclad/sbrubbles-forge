@@ -7,44 +7,44 @@
     ":prHourlyLimitNone",
     ":prConcurrentLimit10"
   ],
-  "timezone": "Europe/Berlin",
-  "schedule": ["before 5am on monday"],
+  "ignoreDeps": ["actions/upload-artifact"],
   "labels": ["dependencies"],
-  "rangeStrategy": "bump",
   "lockFileMaintenance": {
-    "enabled": true,
     "automerge": false,
+    "enabled": true,
     "schedule": ["before 5am on monday"]
   },
-  "ignoreDeps": ["actions/upload-artifact"],
   "packageRules": [
     {
+      "automerge": false,
       "description": "Group minor JavaScript updates to reduce CI load",
-      "matchManagers": ["pnpm"],
-      "matchUpdateTypes": ["minor"],
       "groupName": "all minor npm dependencies",
-      "automerge": false
-    },
-    {
-      "description": "Automerge patch updates after CI checks pass",
       "matchManagers": ["pnpm"],
-      "matchUpdateTypes": ["patch"],
-      "groupName": "all patch pnpm dependencies",
-      "automerge": true,
-      "automergeType": "pr"
+      "matchUpdateTypes": ["minor"]
     },
     {
+      "automerge": true,
+      "automergeType": "pr",
+      "description": "Automerge patch updates after CI checks pass",
+      "groupName": "all patch pnpm dependencies",
+      "matchManagers": ["pnpm"],
+      "matchUpdateTypes": ["patch"]
+    },
+    {
+      "automerge": false,
+      "dependencyDashboardApproval": true,
       "description": "Keep major updates separate for manual review",
       "matchManagers": ["pnpm"],
-      "matchUpdateTypes": ["major"],
-      "automerge": false,
-      "dependencyDashboardApproval": true
+      "matchUpdateTypes": ["major"]
     },
     {
+      "automerge": false,
       "description": "Stagger Playwright and Next updates because they may require test fixes",
-      "matchPackageNames": ["playwright", "@playwright/test", "next"],
       "groupName": "framework-and-e2e-core",
-      "automerge": false
+      "matchPackageNames": ["playwright", "@playwright/test", "next"]
     }
-  ]
+  ],
+  "rangeStrategy": "bump",
+  "schedule": ["before 5am on monday"],
+  "timezone": "Europe/Berlin"
 }

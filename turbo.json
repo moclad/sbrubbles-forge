@@ -1,13 +1,15 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "ui": "tui",
-  "envMode": "loose",
   "concurrency": "100%",
+  "envMode": "loose",
+  "globalDependencies": ["**/.env.*local"],
   "tasks": {
+    "analyze": {
+      "dependsOn": ["^analyze"]
+    },
     "build": {
-      "outputLogs": "full",
       "dependsOn": ["^build", "test"],
+      "outputLogs": "full",
       "outputs": [
         ".next/**",
         "!.next/cache/**",
@@ -17,20 +19,20 @@
         "migrations/**"
       ]
     },
-    "test": {
-      "dependsOn": ["^test"]
+    "clean": {
+      "cache": false
     },
-    "e2e": {
-      "dependsOn": ["^build", "^e2e"],
-      "with": ["start"],
+    "dev": {
       "cache": false,
       "persistent": true
     },
-    "analyze": {
-      "dependsOn": ["^analyze"]
+    "e2e": {
+      "cache": false,
+      "dependsOn": ["^build", "^e2e"],
+      "persistent": true,
+      "with": ["start"]
     },
     "start": {
-      "persistent": false,
       "cache": true,
       "outputs": [
         ".next/**",
@@ -39,14 +41,12 @@
         "storybook-static/**",
         ".react-email/**",
         "migrations/**"
-      ]
+      ],
+      "persistent": false
     },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean": {
-      "cache": false
+    "test": {
+      "dependsOn": ["^test"]
     }
-  }
+  },
+  "ui": "tui"
 }

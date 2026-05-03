@@ -1,20 +1,20 @@
 {
-  "name": "@repo/webhooks",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@repo/auth": "workspace:*",
     "@t3-oss/env-nextjs": "catalog:",
-    "svix": "catalog:",
     "server-only": "catalog:",
+    "svix": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "typescript": "catalog:"
-  }
+  },
+  "name": "@repo/webhooks",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "version": "4.1.20"
 }

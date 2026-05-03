@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { GET } from '../app/api/health/route';
+import { GET } from '../../api/health/route';
 
 test('Health Check', async () => {
   const response = await GET();

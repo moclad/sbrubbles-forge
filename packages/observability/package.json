@@ -1,11 +1,4 @@
 {
-  "name": "@repo/observability",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@logtail/next": "^0.3.1",
     "@sentry/nextjs": "catalog:",
@@ -20,5 +13,12 @@
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "typescript": "catalog:"
-  }
+  },
+  "name": "@repo/observability",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "version": "4.1.20"
 }

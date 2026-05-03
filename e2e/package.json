@@ -1,22 +1,22 @@
 {
-  "version": "4.1.20",
-  "private": true,
-  "name": "@repo/e2e",
-  "type": "module",
+  "author": "Beno Dresch",
   "description": "sbrubbles-forge e2e tests",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "catalog:",
+    "dotenv": "^17.4.2",
+    "path": "^0.12.7",
+    "playwright": "^1.59.1"
+  },
+  "license": "MIT License",
   "main": "index.js",
+  "name": "@repo/e2e",
+  "packageManager": "pnpm@10.33.1",
+  "private": true,
   "scripts": {
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui"
   },
-  "author": "Beno Dresch",
-  "license": "MIT License",
-  "packageManager": "pnpm@10.33.1",
-  "devDependencies": {
-    "playwright": "^1.59.1",
-    "@playwright/test": "^1.59.1",
-    "@types/node": "catalog:",
-    "dotenv": "^17.4.2",
-    "path": "^0.12.7"
-  }
+  "type": "module",
+  "version": "4.1.20"
 }

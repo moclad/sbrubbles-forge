@@ -1,11 +1,4 @@
 {
-  "name": "@repo/design-system",
-  "version": "4.1.20",
-  "private": true,
-  "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-  },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
     "@hookform/resolvers": "catalog:",
@@ -77,14 +70,21 @@
     "typescript": "catalog:"
   },
   "exports": {
-    "./postcss.config": "./postcss.config.mjs",
     "./components/*": "./components/**/*.tsx",
-    "./lib/*": "./lib/*.ts",
-    "./styles/*": "./styles/*",
+    "./global.css": "./styles/globals.css",
     "./hooks/*": [
       "./hooks/*.ts",
       "./hooks/*.tsx"
     ],
-    "./global.css": "./styles/globals.css"
-  }
+    "./lib/*": "./lib/*.ts",
+    "./postcss.config": "./postcss.config.mjs",
+    "./styles/*": "./styles/*"
+  },
+  "name": "@repo/design-system",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "version": "4.1.20"
 }
