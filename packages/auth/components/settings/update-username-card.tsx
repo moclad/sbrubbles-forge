@@ -22,13 +22,13 @@ export function UpdateUsernameCard({ className, classNames, isPending }: Readonl
 
   return (
     <UpdateFieldCard
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       defaultValue={defaultValue}
       description={t('account.usernameDescription')}
       field='username'
       instructions={t('account.usernameInstructions')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       key={defaultValue}
       label={t('account.username')}
       placeholder={t('account.usernamePlaceholder')}

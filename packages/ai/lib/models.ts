@@ -4,11 +4,11 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { keys } from '../keys';
 
 const anthropic = createAnthropic({
-  apiKey: keys().ANTHROPIC_API_KEY,
+  apiKey: keys().ANTHROPIC_API_KEY ?? '',
 });
 
 const openai = createOpenAI({
-  apiKey: keys().OPENAI_API_KEY,
+  apiKey: keys().OPENAI_API_KEY ?? '',
 });
 
 export const models = {

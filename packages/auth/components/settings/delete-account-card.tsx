@@ -37,16 +37,21 @@ export function DeleteAccountCard({
     <>
       <SettingsCard
         actionLabel={t('account.deleteAccount')}
-        className={className}
-        classNames={classNames}
+        {...(className && { className })}
+        {...(classNames && { classNames })}
         description={t('account.deleteAccountDescription')}
         formAction={() => setShowDialog(true)}
-        isPending={isPending}
+        {...(isPending !== undefined && { isPending })}
         title={t('account.deleteAccount')}
         variant='destructive'
       />
 
-      <DeleteAccountDialog accounts={accounts} classNames={classNames} onOpenChange={setShowDialog} open={showDialog} />
+      <DeleteAccountDialog
+        {...(accounts !== undefined && { accounts })}
+        {...(classNames && { classNames })}
+        onOpenChange={setShowDialog}
+        open={showDialog}
+      />
     </>
   );
 }

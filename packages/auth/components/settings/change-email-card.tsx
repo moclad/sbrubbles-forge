@@ -64,6 +64,7 @@ export function ChangeEmailCard({ className, classNames, isPending }: Readonly<C
     } else {
       refetch?.();
     }
+    return {};
   };
 
   const resendVerification = async () => {
@@ -86,13 +87,13 @@ export function ChangeEmailCard({ className, classNames, isPending }: Readonly<C
     <>
       <SettingsCard
         actionLabel={t('account.save')}
-        className={className}
-        classNames={classNames}
+        {...(className && { className })}
+        {...(classNames && { classNames })}
         description={t('account.emailDescription')}
         disabled={disabled}
         formAction={changeEmail}
         instructions={t('account.emailInstructions')}
-        isPending={isPending || sessionPending}
+        {...((isPending || sessionPending) !== undefined && { isPending: isPending || sessionPending })}
         key={sessionData?.user.email}
         title={t('account.email')}
       >
@@ -117,8 +118,8 @@ export function ChangeEmailCard({ className, classNames, isPending }: Readonly<C
       {emailVerification && sessionData?.user && !sessionData?.user.emailVerified && (
         <SettingsCard
           actionLabel={t('account.resendVerificationEmail')}
-          className={className}
-          classNames={classNames}
+          {...(className && { className })}
+          {...(classNames && { classNames })}
           description={t('account.verifyYourEmailDescription')}
           disabled={resendDisabled}
           formAction={resendVerification}

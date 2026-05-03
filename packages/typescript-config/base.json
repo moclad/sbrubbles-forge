@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -12,7 +12,6 @@
     "jsx": "react-jsx",
     "incremental": true,
     "strict": true,
-    "alwaysStrict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitThis": true,

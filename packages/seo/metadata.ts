@@ -15,8 +15,8 @@ const author: Metadata['authors'] = {
 };
 const publisher = 'Beno Dresch';
 const twitterHandle = '@BenoDresch';
-const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const protocol = process.env['NODE_ENV'] === 'production' ? 'https' : 'http';
+const productionUrl = process.env['VERCEL_PROJECT_PRODUCTION_URL'];
 
 export const createMetadata = ({ title, description, image, ...properties }: MetadataGenerator): Metadata => {
   const parsedTitle = `${title} | ${applicationName}`;

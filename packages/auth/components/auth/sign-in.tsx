@@ -50,7 +50,7 @@ export const SignIn = () => {
               error: ctx.error.message,
             }),
             {
-              id: toastIdRef.current ?? undefined,
+              ...(toastIdRef.current !== null && { id: toastIdRef.current }),
             }
           );
           setLoading(false);
@@ -61,7 +61,7 @@ export const SignIn = () => {
         },
         onSuccess: (context) => {
           toast.success(t('authentication.actions.signedIn'), {
-            id: toastIdRef.current ?? undefined,
+            ...(toastIdRef.current !== null && { id: toastIdRef.current }),
           });
           form.reset();
 

@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const keys = () =>
   createEnv({
     runtimeEnv: {
-      ARCJET_KEY: process.env.ARCJET_KEY,
+      ARCJET_KEY: process.env['ARCJET_KEY'],
     },
     server: {
       ARCJET_KEY: z.string().optional(),

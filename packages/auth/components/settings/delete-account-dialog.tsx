@@ -47,14 +47,14 @@ export function DeleteAccountDialog({ open, onOpenChange, accounts, classNames }
 
     if (credentialsLinked) {
       const password = formData.get('password') as string;
-      params.password = password;
+      params['password'] = password;
     } else if (!isFresh) {
       navigate(`${basePath}/sign-out`);
       return;
     }
 
     if (deleteAccountVerification) {
-      params.callbackURL = `${basePath}/sign-out`;
+      params['callbackURL'] = `${basePath}/sign-out`;
     }
 
     const { error } = await authClient.deleteUser(params);

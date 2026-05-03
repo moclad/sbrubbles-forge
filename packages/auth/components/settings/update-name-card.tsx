@@ -22,12 +22,12 @@ export function UpdateNameCard({ className, classNames, isPending }: Readonly<Up
 
   return (
     <UpdateFieldCard
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       defaultValue={sessionData?.user.name}
       description={t('account.nameDescription')}
       field='name'
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       label={t('account.name')}
       placeholder={t('account.namePlaceholder')}
       required={nameRequired}

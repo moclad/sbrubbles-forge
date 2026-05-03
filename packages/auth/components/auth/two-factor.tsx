@@ -37,7 +37,7 @@ export function TwoFactorForm({ isSubmitting, otpSeparators = 1, redirectTo }: R
   } = useContext(AuthUIContext);
 
   const { onSuccess, isPending: transitionPending } = useOnSuccessTransition({
-    redirectTo,
+    ...(redirectTo && { redirectTo }),
   });
 
   const { data: sessionData } = useSession();
@@ -138,7 +138,7 @@ export function TwoFactorForm({ isSubmitting, otpSeparators = 1, redirectTo }: R
               render={({ field }) => (
                 <FormItem className='flex'>
                   <FormControl>
-                    <Checkbox checked={field.value} disabled={isSubmitting} onCheckedChange={field.onChange} />
+                    <Checkbox checked={field.value ?? false} disabled={isSubmitting} onCheckedChange={field.onChange} />
                   </FormControl>
 
                   <FormLabel>{t('account.trustDevice')}</FormLabel>

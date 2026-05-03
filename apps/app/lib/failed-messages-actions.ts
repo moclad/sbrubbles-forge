@@ -64,6 +64,10 @@ Message: "${text}"`,
   const matchedCategory =
     categories.find((c) => c.name.toLowerCase() === parsed.categoryName.toLowerCase()) ?? categories[0];
 
+  if (!matchedCategory) {
+    throw new Error('No category found');
+  }
+
   await database.insert(expense).values({
     amount: parsed.amount,
     categoryId: matchedCategory.id,

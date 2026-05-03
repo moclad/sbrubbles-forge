@@ -8,11 +8,11 @@ export const keys = () =>
       NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
     },
     runtimeEnv: {
-      ANALYZE: process.env.ANALYZE,
-      NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
-      SENTRY: process.env.SENTRY,
-      SENTRY_ORG: process.env.SENTRY_ORG,
-      SENTRY_PROJECT: process.env.SENTRY_PROJECT,
+      ANALYZE: process.env['ANALYZE'],
+      NEXT_PUBLIC_SENTRY_DSN: process.env['NEXT_PUBLIC_SENTRY_DSN'],
+      SENTRY: process.env['SENTRY'],
+      SENTRY_ORG: process.env['SENTRY_ORG'],
+      SENTRY_PROJECT: process.env['SENTRY_PROJECT'],
     },
     server: {
       ANALYZE: z.string().optional(),

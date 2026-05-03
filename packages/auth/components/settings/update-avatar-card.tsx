@@ -136,7 +136,7 @@ export function UpdateAvatarCard({
       <div className='flex justify-between'>
         <SettingsCardHeader
           className='grow self-start'
-          classNames={classNames}
+          {...(classNames && { classNames })}
           description={t('account.avatarDescription')}
           isPending={isPending}
           title={t('account.avatar')}
@@ -158,7 +158,7 @@ export function UpdateAvatarCard({
 
       <SettingsCardFooter
         className='py-5!'
-        classNames={classNames}
+        {...(classNames && { classNames })}
         instructions={t('account.avatarInstructions')}
         isPending={isPending}
         isSubmitting={loading}

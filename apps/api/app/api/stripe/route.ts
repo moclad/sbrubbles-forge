@@ -3,7 +3,7 @@ import { database } from '@repo/database';
 import { parseError } from '@repo/observability/error';
 import { log } from '@repo/observability/log';
 import type { Stripe } from '@repo/payments';
-import { stripe } from '@repo/payments';
+import { getStripe } from '@repo/payments';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { env } from '@/env';
@@ -60,6 +60,12 @@ export const POST = async (request: Request): Promise<Response> => {
   }
 
   try {
+    const stripe = getStripe();
+
+    if (!stripe) {
+      return NextResponse.json({ message: 'Stripe not configured', ok: false }, { status: 503 });
+    }
+
     const body = await request.text();
     const headerPayload = await headers();
     const signature = headerPayload.get('stripe-signature');

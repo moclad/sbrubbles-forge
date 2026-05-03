@@ -121,6 +121,19 @@ export async function getExpensesByTrip(tripId: string): Promise<ExpenseWithDeta
   }
 
   const expenseIds = expenseRows.map((row) => row.id);
+
+  // Determine where condition
+  let whereCondition: ReturnType<typeof eq> | ReturnType<typeof inArray>;
+  if (expenseIds.length === 1) {
+    const firstId = expenseIds[0];
+    if (!firstId) {
+      return [];
+    }
+    whereCondition = eq(expensePerson.expenseId, firstId);
+  } else {
+    whereCondition = inArray(expensePerson.expenseId, expenseIds);
+  }
+
   const peopleRows = await database
     .select({
       avatarUrl: person.avatarUrl,
@@ -130,11 +143,7 @@ export async function getExpensesByTrip(tripId: string): Promise<ExpenseWithDeta
     })
     .from(expensePerson)
     .innerJoin(person, eq(expensePerson.personId, person.id))
-    .where(
-      expenseIds.length === 1
-        ? eq(expensePerson.expenseId, expenseIds[0])
-        : inArray(expensePerson.expenseId, expenseIds)
-    );
+    .where(whereCondition);
 
   const peopleByExpense = new Map<string, { avatarUrl: string | null; id: string; name: string }[]>();
 
@@ -176,7 +185,7 @@ export async function createExpense(data: ExpenseData) {
   const personIds = sanitizePersonIds(data.personIds);
   await assertPeopleBelongToTrip(data.tripId, personIds);
 
-  const [created] = await database
+  const results = await database
     .insert(expense)
     .values({
       amount: data.amount,
@@ -189,6 +198,11 @@ export async function createExpense(data: ExpenseData) {
       tripId: data.tripId,
     })
     .returning();
+
+  const created = results[0];
+  if (!created) {
+    throw new Error('Failed to create expense');
+  }
 
   if (personIds.length > 0) {
     await database.insert(expensePerson).values(personIds.map((personId) => ({ expenseId: created.id, personId })));

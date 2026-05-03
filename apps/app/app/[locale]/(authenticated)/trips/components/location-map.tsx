@@ -49,9 +49,8 @@ export function LocationMap({ lat, lng, onPositionChange }: Readonly<LocationMap
         height={280}
         metaWheelZoom
         onBoundsChanged={({ center: c }: { center: Point }) => setCenter(c)}
-        onClick={interactive ? ({ latLng }: { latLng: Point }) => handleNewPos(latLng) : undefined}
+        {...(interactive && { onClick: ({ latLng }: { latLng: Point }) => handleNewPos(latLng) })}
         provider={osm}
-        width={undefined}
       >
         {interactive ? (
           // offset=[12,36] places the pin's bottom-center at the anchor.

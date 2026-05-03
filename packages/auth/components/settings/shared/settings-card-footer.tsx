@@ -56,8 +56,8 @@ export function SettingsCardFooter({
           {actionLabel && (
             <Button
               className={cn('md:ms-auto', classNames?.button)}
-              disabled={disabled || isSubmitting}
-              loading={isSubmitting}
+              {...((disabled || isSubmitting) !== undefined && { disabled: disabled || isSubmitting })}
+              {...(isSubmitting !== undefined && { loading: isSubmitting })}
               size='sm'
               type='submit'
               variant={variant === 'destructive' ? 'destructive' : 'default'}

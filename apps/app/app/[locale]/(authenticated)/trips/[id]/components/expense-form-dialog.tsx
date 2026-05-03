@@ -37,14 +37,14 @@ type ExpenseFormValues = {
   amount: string;
   categoryId: string;
   date: Date;
-  description?: string;
-  locationQuery?: string;
+  description?: string | undefined;
+  locationQuery?: string | undefined;
   personIds: string[];
 };
 
 type ExpenseFormDialogProps = {
   categories: SelectCategory[];
-  initialData?: ExpenseWithDetails;
+  initialData?: ExpenseWithDetails | undefined;
   onOpenChange: (open: boolean) => void;
   onSubmit: (data: {
     amount: number;
@@ -192,10 +192,17 @@ export function ExpenseFormDialog({
         return;
       }
 
+      const firstResult = data[0];
+      if (!firstResult) {
+        setLocationNotFound(true);
+        setLocation(null);
+        return;
+      }
+
       setLocation({
-        lat: Number.parseFloat(data[0].lat),
-        lng: Number.parseFloat(data[0].lon),
-        name: data[0].display_name,
+        lat: Number.parseFloat(firstResult.lat),
+        lng: Number.parseFloat(firstResult.lon),
+        name: firstResult.display_name,
       });
       setLocationNotFound(false);
     } catch {

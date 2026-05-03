@@ -41,18 +41,23 @@ export function SessionsCard({
 
   return (
     <SettingsCard
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={t('account.sessionsDescription')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       title={t('account.sessions')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
-          <SettingsCellSkeleton classNames={classNames} />
+          <SettingsCellSkeleton {...(classNames && { classNames })} />
         ) : (
           sessions?.map((session) => (
-            <SessionCell classNames={classNames} key={session.id} refetch={refetch} session={session} />
+            <SessionCell
+              {...(classNames && { classNames })}
+              key={session.id}
+              {...(refetch && { refetch })}
+              session={session}
+            />
           ))
         )}
       </CardContent>

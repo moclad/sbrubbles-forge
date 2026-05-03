@@ -49,8 +49,13 @@ Message: "${text}"`,
     throw new Error('No active trip found for today');
   }
 
+  const defaultCategory = categories[0];
+  if (!defaultCategory) {
+    throw new Error('No categories available');
+  }
+
   const matchedCategory =
-    categories.find((c) => c.name.toLowerCase() === parsed.categoryName.toLowerCase()) ?? categories[0];
+    categories.find((c) => c.name.toLowerCase() === parsed.categoryName.toLowerCase()) ?? defaultCategory;
 
   await database.insert(expense).values({
     amount: parsed.amount,

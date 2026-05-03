@@ -6,7 +6,6 @@
   "concurrency": "100%",
   "tasks": {
     "build": {
-      "outputLogs": "full",
       "dependsOn": ["^build", "test"],
       "outputs": [
         ".next/**",

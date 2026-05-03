@@ -16,7 +16,7 @@ async function requireSession() {
 
 type CategoryData = {
   name: string;
-  description?: string;
+  description?: string | undefined;
   icon: string;
   color: string;
 };

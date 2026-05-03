@@ -151,9 +151,9 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
           {multiSession && (
             <AccountsCard
               classNames={classNames?.card}
-              deviceSessions={deviceSessions}
-              isPending={deviceSessionsPending}
-              refetch={refetchDeviceSessions}
+              {...(deviceSessions !== undefined && { deviceSessions })}
+              {...(deviceSessionsPending !== undefined && { isPending: deviceSessionsPending })}
+              {...(refetchDeviceSessions && { refetch: refetchDeviceSessions })}
               skipHook
             />
           )}
@@ -161,15 +161,20 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
 
         <TabsContent className={cn('flex flex-col gap-4', classNames?.tabs?.content)} value='security'>
           {credentials && (
-            <ChangePasswordCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />
+            <ChangePasswordCard
+              {...(accounts !== undefined && { accounts })}
+              classNames={classNames?.card}
+              {...(sessionPending !== undefined && { isPending: sessionPending })}
+              skipHook
+            />
           )}
 
           {(providers?.length || otherProviders?.length) && (
             <ProvidersCard
-              accounts={accounts}
+              {...(accounts !== undefined && { accounts })}
               classNames={classNames?.card}
-              isPending={accountsPending}
-              refetch={refetchAccounts}
+              {...(accountsPending !== undefined && { isPending: accountsPending })}
+              {...(refetchAccounts && { refetch: refetchAccounts })}
               skipHook
             />
           )}
@@ -177,9 +182,9 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
           {passkey && (
             <PasskeysCard
               classNames={classNames?.card}
-              isPending={passkeysPending}
-              passkeys={passkeys}
-              refetch={refetchPasskeys}
+              {...(passkeysPending !== undefined && { isPending: passkeysPending })}
+              {...(passkeys !== undefined && { passkeys })}
+              {...(refetchPasskeys && { refetch: refetchPasskeys })}
               skipHook
             />
           )}
@@ -188,14 +193,19 @@ export function SettingsCards({ className, classNames }: Readonly<SettingsCardsP
 
           <SessionsCard
             classNames={classNames?.card}
-            isPending={sessionsPending}
-            refetch={refetchSessions}
-            sessions={sessions}
+            {...(sessionsPending !== undefined && { isPending: sessionsPending })}
+            {...(refetchSessions && { refetch: refetchSessions })}
+            {...(sessions !== undefined && { sessions })}
             skipHook
           />
 
           {deleteUser && (
-            <DeleteAccountCard accounts={accounts} classNames={classNames?.card} isPending={sessionPending} skipHook />
+            <DeleteAccountCard
+              {...(accounts !== undefined && { accounts })}
+              classNames={classNames?.card}
+              {...(sessionPending !== undefined && { isPending: sessionPending })}
+              skipHook
+            />
           )}
         </TabsContent>
       </Tabs>

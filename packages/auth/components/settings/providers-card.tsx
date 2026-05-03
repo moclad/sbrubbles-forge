@@ -63,15 +63,15 @@ export function ProvidersCard({
   }
   return (
     <SettingsCard
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={t('account.providersDescription')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       title={t('account.providers')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
-          <SettingsCellSkeleton classNames={classNames} />
+          <SettingsCellSkeleton {...(classNames && { classNames })} />
         ) : (
           <>
             {providers?.map((provider) => {
@@ -82,14 +82,19 @@ export function ProvidersCard({
               }
 
               return (
-                <ProviderCell accounts={accounts} classNames={classNames} key={provider} provider={socialProvider} />
+                <ProviderCell
+                  {...(accounts !== undefined && { accounts })}
+                  {...(classNames && { classNames })}
+                  key={provider}
+                  provider={socialProvider}
+                />
               );
             })}
 
             {otherProviders?.map((provider) => (
               <ProviderCell
-                accounts={accounts}
-                classNames={classNames}
+                {...(accounts !== undefined && { accounts })}
+                {...(classNames && { classNames })}
                 key={provider.provider}
                 other
                 provider={provider}

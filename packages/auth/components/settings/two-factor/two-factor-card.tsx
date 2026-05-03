@@ -27,14 +27,14 @@ export function TwoFactorCard({ className, classNames }: Readonly<TwoFactorCardP
     <div>
       <SettingsCard
         actionLabel={isTwoFactorEnabled ? t('account.disable') : t('account.enable')}
-        className={className}
-        classNames={classNames}
+        {...(className && { className })}
+        {...(classNames && { classNames })}
         description={t('account.twoFactorCardDescription')}
         formAction={() => setShowPasswordDialog(true)}
         instructions={
           isTwoFactorEnabled ? t('account.twoFactorDisableInstructions') : t('account.twoFactorEnableInstructions')
         }
-        isPending={isPending}
+        {...(isPending !== undefined && { isPending })}
         showToast={false}
         title={t('account.twoFactor')}
       />

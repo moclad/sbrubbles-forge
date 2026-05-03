@@ -53,6 +53,21 @@ export async function getTrips(): Promise<TripWithPeople[]> {
 
   const tripIds = trips.map((t) => t.id);
 
+  // Determine where condition for people query
+  let peopleWhereCondition: ReturnType<typeof eq> | ReturnType<typeof inArray>;
+  let costWhereCondition: ReturnType<typeof eq> | ReturnType<typeof inArray>;
+  if (tripIds.length === 1) {
+    const firstId = tripIds[0];
+    if (!firstId) {
+      return [];
+    }
+    peopleWhereCondition = eq(tripPerson.tripId, firstId);
+    costWhereCondition = eq(expense.tripId, firstId);
+  } else {
+    peopleWhereCondition = inArray(tripPerson.tripId, tripIds);
+    costWhereCondition = inArray(expense.tripId, tripIds);
+  }
+
   const rows = await database
     .select({
       avatarUrl: person.avatarUrl,
@@ -62,7 +77,7 @@ export async function getTrips(): Promise<TripWithPeople[]> {
     })
     .from(tripPerson)
     .innerJoin(person, eq(tripPerson.personId, person.id))
-    .where(tripIds.length === 1 ? eq(tripPerson.tripId, tripIds[0]) : inArray(tripPerson.tripId, tripIds));
+    .where(peopleWhereCondition);
 
   const costRows = await database
     .select({
@@ -70,7 +85,7 @@ export async function getTrips(): Promise<TripWithPeople[]> {
       tripId: expense.tripId,
     })
     .from(expense)
-    .where(tripIds.length === 1 ? eq(expense.tripId, tripIds[0]) : inArray(expense.tripId, tripIds))
+    .where(costWhereCondition)
     .groupBy(expense.tripId);
 
   const costByTrip = new Map<string, number>();
@@ -134,7 +149,7 @@ export async function getTripById(id: string): Promise<TripWithPeople | null> {
 export async function createTrip(data: TripData) {
   await requireSession();
 
-  const [created] = await database
+  const results = await database
     .insert(trip)
     .values({
       endDate: data.endDate,
@@ -145,6 +160,11 @@ export async function createTrip(data: TripData) {
       startDate: data.startDate,
     })
     .returning();
+
+  const created = results[0];
+  if (!created) {
+    throw new Error('Failed to create trip');
+  }
 
   if (data.personIds.length > 0) {
     await database.insert(tripPerson).values(data.personIds.map((personId) => ({ personId, tripId: created.id })));
@@ -204,6 +224,9 @@ export async function uploadTripCoverPhoto(tripId: string, formData: FormData): 
       const pathParts = url.pathname.split('/').filter(Boolean);
       if (pathParts.length >= 2) {
         const bucket = pathParts[0];
+        if (!bucket) {
+          throw new Error('Invalid bucket path');
+        }
         const fileName = pathParts.slice(1).join('/');
         await deleteFileByPath(bucket, fileName);
       }

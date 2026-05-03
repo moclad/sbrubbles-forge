@@ -22,10 +22,11 @@ export function getInitials(name: string): string {
     return '';
   }
   if (parts.length === 1) {
-    return parts[0].slice(0, 2).toUpperCase();
+    const firstPart = parts[0];
+    return firstPart ? firstPart.slice(0, 2).toUpperCase() : '';
   }
   return parts
-    .map((part) => part[0])
+    .map((part) => part[0] ?? '')
     .join('')
     .slice(0, 2)
     .toUpperCase();

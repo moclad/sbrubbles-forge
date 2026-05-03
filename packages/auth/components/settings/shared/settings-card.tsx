@@ -6,12 +6,10 @@ import { cn } from '@repo/design-system/lib/utils';
 import { useI18n } from '@repo/localization/i18n/client';
 import type { ReactNode } from 'react';
 import { useActionState } from 'react';
-
 import { getErrorMessage } from '../../../lib/get-error-message';
 import type { UserAvatarClassNames } from '../../user-avatar';
 import { SettingsCardFooter } from './settings-card-footer';
 import { SettingsCardHeader } from './settings-card-header';
-
 export type SettingsCardClassNames = {
   base?: string;
   avatar?: UserAvatarClassNames;
@@ -87,18 +85,25 @@ export function SettingsCard({
           classNames?.base
         )}
       >
-        <SettingsCardHeader classNames={classNames} description={description} isPending={isPending} title={title} />
+        <SettingsCardHeader
+          {...(classNames && { classNames })}
+          description={description}
+          {...(isPending !== undefined && { isPending })}
+          title={title}
+        />
 
         {children}
 
         <SettingsCardFooter
           actionLabel={actionLabel}
-          classNames={classNames}
-          disabled={disabled}
+          {...(classNames && { classNames })}
+          {...(disabled !== undefined && { disabled })}
           instructions={instructions}
-          isPending={isPending}
-          isSubmitting={isSubmitting || externalIsSubmitting}
-          optimistic={optimistic}
+          {...(isPending !== undefined && { isPending })}
+          {...((isSubmitting || externalIsSubmitting) !== undefined && {
+            isSubmitting: isSubmitting || externalIsSubmitting,
+          })}
+          {...(optimistic !== undefined && { optimistic })}
           variant={variant}
         />
       </Card>

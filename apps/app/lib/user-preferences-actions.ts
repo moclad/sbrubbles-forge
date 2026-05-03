@@ -20,21 +20,28 @@ export async function getUserPreferences() {
   const session = await requireSession();
 
   // Try to get existing preferences
-  const [preferences] = await database
+  const results = await database
     .select()
     .from(userPreferences)
     .where(eq(userPreferences.userId, session.user.id))
     .limit(1);
 
+  const preferences = results[0];
+
   // Create default preferences if they don't exist (lazy creation)
   if (!preferences) {
-    const [newPreferences] = await database
+    const newResults = await database
       .insert(userPreferences)
       .values({
         currency: 'EUR',
         userId: session.user.id,
       })
       .returning();
+
+    const newPreferences = newResults[0];
+    if (!newPreferences) {
+      throw new Error('Failed to create user preferences');
+    }
 
     return newPreferences;
   }

@@ -7,7 +7,6 @@ import { Skeleton } from '@repo/design-system/components/ui/skeleton';
 import { cn } from '@repo/design-system/lib/utils';
 import type { ReactNode } from 'react';
 import { useContext, useState } from 'react';
-
 import { useI18n } from '../../../../localization/i18n/client';
 import { AuthUIContext } from '../../../lib/auth-ui-provider';
 import type { FieldType } from '../../../types/additional-fields';
@@ -81,14 +80,14 @@ export function UpdateFieldCard({
   return (
     <SettingsCard
       actionLabel={t('account.save')}
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={description}
       disabled={disabled}
       formAction={updateField}
       instructions={instructions}
-      isPending={isPending || sessionPending}
-      optimistic={optimistic}
+      {...((isPending || sessionPending) !== undefined && { isPending: isPending || sessionPending })}
+      {...(optimistic !== undefined && { optimistic })}
       title={label}
     >
       <CardContent className={classNames?.content}>

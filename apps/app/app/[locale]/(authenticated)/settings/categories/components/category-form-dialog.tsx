@@ -17,13 +17,14 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { CategoryColorPicker, randomHex } from './color-swatch-picker';
-import { CATEGORY_ICONS, IconPicker } from './icon-picker';
+import { IconPicker } from './icon-picker';
 
 const HEX_COLOR_REGEX = /^#[0-9a-fA-F]{6}$/;
+const DEFAULT_ICON = 'Plane'; // Default to first icon in CATEGORY_ICONS
 
 type CategoryFormValues = {
   color: string;
-  description?: string;
+  description?: string | undefined;
   icon: string;
   name: string;
 };
@@ -31,13 +32,15 @@ type CategoryFormValues = {
 type CategoryFormDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  initialData?: {
-    id: string;
-    name: string;
-    description?: string | null;
-    icon: string;
-    color: string;
-  };
+  initialData?:
+    | {
+        id: string;
+        name: string;
+        description?: string | null;
+        icon: string;
+        color: string;
+      }
+    | undefined;
   onSubmit: (data: CategoryFormValues) => Promise<void>;
 };
 
@@ -56,7 +59,7 @@ export function CategoryFormDialog({ open, onOpenChange, initialData, onSubmit }
     defaultValues: {
       color: initialData?.color ?? randomHex(),
       description: initialData?.description ?? '',
-      icon: initialData?.icon ?? CATEGORY_ICONS[0].name,
+      icon: initialData?.icon ?? DEFAULT_ICON,
       name: initialData?.name ?? '',
     },
     resolver: zodResolver(categorySchema),

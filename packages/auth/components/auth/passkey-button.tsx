@@ -45,7 +45,7 @@ export function PasskeyButton({ isSubmitting, setIsSubmitting, disabled }: Reado
       className='w-full'
       disabled={disabled}
       formNoValidate
-      loading={isSubmitting}
+      loading={isSubmitting ?? false}
       name='passkey'
       onClick={signInPassKey}
       value='true'

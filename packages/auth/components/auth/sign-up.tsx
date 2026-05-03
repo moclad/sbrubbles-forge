@@ -53,7 +53,7 @@ export const SignUp = () => {
               error: ctx.error.message,
             }),
             {
-              id: toastIdRef.current ?? undefined,
+              ...(toastIdRef.current !== null && { id: toastIdRef.current }),
             }
           );
           setLoading(false);
@@ -64,7 +64,7 @@ export const SignUp = () => {
         },
         onSuccess: () => {
           toast.success(t('authentication.actions.signedUp'), {
-            id: toastIdRef.current ?? undefined,
+            ...(toastIdRef.current !== null && { id: toastIdRef.current }),
           });
           form.reset();
           router.push('/sign-in');

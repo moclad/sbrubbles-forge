@@ -11,11 +11,11 @@ type NextConfig = any;
  * Applied when Sentry observability is enabled
  */
 export const sentryConfig: Parameters<typeof withSentryConfig>[1] = {
-  org: keys().SENTRY_ORG,
-  project: keys().SENTRY_PROJECT,
+  org: keys().SENTRY_ORG ?? '',
+  project: keys().SENTRY_PROJECT ?? '',
 
   // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  silent: !process.env['CI'],
 
   /*
    * Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.

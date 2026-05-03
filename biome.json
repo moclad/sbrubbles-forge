@@ -12,12 +12,11 @@
     },
     "enabled": true
   },
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "defaultBranch": "main",
-    "useIgnoreFile": true
-  },
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/next",
+    "ultracite/biome/react"
+  ],
   "files": {
     "ignoreUnknown": true
   },
@@ -25,53 +24,59 @@
     "enabled": true,
     "indentStyle": "space"
   },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "style": {
-        "useConsistentTypeDefinitions": {
-          "level": "error",
-          "options": {
-            "style": "type"
-          },
-          "fix": "safe"
-        },
-        "useImportType": {
-          "level": "error",
-          "options": {
-            "style": "separatedType"
-          },
-          "fix": "safe"
-        }
-      }
+  "javascript": {
+    "assist": { "enabled": true },
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "jsxQuoteStyle": "single",
+      "lineWidth": 120,
+      "quoteStyle": "single"
     }
   },
   "json": {
+    "assist": {
+      "enabled": false
+    },
     "formatter": {
       "enabled": true,
       "indentStyle": "space",
       "indentWidth": 2
-    },
-    "assist": {
-      "enabled": true
     }
   },
-  "javascript": {
-    "assist": {"enabled": true},
-    "formatter": {
-      "quoteStyle": "single",
-      "jsxQuoteStyle": "single",
-      "enabled": true,
-      "indentWidth": 2,
-      "indentStyle": "space",
-      "lineWidth": 120
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "useLiteralKeys": "off"
+      },
+      "style": {
+        "noJsxLiterals": {
+          "level": "info"
+        },
+        "useConsistentTypeDefinitions": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "style": "type"
+          }
+        },
+        "useImportType": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        }
+      }
     }
-
   },
-  "extends": [
-    "ultracite/biome/core",
-    "ultracite/biome/next",
-    "ultracite/biome/react"
-  ]
+  "vcs": {
+    "clientKind": "git",
+    "defaultBranch": "main",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
 }

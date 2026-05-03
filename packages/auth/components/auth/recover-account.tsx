@@ -35,7 +35,7 @@ export function RecoverAccountForm({ className, isSubmitting, redirectTo, setIsS
   const t = useI18n();
 
   const { onSuccess, isPending: transitionPending } = useOnSuccessTransition({
-    redirectTo,
+    ...(redirectTo && { redirectTo }),
   });
 
   const formSchema = z.object({

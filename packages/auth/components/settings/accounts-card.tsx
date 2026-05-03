@@ -47,25 +47,25 @@ export function AccountsCard({
   return (
     <SettingsCard
       actionLabel={t('account.addAccount')}
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={t('account.accountsDescription')}
       formAction={() => navigate(`${basePath}/sign-in`)}
       instructions={t('account.accountsInstructions')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       title={t('account.accounts')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
-          <SettingsCellSkeleton classNames={classNames} />
+          <SettingsCellSkeleton {...(classNames && { classNames })} />
         ) : (
           deviceSessions?.map((deviceSession) => (
             <AccountCell
               activeSessionId={session?.id}
-              classNames={classNames}
+              {...(classNames && { classNames })}
               deviceSession={deviceSession}
               key={deviceSession.session.id}
-              refetch={refetch}
+              {...(refetch && { refetch })}
             />
           ))
         )}

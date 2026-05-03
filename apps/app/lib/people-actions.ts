@@ -78,6 +78,9 @@ export async function uploadPersonAvatar(personId: string, formData: FormData): 
       const pathParts = url.pathname.split('/').filter(Boolean);
       if (pathParts.length >= 2) {
         const bucket = pathParts[0];
+        if (!bucket) {
+          throw new Error('Invalid bucket path');
+        }
         const fileName = pathParts.slice(1).join('/');
         await deleteFileByPath(bucket, fileName);
       }

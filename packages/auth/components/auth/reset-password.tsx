@@ -53,7 +53,7 @@ export const ResetPassword = ({ token }: Props) => {
               error: ctx.error.message,
             }),
             {
-              id: toastIdRef.current ?? undefined,
+              ...(toastIdRef.current !== null && { id: toastIdRef.current }),
             }
           );
           setLoading(false);
@@ -64,7 +64,7 @@ export const ResetPassword = ({ token }: Props) => {
         },
         onSuccess: () => {
           toast.success(t('authentication.actions.passwordUpdated'), {
-            id: toastIdRef.current ?? undefined,
+            ...(toastIdRef.current !== null && { id: toastIdRef.current }),
           });
           form.reset();
           setLoading(false);

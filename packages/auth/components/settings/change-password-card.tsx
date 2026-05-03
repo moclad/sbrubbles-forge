@@ -88,11 +88,11 @@ export function ChangePasswordCard({
     return (
       <SettingsCard
         actionLabel={t('account.setPassword')}
-        className={className}
-        classNames={classNames}
+        {...(className && { className })}
+        {...(classNames && { classNames })}
         description={t('account.setPasswordDescription')}
         formAction={setPassword}
-        isPending={isPending}
+        {...(isPending !== undefined && { isPending })}
         title={t('account.changePassword')}
       />
     );
@@ -101,22 +101,22 @@ export function ChangePasswordCard({
   return (
     <SettingsCard
       actionLabel={t('account.save')}
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={t('account.changePasswordDescription')}
       disabled={disabled}
       formAction={changePassword}
       instructions={t('account.changePasswordInstructions')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       title={t('account.changePassword')}
     >
       <CardContent className={cn('grid gap-6', classNames?.content)}>
         {isPending || !accounts ? (
           <>
-            <InputFieldSkeleton classNames={classNames} />
-            <InputFieldSkeleton classNames={classNames} />
+            <InputFieldSkeleton {...(classNames && { classNames })} />
+            <InputFieldSkeleton {...(classNames && { classNames })} />
 
-            {confirmPasswordEnabled && <InputFieldSkeleton classNames={classNames} />}
+            {confirmPasswordEnabled && <InputFieldSkeleton {...(classNames && { classNames })} />}
           </>
         ) : (
           <>
@@ -154,7 +154,7 @@ export function ChangePasswordCard({
             {confirmPasswordEnabled && (
               <ConfirmPasswordInput
                 autoComplete='current-password'
-                classNames={classNames}
+                {...(classNames && { classNames })}
                 onChange={() => setDisabled(false)}
               />
             )}

@@ -49,20 +49,25 @@ export function PasskeysCard({
   return (
     <SettingsCard
       actionLabel={t('account.addPasskey')}
-      className={className}
-      classNames={classNames}
+      {...(className && { className })}
+      {...(classNames && { classNames })}
       description={t('account.passkeysDescription')}
       formAction={addPasskey}
       instructions={t('account.passkeysInstructions')}
-      isPending={isPending}
+      {...(isPending !== undefined && { isPending })}
       title={t('account.passkeys')}
     >
       <CardContent className={cn('grid gap-4', classNames?.content)}>
         {isPending ? (
-          <SettingsCellSkeleton classNames={classNames} />
+          <SettingsCellSkeleton {...(classNames && { classNames })} />
         ) : (
           passkeys?.map((passkey) => (
-            <PasskeyCell classNames={classNames} key={passkey.id} passkey={passkey} refetch={refetch} />
+            <PasskeyCell
+              {...(classNames && { classNames })}
+              key={passkey.id}
+              passkey={passkey}
+              {...(refetch && { refetch })}
+            />
           ))
         )}
       </CardContent>

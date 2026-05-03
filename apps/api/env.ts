@@ -13,9 +13,9 @@ export const env = createEnv({
   client: {},
   extends: [ai(), auth(), analytics(), core(), database(), email(), observability(), payments()],
   runtimeEnv: {
-    SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN,
-    SLACK_CHANNEL_ID: process.env.SLACK_CHANNEL_ID,
-    SLACK_SIGNING_SECRET: process.env.SLACK_SIGNING_SECRET,
+    SLACK_BOT_TOKEN: process.env['SLACK_BOT_TOKEN'],
+    SLACK_CHANNEL_ID: process.env['SLACK_CHANNEL_ID'],
+    SLACK_SIGNING_SECRET: process.env['SLACK_SIGNING_SECRET'],
   },
   server: {
     SLACK_BOT_TOKEN: z.string().min(1).startsWith('xoxb-'),

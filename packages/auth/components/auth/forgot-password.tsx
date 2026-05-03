@@ -38,7 +38,7 @@ export const ForgotPassword = () => {
       {
         onError: (ctx) => {
           toast.error(t('authentication.error.resetFailed', { error: ctx.error.message }), {
-            id: toastIdRef.current ?? undefined,
+            ...(toastIdRef.current !== null && { id: toastIdRef.current }),
           });
           setLoading(false);
         },
@@ -48,7 +48,7 @@ export const ForgotPassword = () => {
         },
         onSuccess: () => {
           toast.success(t('authentication.actions.checkEmail'), {
-            id: toastIdRef.current ?? undefined,
+            ...(toastIdRef.current !== null && { id: toastIdRef.current }),
           });
           form.reset();
           setLoading(false);

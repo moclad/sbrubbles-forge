@@ -27,7 +27,7 @@ const LocationMap = dynamic(() => import('./location-map').then((m) => m.Locatio
 
 type TripFormValues = {
   name: string;
-  locationQuery?: string;
+  locationQuery?: string | undefined;
   personIds: string[];
 };
 
@@ -40,16 +40,18 @@ type LocationResult = {
 type TripFormDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  initialData?: {
-    id: string;
-    name: string;
-    startDate: Date;
-    endDate: Date;
-    locationName: string | null;
-    locationLat: number | null;
-    locationLng: number | null;
-    people: { id: string }[];
-  };
+  initialData?:
+    | {
+        id: string;
+        name: string;
+        startDate: Date;
+        endDate: Date;
+        locationName: string | null;
+        locationLat: number | null;
+        locationLng: number | null;
+        people: { id: string }[];
+      }
+    | undefined;
   people: SelectPerson[];
   onSubmit: (data: TripData) => Promise<void>;
 };
@@ -112,12 +114,18 @@ export function TripFormDialog({ open, onOpenChange, initialData, people, onSubm
         setLocationNotFound(true);
         setLocation(null);
       } else {
-        setLocation({
-          lat: Number.parseFloat(data[0].lat),
-          lng: Number.parseFloat(data[0].lon),
-          name: data[0].display_name,
-        });
-        setLocationNotFound(false);
+        const firstResult = data[0];
+        if (firstResult) {
+          setLocation({
+            lat: Number.parseFloat(firstResult.lat),
+            lng: Number.parseFloat(firstResult.lon),
+            name: firstResult.display_name,
+          });
+          setLocationNotFound(false);
+        } else {
+          setLocationNotFound(true);
+          setLocation(null);
+        }
       }
     } catch {
       setLocationNotFound(true);
