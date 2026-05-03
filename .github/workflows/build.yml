@@ -23,6 +23,9 @@ jobs:
         with:
           run_install: false
 
+      - name: Disable turbo telemetry
+        run: npx turbo telemetry disable
+
       - name: Get pnpm store directory
         shell: bash
         run: |

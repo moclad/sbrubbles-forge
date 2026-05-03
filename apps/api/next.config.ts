@@ -1,8 +1,8 @@
-import { env } from '@/env';
 import { createNextConfig } from '@repo/next-config';
 import { applyAnalyzer, applySentry } from '@repo/observability/next-config';
-
 import type { NextConfig } from 'next';
+import { env } from '@/env';
+
 /**
  * Next.js configuration for the API app
  *
