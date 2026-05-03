@@ -1,8 +1,9 @@
-import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
-import type { NextRequest } from 'next/server';
 import { createI18nMiddleware } from 'next-international/middleware';
 
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+
+import type { NextRequest } from 'next/server';
 const locales = ['en', 'de', 'pt-BR'];
 const handleI18nMiddleware = createI18nMiddleware({
   defaultLocale: 'en',
@@ -12,7 +13,22 @@ const handleI18nMiddleware = createI18nMiddleware({
     const negotiator = new Negotiator({ headers });
     const acceptedLanguages = negotiator.languages();
 
-    const matchedLocale = matchLocale(acceptedLanguages, locales, 'en');
+    // Filter out invalid language tags like '*' which are valid in Accept-Language
+    // but not valid for Intl.getCanonicalLocales()
+    const validLanguages = acceptedLanguages.filter((lang) => {
+      // Filter out wildcards and validate the tag
+      if (lang === '*' || !lang) {
+        return false;
+      }
+      try {
+        Intl.getCanonicalLocales(lang);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+
+    const matchedLocale = matchLocale(validLanguages, locales, 'en');
 
     return matchedLocale;
   },
