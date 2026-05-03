@@ -87,7 +87,7 @@ jobs:
           echo "DATABASE_URL=postgresql://test:test@localhost:5432/test" >> packages/database/.env
 
       - name: Build
-        run: pnpm build
+        run: pnpm build --verbosity 5
 
   test:
     if: false # Temporarily disable tests to speed up CI while we work on fixing them
