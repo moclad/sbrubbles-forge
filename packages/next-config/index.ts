@@ -6,6 +6,12 @@ import type { NextConfig } from 'next';
  * This should be the single source of truth for common Next.js config across all apps.
  */
 export const baseConfig: NextConfig = {
+  experimental: {
+    // Enable filesystem caching for `next build`
+    turbopackFileSystemCacheForBuild: true,
+    // Enable filesystem caching for `next dev`
+    turbopackFileSystemCacheForDev: true,
+  },
   images: {
     dangerouslyAllowLocalIP: true,
     remotePatterns: [

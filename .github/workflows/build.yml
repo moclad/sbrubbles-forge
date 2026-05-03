@@ -23,9 +23,6 @@ jobs:
         with:
           run_install: false
 
-      - name: Disable turbo telemetry
-        run: npx turbo telemetry disable
-
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -47,6 +44,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Disable turbo telemetry
+        run: npx turbo telemetry disable
       - name: Create .env.local file
         run: |
           touch apps/app/.env.local
