@@ -75,10 +75,6 @@ jobs:
           echo "OPENAI_API_KEY=sk-" >> apps/app/.env.local
           echo "ANTHROPIC_API_KEY=sk-ant-" >> apps/app/.env.local
 
-      - name: Copy .env.local file
-        run: |
-          cp apps/app/.env.local apps/api/.env.local
-
       - name: Create specific Database .env file
         run: |
           touch packages/database/.env
@@ -158,10 +154,6 @@ jobs:
           echo "NEXT_PUBLIC_UMAMI_SCRIPT_URL=https://test.com" >> apps/app/.env.local
           echo "NEXT_PUBLIC_APP_URL=http://localhost:3005" >> apps/app/.env.local
           echo "NEXT_PUBLIC_DOCS_URL=http://localhost:3004" >> apps/app/.env.local
-
-      - name: Copy .env.local file
-        run: |
-          cp apps/app/.env.local apps/api/.env.local
 
       - name: Create specific Database .env file
         run: |
