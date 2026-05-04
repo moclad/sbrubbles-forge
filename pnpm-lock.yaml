@@ -1076,7 +1076,7 @@ importers:
   packages/notifications:
     dependencies:
       '@knocklabs/node':
-        specifier: ^1.31.1
+        specifier: ^1.32.0
         version: 1.32.0
       '@knocklabs/react':
         specifier: ^0.11.20
@@ -16620,7 +16620,7 @@ snapshots:
 
   '@types/node-fetch@2.6.13':
     dependencies:
-      '@types/node': 18.19.130
+      '@types/node': 25.6.0
       form-data: 4.0.5
 
   '@types/node@12.20.55': {}

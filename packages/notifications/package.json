@@ -7,7 +7,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@knocklabs/node": "^1.31.1",
+    "@knocklabs/node": "^1.32.0",
     "@knocklabs/react": "^0.11.20",
     "@t3-oss/env-nextjs": "catalog:",
     "react": "catalog:react19",
