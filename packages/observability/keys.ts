@@ -10,12 +10,14 @@ export const keys = () =>
     runtimeEnv: {
       ANALYZE: process.env['ANALYZE'],
       NEXT_PUBLIC_SENTRY_DSN: process.env['NEXT_PUBLIC_SENTRY_DSN'],
+      NEXT_RUNTIME: process.env['NEXT_RUNTIME'],
       SENTRY: process.env['SENTRY'],
       SENTRY_ORG: process.env['SENTRY_ORG'],
       SENTRY_PROJECT: process.env['SENTRY_PROJECT'],
     },
     server: {
       ANALYZE: z.string().optional(),
+      NEXT_RUNTIME: z.string().optional(),
       SENTRY: z.string().optional(),
       SENTRY_ORG: z.string().optional(),
       SENTRY_PROJECT: z.string().optional(),
