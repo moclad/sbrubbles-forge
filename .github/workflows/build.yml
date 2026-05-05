@@ -44,6 +44,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Disable turbo telemetry
+        run: npx turbo telemetry disable
+
       - name: Create .env.local file
         run: |
           touch apps/app/.env.local
@@ -69,6 +72,7 @@ jobs:
           echo "NEXT_PUBLIC_UMAMI_WEBSITE_ID=phc_test" >> apps/app/.env.local
           echo "NEXT_PUBLIC_UMAMI_SCRIPT_URL=https://test.com" >> apps/app/.env.local
           echo "NEXT_PUBLIC_APP_URL=http://localhost:3005" >> apps/app/.env.local
+
           echo "SLACK_SIGNING_SECRET=secret" >> apps/app/.env.local
           echo "SLACK_BOT_TOKEN=xoxb-" >> apps/app/.env.local
           echo "SLACK_CHANNEL_ID=channel" >> apps/app/.env.local
